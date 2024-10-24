@@ -3,7 +3,7 @@ name: Deploy to HostGator
 on:
   push:
     branches:
-      - main
+      - main  # Trigger on push to the main branch
 
 jobs:
   deploy:
@@ -18,12 +18,14 @@ jobs:
           npm install
           npm run build
 
-      - name: Deploy to HostGator via FTP
+      - name: Deploy via FTP
         uses: SamKirkland/FTP-Deploy-Action@v4.3.0
         with:
           server: ${{ secrets.FTP_HOST }}
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
-          local-dir: ./build  
-          server-dir: /public_html  
-          method: ftp  
+          local-dir: ./build/  # Ensure the path ends with a slash
+          server-dir: /public_html/  # Ensure the remote directory path ends with a slash
+          protocol: ftp  # Use 'ftp' as protocol (no 'method' input)
+          port: 21  # Default FTP port
+
