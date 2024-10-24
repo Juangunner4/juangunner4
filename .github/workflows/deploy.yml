@@ -26,6 +26,6 @@ jobs:
           password: ${{ secrets.FTP_PASSWORD }}
           local-dir: ./build/  # Ensure the path ends with a slash
           server-dir: /public_html/  # Ensure the remote directory path ends with a slash
-          protocol: ftp  # Use 'ftp' as protocol (no 'method' input)
+          protocol: ftps  # Use 'ftp' as protocol (no 'method' input)
           port: 21
 
