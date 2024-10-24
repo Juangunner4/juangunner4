@@ -19,7 +19,7 @@ jobs:
           npm run build
 
       - name: Deploy to HostGator via FTP
-        uses: SamKirkland/FTP-Deploy-Action@4.5.0
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.0
         with:
           server: ${{ secrets.FTP_HOST }}
           username: ${{ secrets.FTP_USERNAME }}
