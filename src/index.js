@@ -1,11 +1,11 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
-import './assets/styles/App.css'; // Example of importing a global stylesheet
+import ReactDOM from 'react-dom/client'; // Updated import
 import App from './App';
 
-ReactDOM.render(
+const root = ReactDOM.createRoot(document.getElementById('root')); // Create root
+
+root.render(
   <React.StrictMode>
     <App />
-  </React.StrictMode>,
-  document.getElementById('root')
+  </React.StrictMode>
 );

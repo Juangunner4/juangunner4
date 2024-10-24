@@ -1,21 +1,26 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import LandingPage from './pages/LandingPage';
-import ProjectsPage from './pages/ProjectsPage';
-import SoccerPage from './pages/SoccerPage';
-import Header from './components/Header';
-import Footer from './components/Footer';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Navbar from './components/Navbar';
+import Web2 from './pages/Web2';
+import Web3 from './pages/Web3';
+import About from './pages/About';
+import Projects from './pages/Projects';
 
 function App() {
   return (
     <Router>
-      <Header />
-      <Switch>
-        <Route exact path="/" component={LandingPage} />
-        <Route path="/projects" component={ProjectsPage} />
-        <Route path="/soccer" component={SoccerPage} />
-      </Switch>
-      <Footer />
+      <div className="App">
+        <Navbar />
+        <main>
+          <Routes>
+            <Route path="/" element={<h1>Welcome to my Projects!</h1>} />
+            <Route path="/web2" element={<Web2 />} />
+            <Route path="/web3" element={<Web3 />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/projects" element={<Projects />} />
+          </Routes>
+        </main>
+      </div>
     </Router>
   );
 }
