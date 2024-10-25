@@ -13,7 +13,6 @@ function App() {
         <Navbar />
         <main>
           <Routes>
-            <Route path="/" element={<h1>Welcome to my Projects!</h1>} />
             <Route path="/web2" element={<Web2 />} />
             <Route path="/web3" element={<Web3 />} />
             <Route path="/about" element={<About />} />
