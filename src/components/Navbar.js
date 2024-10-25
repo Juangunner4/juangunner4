@@ -1,49 +1,49 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import '../styles/Navbar.css';
-import web2Image from '../assets/profile.png'; // PFP for Web2
-import web3Image from '../assets/web3.png'; // PFP for Web3
+import web2Image from '../assets/profile.png';
+import web3Image from '../assets/web3.png';
 
 const Navbar = () => {
-  const location = useLocation(); // React Router hook to get the current route
-  const [currentImage, setCurrentImage] = useState(web2Image); // Default PFP
+  const location = useLocation();
+  const [currentImage, setCurrentImage] = useState(web2Image);
+  const [isMobileMenuOpen, setMobileMenuOpen] = useState(false);
 
-  // Update PFP based on the current route
+
   useEffect(() => {
     if (location.pathname === '/web3') {
-      setCurrentImage(web3Image); // Change to Web3 PFP
+      setCurrentImage(web3Image);
     } else {
-      setCurrentImage(web2Image); // Change to Web2 PFP
+      setCurrentImage(web2Image);
     }
   }, [location]);
 
-  const [isTabHovered, setTabHovered] = useState(false);
+  const toggleMobileMenu = () => {
+    setMobileMenuOpen((prev) => !prev);
+  };
 
   return (
-    <nav
-      className="navbar"
-      onMouseEnter={() => setTabHovered(true)}
-      onMouseLeave={() => setTabHovered(false)}
-    >
-      {/* Left Side: Profile Picture */}
+    <nav className="navbar">
+
       <div className="navbar-left">
         <img src={currentImage} alt="Profile" className="navbar-pfp" />
       </div>
 
-      {/* Middle Section: Web2 and Web3 Tabs */}
-      <div className={`navbar-tabs ${isTabHovered ? 'show-tabs' : ''}`}>
-        <Link to="/web2" className="tab-btn">Web2</Link>
-        <Link to="/web3" className="tab-btn">Web3</Link>
+
+
+      <div className={`navbar-right ${isMobileMenuOpen ? 'show' : ''}`}>
+        <Link to="/web2" onClick={toggleMobileMenu}>Web2</Link>
+        <Link to="/web3" onClick={toggleMobileMenu}>Web3</Link>
+        <Link to="/about" onClick={toggleMobileMenu}>About</Link>
+        <Link to="/projects" onClick={toggleMobileMenu}>Projects</Link>
       </div>
 
-      {/* Right Side: About and Projects */}
-      <div className="navbar-right">
-        <Link to="/about">About</Link>
-        <Link to="/projects">Projects</Link>
-      </div>
+      <button className="hamburger" onClick={toggleMobileMenu}>
+        ☰
+      </button>
 
-      {/* Hamburger Menu for Mobile */}
-      <button className="hamburger">☰</button>
+
+      {isMobileMenuOpen && <div className="mobile-overlay" onClick={toggleMobileMenu}></div>}
     </nav>
   );
 };
