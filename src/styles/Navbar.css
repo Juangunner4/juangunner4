@@ -32,6 +32,31 @@
     box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.4);
 }
 
+.navbar-tabs {
+    display: flex;
+    visibility: hidden;
+    opacity: 0;
+    transition: visibility 0s, opacity 0.5s linear;
+}
+
+.navbar-tabs.show-tabs {
+    visibility: visible;
+    opacity: 1;
+}
+
+.tab-btn {
+    background-color: transparent;
+    border: none;
+    color: white;
+    font-size: 18px;
+    margin: 0 10px;
+    text-decoration: none;
+}
+
+.tab-btn:hover {
+    text-decoration: underline;
+}
+
 .navbar-right {
     display: flex;
     align-items: center;
@@ -66,6 +91,7 @@
     z-index: 999;
 }
 
+.navbar-tabs.show,
 .navbar-right.show {
     display: flex;
     flex-direction: column;
@@ -81,6 +107,7 @@
 }
 
 
+.navbar-tabs.show a,
 .navbar-right.show a {
     color: white;
     text-decoration: none;
@@ -90,6 +117,7 @@
     transition: background-color 0.3s ease;
 }
 
+.navbar-tabs.show a:hover,
 .navbar-right.show a:hover {
     background-color: rgba(255, 255, 255, 0.2);
 }
@@ -97,6 +125,7 @@
 
 @media (max-width: 768px) {
 
+    .navbar-tabs,
     .navbar-right {
         display: none;
     }

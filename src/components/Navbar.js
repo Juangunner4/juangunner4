@@ -1,25 +1,25 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import '../styles/Navbar.css';
-import web2Image from '../assets/profile.png';
-import web3Image from '../assets/web3.png';
+import web2Image from '../assets/profile.png'; 
+import web3Image from '../assets/web3.png'; 
 
 const Navbar = () => {
-  const location = useLocation();
-  const [currentImage, setCurrentImage] = useState(web2Image);
-  const [isMobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const location = useLocation(); 
+  const [currentImage, setCurrentImage] = useState(web2Image); 
+  const [isMobileMenuOpen, setMobileMenuOpen] = useState(false); 
 
 
   useEffect(() => {
     if (location.pathname === '/web3') {
-      setCurrentImage(web3Image);
+      setCurrentImage(web3Image); 
     } else {
       setCurrentImage(web2Image);
     }
   }, [location]);
 
   const toggleMobileMenu = () => {
-    setMobileMenuOpen((prev) => !prev);
+    setMobileMenuOpen((prev) => !prev); 
   };
 
   return (
@@ -30,10 +30,17 @@ const Navbar = () => {
       </div>
 
 
+      <div className={`navbar-tabs ${isMobileMenuOpen ? 'show' : ''}`}>
+        <Link to="/web2" className="tab-btn" onClick={toggleMobileMenu}>
+          Web2
+        </Link>
+        <Link to="/web3" className="tab-btn" onClick={toggleMobileMenu}>
+          Web3
+        </Link>
+      </div>
+
 
       <div className={`navbar-right ${isMobileMenuOpen ? 'show' : ''}`}>
-        <Link to="/web2" onClick={toggleMobileMenu}>Web2</Link>
-        <Link to="/web3" onClick={toggleMobileMenu}>Web3</Link>
         <Link to="/about" onClick={toggleMobileMenu}>About</Link>
         <Link to="/projects" onClick={toggleMobileMenu}>Projects</Link>
       </div>
