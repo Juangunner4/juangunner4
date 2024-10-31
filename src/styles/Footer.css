@@ -1,0 +1,79 @@
+/* General Layout to Keep Footer at Bottom */
+html, body, #root, .App {
+    height: 100%;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  /* Ensure the main content area expands to fill available space */
+  main {
+    flex: 1; /* This allows the main content to grow, pushing the footer down */
+  }
+  
+  /* Footer Styling */
+  .footer {
+    background-color: #FF0000; /* Red background */
+    color: #fff;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    text-align: center;
+    box-sizing: border-box;
+  }
+  
+  /* Footer content aligned and responsive */
+  .footer-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 90%;
+    max-width: 1200px;
+    box-sizing: border-box;
+  }
+  
+  /* Contact Section Styling */
+  .contact {
+    font-size: 16px;
+  }
+  
+  .contact a {
+    color: #fff; /* Email link in white */
+    text-decoration: none;
+  }
+  
+  .contact a:hover {
+    text-decoration: underline;
+  }
+  
+  /* Social Links Styling */
+  .social-links {
+    display: flex;
+    gap: 20px;
+  }
+  
+  .social-links a {
+    color: #fff;
+    font-size: 24px;
+    transition: transform 0.3s ease, color 0.3s ease;
+  }
+  
+  .social-links a:hover {
+    color: #ddd; /* Light gray color on hover */
+    transform: scale(1.2); /* Enlarge icons on hover */
+  }
+  
+  /* Mobile Styling */
+  @media (max-width: 768px) {
+    .footer-content {
+      flex-direction: column;
+      text-align: center;
+    }
+  
+    .social-links {
+      margin-top: 10px;
+    }
+  }
+  
