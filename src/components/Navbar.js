@@ -1,48 +1,35 @@
-import React, { useState, useEffect } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import '../styles/Navbar.css';
-import web2Image from '../assets/profile.png'; 
-import web3Image from '../assets/web3.png'; 
+import web2Image from '../assets/profile.png';
+import web3Image from '../assets/web3.png';
 
 const Navbar = () => {
-  const location = useLocation(); 
-  const [currentImage, setCurrentImage] = useState(web2Image); 
-  const [isMobileMenuOpen, setMobileMenuOpen] = useState(false); 
+  const [currentImage, setCurrentImage] = useState(web2Image);
+  const [isMobileMenuOpen, setMobileMenuOpen] = useState(false);
 
-
-  useEffect(() => {
-    if (location.pathname === '/web3') {
-      setCurrentImage(web3Image); 
-    } else {
-      setCurrentImage(web2Image);
-    }
-  }, [location]);
+  const toggleProfileImage = () => {
+    setCurrentImage((prevImage) => (prevImage === web2Image ? web3Image : web2Image));
+  };
 
   const toggleMobileMenu = () => {
-    setMobileMenuOpen((prev) => !prev); 
+    setMobileMenuOpen((prev) => !prev);
   };
 
   return (
     <nav className="navbar">
-
       <div className="navbar-left">
-        <img src={currentImage} alt="Profile" className="navbar-pfp" />
+        <img
+          src={currentImage}
+          alt="Profile"
+          className="navbar-pfp"
+          onClick={toggleProfileImage}
+        />
       </div>
-
-
-      <div className={`navbar-tabs ${isMobileMenuOpen ? 'show' : ''}`}>
-        <Link to="/web2" className="tab-btn" onClick={toggleMobileMenu}>
-          Web2
-        </Link>
-        <Link to="/web3" className="tab-btn" onClick={toggleMobileMenu}>
-          Web3
-        </Link>
-      </div>
-
 
       <div className={`navbar-right ${isMobileMenuOpen ? 'show' : ''}`}>
-        <Link to="/about" onClick={toggleMobileMenu}>About</Link>
-        <Link to="/projects" onClick={toggleMobileMenu}>Projects</Link>
+        <Link to="/about" >About</Link>
+        <Link to="/projects" >Projects</Link>
       </div>
 
       <button className="hamburger" onClick={toggleMobileMenu}>
