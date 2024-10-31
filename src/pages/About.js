@@ -134,8 +134,7 @@ const experiences = [
 const About = () => {
   return (
     <div className="about-page">
-      <h2>About Me</h2>
-      <p>This is the about page for my Web2 and Web3 projects.</p>
+      <h2>About</h2>
       <div className="timeline">
         {experiences.map((experience, index) => (
           <div key={index} className="timeline-item">
