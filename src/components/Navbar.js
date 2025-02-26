@@ -28,6 +28,7 @@ const Navbar = () => {
       </div>
 
       <div className={`navbar-right ${isMobileMenuOpen ? 'show' : ''}`}>
+        <Link to="/booknow" >Book Now</Link>
         <Link to="/about" >About</Link>
         <Link to="/projects" >Projects</Link>
       </div>
