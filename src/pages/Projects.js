@@ -7,7 +7,6 @@ const projectData = [
   { domain: 'eaglevisionsoccertraining.com', tags: ['web2', 'sports', 'service', 'landing page'] },
   { domain: 'goshenretirementhomes.com', tags: ['web2', 'business', 'landing page'] },
   { domain: 'scripledger.com', tags: ['web3', 'solana', 'backend developer'], logo: 'https://scripledger.com/assets/img/scripledger-icon.png' },
-  { domain: 'krrifas.com', tags: ['web2', 'raffle', 'spanish', 'landing page'] },
   { domain: 'perionsol.xyz', tags: ['web3', 'meme', 'landing page'] },
 ];
 

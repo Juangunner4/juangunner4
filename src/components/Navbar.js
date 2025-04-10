@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import '../styles/Navbar.css';
 import web2Image from '../assets/profile.png';
-import web3Image from '../assets/web3.png';
+import web3Image from '../assets/web3.jpg';
 
 const Navbar = () => {
   const [currentImage, setCurrentImage] = useState(web2Image);
