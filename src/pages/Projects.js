@@ -3,7 +3,7 @@ import '../styles/Projects.css';
 
 const projectData = [
   { domain: 'angelstowinghva.com', tags: ['web2', 'service'] },
-  { domain: 'dosamigosmoving.com', tags: ['web2', 'business', 'landing page'] },
+  { domain: 'dosamigosmoving.com', tags: ['web2', 'business', 'landing page', 'backend'] },
   { domain: 'eaglevisionsoccertraining.com', tags: ['web2', 'sports', 'service', 'landing page'] },
   { domain: 'goshenretirementhomes.com', tags: ['web2', 'business', 'landing page'] },
   { domain: 'perionsol.xyz', tags: ['web3', 'meme', 'landing page'] },
