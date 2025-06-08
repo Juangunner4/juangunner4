@@ -1,0 +1,20 @@
+import React from 'react';
+import Box from '@mui/material/Box';
+import Typography from '@mui/material/Typography';
+import Button from '@mui/material/Button';
+
+const Hero = () => (
+  <Box sx={{ textAlign: 'center', py: 8, backgroundColor: '#f5f5f5' }}>
+    <Typography variant="h3" component="h1" gutterBottom>
+      Welcome to Juangunner4
+    </Typography>
+    <Typography variant="h6" gutterBottom>
+      Follow my journey as a software engineer and footballer
+    </Typography>
+    <Button variant="contained" color="primary" href="/projects">
+      View Projects
+    </Button>
+  </Box>
+);
+
+export default Hero;
