@@ -4,7 +4,7 @@ import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 
 const Hero = () => (
-  <Box sx={{ textAlign: 'center', py: 8, backgroundColor: '#f5f5f5' }}>
+  <Box sx={{ textAlign: 'center', py: 8, backgroundColor: '#ff0000', color: 'white' }}>
     <Typography variant="h3" component="h1" gutterBottom>
       Welcome to Juangunner4
     </Typography>
