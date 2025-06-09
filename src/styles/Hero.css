@@ -1,0 +1,61 @@
+.hero-container {
+  text-align: center;
+  padding: 64px 0;
+  background-color: #ff0000;
+  color: #ffffff;
+}
+
+.hero-title {
+  animation: fadeIn 2s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.coding {
+  font-family: "Courier New", monospace;
+  background-color: rgba(0,0,0,0.2);
+  padding: 2px 4px;
+  border-radius: 4px;
+  animation: codingBlink 1s steps(2, start) infinite;
+}
+
+@keyframes codingBlink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+.crypto i {
+  margin-right: 4px;
+  animation: spin 3s linear infinite;
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.football i {
+  margin-right: 4px;
+  display: inline-block;
+  animation: bounce 1s ease-in-out infinite;
+}
+
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+
+.project-button {
+  background-color: #ffffff !important;
+  color: #ff0000 !important;
+  margin-top: 16px;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.project-button:hover {
+  background-color: #ff0000 !important;
+  color: #ffffff !important;
+}
