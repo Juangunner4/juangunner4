@@ -39,7 +39,7 @@ const experiences = [
     title: "Head Youth Soccer Coach",
     company: "Villarreal CF, SAD",
     location: "Falls Church, Virginia, United States",
-    date: "Apr 2023 - Present",
+    date: "Apr 2023 - Apr 2025",
     description:
       "2015, 2016, and 2017 Boys Director and Coach. Junior Academy Director and Coach.",
     skills: ["Sports Coaching", "Athletics", "Soccer"],
