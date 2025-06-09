@@ -6,7 +6,7 @@ import Link from '@mui/material/Link';
 import { SportsEsports } from '@mui/icons-material';
 
 const TwitchFeed = () => (
-  <Card sx={{ my: 2 }}>
+  <Card sx={{ my: 2, width: '100%' }}>
     <CardContent sx={{ textAlign: 'center' }}>
       <SportsEsports sx={{ fontSize: 40, color: '#ff0000' }} />
       <Typography variant="h6">Watch me on Twitch</Typography>
