@@ -8,7 +8,7 @@ import { YouTube } from '@mui/icons-material';
 const YoutubeFeed = () => (
   <Card sx={{ my: 2 }}>
     <CardContent sx={{ textAlign: 'center' }}>
-      <YouTube color="primary" sx={{ fontSize: 40 }} />
+      <YouTube sx={{ fontSize: 40, color: '#ff0000' }} />
       <Typography variant="h6">Subscribe on YouTube</Typography>
       <Link href="https://www.youtube.com/@juangunner4" target="_blank" rel="noopener noreferrer">
         @juangunner4
