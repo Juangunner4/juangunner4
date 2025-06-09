@@ -7,14 +7,12 @@ import ListItemText from '@mui/material/ListItemText';
 import '../styles/Navbar.css';
 import web2Image from '../assets/profile.png';
 import web3Image from '../assets/web3.jpg';
+import { useProfile } from '../ProfileContext';
 
 const Navbar = () => {
-  const [currentImage, setCurrentImage] = useState(web2Image);
+  const { isWeb3, toggleProfile } = useProfile();
+  const currentImage = isWeb3 ? web3Image : web2Image;
   const [drawerOpen, setDrawerOpen] = useState(false);
-
-  const toggleProfileImage = () => {
-    setCurrentImage((prevImage) => (prevImage === web2Image ? web3Image : web2Image));
-  };
 
   const toggleDrawer = (open) => () => {
     setDrawerOpen(open);
@@ -27,7 +25,7 @@ const Navbar = () => {
           src={currentImage}
           alt="Profile"
           className="navbar-pfp"
-          onClick={toggleProfileImage}
+          onClick={toggleProfile}
         />
       </div>
 
