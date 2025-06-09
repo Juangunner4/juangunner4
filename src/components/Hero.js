@@ -11,7 +11,11 @@ const Hero = () => (
     <Typography variant="h6" gutterBottom>
       Follow my journey as a software engineer and footballer
     </Typography>
-    <Button variant="contained" color="primary" href="/projects">
+    <Button
+      variant="contained"
+      href="/projects"
+      sx={{ backgroundColor: '#ff0000', '&:hover': { backgroundColor: '#cc0000' } }}
+    >
       View Projects
     </Button>
   </Box>

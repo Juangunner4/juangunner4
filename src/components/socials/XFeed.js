@@ -8,7 +8,7 @@ import { Twitter } from '@mui/icons-material';
 const XFeed = () => (
   <Card sx={{ my: 2 }}>
     <CardContent sx={{ textAlign: 'center' }}>
-      <Twitter color="primary" sx={{ fontSize: 40 }} />
+      <Twitter sx={{ fontSize: 40, color: '#ff0000' }} />
       <Typography variant="h6">Follow me on X</Typography>
       <Link href="https://twitter.com/juangunner4" target="_blank" rel="noopener noreferrer">
         @juangunner4

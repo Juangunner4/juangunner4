@@ -8,7 +8,7 @@ import { Instagram } from '@mui/icons-material';
 const InstagramFeed = () => (
   <Card sx={{ my: 2 }}>
     <CardContent sx={{ textAlign: 'center' }}>
-      <Instagram color="primary" sx={{ fontSize: 40 }} />
+      <Instagram sx={{ fontSize: 40, color: '#ff0000' }} />
       <Typography variant="h6">Follow me on Instagram</Typography>
       <Link href="https://www.instagram.com/juangunner4" target="_blank" rel="noopener noreferrer">
         @juangunner4
