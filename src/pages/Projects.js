@@ -1,10 +1,6 @@
 import React, { useState } from 'react';
 import '../styles/Projects.css';
-import * as Tabs from '@radix-ui/react-tabs';
-import Box from '@mui/material/Box';
-import Tab from '@mui/material/Tab';
-import TabsList from '@mui/material/Tabs';
-import Button from '@mui/material/Button';
+import '@fortawesome/fontawesome-free/css/all.min.css';
 
 const projectData = [
   { domain: 'angelstowinghva.com', tags: ['web2', 'service'] },
@@ -80,9 +76,7 @@ const Projects = () => {
             <div
               key={index}
               className="project-card"
-              onClick={() =>
-                setOpenProject(openProject === index ? null : index)
-              }
+              onClick={() => setOpenProject(index)}
             >
               <div className="project-link">
                 <img
@@ -97,45 +91,39 @@ const Projects = () => {
                   <span key={i} className="tag">{tag}</span>
                 ))}
               </div>
-              {openProject === index && (
-                <div className="dev-env-tabs">
-                  <Tabs.Root defaultValue="dev">
-                    <Tabs.List asChild>
-                      <TabsList component={Box} sx={{ borderBottom: 1, borderColor: 'divider', mb: 1 }}>
-                        <Tabs.Trigger value="dev" asChild>
-                          <Tab label="Dev" />
-                        </Tabs.Trigger>
-                        <Tabs.Trigger value="test" asChild>
-                          <Tab label="Test" />
-                        </Tabs.Trigger>
-                      </TabsList>
-                    </Tabs.List>
-                    <Tabs.Content value="dev">
-                      <Button
-                        variant="outlined"
-                        href={project.environments.dev}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        Visit Dev
-                      </Button>
-                    </Tabs.Content>
-                    <Tabs.Content value="test">
-                      <Button
-                        variant="outlined"
-                        href={project.environments.test}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        Visit Test
-                      </Button>
-                    </Tabs.Content>
-                  </Tabs.Root>
-                </div>
-              )}
             </div>
           ))}
         </div>
+      )}
+
+      {openProject !== null && view === 'development' && (
+        <>
+          <div className="side-panel-overlay" onClick={() => setOpenProject(null)} />
+          <div className="side-panel">
+            <button className="close-btn" onClick={() => setOpenProject(null)}>
+              &times;
+            </button>
+            <h3>{devProjectData[openProject].name}</h3>
+            <div className="env-icons">
+              <a
+                href={devProjectData[openProject].environments.dev}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="env-icon"
+              >
+                <i className="fas fa-wrench" /> Dev
+              </a>
+              <a
+                href={devProjectData[openProject].environments.test}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="env-icon"
+              >
+                <i className="fas fa-vial" /> Test
+              </a>
+            </div>
+          </div>
+        </>
       )}
     </div>
   );
