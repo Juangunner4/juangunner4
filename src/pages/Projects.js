@@ -4,9 +4,6 @@ import * as Tabs from '@radix-ui/react-tabs';
 import Box from '@mui/material/Box';
 import Tab from '@mui/material/Tab';
 import TabsList from '@mui/material/Tabs';
-import Card from '@mui/material/Card';
-import CardContent from '@mui/material/CardContent';
-import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 
 const projectData = [
