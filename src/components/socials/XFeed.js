@@ -15,7 +15,13 @@ const XFeed = () => {
       <CardContent sx={{ textAlign: 'center' }}>
         <Twitter sx={{ fontSize: 40, color: '#ff0000' }} />
         <Typography variant="h6">Follow me on X</Typography>
-        <Link href={`https://twitter.com/${handle}`} target="_blank" rel="noopener noreferrer">
+        <Link 
+          href={`https://twitter.com/${handle}`}
+          target="_blank"
+          rel="noopener noreferrer"
+          sx={{ color: '#d32f2f', fontWeight: 600 }}
+          underline="none"
+        >
           @{handle}
         </Link>
       </CardContent>

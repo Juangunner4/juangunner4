@@ -1,44 +1,78 @@
-import React from 'react';
-import * as Tabs from '@radix-ui/react-tabs';
+import React, { useState } from 'react';
 import Box from '@mui/material/Box';
 import Tab from '@mui/material/Tab';
-import TabsList from '@mui/material/Tabs';
+import Tabs from '@mui/material/Tabs';
 import XFeed from './XFeed';
 import InstagramFeed from './InstagramFeed';
 import TwitchFeed from './TwitchFeed';
 import YoutubeFeed from './YoutubeFeed';
 
-const SocialTabs = () => (
-  <Tabs.Root defaultValue="x" style={{ width: '100%' }}>
-    <Tabs.List asChild>
-      <TabsList component={Box} sx={{ borderBottom: 1, borderColor: 'divider', width: '100%' }}>
-        <Tabs.Trigger value="x" asChild>
-          <Tab label="X" />
-        </Tabs.Trigger>
-        <Tabs.Trigger value="instagram" asChild>
-          <Tab label="Instagram" />
-        </Tabs.Trigger>
-        <Tabs.Trigger value="twitch" asChild>
-          <Tab label="Twitch" />
-        </Tabs.Trigger>
-        <Tabs.Trigger value="youtube" asChild>
-          <Tab label="YouTube" />
-        </Tabs.Trigger>
-      </TabsList>
-    </Tabs.List>
-    <Tabs.Content value="x" style={{ width: '100%' }}>
-      <XFeed />
-    </Tabs.Content>
-    <Tabs.Content value="instagram" style={{ width: '100%' }}>
-      <InstagramFeed />
-    </Tabs.Content>
-    <Tabs.Content value="twitch" style={{ width: '100%' }}>
-      <TwitchFeed />
-    </Tabs.Content>
-    <Tabs.Content value="youtube" style={{ width: '100%' }}>
-      <YoutubeFeed />
-    </Tabs.Content>
-  </Tabs.Root>
-);
+const SocialTabs = () => {
+  const [value, setValue] = useState('x');
+
+  const handleChange = (event, newValue) => {
+    setValue(newValue);
+  };
+
+  return (
+    <Box 
+      sx={{ 
+        maxWidth: { xs: '100%', sm: 600 }, 
+        mx: 'auto', 
+        mt: { xs: 2, sm: 4 }, 
+        borderRadius: 3, 
+        boxShadow: '0 4px 24px 0 rgba(0,0,0,0.12)', 
+        background: '#fff',
+        p: { xs: 1, sm: 2 }
+      }}
+    >
+      <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
+        <Tabs 
+          value={value} 
+          onChange={handleChange} 
+          centered
+          aria-label="social media tabs"
+          sx={{
+            '& .MuiTab-root': {
+              color: '#333333',
+              fontWeight: 600,
+            },
+            '& .Mui-selected': {
+              color: '#000000 !important',
+            },
+            '& .MuiTabs-indicator': {
+              backgroundColor: '#d32f2f', // red color for indicator
+            }
+          }}
+        >
+          <Tab label="X" value="x" />
+          <Tab label="Instagram" value="instagram" />
+          <Tab label="Twitch" value="twitch" />
+          <Tab label="YouTube" value="youtube" />
+        </Tabs>
+      </Box>
+      {value === 'x' && (
+        <Box sx={{ width: '100%', mt: 2 }}>
+          <XFeed />
+        </Box>
+      )}
+      {value === 'instagram' && (
+        <Box sx={{ width: '100%', mt: 2 }}>
+          <InstagramFeed />
+        </Box>
+      )}
+      {value === 'twitch' && (
+        <Box sx={{ width: '100%', mt: 2 }}>
+          <TwitchFeed />
+        </Box>
+      )}
+      {value === 'youtube' && (
+        <Box sx={{ width: '100%', mt: 2 }}>
+          <YoutubeFeed />
+        </Box>
+      )}
+    </Box>
+  );
+};
 
 export default SocialTabs;

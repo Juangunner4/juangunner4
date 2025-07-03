@@ -10,7 +10,13 @@ const TwitchFeed = () => (
     <CardContent sx={{ textAlign: 'center' }}>
       <SportsEsports sx={{ fontSize: 40, color: '#ff0000' }} />
       <Typography variant="h6">Watch me on Twitch</Typography>
-      <Link href="https://twitch.tv/juangunner4" target="_blank" rel="noopener noreferrer">
+      <Link 
+        href="https://twitch.tv/juangunner4" 
+        target="_blank" 
+        rel="noopener noreferrer"
+        sx={{ color: '#d32f2f', fontWeight: 600 }}
+        underline="none"
+      >
         twitch.tv/juangunner4
       </Link>
     </CardContent>

@@ -10,7 +10,13 @@ const InstagramFeed = () => (
     <CardContent sx={{ textAlign: 'center' }}>
       <Instagram sx={{ fontSize: 40, color: '#ff0000' }} />
       <Typography variant="h6">Follow me on Instagram</Typography>
-      <Link href="https://www.instagram.com/juangunner4" target="_blank" rel="noopener noreferrer">
+      <Link 
+        href="https://www.instagram.com/juangunner4" 
+        target="_blank" 
+        rel="noopener noreferrer"
+        sx={{ color: '#d32f2f', fontWeight: 600 }}
+        underline="none"
+      >
         @juangunner4
       </Link>
     </CardContent>
