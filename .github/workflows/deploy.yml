@@ -8,6 +8,8 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    env:
+      TWITTER_BEARER_TOKEN: ${{ secrets.TWITTER_BEARER_TOKEN }}
 
     steps:
       - name: Checkout code
@@ -18,14 +20,26 @@ jobs:
           npm install
           npm run build
 
-      - name: Deploy via FTP
+      - name: Deploy client build via FTP
         uses: SamKirkland/FTP-Deploy-Action@v4.3.0
         with:
           server: ${{ secrets.FTP_HOST }}
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
-          local-dir: ./build/  # Ensure the path ends with a slash
-          server-dir: /public_html/  # Ensure the remote directory path ends with a slash
-          protocol: ftps  # Use 'ftp' as protocol (no 'method' input)
+          local-dir: ./build/  # Client static build
+          server-dir: /public_html/  # Static site root
+          protocol: ftps
+          port: 21
+
+      # Upload Express server files; you must configure HostGator to run Node.js app (via SSH or cPanel Node.js selector)
+      - name: Deploy server code via FTP
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.0
+        with:
+          server: ${{ secrets.FTP_HOST }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          local-dir: ./server/  # Express server source
+          server-dir: /public_html/server/  # Destination for API code on host
+          protocol: ftps
           port: 21
 
