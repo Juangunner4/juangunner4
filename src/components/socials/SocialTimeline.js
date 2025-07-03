@@ -31,7 +31,7 @@ const SocialTimeline = ({ platform }) => {
           setLoading(false);
         });
     }
-  }, [platform, handle]);
+  }, [platform, handle, baseUrl]);
 
   switch (platform) {
     case 'instagram':
