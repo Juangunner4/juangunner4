@@ -2,13 +2,13 @@ import { render, screen, fireEvent } from '@testing-library/react';
 import SocialTabs from '../socials/SocialTabs';
 import { ProfileProvider } from '../../ProfileContext';
 
-test('switches tabs', () => {
+test('calls setValue when different tab selected', () => {
+  const setValue = jest.fn();
   render(
     <ProfileProvider>
-      <SocialTabs />
+      <SocialTabs value="x" setValue={setValue} />
     </ProfileProvider>
   );
-  expect(screen.getByText(/follow me on x/i)).toBeInTheDocument();
   fireEvent.click(screen.getByRole('tab', { name: /instagram/i }));
-  expect(screen.getByText(/follow me on instagram/i)).toBeInTheDocument();
+  expect(setValue).toHaveBeenCalledWith('instagram');
 });

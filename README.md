@@ -2,6 +2,10 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+## Twitter API integration
+
+An Express server in `server.js` fetches tweets using the Twitter API. Copy `.env.example` to `.env` and set `TWITTER_BEARER_TOKEN`. Start the server with `npm run server`.
+
 ## Available Scripts
 
 In the project directory, you can run:
