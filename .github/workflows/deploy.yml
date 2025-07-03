@@ -31,18 +31,18 @@ jobs:
           protocol: ftps
           port: 21
 
-      # Deploy server to Railway
-      - name: Setup Node.js for server
-        uses: actions/setup-node@v4
-        with:
-          node-version: '12'
-      - name: Install server dependencies
-        working-directory: ./server
-        run: npm ci
-      - name: Deploy server to Railway
-        uses: railwayapp/railway-deploy-action@v1
-        with:
-          railwayToken: ${{ secrets.RAILWAY_API_KEY }}
-          projectId: ${{ secrets.RAILWAY_PROJECT_ID }}
+      # Deploy server to Railway (temporarily disabled)
+      #- name: Setup Node.js for server
+      #  uses: actions/setup-node@v4
+      #  with:
+      #    node-version: '12'
+      #- name: Install server dependencies
+      #  working-directory: ./server
+      #  run: npm ci
+      #- name: Deploy server to Railway
+      #  uses: railwayapp/railway-deploy-action@v1
+      #  with:
+      #    railwayToken: ${{ secrets.RAILWAY_API_KEY }}
+      #    projectId: ${{ secrets.RAILWAY_PROJECT_ID }}
 
 
