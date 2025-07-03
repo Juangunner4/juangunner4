@@ -43,7 +43,6 @@ const SocialTimeline = ({ platform }) => {
               src="https://www.instagram.com/juangunner4/embed"
               width="400"
               height="480"
-              frameBorder="0"
               style={{ borderRadius: 8, border: 'none' }}
               title="Instagram Timeline"
             />
@@ -82,7 +81,6 @@ const SocialTimeline = ({ platform }) => {
               height="300"
               width="400"
               allowFullScreen
-              frameBorder="0"
               style={{ borderRadius: 8, border: 'none' }}
               title="Twitch Timeline"
             />
@@ -99,7 +97,6 @@ const SocialTimeline = ({ platform }) => {
               width="400"
               height="225"
               src="https://www.youtube.com/embed?listType=user_uploads&list=UCBR8-60-B28hp2BmDPdntcQ"
-              frameBorder="0"
               allow="autoplay; encrypted-media"
               allowFullScreen
               style={{ borderRadius: 8, border: 'none' }}
