@@ -1,15 +1,11 @@
 import React from 'react';
-import { useProfile } from '../../ProfileContext';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import PropTypes from 'prop-types';
-import Link from '@mui/material/Link';
-import { TwitterTimelineEmbed } from 'react-twitter-embed';
+import TwitterCombinedFeed from './TwitterCombinedFeed';
 
 // Displays embedded timelines for social platforms
 const SocialTimeline = ({ platform }) => {
-  const { isWeb3 } = useProfile();
-  const handle = isWeb3 ? '0x1Juangunner4' : 'juangunner4';
   let content;
   switch (platform) {
     case 'instagram':
@@ -44,18 +40,7 @@ const SocialTimeline = ({ platform }) => {
               justifyContent: 'center'
             }}
           >
-            <TwitterTimelineEmbed
-              sourceType="profile"
-              screenName={handle}
-              options={{ height: 480, width: 400, tweetLimit: 5 }}
-              noHeader
-              noBorders
-              noFooter
-              placeholder={<Typography>Loading tweets...</Typography>}
-              renderError={(err) => (
-                <Typography color="error">Unable to load tweets. <Link href={`https://twitter.com/${handle}`} target="_blank">Visit profile</Link></Typography>
-              )}
-            />
+            <TwitterCombinedFeed handles={['juangunner4', '0x1Juangunner4']} />
           </Box>
         </>
       );
