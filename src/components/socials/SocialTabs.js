@@ -1,15 +1,11 @@
-import React, { useState } from 'react';
+
+import React from 'react';
+import PropTypes from 'prop-types';
 import Box from '@mui/material/Box';
 import Tab from '@mui/material/Tab';
 import Tabs from '@mui/material/Tabs';
-import XFeed from './XFeed';
-import InstagramFeed from './InstagramFeed';
-import TwitchFeed from './TwitchFeed';
-import YoutubeFeed from './YoutubeFeed';
 
-const SocialTabs = () => {
-  const [value, setValue] = useState('x');
-
+const SocialTabs = ({ value, setValue }) => {
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
@@ -51,28 +47,13 @@ const SocialTabs = () => {
           <Tab label="YouTube" value="youtube" />
         </Tabs>
       </Box>
-      {value === 'x' && (
-        <Box sx={{ width: '100%', mt: 2 }}>
-          <XFeed />
-        </Box>
-      )}
-      {value === 'instagram' && (
-        <Box sx={{ width: '100%', mt: 2 }}>
-          <InstagramFeed />
-        </Box>
-      )}
-      {value === 'twitch' && (
-        <Box sx={{ width: '100%', mt: 2 }}>
-          <TwitchFeed />
-        </Box>
-      )}
-      {value === 'youtube' && (
-        <Box sx={{ width: '100%', mt: 2 }}>
-          <YoutubeFeed />
-        </Box>
-      )}
+      {/* Timeline will be rendered in Home.js, not here */}
     </Box>
   );
+};
+SocialTabs.propTypes = {
+  value: PropTypes.string.isRequired,
+  setValue: PropTypes.func.isRequired,
 };
 
 export default SocialTabs;
