@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
-import { Tweet } from 'react-twitter-embed';
+import { TwitterTweetEmbed } from 'react-twitter-embed';
 
 const TwitterCombinedFeed = ({ handles }) => {
   const [tweets, setTweets] = useState([]);
@@ -32,7 +32,11 @@ const TwitterCombinedFeed = ({ handles }) => {
   return (
     <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
       {tweets.map((t) => (
-        <Tweet key={t.id} tweetId={t.id} options={{ conversation: 'none' }} />
+        <TwitterTweetEmbed
+          key={t.id}
+          tweetId={t.id}
+          options={{ conversation: 'none' }}
+        />
       ))}
     </Box>
   );

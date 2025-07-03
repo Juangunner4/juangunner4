@@ -1,7 +1,9 @@
 import { render, screen, waitFor } from '@testing-library/react';
 import TwitterCombinedFeed from '../TwitterCombinedFeed';
 
-jest.mock('react-twitter-embed', () => ({ Tweet: ({ tweetId }) => <div>tweet-{tweetId}</div> }));
+jest.mock('react-twitter-embed', () => ({
+  TwitterTweetEmbed: ({ tweetId }) => <div>tweet-{tweetId}</div>,
+}));
 
 beforeEach(() => {
   global.fetch = jest.fn(() =>
