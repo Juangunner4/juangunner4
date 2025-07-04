@@ -12,6 +12,7 @@ import shenandoahLogo from '../assets/shenandoah.png';
 import mthreeLogo from '../assets/mthree.jpg';
 import emuLogo from '../assets/emu.png';
 import horizonsedgelogo from '../assets/horizonsedgelogo.png';
+import { useTranslation } from 'react-i18next';
 
 
 const experiences = [
@@ -201,27 +202,28 @@ const experiences = [
 
 const About = () => {
   const [selectedCategory, setSelectedCategory] = useState('software');
+  const { t } = useTranslation();
   const filteredExperiences = experiences.filter(
     (exp) => exp.category === selectedCategory
   );
 
   return (
     <div className="about-page">
-      <h2>About</h2>
+      <h2>{t('about.heading')}</h2>
       <div className="event-buttons">
         <button
           className={`event-btn ${selectedCategory === 'software' ? 'active' : ''
             }`}
           onClick={() => setSelectedCategory('software')}
         >
-          Software Engineer
+          {t('about.software')}
         </button>
         <button
           className={`event-btn ${selectedCategory === 'soccer' ? 'active' : ''
             }`}
           onClick={() => setSelectedCategory('soccer')}
         >
-          Football/Soccer
+          {t('about.soccer')}
         </button>
       </div>
       <div className="timeline">

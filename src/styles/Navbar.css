@@ -38,6 +38,17 @@
     font-size: 18px;
 }
 
+.navbar-right .lang-btn {
+    background: transparent;
+    border: 1px solid white;
+    color: white;
+    margin-left: 10px;
+    padding: 4px 8px;
+    cursor: pointer;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
 .navbar-right a:hover {
     text-decoration: underline;
 }

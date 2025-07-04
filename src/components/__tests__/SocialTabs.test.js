@@ -1,6 +1,7 @@
 import { render, screen, fireEvent } from '@testing-library/react';
 import SocialTabs from '../socials/SocialTabs';
 import { ProfileProvider } from '../../ProfileContext';
+import '../../i18n';
 
 test('calls setValue when different tab selected', () => {
   const setValue = jest.fn();
