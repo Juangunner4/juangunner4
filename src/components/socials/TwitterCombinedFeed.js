@@ -39,6 +39,20 @@ const TwitterCombinedFeed = () => {
         setTweets(data);
         localStorage.setItem(cacheKey, JSON.stringify({ data, timestamp: Date.now() }));
       } catch (err) {
+        try {
+          const cached = localStorage.getItem(cacheKey);
+          if (cached) {
+            const { data } = JSON.parse(cached);
+            if (data && data.length > 0) {
+              setTweets(data);
+              setError(null);
+              setLoading(false);
+              return;
+            }
+          }
+        } catch (e) {
+          console.error('Error parsing tweet cache', e);
+        }
         setError(err);
       } finally {
         setLoading(false);

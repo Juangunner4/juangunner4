@@ -117,6 +117,23 @@ const SocialTimeline = ({ platform }) => {
       })
       .catch((err) => {
         console.error(err);
+        if (platform === 'x') {
+          try {
+            const cacheKey = `tweets_${handle}`;
+            const cached = localStorage.getItem(cacheKey);
+            if (cached) {
+              const { data } = JSON.parse(cached);
+              if (data && data.length > 0) {
+                setItems(data);
+                setError(null);
+                setLoading(false);
+                return;
+              }
+            }
+          } catch (e) {
+            console.error('Error parsing tweet cache', e);
+          }
+        }
         setError(err);
         setLoading(false);
       });
