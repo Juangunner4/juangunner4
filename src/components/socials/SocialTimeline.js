@@ -29,6 +29,36 @@ const SocialTimeline = ({ platform }) => {
   const [error, setError] = useState(null);
   let content;
 
+  // Prefetch tweets for both accounts to warm the cache
+  useEffect(() => {
+    if (platform !== 'x') return;
+    const handles = ['juangunner4', '0x1Juangunner4'];
+    handles.forEach((h) => {
+      const cacheKey = `tweets_${h}`;
+      const cached = localStorage.getItem(cacheKey);
+      if (cached) {
+        try {
+          const { timestamp } = JSON.parse(cached);
+          if (Date.now() - timestamp < 60 * 1000) {
+            return; // cache still valid
+          }
+        } catch (e) {
+          console.error('Error parsing tweet cache', e);
+        }
+      }
+      fetch(`${baseUrl}/api/twitter/${h}`, { cache: 'no-store' })
+        .then((res) => res.json().then((json) => ({ ok: res.ok, json })))
+        .then(({ ok, json }) => {
+          if (!ok) throw new Error(json.error || 'Failed to fetch tweets');
+          localStorage.setItem(
+            cacheKey,
+            JSON.stringify({ data: json.data || [], timestamp: Date.now() })
+          );
+        })
+        .catch((err) => console.error('Prefetch tweets error:', err));
+    });
+  }, [platform, baseUrl]);
+
   useEffect(() => {
     // Twitter caching: check localStorage for recent tweets (1 min)
     if (platform === 'x') {
@@ -67,8 +97,9 @@ const SocialTimeline = ({ platform }) => {
 
     setLoading(true);
     fetch(`${baseUrl}${endpoint}`, { cache: 'no-store' })
-      .then((res) => res.json())
-      .then((json) => {
+      .then((res) => res.json().then((json) => ({ ok: res.ok, json })))
+      .then(({ ok, json }) => {
+        if (!ok) throw new Error(json.error || 'Failed to load');
         setItems(json.data || json.items || []);
         // Save to cache for Twitter
         if (platform === 'x') {
