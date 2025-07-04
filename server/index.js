@@ -61,7 +61,7 @@ app.get('/api/twitter/:username', async (req, res) => {
       return res.json(tweetsCache.data);
     }
     const tweetsResp = await fetch(
-      `https://api.twitter.com/2/users/${userId}/tweets?max_results=5`,
+      `https://api.twitter.com/2/users/${userId}/tweets?max_results=5&tweet.fields=created_at,public_metrics`,
       {
         headers: {
           Authorization: `Bearer ${BEARER_TOKEN}`,
@@ -159,6 +159,50 @@ app.get('/api/youtube', async (req, res) => {
   } catch (err) {
     console.error('Error fetching YouTube data:', err);
     res.status(500).json({ error: 'Error fetching YouTube data' });
+  }
+});
+
+// Endpoint for tweet metrics (likes, retweets, replies)
+app.get('/api/twitter/tweet/:id/metrics', async (req, res) => {
+  const tweetId = req.params.id;
+  try {
+    const resp = await fetch(
+      `https://api.twitter.com/2/tweets/${tweetId}?tweet.fields=public_metrics`,
+      {
+        headers: {
+          Authorization: `Bearer ${BEARER_TOKEN}`,
+          'User-Agent': 'juangunner4-server'
+        },
+      }
+    );
+    const json = await resp.json();
+    if (!resp.ok) return res.status(resp.status).json(json);
+    res.json(json);
+  } catch (err) {
+    console.error('Error fetching tweet metrics:', err);
+    res.status(500).json({ error: 'Error fetching tweet metrics' });
+  }
+});
+
+// Endpoint for tweet replies
+app.get('/api/twitter/tweet/:id/replies', async (req, res) => {
+  const tweetId = req.params.id;
+  try {
+    const resp = await fetch(
+      `https://api.twitter.com/2/tweets/search/recent?query=conversation_id:${tweetId}&tweet.fields=author_id,created_at&max_results=100`,
+      {
+        headers: {
+          Authorization: `Bearer ${BEARER_TOKEN}`,
+          'User-Agent': 'juangunner4-server'
+        },
+      }
+    );
+    const json = await resp.json();
+    if (!resp.ok) return res.status(resp.status).json(json);
+    res.json(json);
+  } catch (err) {
+    console.error('Error fetching tweet replies:', err);
+    res.status(500).json({ error: 'Error fetching tweet replies' });
   }
 });
 

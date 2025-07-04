@@ -3,6 +3,7 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import { TwitterTweetEmbed } from 'react-twitter-embed';
 import { useProfile } from '../../ProfileContext';
+import { ChatBubbleIcon, HeartIcon, LoopIcon } from '@radix-ui/react-icons';
 
 const TwitterCombinedFeed = () => {
   const { isWeb3 } = useProfile();
@@ -52,7 +53,23 @@ const TwitterCombinedFeed = () => {
   return (
     <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
       {tweets.map((t) => (
-        <TwitterTweetEmbed key={t.id} tweetId={t.id} options={{ conversation: 'none' }} />
+        <Box key={t.id}>
+          <TwitterTweetEmbed tweetId={t.id} options={{ conversation: 'none' }} />
+          <Box sx={{ display: 'flex', alignItems: 'center', mt: 1, ml: 1 }}>
+            <ChatBubbleIcon />
+            <Typography variant="caption" sx={{ ml: 0.5, mr: 2 }}>
+              {t.public_metrics?.reply_count}
+            </Typography>
+            <LoopIcon />
+            <Typography variant="caption" sx={{ ml: 0.5, mr: 2 }}>
+              {t.public_metrics?.retweet_count}
+            </Typography>
+            <HeartIcon />
+            <Typography variant="caption" sx={{ ml: 0.5 }}>
+              {t.public_metrics?.like_count}
+            </Typography>
+          </Box>
+        </Box>
       ))}
     </Box>
   );

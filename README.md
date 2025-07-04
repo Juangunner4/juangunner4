@@ -4,7 +4,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 ## API integration
 
-An Express server in `server.js` proxies requests to Twitter, Instagram, Twitch and YouTube APIs. Copy `.env.example` to `.env` and provide the credentials for each service.
+An Express server in `server/index.js` proxies requests to X (formerly Twitter), Instagram, Twitch and YouTube APIs. Copy `.env.example` to `.env` and provide the credentials for each service.
 
 Required environment variables:
 
@@ -15,6 +15,14 @@ Required environment variables:
 - `TWITCH_ACCESS_TOKEN`
 - `YOUTUBE_API_KEY`
 - `YOUTUBE_CHANNEL_ID`
+
+### X API endpoints
+
+The Express server provides helper routes for fetching data from the X API:
+
+- `GET /api/twitter/:username` – latest tweets from the given user.
+- `GET /api/twitter/tweet/:id/metrics` – metrics including like, retweet and reply counts for a tweet.
+- `GET /api/twitter/tweet/:id/replies` – recent replies for the tweet.
 
 ## Available Scripts
 
