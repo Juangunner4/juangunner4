@@ -2,9 +2,19 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Twitter API integration
+## API integration
 
-An Express server in `server.js` fetches tweets using the Twitter API. Copy `.env.example` to `.env` and set `TWITTER_BEARER_TOKEN`. Start the server with `npm run server`.
+An Express server in `server.js` proxies requests to Twitter, Instagram, Twitch and YouTube APIs. Copy `.env.example` to `.env` and provide the credentials for each service.
+
+Required environment variables:
+
+- `TWITTER_BEARER_TOKEN`
+- `INSTAGRAM_USER_ID`
+- `INSTAGRAM_ACCESS_TOKEN`
+- `TWITCH_CLIENT_ID`
+- `TWITCH_ACCESS_TOKEN`
+- `YOUTUBE_API_KEY`
+- `YOUTUBE_CHANNEL_ID`
 
 ## Available Scripts
 
