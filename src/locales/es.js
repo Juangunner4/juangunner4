@@ -30,7 +30,6 @@ const es = {
     development: 'En Desarrollo'
   },
   timeline: {
-    instagramTitle: 'Últimas publicaciones de Instagram',
     twitterTitle: 'Últimos posts de X (Twitter)',
     twitchTitle: 'Últimos streams de Twitch',
     youtubeTitle: 'Últimos vídeos de YouTube',
