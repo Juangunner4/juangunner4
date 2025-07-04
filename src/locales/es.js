@@ -1,4 +1,4 @@
-export default {
+const es = {
   navbar: {
     home: 'Inicio',
     bookNow: 'Reservar',
@@ -59,3 +59,5 @@ export default {
     contact: 'Contacto:'
   }
 };
+
+export default es;
