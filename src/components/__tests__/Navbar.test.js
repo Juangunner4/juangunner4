@@ -30,6 +30,6 @@ test('opens drawer when hamburger clicked', () => {
 
 test('language buttons present', () => {
   setup();
-  expect(screen.getByRole('button', { name: /english/i })).toBeInTheDocument();
-  expect(screen.getByRole('button', { name: /español/i })).toBeInTheDocument();
+  expect(screen.getAllByRole('button', { name: /english/i }).length).toBeGreaterThan(0);
+  expect(screen.getAllByRole('button', { name: /español/i }).length).toBeGreaterThan(0);
 });

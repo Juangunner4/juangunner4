@@ -31,6 +31,15 @@ const Navbar = () => {
         />
       </div>
 
+      <div className="mobile-lang">
+        <button onClick={() => i18n.changeLanguage('en')} className="lang-btn">
+          {t('navbar.langEn')}
+        </button>
+        <button onClick={() => i18n.changeLanguage('es')} className="lang-btn">
+          {t('navbar.langEs')}
+        </button>
+      </div>
+
       <div className="navbar-right">
         <Link to="/" >{t('navbar.home')}</Link>
         <Link to="/booknow" >{t('navbar.bookNow')}</Link>

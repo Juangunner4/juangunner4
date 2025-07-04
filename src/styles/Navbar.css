@@ -38,7 +38,7 @@
     font-size: 18px;
 }
 
-.navbar-right .lang-btn {
+.lang-btn {
     background: transparent;
     border: 1px solid white;
     color: white;
@@ -62,6 +62,10 @@
     cursor: pointer;
 }
 
+.mobile-lang {
+    display: none;
+}
+
 
 @media (max-width: 768px) {
     .navbar-right {
@@ -70,5 +74,15 @@
 
     .hamburger {
         display: block;
+    }
+
+    .mobile-lang {
+        display: flex;
+        flex: 1;
+        justify-content: center;
+    }
+
+    .mobile-lang .lang-btn {
+        margin: 0 5px;
     }
 }
