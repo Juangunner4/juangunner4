@@ -11,26 +11,42 @@ const SocialTimeline = ({ platform }) => {
   const handle = isWeb3 ? '0x1Juangunner4' : 'juangunner4';
   // Direct API base URL in development to ensure we hit the proxy
   const baseUrl = process.env.NODE_ENV === 'development' ? 'http://localhost:4000' : '';
-  const [tweets, setTweets] = useState([]);
+  const [items, setItems] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   let content;
 
   useEffect(() => {
-    if (platform === 'x') {
-      setLoading(true);
-      fetch(`${baseUrl}/api/twitter/${handle}`, { cache: 'no-store' })
-        .then((res) => res.json())
-        .then((json) => {
-          setTweets(json.data || []);
-          setLoading(false);
-        })
-        .catch((err) => {
-          console.error(err);
-          setError(err);
-          setLoading(false);
-        });
+    let endpoint = '';
+    switch (platform) {
+      case 'x':
+        endpoint = `/api/twitter/${handle}`;
+        break;
+      case 'instagram':
+        endpoint = '/api/instagram';
+        break;
+      case 'twitch':
+        endpoint = '/api/twitch';
+        break;
+      case 'youtube':
+        endpoint = '/api/youtube';
+        break;
+      default:
+        return;
     }
+
+    setLoading(true);
+    fetch(`${baseUrl}${endpoint}`, { cache: 'no-store' })
+      .then((res) => res.json())
+      .then((json) => {
+        setItems(json.data || json.items || []);
+        setLoading(false);
+      })
+      .catch((err) => {
+        console.error(err);
+        setError(err);
+        setLoading(false);
+      });
   }, [platform, handle, baseUrl]);
 
   switch (platform) {
@@ -38,14 +54,20 @@ const SocialTimeline = ({ platform }) => {
       content = (
         <>
           <Typography variant="h6" align="center" sx={{ mb: 2 }}>Latest Instagram Posts</Typography>
-          <Box sx={{ bgcolor: '#fafafa', p: 2, borderRadius: 2, minHeight: 120, display: 'flex', justifyContent: 'center' }}>
-            <iframe
-              src="https://www.instagram.com/juangunner4/embed"
-              width="400"
-              height="480"
-              style={{ borderRadius: 8, border: 'none' }}
-              title="Instagram Timeline"
-            />
+          <Box sx={{ bgcolor: '#fafafa', p: 2, borderRadius: 2 }}>
+            {loading && <Typography align="center">Loading posts...</Typography>}
+            {error && <Typography color="error" align="center">Error loading posts.</Typography>}
+            {!loading && !error && items.length === 0 && (
+              <Typography align="center">No posts to display.</Typography>
+            )}
+            {!loading && !error &&
+              items.map((p) => (
+                <Box key={p.id} sx={{ mb: 2 }}>
+                  <a href={p.permalink} target="_blank" rel="noopener noreferrer">
+                    <img src={p.media_url} alt={p.caption || ''} style={{ width: '100%', borderRadius: 8 }} />
+                  </a>
+                </Box>
+              ))}
           </Box>
         </>
       );
@@ -58,15 +80,23 @@ const SocialTimeline = ({ platform }) => {
           </Typography>
           <Box sx={{ bgcolor: '#f5f8fa', p: 2, borderRadius: 2 }}>
             {loading && <Typography align="center">Loading tweets...</Typography>}
-            {error && <Typography color="error" align="center">Error loading tweets. <Link href={`https://twitter.com/${handle}`} target="_blank" rel="noopener">Visit profile</Link></Typography>}
-            {!loading && !error && tweets.length === 0 && (
+            {error && (
+              <Typography color="error" align="center">
+                Error loading tweets.{' '}
+                <Link href={`https://twitter.com/${handle}`} target="_blank" rel="noopener">
+                  Visit profile
+                </Link>
+              </Typography>
+            )}
+            {!loading && !error && items.length === 0 && (
               <Typography align="center">No tweets to display.</Typography>
             )}
-            {!loading && !error && tweets.map((t) => (
-              <Box key={t.id} sx={{ mb: 2, borderBottom: 1, borderColor: 'divider', pb: 1 }}>
-                <Typography variant="body2">{t.text}</Typography>
-              </Box>
-            ))}
+            {!loading && !error &&
+              items.map((t) => (
+                <Box key={t.id} sx={{ mb: 2, borderBottom: 1, borderColor: 'divider', pb: 1 }}>
+                  <Typography variant="body2">{t.text}</Typography>
+                </Box>
+              ))}
           </Box>
         </>
       );
@@ -75,15 +105,24 @@ const SocialTimeline = ({ platform }) => {
       content = (
         <>
           <Typography variant="h6" align="center" sx={{ mb: 2 }}>Latest Twitch Streams</Typography>
-          <Box sx={{ bgcolor: '#f4f0ff', p: 2, borderRadius: 2, minHeight: 120, display: 'flex', justifyContent: 'center' }}>
-            <iframe
-              src="https://player.twitch.tv/?channel=juangunner4&parent=localhost"
-              height="300"
-              width="400"
-              allowFullScreen
-              style={{ borderRadius: 8, border: 'none' }}
-              title="Twitch Timeline"
-            />
+          <Box sx={{ bgcolor: '#f4f0ff', p: 2, borderRadius: 2 }}>
+            {loading && <Typography align="center">Loading streams...</Typography>}
+            {error && <Typography color="error" align="center">Error loading streams.</Typography>}
+            {!loading && !error && items.length === 0 && (
+              <Typography align="center">No streams to display.</Typography>
+            )}
+            {!loading && !error &&
+              items.map((s) => (
+                <Box key={s.id} sx={{ mb: 2 }}>
+                  <a href={s.url} target="_blank" rel="noopener noreferrer">
+                    <img
+                      src={s.thumbnail_url.replace('%{width}', '320').replace('%{height}', '180')}
+                      alt={s.title}
+                      style={{ width: '100%', borderRadius: 8 }}
+                    />
+                  </a>
+                </Box>
+              ))}
           </Box>
         </>
       );
@@ -92,16 +131,26 @@ const SocialTimeline = ({ platform }) => {
       content = (
         <>
           <Typography variant="h6" align="center" sx={{ mb: 2 }}>Latest YouTube Videos</Typography>
-          <Box sx={{ bgcolor: '#fff8f6', p: 2, borderRadius: 2, minHeight: 120, display: 'flex', justifyContent: 'center' }}>
-            <iframe
-              width="400"
-              height="225"
-              src="https://www.youtube.com/embed?listType=user_uploads&list=UCBR8-60-B28hp2BmDPdntcQ"
-              allow="autoplay; encrypted-media"
-              allowFullScreen
-              style={{ borderRadius: 8, border: 'none' }}
-              title="YouTube Timeline"
-            />
+          <Box sx={{ bgcolor: '#fff8f6', p: 2, borderRadius: 2 }}>
+            {loading && <Typography align="center">Loading videos...</Typography>}
+            {error && <Typography color="error" align="center">Error loading videos.</Typography>}
+            {!loading && !error && items.length === 0 && (
+              <Typography align="center">No videos to display.</Typography>
+            )}
+            {!loading && !error &&
+              items.map((v) => (
+                <Box key={v.id.videoId || v.id} sx={{ mb: 2 }}>
+                  <iframe
+                    width="400"
+                    height="225"
+                    src={`https://www.youtube.com/embed/${v.id.videoId || v.id}`}
+                    allow="autoplay; encrypted-media"
+                    allowFullScreen
+                    style={{ borderRadius: 8, border: 'none' }}
+                    title={v.snippet?.title || 'YouTube video'}
+                  />
+                </Box>
+              ))}
           </Box>
         </>
       );
