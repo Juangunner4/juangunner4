@@ -1,5 +1,8 @@
 require('dotenv').config();
 const express = require('express');
+const helmet = require('helmet');
+const cors = require('cors');
+const morgan = require('morgan');
 const fetch = require('node-fetch');
 const app = express();
 const port = process.env.PORT || 4000;
@@ -17,12 +20,14 @@ if (!BEARER_TOKEN) {
   process.exit(1);
 }
 
-// CORS setup (if front-end served on different port)
-app.use((req, res, next) => {
-  res.header('Access-Control-Allow-Origin', '*');
-  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
-  next();
-});
+// Security and logging middleware
+app.use(helmet());
+// Enable CORS for allowed origins
+app.use(cors({ origin: process.env.CORS_ORIGIN || '*' }));
+// Parse JSON bodies
+app.use(express.json());
+// HTTP request logging
+app.use(morgan('combined'));
 
 // Proxy endpoint for Twitter timeline
 app.get('/api/twitter/:username', async (req, res) => {
@@ -69,14 +74,13 @@ app.get('/api/instagram', async (req, res) => {
   }
 });
 
-// Proxy endpoint for Twitch streams
 app.get('/api/twitch', async (req, res) => {
   if (!TWITCH_CLIENT_ID || !TWITCH_ACCESS_TOKEN) {
     return res.status(500).json({ error: 'Twitch credentials not configured' });
   }
-  const user = req.query.user || 'juangunner4';
+  const twitchUser = req.query.user || 'juangunner4';
   try {
-    const userResp = await fetch(`https://api.twitch.tv/helix/users?login=${user}`, {
+    const userResp = await fetch(`https://api.twitch.tv/helix/users?login=${twitchUser}`, {
       headers: {
         'Client-ID': TWITCH_CLIENT_ID,
         Authorization: `Bearer ${TWITCH_ACCESS_TOKEN}`,
@@ -119,6 +123,14 @@ app.get('/api/youtube', async (req, res) => {
   }
 });
 
+// Healthcheck endpoint
+app.get('/health', (req, res) => res.sendStatus(200));
+
+// 404 handler for unknown routes
+app.use((req, res) => {
+  res.status(404).json({ error: 'Not found' });
+});
+
 app.listen(port, () => {
-  console.log(`Twitter proxy server running on http://localhost:${port}`);
+  console.log(`Server running on port ${port}`);
 });
