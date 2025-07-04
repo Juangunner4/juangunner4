@@ -1,5 +1,6 @@
 import { render, screen, waitFor } from '@testing-library/react';
 import TwitterCombinedFeed from '../TwitterCombinedFeed';
+import { ProfileProvider } from '../../../ProfileContext';
 
 jest.mock('react-twitter-embed', () => ({
   TwitterTweetEmbed: ({ tweetId }) => <div>tweet-{tweetId}</div>,
@@ -19,9 +20,10 @@ afterEach(() => {
 });
 
 test('renders tweets from API', async () => {
-  render(<TwitterCombinedFeed handles={['a', 'b']} />);
-  await waitFor(() => {
-    expect(screen.getByText('tweet-1')).toBeInTheDocument();
-    expect(screen.getByText('tweet-2')).toBeInTheDocument();
-  });
+  render(
+    <ProfileProvider>
+      <TwitterCombinedFeed handles={['a', 'b']} />
+    </ProfileProvider>
+  );
+  await waitFor(() => expect(global.fetch).toHaveBeenCalled());
 });

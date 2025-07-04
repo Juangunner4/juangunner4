@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useProfile } from '../../ProfileContext';
+import web2Image from '../../assets/profile.png';
+import web3Image from '../../assets/web3.jpg';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import PropTypes from 'prop-types';
@@ -16,6 +18,7 @@ import { ChatBubbleIcon, HeartIcon, LoopIcon } from '@radix-ui/react-icons';
 // Displays embedded timelines for social platforms
 const SocialTimeline = ({ platform }) => {
   const { isWeb3 } = useProfile();
+  const avatarImage = isWeb3 ? web3Image : web2Image;
   const handle = isWeb3 ? '0x1Juangunner4' : 'juangunner4';
   const { t } = useTranslation();
   // Base URL for API: use env var in production or localhost in development
@@ -130,7 +133,7 @@ const SocialTimeline = ({ platform }) => {
               items.map((tweet) => (
                 <Card key={tweet.id} sx={{ mb: 2, boxShadow: 1 }}>
                   <CardHeader
-                    avatar={<Avatar sx={{ bgcolor: '#1DA1F2' }}>J</Avatar>}
+                    avatar={<Avatar src={avatarImage} alt="profile" />}
                     title={handle}
                     subheader={new Date(tweet.created_at).toLocaleString()}
                   />
