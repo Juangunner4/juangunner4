@@ -4,13 +4,11 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 ## API integration
 
-An Express server in `server/index.js` proxies requests to X (formerly Twitter), Instagram, Twitch and YouTube APIs. Copy `.env.example` to `.env` and provide the credentials for each service.
+An Express server in `server/index.js` proxies requests to X (formerly Twitter), Twitch and YouTube APIs. Copy `.env.example` to `.env` and provide the credentials for each service.
 
 Required environment variables:
 
 - `TWITTER_BEARER_TOKEN`
-- `INSTAGRAM_USER_ID`
-- `INSTAGRAM_ACCESS_TOKEN`
 - `TWITCH_CLIENT_ID`
 - `TWITCH_ACCESS_TOKEN`
 - `YOUTUBE_API_KEY`

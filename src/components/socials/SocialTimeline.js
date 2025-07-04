@@ -62,6 +62,12 @@ const SocialTimeline = ({ platform }) => {
 
   useEffect(() => {
     // Twitter caching: check localStorage for recent tweets (1 min)
+    if (platform === 'instagram') {
+      setItems([]);
+      setLoading(false);
+      setError(null);
+      return;
+    }
     if (platform === 'x') {
       const cacheKey = `tweets_${handle}`;
       const cached = localStorage.getItem(cacheKey);
@@ -82,9 +88,6 @@ const SocialTimeline = ({ platform }) => {
     switch (platform) {
       case 'x':
         endpoint = `/api/twitter/${handle}`;
-        break;
-      case 'instagram':
-        endpoint = '/api/instagram';
         break;
       case 'twitch':
         endpoint = '/api/twitch';
@@ -124,20 +127,22 @@ const SocialTimeline = ({ platform }) => {
       content = (
         <>
           <Typography variant="h6" align="center" sx={{ mb: 2 }}>{t('timeline.instagramTitle')}</Typography>
-          <Box sx={{ bgcolor: '#fafafa', p: 2, borderRadius: 2 }}>
-            {loading && <Typography align="center">{t('timeline.loadingPosts')}</Typography>}
-            {error && <Typography color="error" align="center">{t('timeline.errorPosts')}</Typography>}
-            {!loading && !error && items.length === 0 && (
-              <Typography align="center">{t('timeline.noPosts')}</Typography>
-            )}
-            {!loading && !error &&
-              items.map((p) => (
-                <Box key={p.id} sx={{ mb: 2 }}>
-                  <a href={p.permalink} target="_blank" rel="noopener noreferrer">
-                    <img src={p.media_url} alt={p.caption || ''} style={{ width: '100%', borderRadius: 8 }} />
-                  </a>
-                </Box>
-              ))}
+          <Box sx={{ position: 'relative', pb: '125%', height: 0 }}>
+            <iframe
+              src="https://www.instagram.com/juangunner4/embed"
+              title="Instagram feed"
+              style={{
+                border: 'none',
+                position: 'absolute',
+                top: 0,
+                left: 0,
+                width: '100%',
+                height: '100%'
+              }}
+              allowtransparency="true"
+              frameBorder="0"
+              scrolling="no"
+            />
           </Box>
         </>
       );
