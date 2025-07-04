@@ -22,6 +22,14 @@ The Express server provides helper routes for fetching data from the X API:
 - `GET /api/twitter/tweet/:id/metrics` – metrics including like, retweet and reply counts for a tweet.
 - `GET /api/twitter/tweet/:id/replies` – recent replies for the tweet.
 
+### Twitch API endpoints
+
+The server also exposes endpoints for Twitch videos. The Twitch feed displays
+the most recent stream prominently and shows four additional past streams.
+
+- `GET /api/twitch` – latest Twitch videos (up to 5, most recent first).
+- `GET /api/twitch/latest` – the most recent Twitch stream video only.
+
 ## Available Scripts
 
 In the project directory, you can run:

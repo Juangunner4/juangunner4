@@ -123,6 +123,40 @@ app.get('/api/twitch', async (req, res) => {
   }
 });
 
+// Endpoint for the latest Twitch stream video
+app.get('/api/twitch/latest', async (req, res) => {
+  if (!TWITCH_CLIENT_ID || !TWITCH_ACCESS_TOKEN) {
+    console.warn('Twitch credentials not configured, returning empty data');
+    return res.json({ data: [] });
+  }
+  const twitchUser = typeof req.query.user === 'string' ? req.query.user : 'juangunner4';
+  try {
+    const userResp = await fetch(`https://api.twitch.tv/helix/users?login=${twitchUser}`, {
+      headers: {
+        'Client-ID': TWITCH_CLIENT_ID,
+        Authorization: `Bearer ${TWITCH_ACCESS_TOKEN}`,
+      },
+    });
+    const userJson = await userResp.json();
+    if (!userResp.ok) return res.status(userResp.status).json(userJson);
+    const userId = userJson.data[0].id;
+
+    const videosResp = await fetch(`https://api.twitch.tv/helix/videos?user_id=${userId}&type=archive&first=1`, {
+      headers: {
+        'Client-ID': TWITCH_CLIENT_ID,
+        Authorization: `Bearer ${TWITCH_ACCESS_TOKEN}`,
+      },
+    });
+    const videosJson = await videosResp.json();
+    if (!videosResp.ok) return res.status(videosResp.status).json(videosJson);
+    const latest = videosJson.data && videosJson.data.length > 0 ? videosJson.data[0] : null;
+    res.json({ data: latest ? [latest] : [] });
+  } catch (err) {
+    console.error('Error fetching Twitch data:', err);
+    res.status(500).json({ error: 'Error fetching Twitch data' });
+  }
+});
+
 // Proxy endpoint for YouTube videos
 app.get('/api/youtube', async (req, res) => {
   if (!YOUTUBE_API_KEY || !YOUTUBE_CHANNEL_ID) {
