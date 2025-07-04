@@ -11,6 +11,7 @@ import Card from '@mui/material/Card';
 import CardHeader from '@mui/material/CardHeader';
 import CardContent from '@mui/material/CardContent';
 import CardActions from '@mui/material/CardActions';
+import CardActionArea from '@mui/material/CardActionArea';
 import Avatar from '@mui/material/Avatar';
 import IconButton from '@mui/material/IconButton';
 import { ChatBubbleIcon, HeartIcon, LoopIcon } from '@radix-ui/react-icons';
@@ -163,20 +164,55 @@ const SocialTimeline = ({ platform }) => {
             {!loading && !error && items.length > 0 &&
               items.map((tweet) => (
                 <Card key={tweet.id} sx={{ mb: 2, boxShadow: 1 }}>
-                  <CardHeader
-                    avatar={<Avatar src={avatarImage} alt="profile" />}
-                    title={handle}
-                    subheader={new Date(tweet.created_at).toLocaleString()}
-                  />
-                  <CardContent>
-                    <Typography variant="body1">{tweet.text}</Typography>
-                  </CardContent>
+                  <CardActionArea
+                    component="a"
+                    href={`https://twitter.com/${handle}/status/${tweet.id}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    sx={{ color: 'inherit', textDecoration: 'none' }}
+                  >
+                    <CardHeader
+                      avatar={<Avatar src={avatarImage} alt="profile" />}
+                      title={handle}
+                      subheader={new Date(tweet.created_at).toLocaleString()}
+                    />
+                    <CardContent>
+                      <Typography variant="body1">{tweet.text}</Typography>
+                    </CardContent>
+                  </CardActionArea>
                   <CardActions disableSpacing>
-                    <IconButton size="small" aria-label="reply"><ChatBubbleIcon /></IconButton>
+                    <IconButton
+                      component="a"
+                      href={`https://twitter.com/${handle}/status/${tweet.id}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      size="small"
+                      aria-label="reply"
+                    >
+                      <ChatBubbleIcon />
+                    </IconButton>
                     <Typography variant="caption" sx={{ ml: 0.5, mr: 2 }}>{tweet.public_metrics?.reply_count}</Typography>
-                    <IconButton size="small" aria-label="retweet"><LoopIcon /></IconButton>
+                    <IconButton
+                      component="a"
+                      href={`https://twitter.com/${handle}/status/${tweet.id}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      size="small"
+                      aria-label="retweet"
+                    >
+                      <LoopIcon />
+                    </IconButton>
                     <Typography variant="caption" sx={{ ml: 0.5, mr: 2 }}>{tweet.public_metrics?.retweet_count}</Typography>
-                    <IconButton size="small" aria-label="like"><HeartIcon /></IconButton>
+                    <IconButton
+                      component="a"
+                      href={`https://twitter.com/${handle}/status/${tweet.id}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      size="small"
+                      aria-label="like"
+                    >
+                      <HeartIcon />
+                    </IconButton>
                     <Typography variant="caption" sx={{ ml: 0.5 }}>{tweet.public_metrics?.like_count}</Typography>
                   </CardActions>
                 </Card>
