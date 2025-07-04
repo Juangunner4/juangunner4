@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import '../styles/Projects.css';
 import '@fortawesome/fontawesome-free/css/all.min.css';
+import { useTranslation } from 'react-i18next';
 
 const projectData = [
   { domain: 'angelstowinghva.com', tags: ['web2', 'service'] },
@@ -25,22 +26,23 @@ const devProjectData = [
 const Projects = () => {
   const [view, setView] = useState('production');
   const [openProject, setOpenProject] = useState(null);
+  const { t } = useTranslation();
 
   return (
     <div className="projects-page">
-      <h2>Projects</h2>
+      <h2>{t('projects.heading')}</h2>
       <div className="event-buttons">
         <button
           className={`event-btn ${view === 'production' ? 'active' : ''}`}
           onClick={() => setView('production')}
         >
-          Production
+          {t('projects.production')}
         </button>
         <button
           className={`event-btn ${view === 'development' ? 'active' : ''}`}
           onClick={() => setView('development')}
         >
-          In Development
+          {t('projects.development')}
         </button>
       </div>
       {view === 'production' && (

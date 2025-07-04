@@ -1,27 +1,29 @@
 import React, { useState } from 'react';
 import { InlineWidget } from 'react-calendly';
 import '../styles/Eventbooking.css';
+import { useTranslation } from 'react-i18next';
 
 function Eventbooking() {
   const [selectedEvent, setSelectedEvent] = useState('event1');
+  const { t } = useTranslation();
 
   return (
     <div className="event-signup">
-      <h2>Sign up for an Event</h2>
-      <p>Select an event type and sign up for a session:</p>
+      <h2>{t('eventbooking.signUp')}</h2>
+      <p>{t('eventbooking.selectEvent')}</p>
 
       <div className="event-buttons">
         <button
           className={`event-btn ${selectedEvent === 'event1' ? 'active' : ''}`}
           onClick={() => setSelectedEvent('event1')}
         >
-          Personal Coaching
+          {t('eventbooking.personal')}
         </button>
         <button
           className={`event-btn ${selectedEvent === 'event2' ? 'active' : ''}`}
           onClick={() => setSelectedEvent('event2')}
         >
-          Group Training
+          {t('eventbooking.group')}
         </button>
       </div>
 

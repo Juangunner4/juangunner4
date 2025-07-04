@@ -4,11 +4,13 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import PropTypes from 'prop-types';
 import Link from '@mui/material/Link';
+import { useTranslation } from 'react-i18next';
 
 // Displays embedded timelines for social platforms
 const SocialTimeline = ({ platform }) => {
   const { isWeb3 } = useProfile();
   const handle = isWeb3 ? '0x1Juangunner4' : 'juangunner4';
+  const { t } = useTranslation();
   // Direct API base URL in development to ensure we hit the proxy
   const baseUrl = process.env.NODE_ENV === 'development' ? 'http://localhost:4000' : '';
   const [items, setItems] = useState([]);
@@ -53,12 +55,12 @@ const SocialTimeline = ({ platform }) => {
     case 'instagram':
       content = (
         <>
-          <Typography variant="h6" align="center" sx={{ mb: 2 }}>Latest Instagram Posts</Typography>
+          <Typography variant="h6" align="center" sx={{ mb: 2 }}>{t('timeline.instagramTitle')}</Typography>
           <Box sx={{ bgcolor: '#fafafa', p: 2, borderRadius: 2 }}>
-            {loading && <Typography align="center">Loading posts...</Typography>}
-            {error && <Typography color="error" align="center">Error loading posts.</Typography>}
+            {loading && <Typography align="center">{t('timeline.loadingPosts')}</Typography>}
+            {error && <Typography color="error" align="center">{t('timeline.errorPosts')}</Typography>}
             {!loading && !error && items.length === 0 && (
-              <Typography align="center">No posts to display.</Typography>
+              <Typography align="center">{t('timeline.noPosts')}</Typography>
             )}
             {!loading && !error &&
               items.map((p) => (
@@ -76,20 +78,20 @@ const SocialTimeline = ({ platform }) => {
       content = (
         <>
           <Typography variant="h6" align="center" sx={{ mb: 2 }}>
-            Latest X (Twitter) Posts
+            {t('timeline.twitterTitle')}
           </Typography>
           <Box sx={{ bgcolor: '#f5f8fa', p: 2, borderRadius: 2 }}>
-            {loading && <Typography align="center">Loading tweets...</Typography>}
+            {loading && <Typography align="center">{t('timeline.loadingTweets')}</Typography>}
             {error && (
               <Typography color="error" align="center">
-                Error loading tweets.{' '}
+                {t('timeline.errorTweets')}{' '}
                 <Link href={`https://twitter.com/${handle}`} target="_blank" rel="noopener">
-                  Visit profile
+                  {t('timeline.visitProfile')}
                 </Link>
               </Typography>
             )}
             {!loading && !error && items.length === 0 && (
-              <Typography align="center">No tweets to display.</Typography>
+              <Typography align="center">{t('timeline.noTweets')}</Typography>
             )}
             {!loading && !error &&
               items.map((t) => (
@@ -104,12 +106,12 @@ const SocialTimeline = ({ platform }) => {
     case 'twitch':
       content = (
         <>
-          <Typography variant="h6" align="center" sx={{ mb: 2 }}>Latest Twitch Streams</Typography>
+          <Typography variant="h6" align="center" sx={{ mb: 2 }}>{t('timeline.twitchTitle')}</Typography>
           <Box sx={{ bgcolor: '#f4f0ff', p: 2, borderRadius: 2 }}>
-            {loading && <Typography align="center">Loading streams...</Typography>}
-            {error && <Typography color="error" align="center">Error loading streams.</Typography>}
+            {loading && <Typography align="center">{t('timeline.loadingStreams')}</Typography>}
+            {error && <Typography color="error" align="center">{t('timeline.errorStreams')}</Typography>}
             {!loading && !error && items.length === 0 && (
-              <Typography align="center">No streams to display.</Typography>
+              <Typography align="center">{t('timeline.noStreams')}</Typography>
             )}
             {!loading && !error &&
               items.map((s) => (
@@ -130,12 +132,12 @@ const SocialTimeline = ({ platform }) => {
     case 'youtube':
       content = (
         <>
-          <Typography variant="h6" align="center" sx={{ mb: 2 }}>Latest YouTube Videos</Typography>
+          <Typography variant="h6" align="center" sx={{ mb: 2 }}>{t('timeline.youtubeTitle')}</Typography>
           <Box sx={{ bgcolor: '#fff8f6', p: 2, borderRadius: 2 }}>
-            {loading && <Typography align="center">Loading videos...</Typography>}
-            {error && <Typography color="error" align="center">Error loading videos.</Typography>}
+            {loading && <Typography align="center">{t('timeline.loadingVideos')}</Typography>}
+            {error && <Typography color="error" align="center">{t('timeline.errorVideos')}</Typography>}
             {!loading && !error && items.length === 0 && (
-              <Typography align="center">No videos to display.</Typography>
+              <Typography align="center">{t('timeline.noVideos')}</Typography>
             )}
             {!loading && !error &&
               items.map((v) => (
@@ -156,7 +158,7 @@ const SocialTimeline = ({ platform }) => {
       );
       break;
     default:
-      content = <Typography>No timeline available.</Typography>;
+      content = <Typography>{t('timeline.noTimeline')}</Typography>;
   }
 
   return (

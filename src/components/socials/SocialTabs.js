@@ -4,8 +4,10 @@ import PropTypes from 'prop-types';
 import Box from '@mui/material/Box';
 import Tab from '@mui/material/Tab';
 import Tabs from '@mui/material/Tabs';
+import { useTranslation } from 'react-i18next';
 
 const SocialTabs = ({ value, setValue }) => {
+  const { t } = useTranslation();
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
@@ -41,10 +43,10 @@ const SocialTabs = ({ value, setValue }) => {
             }
           }}
         >
-          <Tab label="X" value="x" />
-          <Tab label="Instagram" value="instagram" />
-          <Tab label="Twitch" value="twitch" />
-          <Tab label="YouTube" value="youtube" />
+          <Tab label={t('socials.x')} value="x" />
+          <Tab label={t('socials.instagram')} value="instagram" />
+          <Tab label={t('socials.twitch')} value="twitch" />
+          <Tab label={t('socials.youtube')} value="youtube" />
         </Tabs>
       </Box>
       {/* Timeline will be rendered in Home.js, not here */}

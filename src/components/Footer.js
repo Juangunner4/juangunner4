@@ -1,14 +1,16 @@
 import React from 'react';
 import '../styles/Footer.css';
 import '@fortawesome/fontawesome-free/css/all.min.css';
+import { useTranslation } from 'react-i18next';
 
 
 const Footer = () => {
+    const { t } = useTranslation();
     return (
       <footer className="footer">
         <div className="footer-content">
           <div className="contact">
-            <p>Contact: <a href="mailto:juanje1019@gmail.com">juanje1019@gmail.com</a></p>
+            <p>{t('footer.contact')} <a href="mailto:juanje1019@gmail.com">juanje1019@gmail.com</a></p>
           </div>
           <div className="social-links">
             <a href="https://www.instagram.com/juangunner4" target="_blank" rel="noopener noreferrer">
