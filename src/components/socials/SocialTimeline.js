@@ -20,6 +20,23 @@ const SocialTimeline = ({ platform }) => {
   let content;
 
   useEffect(() => {
+    // Twitter caching: check localStorage for recent tweets (1 min)
+    if (platform === 'x') {
+      const cacheKey = `tweets_${handle}`;
+      const cached = localStorage.getItem(cacheKey);
+      if (cached) {
+        try {
+          const { data, timestamp } = JSON.parse(cached);
+          if (Date.now() - timestamp < 60 * 1000) {
+            setItems(data);
+            setLoading(false);
+            return;
+          }
+        } catch (e) {
+          console.error('Error parsing tweet cache', e);
+        }
+      }
+    }
     let endpoint = '';
     switch (platform) {
       case 'x':
@@ -43,6 +60,14 @@ const SocialTimeline = ({ platform }) => {
       .then((res) => res.json())
       .then((json) => {
         setItems(json.data || json.items || []);
+        // Save to cache for Twitter
+        if (platform === 'x') {
+          const cacheKey = `tweets_${handle}`;
+          localStorage.setItem(
+            cacheKey,
+            JSON.stringify({ data: json.data || [], timestamp: Date.now() })
+          );
+        }
         setLoading(false);
       })
       .catch((err) => {
