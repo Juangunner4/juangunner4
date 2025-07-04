@@ -126,7 +126,6 @@ const SocialTimeline = ({ platform }) => {
     case 'instagram':
       content = (
         <>
-          <Typography variant="h6" align="center" sx={{ mb: 2 }}>{t('timeline.instagramTitle')}</Typography>
           <Box sx={{ position: 'relative', pb: '125%', height: 0 }}>
             <iframe
               src="https://www.instagram.com/juangunner4/embed"

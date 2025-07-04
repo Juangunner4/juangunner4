@@ -30,7 +30,6 @@ const en = {
     development: 'In Development'
   },
   timeline: {
-    instagramTitle: 'Latest Instagram Posts',
     twitterTitle: 'Latest X (Twitter) Posts',
     twitchTitle: 'Latest Twitch Streams',
     youtubeTitle: 'Latest YouTube Videos',
