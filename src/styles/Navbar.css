@@ -66,6 +66,13 @@
     display: none;
 }
 
+.desktop-lang {
+    display: flex;
+    flex: 1;
+    justify-content: center;
+    align-items: center;
+}
+
 
 @media (max-width: 768px) {
     .navbar-right {
@@ -84,5 +91,9 @@
 
     .mobile-lang .lang-btn {
         margin: 0 5px;
+    }
+
+    .desktop-lang {
+        display: none;
     }
 }

@@ -23,12 +23,28 @@ const Navbar = () => {
   return (
     <nav className="navbar">
       <div className="navbar-left">
-        <img
-          src={currentImage}
-          alt="Profile"
-          className="navbar-pfp"
+        <button
+          className="navbar-pfp-btn"
           onClick={toggleProfile}
-        />
+          aria-label={t('navbar.profile')}
+          style={{ background: 'none', border: 'none', padding: 0, cursor: 'pointer' }}
+        >
+          <img
+            src={currentImage}
+            alt={t('navbar.profile')}
+            className="navbar-pfp"
+            draggable="false"
+          />
+        </button>
+      </div>
+
+      <div className="desktop-lang">
+        <button onClick={() => i18n.changeLanguage('en')} className="lang-btn">
+          {t('navbar.langEn')}
+        </button>
+        <button onClick={() => i18n.changeLanguage('es')} className="lang-btn">
+          {t('navbar.langEs')}
+        </button>
       </div>
 
       <div className="mobile-lang">
