@@ -11,8 +11,9 @@ const SocialTimeline = ({ platform }) => {
   const { isWeb3 } = useProfile();
   const handle = isWeb3 ? '0x1Juangunner4' : 'juangunner4';
   const { t } = useTranslation();
-  // Direct API base URL in development to ensure we hit the proxy
-  const baseUrl = process.env.NODE_ENV === 'development' ? 'http://localhost:4000' : '';
+  // Base URL for API: use env var in production or localhost in development
+  const baseUrl = process.env.REACT_APP_API_URL
+    || (process.env.NODE_ENV === 'development' ? 'http://localhost:4000' : '');
   const [items, setItems] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);

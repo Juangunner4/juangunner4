@@ -10,12 +10,15 @@ jobs:
     runs-on: ubuntu-latest
     env:
       TWITTER_BEARER_TOKEN: ${{ secrets.TWITTER_BEARER_TOKEN }}
+      REACT_APP_API_URL: ${{ secrets.REACT_APP_API_URL }}
 
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
 
       - name: Install dependencies and build project
+        env:
+          REACT_APP_API_URL: ${{ secrets.REACT_APP_API_URL }}
         run: |
           npm install
           npm run build

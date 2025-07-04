@@ -8,12 +8,14 @@ const TwitterCombinedFeed = ({ handles }) => {
   const [tweets, setTweets] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  // Base URL for API: use env var if set (for production)
+  const baseUrl = process.env.REACT_APP_API_URL || '';
 
   useEffect(() => {
     async function fetchTweets() {
       try {
         const params = new URLSearchParams({ handles: handles.join(',') });
-        const res = await fetch(`/api/twitter?${params.toString()}`);
+        const res = await fetch(`${baseUrl}/api/twitter?${params.toString()}`);
         if (!res.ok) throw new Error('Network response was not ok');
         const data = await res.json();
         setTweets(data);
