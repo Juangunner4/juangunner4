@@ -61,12 +61,6 @@ const Navbar = () => {
         <Link to="/booknow" >{t('navbar.bookNow')}</Link>
         <Link to="/about" >{t('navbar.about')}</Link>
         <Link to="/projects" >{t('navbar.projects')}</Link>
-        <button onClick={() => i18n.changeLanguage('en')} className="lang-btn">
-          {t('navbar.langEn')}
-        </button>
-        <button onClick={() => i18n.changeLanguage('es')} className="lang-btn">
-          {t('navbar.langEs')}
-        </button>
       </div>
 
       <button className="hamburger" onClick={toggleDrawer(true)}>
