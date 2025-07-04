@@ -11,8 +11,6 @@ const BEARER_TOKEN = process.env.TWITTER_BEARER_TOKEN;
 // In-memory caches to reduce Twitter API calls
 const twitterUserCache = new Map();
 const twitterTweetsCache = new Map();
-const INSTAGRAM_USER_ID = process.env.INSTAGRAM_USER_ID;
-const INSTAGRAM_ACCESS_TOKEN = process.env.INSTAGRAM_ACCESS_TOKEN;
 const TWITCH_CLIENT_ID = process.env.TWITCH_CLIENT_ID;
 const TWITCH_ACCESS_TOKEN = process.env.TWITCH_ACCESS_TOKEN;
 const YOUTUBE_API_KEY = process.env.YOUTUBE_API_KEY;
@@ -90,24 +88,6 @@ app.get('/api/twitter/:username', async (req, res) => {
   }
 });
 
-// Proxy endpoint for Instagram posts
-app.get('/api/instagram', async (req, res) => {
-  if (!INSTAGRAM_USER_ID || !INSTAGRAM_ACCESS_TOKEN) {
-    console.warn('Instagram credentials not configured, returning empty data');
-    return res.json({ data: [] });
-  }
-  try {
-    const igResp = await fetch(
-      `https://graph.instagram.com/${INSTAGRAM_USER_ID}/media?fields=id,caption,media_url,permalink,timestamp&access_token=${INSTAGRAM_ACCESS_TOKEN}&limit=5`
-    );
-    const igJson = await igResp.json();
-    if (!igResp.ok) return res.status(igResp.status).json(igJson);
-    res.json(igJson);
-  } catch (err) {
-    console.error('Error fetching Instagram data:', err);
-    res.status(500).json({ error: 'Error fetching Instagram data' });
-  }
-});
 
 // Proxy endpoint for Twitch streams
 app.get('/api/twitch', async (req, res) => {
