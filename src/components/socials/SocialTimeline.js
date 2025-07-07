@@ -142,25 +142,21 @@ const SocialTimeline = ({ platform }) => {
   switch (platform) {
     case 'instagram':
       content = (
-        <>
-          <Box sx={{ position: 'relative', pb: '125%', height: 0 }}>
-            <iframe
-              src="https://www.instagram.com/juangunner4/embed"
-              title="Instagram feed"
-              style={{
-                border: 'none',
-                position: 'absolute',
-                top: 0,
-                left: 0,
-                width: '100%',
-                height: '100%'
-              }}
-              allowtransparency="true"
-              frameBorder="0"
-              scrolling="no"
-            />
-          </Box>
-        </>
+        <Box sx={{ position: 'relative', pb: '125%', height: 0 }}>
+          <iframe
+            src="https://www.instagram.com/juangunner4/embed"
+            title="Instagram feed"
+            style={{
+              border: 'none',
+              position: 'absolute',
+              top: 0,
+              left: 0,
+              width: '100%',
+              height: '100%'
+            }}
+            allow="encrypted-media"
+          />
+        </Box>
       );
       break;
     case 'x':
