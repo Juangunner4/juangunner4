@@ -1,6 +1,6 @@
 import React, { createContext, useContext, useState } from 'react';
 
-const ProfileContext = createContext();
+export const ProfileContext = createContext();
 
 export const ProfileProvider = ({ children }) => {
   const [isWeb3, setIsWeb3] = useState(false);
