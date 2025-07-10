@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import '../styles/Projects.css';
 import '@fortawesome/fontawesome-free/css/all.min.css';
 import { useTranslation } from 'react-i18next';
+import { useProfile } from '../ProfileContext';
 
 const projectData = [
   { domain: 'angelstowinghva.com', tags: ['web2', 'service'] },
@@ -28,6 +29,15 @@ const Projects = () => {
   const [view, setView] = useState('production');
   const [openProject, setOpenProject] = useState(null);
   const { t } = useTranslation();
+  const { isWeb3 } = useProfile();
+
+  const filteredProjectData = projectData.filter((p) =>
+    isWeb3 ? p.tags.includes('web3') : p.tags.includes('web2')
+  );
+
+  const filteredDevProjectData = devProjectData.filter((p) =>
+    isWeb3 ? p.tags.includes('web3') : p.tags.includes('web2')
+  );
 
   return (
     <div className="projects-page">
@@ -48,7 +58,7 @@ const Projects = () => {
       </div>
       {view === 'production' && (
         <div className="projects-container">
-          {projectData.map((project, index) => (
+          {filteredProjectData.map((project, index) => (
             <div key={index} className="project-card">
               <a
                 href={`https://${project.domain}`}
@@ -75,7 +85,7 @@ const Projects = () => {
 
       {view === 'development' && (
         <div className="projects-container">
-          {devProjectData.map((project, index) => (
+          {filteredDevProjectData.map((project, index) => (
             <div
               key={index}
               className="project-card"
@@ -106,10 +116,10 @@ const Projects = () => {
             <button className="close-btn" onClick={() => setOpenProject(null)}>
               &times;
             </button>
-            <h3>{devProjectData[openProject].name}</h3>
+            <h3>{filteredDevProjectData[openProject].name}</h3>
             <div className="env-icons">
               <a
-                href={devProjectData[openProject].environments.dev}
+                href={filteredDevProjectData[openProject].environments.dev}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="env-icon"
@@ -117,7 +127,7 @@ const Projects = () => {
                 <i className="fas fa-wrench" /> Dev
               </a>
               <a
-                href={devProjectData[openProject].environments.test}
+                href={filteredDevProjectData[openProject].environments.test}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="env-icon"
