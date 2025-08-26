@@ -276,14 +276,20 @@ const SocialTimeline = ({ platform }) => {
             )}
             {!loading && !error &&
               items.map((v) => (
-                <Box key={v.id.videoId || v.id} sx={{ mb: 2 }}>
+                <Box key={v.id.videoId || v.id} sx={{ mb: 2, position: 'relative', pt: '56.25%' }}>
                   <iframe
-                    width="400"
-                    height="225"
                     src={`https://www.youtube.com/embed/${v.id.videoId || v.id}`}
                     allow="autoplay; encrypted-media"
                     allowFullScreen
-                    style={{ borderRadius: 8, border: 'none' }}
+                    style={{
+                      borderRadius: 8,
+                      border: 'none',
+                      position: 'absolute',
+                      top: 0,
+                      left: 0,
+                      width: '100%',
+                      height: '100%'
+                    }}
                     title={v.snippet?.title || 'YouTube video'}
                   />
                 </Box>
