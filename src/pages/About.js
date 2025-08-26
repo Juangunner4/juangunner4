@@ -30,7 +30,7 @@ const experiences = [
     title: "UPSL Soccer Player",
     company: "Alexandria Reds",
     location: "Alexandria, Virginia, United States",
-    date: "Apr 2025 - Present",
+    date: "Apr 2025 - Aug 2025",
     description: "Midfielder and OutsideBack of the Semi-pro Alexandria Reds team.",
     skills: ["Football", "Leadership", "Soccer"],
     logo: alexandrialogo,
