@@ -6,9 +6,9 @@ import XFeed from '../components/socials/XFeed';
 import InstagramFeed from '../components/socials/InstagramFeed';
 import TwitchFeed from '../components/socials/TwitchFeed';
 import YoutubeFeed from '../components/socials/YoutubeFeed';
+import PumpFunFeed from '../components/socials/PumpFunFeed';
 
-
-const VALID_TABS = ['x', 'instagram', 'twitch', 'youtube'];
+const VALID_TABS = ['x', 'instagram', 'twitch', 'pumpfun', 'youtube'];
 const Home = () => {
   const [tab, setTabRaw] = useState('x');
 
@@ -25,6 +25,7 @@ const Home = () => {
   if (safeTab === 'x') FeedComponent = <XFeed />;
   else if (safeTab === 'instagram') FeedComponent = <InstagramFeed />;
   else if (safeTab === 'twitch') FeedComponent = <TwitchFeed />;
+  else if (safeTab === 'pumpfun') FeedComponent = <PumpFunFeed />;
   else if (safeTab === 'youtube') FeedComponent = <YoutubeFeed />;
 
   return (
@@ -32,7 +33,7 @@ const Home = () => {
       <Hero />
       <SocialTabs value={safeTab} setValue={setTab} />
       {FeedComponent}
-      <SocialTimeline platform={safeTab} />
+      {safeTab !== 'pumpfun' && <SocialTimeline platform={safeTab} />}
     </div>
   );
 };

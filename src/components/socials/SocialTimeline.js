@@ -311,7 +311,7 @@ const SocialTimeline = ({ platform }) => {
   );
 };
 SocialTimeline.propTypes = {
-  platform: PropTypes.oneOf(['instagram', 'x', 'twitch', 'youtube']).isRequired,
+  platform: PropTypes.oneOf(['instagram', 'x', 'twitch', 'pumpfun', 'youtube']).isRequired,
 };
 
 export default SocialTimeline;

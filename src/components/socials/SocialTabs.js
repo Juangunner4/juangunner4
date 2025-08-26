@@ -5,6 +5,7 @@ import Box from '@mui/material/Box';
 import Tab from '@mui/material/Tab';
 import Tabs from '@mui/material/Tabs';
 import { useTranslation } from 'react-i18next';
+import { SportsEsports, LocalFireDepartment, YouTube } from '@mui/icons-material';
 
 const SocialTabs = ({ value, setValue }) => {
   const { t } = useTranslation();
@@ -45,8 +46,24 @@ const SocialTabs = ({ value, setValue }) => {
         >
           <Tab label={t('socials.x')} value="x" />
           <Tab label={t('socials.instagram')} value="instagram" />
-          <Tab label={t('socials.twitch')} value="twitch" />
-          <Tab label={t('socials.youtube')} value="youtube" />
+          <Tab
+            icon={<SportsEsports fontSize="small" />}
+            iconPosition="start"
+            label={t('socials.twitch')}
+            value="twitch"
+          />
+          <Tab
+            icon={<LocalFireDepartment fontSize="small" />}
+            iconPosition="start"
+            label={t('socials.pumpfun')}
+            value="pumpfun"
+          />
+          <Tab
+            icon={<YouTube fontSize="small" />}
+            iconPosition="start"
+            label={t('socials.youtube')}
+            value="youtube"
+          />
         </Tabs>
       </Box>
       {/* Timeline will be rendered in Home.js, not here */}
