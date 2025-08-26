@@ -52,6 +52,7 @@ const es = {
     x: 'X',
     instagram: 'Instagram',
     twitch: 'Twitch',
+    pumpfun: 'Pump.fun',
     youtube: 'YouTube'
   },
   footer: {
