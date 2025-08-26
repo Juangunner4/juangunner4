@@ -4,11 +4,13 @@ import PropTypes from 'prop-types';
 import Box from '@mui/material/Box';
 import Tab from '@mui/material/Tab';
 import Tabs from '@mui/material/Tabs';
+import useMediaQuery from '@mui/material/useMediaQuery';
 import { useTranslation } from 'react-i18next';
 import { SportsEsports, LocalFireDepartment, YouTube } from '@mui/icons-material';
 
 const SocialTabs = ({ value, setValue }) => {
   const { t } = useTranslation();
+  const isMobile = useMediaQuery('(max-width:700px)');
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
@@ -26,10 +28,13 @@ const SocialTabs = ({ value, setValue }) => {
       }}
     >
       <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
-        <Tabs 
-          value={value} 
-          onChange={handleChange} 
-          centered
+        <Tabs
+          value={value}
+          onChange={handleChange}
+          centered={!isMobile}
+          variant={isMobile ? 'scrollable' : 'standard'}
+          scrollButtons={isMobile ? 'auto' : false}
+          allowScrollButtonsMobile
           aria-label="social media tabs"
           sx={{
             '& .MuiTab-root': {
