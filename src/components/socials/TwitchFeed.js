@@ -50,15 +50,22 @@ const TwitchFeed = () => {
       <Card sx={{ my: 2, width: '100%' }}>
         <CardContent sx={{ textAlign: 'center' }}>
           <Typography variant="h6">Latest Twitch Stream</Typography>
-          <iframe
-            title={latest.title}
-            width="100%"
-            height="315"
-            src={`https://player.twitch.tv/?video=${latest.id}&parent=${window.location.hostname}`}
-            allowFullScreen
-            frameBorder="0"
-            style={{ borderRadius: 8 }}
-          />
+          <Box sx={{ position: 'relative', pt: '56.25%' }}>
+            <iframe
+              title={latest.title}
+              src={`https://player.twitch.tv/?video=${latest.id}&parent=${window.location.hostname}`}
+              allowFullScreen
+              frameBorder="0"
+              style={{
+                borderRadius: 8,
+                position: 'absolute',
+                top: 0,
+                left: 0,
+                width: '100%',
+                height: '100%'
+              }}
+            />
+          </Box>
         </CardContent>
       </Card>
       {previous.length > 0 && (
@@ -94,3 +101,4 @@ const TwitchFeed = () => {
 };
 
 export default TwitchFeed;
+

@@ -7,6 +7,7 @@ import InstagramFeed from '../components/socials/InstagramFeed';
 import TwitchFeed from '../components/socials/TwitchFeed';
 import YoutubeFeed from '../components/socials/YoutubeFeed';
 import PumpFunFeed from '../components/socials/PumpFunFeed';
+import '../styles/Home.css';
 
 const VALID_TABS = ['x', 'instagram', 'twitch', 'pumpfun', 'youtube'];
 const Home = () => {
@@ -39,3 +40,4 @@ const Home = () => {
 };
 
 export default Home;
+
