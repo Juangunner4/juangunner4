@@ -1,12 +1,15 @@
 const en = {
-  navbar: {
-    home: 'Home',
-    bookNow: 'Book Now',
-    about: 'About',
-    projects: 'Projects',
-    langEn: 'English',
-    langEs: 'Español'
-  },
+    navbar: {
+      home: 'Home',
+      bookNow: 'Book Now',
+      about: 'About',
+      projects: 'Projects',
+      langEn: 'English',
+      langEs: 'Español',
+      profile: 'Profile',
+      web2: 'Web2',
+      web3: 'Web3'
+    },
   hero: {
     welcome: 'Welcome',
     web3text: 'I enjoy memes and trolling.',

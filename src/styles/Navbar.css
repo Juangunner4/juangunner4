@@ -9,7 +9,7 @@
     z-index: 1000;
 }
 
-.navbar-left img {
+.navbar-pfp {
     width: 60px;
     height: 60px;
     border-radius: 50%;
@@ -21,9 +21,26 @@
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.navbar-left img:hover {
+.navbar-pfp:hover {
     transform: scale(1.1);
     box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.4);
+}
+
+.pfp-wrapper {
+    position: relative;
+    display: inline-block;
+}
+
+.pfp-tag {
+    position: absolute;
+    bottom: -4px;
+    right: -4px;
+    background-color: #ffffff;
+    color: #ff0000;
+    border-radius: 12px;
+    padding: 2px 4px;
+    font-size: 10px;
+    font-weight: bold;
 }
 
 .navbar-right {
