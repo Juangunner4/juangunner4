@@ -3,6 +3,7 @@
   padding: 64px 0;
   background-color: #ff0000;
   color: #ffffff;
+  width: 100%;
 }
 
 .hero-title {
@@ -55,7 +56,8 @@
   transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-.project-button:hover {
-  background-color: #ff0000 !important;
-  color: #ffffff !important;
-}
+  .project-button:hover {
+    background-color: #ff0000 !important;
+    color: #ffffff !important;
+  }
+

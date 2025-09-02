@@ -28,8 +28,16 @@ test('opens drawer when hamburger clicked', () => {
   expect(screen.getAllByText(/home/i).length).toBeGreaterThan(1);
 });
 
-test('language buttons present', () => {
-  setup();
-  expect(screen.getAllByRole('button', { name: /english/i }).length).toBeGreaterThan(0);
-  expect(screen.getAllByRole('button', { name: /español/i }).length).toBeGreaterThan(0);
-});
+  test('language buttons present', () => {
+    setup();
+    expect(screen.getAllByRole('button', { name: /english/i }).length).toBeGreaterThan(0);
+    expect(screen.getAllByRole('button', { name: /español/i }).length).toBeGreaterThan(0);
+  });
+
+  test('profile tag toggles between web2 and web3', () => {
+    setup();
+    const pfpButton = screen.getByRole('button', { name: /profile/i });
+    expect(screen.getByText(/web2/i)).toBeInTheDocument();
+    fireEvent.click(pfpButton);
+    expect(screen.getByText(/web3/i)).toBeInTheDocument();
+  });

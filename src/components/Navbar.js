@@ -29,12 +29,15 @@ const Navbar = () => {
           aria-label={t('navbar.profile')}
           style={{ background: 'none', border: 'none', padding: 0, cursor: 'pointer' }}
         >
-          <img
-            src={currentImage}
-            alt={t('navbar.profile')}
-            className="navbar-pfp"
-            draggable="false"
-          />
+          <div className="pfp-wrapper">
+            <img
+              src={currentImage}
+              alt={t('navbar.profile')}
+              className="navbar-pfp"
+              draggable="false"
+            />
+            <span className="pfp-tag">{isWeb3 ? t('navbar.web3') : t('navbar.web2')}</span>
+          </div>
         </button>
       </div>
 
