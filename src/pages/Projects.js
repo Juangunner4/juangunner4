@@ -11,7 +11,7 @@ const projectData = [
   { domain: 'goshenretirementhomes.com', tags: ['web2', 'business', 'landing page'] },
   { domain: 'perionsol.xyz', tags: ['web3', 'meme', 'landing page'] },
   { domain: 'dogwif.hair', tags: ['web3', 'meme', 'openai', 'landing page'] },
-  { domain: 'www.christonbonk.xyz', tags: ['web3', 'meme', 'heavendex', 'landing page'] },
+  { domain: 'www.christonpump.xyz', tags: ['web3', 'sql db', 'meme', 'heavendex', 'landing page'] },
 ];
 
 const devProjectData = [
