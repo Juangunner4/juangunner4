@@ -24,6 +24,15 @@ const devProjectData = [
       test: 'https://primos-marketplace.onrender.com/',
     },
   },
+  {
+    name: 'footballcoin.fun',
+    logo: 'https://footballcoin.fun/favicon.ico',
+    tags: ['web3'],
+    environments: {
+      dev: 'https://website-07c113b9.ehn.vdj.temporary.site/',
+      test: 'https://footballcoin.fun',
+    },
+  },
 ];
 
 const Projects = () => {
