@@ -6,6 +6,7 @@ import '@fortawesome/fontawesome-free/css/all.min.css';
 import '../styles/Hero.css';
 import { useProfile } from '../ProfileContext';
 import { useTranslation, Trans } from 'react-i18next';
+import { Link } from 'react-router-dom';
 
 const Hero = () => {
   const { isWeb3 } = useProfile();
@@ -29,7 +30,12 @@ const Hero = () => {
           }} />
         </Typography>
       )}
-      <Button variant="contained" href="/projects" className="project-button">
+      <Button
+        variant="contained"
+        component={Link}
+        to="/projects"
+        className="project-button"
+      >
         {t('hero.viewProjects')}
       </Button>
     </Box>
