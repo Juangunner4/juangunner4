@@ -28,6 +28,7 @@ const Hero = () => {
                   target="_blank"
                   rel="noopener noreferrer"
                   className="hero-link"
+                  aria-label={t('hero.links.web3X')}
                 />
               )
             }}
@@ -44,6 +45,7 @@ const Hero = () => {
                   target="_blank"
                   rel="noopener noreferrer"
                   className="hero-link"
+                  aria-label={t('hero.links.web2X')}
                 />
               ),
               ig: (
@@ -52,6 +54,7 @@ const Hero = () => {
                   target="_blank"
                   rel="noopener noreferrer"
                   className="hero-link"
+                  aria-label={t('hero.links.instagram')}
                 />
               )
             }}
