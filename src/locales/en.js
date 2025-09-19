@@ -14,7 +14,12 @@ const en = {
     welcome: 'Welcome to my corner of the internet',
     web3text: "I'm a hood developer pushing web3 culture—building on Solana and other blockchains while trading and creating content. Follow along on <x>X @0x1JuanGunner4</x>.",
     web2text: "I'm Juan, a full stack developer and amateur footballer who games and streams. Catch my updates on <x>X @Juangunner4</x> and <ig>Instagram @juangunner4</ig>.",
-    viewProjects: 'View Projects'
+    viewProjects: 'View Projects',
+    links: {
+      web3X: 'Follow Juan on X at @0x1JuanGunner4',
+      web2X: 'Follow Juan on X at @Juangunner4',
+      instagram: 'Follow Juan on Instagram at @juangunner4'
+    }
   },
   eventbooking: {
     signUp: 'Sign up for an Event',
