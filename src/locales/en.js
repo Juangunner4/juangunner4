@@ -11,9 +11,9 @@ const en = {
       web3: 'Web3'
     },
   hero: {
-    welcome: 'Welcome',
-    web3text: 'I enjoy memes and trolling.',
-    web2text: 'My name is Juan I enjoy <1>programming</1>, <3><0 /> crypto</3> and <5><0 /> football</5>.',
+    welcome: 'Welcome to my corner of the internet',
+    web3text: "I'm a hood developer pushing web3 culture—building on Solana and other blockchains while trading and creating content. Follow along on <x>X @0x1JuanGunner4</x>.",
+    web2text: "I'm Juan, a full stack developer and amateur footballer who games and streams. Catch my updates on <x>X @Juangunner4</x> and <ig>Instagram @juangunner4</ig>.",
     viewProjects: 'View Projects'
   },
   eventbooking: {

@@ -12,7 +12,7 @@ test('renders hero section', () => {
       </ProfileProvider>
     </MemoryRouter>
   );
-  expect(screen.getByText(/welcome/i)).toBeInTheDocument();
-  expect(screen.getByText(/my name is juan/i)).toBeInTheDocument();
+  expect(screen.getByText(/welcome to my corner/i)).toBeInTheDocument();
+  expect(screen.getByText(/i'm juan, a full stack developer/i)).toBeInTheDocument();
   expect(screen.getByRole('link', { name: /view projects/i })).toBeInTheDocument();
 });

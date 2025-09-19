@@ -19,15 +19,43 @@ const Hero = () => {
       </Typography>
       {isWeb3 ? (
         <Typography variant="h6" gutterBottom className="hero-subtitle">
-          {t('hero.web3text')}
+          <Trans
+            i18nKey="hero.web3text"
+            components={{
+              x: (
+                <a
+                  href="https://x.com/0x1JuanGunner4"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hero-link"
+                />
+              )
+            }}
+          />
         </Typography>
       ) : (
         <Typography variant="h6" gutterBottom className="hero-subtitle">
-          <Trans i18nKey="hero.web2text" components={{
-            1: <span className="coding" />,
-            3: <span className="crypto"><i className="fab fa-bitcoin" /></span>,
-            5: <span className="football"><i className="fas fa-futbol" /></span>
-          }} />
+          <Trans
+            i18nKey="hero.web2text"
+            components={{
+              x: (
+                <a
+                  href="https://x.com/Juangunner4"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hero-link"
+                />
+              ),
+              ig: (
+                <a
+                  href="https://www.instagram.com/juangunner4/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hero-link"
+                />
+              )
+            }}
+          />
         </Typography>
       )}
       <Button
