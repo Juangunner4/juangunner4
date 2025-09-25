@@ -30,7 +30,51 @@ const es = {
   about: {
     heading: 'Acerca de',
     software: 'Ingeniero de Software',
-    soccer: 'Fútbol'
+    soccer: 'Fútbol',
+    tradeTabs: {
+      web2: 'Trading (Web2 Acciones)',
+      web3: 'Trading (Web3 Cripto)',
+    },
+    trade: {
+      referralCodeLabel: 'Código de referido',
+      copyCode: 'Copiar código',
+      copied: '¡Copiado!',
+      copyError: 'No se pudo copiar automáticamente. Usa el código manualmente.',
+      categories: {
+        web2: {
+          heading: 'Haz crecer tu portafolio con brókers de acciones',
+          description:
+            'Aprovecha los brókers que uso para operar acciones y opciones. Usa estos enlaces para reclamar acciones gratis y potenciar tu portafolio Web2.',
+          platforms: {
+            webull: {
+              name: 'Webull Financial',
+              description:
+                'Gráficos avanzados, trading en horario extendido y soporte multi-activo para inversores activos.',
+              linkLabel: 'Obtén tu bono de Webull',
+            },
+          },
+        },
+        web3: {
+          heading: 'Explora los exchanges de cripto que uso a diario',
+          description:
+            'Estas plataformas nativas cripto impulsan mis estrategias on-chain. Regístrate con mis enlaces para recibir beneficios y apoyar mi trabajo.',
+          platforms: {
+            coinbase: {
+              name: 'Coinbase Advanced',
+              description:
+                'Gráficos profesionales, liquidez profunda y seguridad robusta para traders activos de cripto.',
+              linkLabel: 'Activa el referido de Coinbase',
+            },
+            binance: {
+              name: 'Binance Global',
+              description:
+                'Comisiones bajas en spot y futuros con acceso a cientos de pares y productos de rendimiento.',
+              linkLabel: 'Únete a Binance con mi código',
+            },
+          },
+        },
+      },
+    },
   },
   projects: {
     heading: 'Proyectos',
