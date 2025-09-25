@@ -30,7 +30,51 @@ const en = {
   about: {
     heading: 'About',
     software: 'Software Engineer',
-    soccer: 'Football/Soccer'
+    soccer: 'Football/Soccer',
+    tradeTabs: {
+      web2: 'Trade (Web2 Stocks)',
+      web3: 'Trade (Web3 Crypto)',
+    },
+    trade: {
+      referralCodeLabel: 'Referral Code',
+      copyCode: 'Copy code',
+      copied: 'Copied!',
+      copyError: 'Unable to copy automatically. Please use the code manually.',
+      categories: {
+        web2: {
+          heading: 'Build Wealth with Stock Brokerages',
+          description:
+            'Tap into the brokerages I trust for equities and options. Use these invite links to claim free stock rewards and level up your Web2 portfolio.',
+          platforms: {
+            webull: {
+              name: 'Webull Financial',
+              description:
+                'Advanced charting, extended-hours trading, and multi-asset support tailored for active investors.',
+              linkLabel: 'Unlock your Webull bonus',
+            },
+          },
+        },
+        web3: {
+          heading: 'Explore Crypto Exchanges I Use Daily',
+          description:
+            'These crypto-native platforms power my on-chain strategies. Sign up with my links to receive trading perks while supporting the journey.',
+          platforms: {
+            coinbase: {
+              name: 'Coinbase Advanced',
+              description:
+                'Institutional-grade charts, deep liquidity, and robust security for active crypto traders.',
+              linkLabel: 'Activate Coinbase referral',
+            },
+            binance: {
+              name: 'Binance Global',
+              description:
+                'Low-fee spot and futures trading with access to hundreds of crypto pairs and earning products.',
+              linkLabel: 'Join Binance with my code',
+            },
+          },
+        },
+      },
+    },
   },
   projects: {
     heading: 'Projects',

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import '../styles/About.css';
 import fedexLogo from '../assets/fedExLogo.png';
 import villarrealLogo from '../assets/villarreallogo.png';
@@ -12,6 +12,9 @@ import shenandoahLogo from '../assets/shenandoah.png';
 import mthreeLogo from '../assets/mthree.jpg';
 import emuLogo from '../assets/emu.png';
 import horizonsedgelogo from '../assets/horizonsedgelogo.png';
+import coinbaseLogo from '../assets/coinbase.svg';
+import binanceLogo from '../assets/binance.svg';
+import webullLogo from '../assets/webull.svg';
 import { useTranslation } from 'react-i18next';
 
 
@@ -200,12 +203,101 @@ const experiences = [
   },
 ];
 
+const tradingPlatforms = {
+  web2: [
+    {
+      id: 'webull',
+      logo: webullLogo,
+      link: 'https://a.webull.com/i/JuanGunner',
+      code: 'JUANWEBULL',
+    },
+  ],
+  web3: [
+    {
+      id: 'coinbase',
+      logo: coinbaseLogo,
+      link: 'https://www.coinbase.com/join?code=JUANCOINBASE',
+      code: 'JUANCOINBASE',
+    },
+    {
+      id: 'binance',
+      logo: binanceLogo,
+      link: 'https://accounts.binance.com/en/register?ref=JUANGUNNER',
+      code: 'JUANGUNNER',
+    },
+  ],
+};
+
 const About = () => {
   const [selectedCategory, setSelectedCategory] = useState('software');
+  const [copyStatus, setCopyStatus] = useState({ code: '', error: false });
+  const copyTimeoutRef = useRef(null);
   const { t } = useTranslation();
-  const filteredExperiences = experiences.filter(
-    (exp) => exp.category === selectedCategory
-  );
+  const tradeCategories = ['web2', 'web3'];
+  const isTradeCategory = tradeCategories.includes(selectedCategory);
+  const filteredExperiences = isTradeCategory
+    ? []
+    : experiences.filter((exp) => exp.category === selectedCategory);
+
+  useEffect(() => {
+    setCopyStatus({ code: '', error: false });
+    if (copyTimeoutRef.current) {
+      clearTimeout(copyTimeoutRef.current);
+      copyTimeoutRef.current = null;
+    }
+  }, [selectedCategory]);
+
+  useEffect(() => {
+    return () => {
+      if (copyTimeoutRef.current) {
+        clearTimeout(copyTimeoutRef.current);
+      }
+    };
+  }, []);
+
+  const handleCopyCode = (code) => {
+    const markSuccess = () => {
+      setCopyStatus({ code, error: false });
+      if (copyTimeoutRef.current) {
+        clearTimeout(copyTimeoutRef.current);
+      }
+      copyTimeoutRef.current = setTimeout(
+        () => {
+          setCopyStatus({ code: '', error: false });
+          copyTimeoutRef.current = null;
+        },
+        2000,
+      );
+    };
+
+    const markError = () => {
+      setCopyStatus({ code, error: true });
+    };
+
+    const fallbackCopy = () => {
+      try {
+        if (typeof document === 'undefined') {
+          throw new Error('Document not available');
+        }
+        const tempInput = document.createElement('input');
+        tempInput.value = code;
+        document.body.appendChild(tempInput);
+        tempInput.select();
+        document.execCommand('copy');
+        document.body.removeChild(tempInput);
+        markSuccess();
+      } catch (error) {
+        markError();
+      }
+    };
+
+    if (typeof navigator !== 'undefined' && navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(code).then(markSuccess).catch(fallbackCopy);
+      return;
+    }
+
+    fallbackCopy();
+  };
 
   return (
     <div className="about-page">
@@ -225,38 +317,107 @@ const About = () => {
         >
           {t('about.soccer')}
         </button>
+        <button
+          className={`event-btn ${selectedCategory === 'web2' ? 'active' : ''
+            }`}
+          onClick={() => setSelectedCategory('web2')}
+        >
+          {t('about.tradeTabs.web2')}
+        </button>
+        <button
+          className={`event-btn ${selectedCategory === 'web3' ? 'active' : ''
+            }`}
+          onClick={() => setSelectedCategory('web3')}
+        >
+          {t('about.tradeTabs.web3')}
+        </button>
       </div>
-      <div className="timeline">
-        {filteredExperiences.map((experience, index) => (
-          <div key={index} className="timeline-item">
-            <div className="timeline-content">
-              <div className="company-logo">
-                <img
-                  src={experience.logo}
-                  alt={`${experience.company} logo`}
-                />
-              </div>
-              <h3>{experience.title}</h3>
-              <h4>{experience.company}</h4>
-              <p className="timeline-location">{experience.location}</p>
-              <p className="timeline-date">{experience.date}</p>
-              {experience.description && <p>{experience.description}</p>}
-              {experience.responsibilities && (
-                <ul>
-                  {experience.responsibilities.map((resp, i) => (
-                    <li key={i}>{resp}</li>
-                  ))}
-                </ul>
-              )}
-              {experience.skills && (
-                <p className="timeline-skills">
-                  <strong>Skills:</strong> {experience.skills.join(', ')}
-                </p>
-              )}
-            </div>
+      {isTradeCategory ? (
+        <section className="trade-section">
+          <h3>{t(`about.trade.categories.${selectedCategory}.heading`)}</h3>
+          <p className="trade-description">
+            {t(`about.trade.categories.${selectedCategory}.description`)}
+          </p>
+          <div className="referrals-grid">
+            {(tradingPlatforms[selectedCategory] || []).map((platform) => {
+              const isActivePlatform = copyStatus.code === platform.code;
+              const platformName = t(`about.trade.categories.${selectedCategory}.platforms.${platform.id}.name`);
+              const platformDescription = t(`about.trade.categories.${selectedCategory}.platforms.${platform.id}.description`);
+              const platformLinkLabel = t(`about.trade.categories.${selectedCategory}.platforms.${platform.id}.linkLabel`);
+              return (
+                <article key={platform.id} className="referral-card">
+                  <div className="referral-logo">
+                    <img
+                      src={platform.logo}
+                      alt={`${platformName} logo`}
+                    />
+                  </div>
+                  <h4>{platformName}</h4>
+                  <p>{platformDescription}</p>
+                  <a
+                    className="referral-link"
+                    href={platform.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    {platformLinkLabel}
+                  </a>
+                  <div className="referral-code" aria-live="polite">
+                    <span>{t('about.trade.referralCodeLabel')}</span>
+                    <code>{platform.code}</code>
+                    <button
+                      type="button"
+                      className="copy-button"
+                      onClick={() => handleCopyCode(platform.code)}
+                    >
+                      {isActivePlatform && !copyStatus.error
+                        ? t('about.trade.copied')
+                        : t('about.trade.copyCode')}
+                    </button>
+                  </div>
+                  {isActivePlatform && copyStatus.error && (
+                    <p className="copy-feedback" role="status">
+                      {t('about.trade.copyError')}
+                    </p>
+                  )}
+                </article>
+              );
+            })}
           </div>
-        ))}
-      </div>
+        </section>
+      ) : (
+        <div className="timeline">
+          {filteredExperiences.map((experience, index) => (
+            <div key={index} className="timeline-item">
+              <div className="timeline-content">
+                <div className="company-logo">
+                  <img
+                    src={experience.logo}
+                    alt={`${experience.company} logo`}
+                  />
+                </div>
+                <h3>{experience.title}</h3>
+                <h4>{experience.company}</h4>
+                <p className="timeline-location">{experience.location}</p>
+                <p className="timeline-date">{experience.date}</p>
+                {experience.description && <p>{experience.description}</p>}
+                {experience.responsibilities && (
+                  <ul>
+                    {experience.responsibilities.map((resp, i) => (
+                      <li key={i}>{resp}</li>
+                    ))}
+                  </ul>
+                )}
+                {experience.skills && (
+                  <p className="timeline-skills">
+                    <strong>Skills:</strong> {experience.skills.join(', ')}
+                  </p>
+                )}
+              </div>
+            </div>
+          ))}
+        </div>
+      )}
     </div>
   );
 };
