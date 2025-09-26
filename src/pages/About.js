@@ -16,6 +16,7 @@ import coinbaseLogo from '../assets/coinbase.svg';
 import binanceLogo from '../assets/binance.svg';
 import webullLogo from '../assets/webull.svg';
 import { useTranslation } from 'react-i18next';
+import { useProfile } from '../ProfileContext';
 
 
 const experiences = [
@@ -204,7 +205,7 @@ const experiences = [
 ];
 
 const tradingPlatforms = {
-  web2: [
+  invest: [
     {
       id: 'webull',
       logo: webullLogo,
@@ -212,7 +213,7 @@ const tradingPlatforms = {
       code: 'JUANWEBULL',
     },
   ],
-  web3: [
+  trade: [
     {
       id: 'coinbase',
       logo: coinbaseLogo,
@@ -233,7 +234,18 @@ const About = () => {
   const [copyStatus, setCopyStatus] = useState({ code: '', error: false });
   const copyTimeoutRef = useRef(null);
   const { t } = useTranslation();
-  const tradeCategories = ['web2', 'web3'];
+  const { isWeb3, setProfile } = useProfile();
+  const tradeCategories = ['invest', 'trade'];
+  const tradeCategoryForProfile = isWeb3 ? 'trade' : 'invest';
+
+  useEffect(() => {
+    setSelectedCategory((previousCategory) =>
+      tradeCategories.includes(previousCategory)
+        ? tradeCategoryForProfile
+        : previousCategory,
+    );
+  }, [tradeCategoryForProfile]);
+
   const isTradeCategory = tradeCategories.includes(selectedCategory);
   const filteredExperiences = isTradeCategory
     ? []
@@ -254,6 +266,16 @@ const About = () => {
       }
     };
   }, []);
+
+  const handleCategorySelect = (category) => {
+    setSelectedCategory(category);
+
+    if (category === 'invest') {
+      setProfile(false);
+    } else if (category === 'trade') {
+      setProfile(true);
+    }
+  };
 
   const handleCopyCode = (code) => {
     const markSuccess = () => {
@@ -299,6 +321,10 @@ const About = () => {
     fallbackCopy();
   };
 
+  const tradeSectionClass = isTradeCategory
+    ? `trade-section trade-section--${selectedCategory}`
+    : '';
+
   return (
     <div className="about-page">
       <h2>{t('about.heading')}</h2>
@@ -306,34 +332,34 @@ const About = () => {
         <button
           className={`event-btn ${selectedCategory === 'software' ? 'active' : ''
             }`}
-          onClick={() => setSelectedCategory('software')}
+          onClick={() => handleCategorySelect('software')}
         >
           {t('about.software')}
         </button>
         <button
           className={`event-btn ${selectedCategory === 'soccer' ? 'active' : ''
             }`}
-          onClick={() => setSelectedCategory('soccer')}
+          onClick={() => handleCategorySelect('soccer')}
         >
           {t('about.soccer')}
         </button>
         <button
-          className={`event-btn ${selectedCategory === 'web2' ? 'active' : ''
+          className={`event-btn ${selectedCategory === 'invest' ? 'active' : ''
             }`}
-          onClick={() => setSelectedCategory('web2')}
+          onClick={() => handleCategorySelect('invest')}
         >
-          {t('about.tradeTabs.web2')}
+          {t('about.tradeTabs.invest')}
         </button>
         <button
-          className={`event-btn ${selectedCategory === 'web3' ? 'active' : ''
+          className={`event-btn ${selectedCategory === 'trade' ? 'active' : ''
             }`}
-          onClick={() => setSelectedCategory('web3')}
+          onClick={() => handleCategorySelect('trade')}
         >
-          {t('about.tradeTabs.web3')}
+          {t('about.tradeTabs.trade')}
         </button>
       </div>
       {isTradeCategory ? (
-        <section className="trade-section">
+        <section className={tradeSectionClass}>
           <h3>{t(`about.trade.categories.${selectedCategory}.heading`)}</h3>
           <p className="trade-description">
             {t(`about.trade.categories.${selectedCategory}.description`)}
