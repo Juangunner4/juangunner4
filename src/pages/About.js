@@ -248,7 +248,9 @@ const About = () => {
   }, [tradeCategoryForProfile]);
 
   const isTradeCategory = TRADE_CATEGORIES.includes(selectedCategory);
-  const filteredExperiences = isTradeCategory
+  const shouldShowTradeSection =
+    isTradeCategory && selectedCategory === tradeCategoryForProfile;
+  const filteredExperiences = shouldShowTradeSection
     ? []
     : experiences.filter((exp) => exp.category === selectedCategory);
 
@@ -322,7 +324,7 @@ const About = () => {
     fallbackCopy();
   };
 
-  const tradeSectionClass = isTradeCategory
+  const tradeSectionClass = shouldShowTradeSection
     ? `trade-section trade-section--${selectedCategory}`
     : '';
 
@@ -344,22 +346,26 @@ const About = () => {
         >
           {t('about.soccer')}
         </button>
-        <button
-          className={`event-btn ${selectedCategory === 'invest' ? 'active' : ''
-            }`}
-          onClick={() => handleCategorySelect('invest')}
-        >
-          {t('about.tradeTabs.invest')}
-        </button>
-        <button
-          className={`event-btn ${selectedCategory === 'trade' ? 'active' : ''
-            }`}
-          onClick={() => handleCategorySelect('trade')}
-        >
-          {t('about.tradeTabs.trade')}
-        </button>
+        {!isWeb3 && (
+          <button
+            className={`event-btn ${selectedCategory === 'invest' ? 'active' : ''
+              }`}
+            onClick={() => handleCategorySelect('invest')}
+          >
+            {t('about.tradeTabs.invest')}
+          </button>
+        )}
+        {isWeb3 && (
+          <button
+            className={`event-btn ${selectedCategory === 'trade' ? 'active' : ''
+              }`}
+            onClick={() => handleCategorySelect('trade')}
+          >
+            {t('about.tradeTabs.trade')}
+          </button>
+        )}
       </div>
-      {isTradeCategory ? (
+      {shouldShowTradeSection ? (
         <section className={tradeSectionClass}>
           <h3>{t(`about.trade.categories.${selectedCategory}.heading`)}</h3>
           <p className="trade-description">
