@@ -32,8 +32,8 @@ const en = {
     software: 'Software Engineer',
     soccer: 'Football/Soccer',
     tradeTabs: {
-      web2: 'Trade (Web2 Stocks)',
-      web3: 'Trade (Web3 Crypto)',
+      invest: 'Invest with Me',
+      trade: 'Trade with Me',
     },
     trade: {
       referralCodeLabel: 'Referral Code',
@@ -41,10 +41,10 @@ const en = {
       copied: 'Copied!',
       copyError: 'Unable to copy automatically. Please use the code manually.',
       categories: {
-        web2: {
-          heading: 'Build Wealth with Stock Brokerages',
+        invest: {
+          heading: 'Invest with Me',
           description:
-            'Tap into the brokerages I trust for equities and options. Use these invite links to claim free stock rewards and level up your Web2 portfolio.',
+            'Tap into the brokerages I trust for equities and options. Use these invite links to claim free stock rewards and grow your portfolio.',
           platforms: {
             webull: {
               name: 'Webull Financial',
@@ -54,10 +54,10 @@ const en = {
             },
           },
         },
-        web3: {
-          heading: 'Explore Crypto Exchanges I Use Daily',
+        trade: {
+          heading: 'Trade with Me',
           description:
-            'These crypto-native platforms power my on-chain strategies. Sign up with my links to receive trading perks while supporting the journey.',
+            'These on-chain platforms power my trading strategies. Sign up with my links to receive perks while supporting the journey.',
           platforms: {
             coinbase: {
               name: 'Coinbase Advanced',

@@ -32,8 +32,8 @@ const es = {
     software: 'Ingeniero de Software',
     soccer: 'Fútbol',
     tradeTabs: {
-      web2: 'Trading (Web2 Acciones)',
-      web3: 'Trading (Web3 Cripto)',
+      invest: 'Invierte conmigo',
+      trade: 'Opera conmigo',
     },
     trade: {
       referralCodeLabel: 'Código de referido',
@@ -41,10 +41,10 @@ const es = {
       copied: '¡Copiado!',
       copyError: 'No se pudo copiar automáticamente. Usa el código manualmente.',
       categories: {
-        web2: {
-          heading: 'Haz crecer tu portafolio con brókers de acciones',
+        invest: {
+          heading: 'Invierte conmigo',
           description:
-            'Aprovecha los brókers que uso para operar acciones y opciones. Usa estos enlaces para reclamar acciones gratis y potenciar tu portafolio Web2.',
+            'Aprovecha los brókers que uso para operar acciones y opciones. Usa estos enlaces para reclamar acciones gratis y hacer crecer tu portafolio.',
           platforms: {
             webull: {
               name: 'Webull Financial',
@@ -54,10 +54,10 @@ const es = {
             },
           },
         },
-        web3: {
-          heading: 'Explora los exchanges de cripto que uso a diario',
+        trade: {
+          heading: 'Opera conmigo',
           description:
-            'Estas plataformas nativas cripto impulsan mis estrategias on-chain. Regístrate con mis enlaces para recibir beneficios y apoyar mi trabajo.',
+            'Estas plataformas on-chain impulsan mis estrategias. Regístrate con mis enlaces para recibir beneficios y apoyar mi trabajo.',
           platforms: {
             coinbase: {
               name: 'Coinbase Advanced',
