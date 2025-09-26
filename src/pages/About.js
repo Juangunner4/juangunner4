@@ -204,6 +204,8 @@ const experiences = [
   },
 ];
 
+const TRADE_CATEGORIES = ['invest', 'trade'];
+
 const tradingPlatforms = {
   invest: [
     {
@@ -235,18 +237,17 @@ const About = () => {
   const copyTimeoutRef = useRef(null);
   const { t } = useTranslation();
   const { isWeb3, setProfile } = useProfile();
-  const tradeCategories = ['invest', 'trade'];
   const tradeCategoryForProfile = isWeb3 ? 'trade' : 'invest';
 
   useEffect(() => {
     setSelectedCategory((previousCategory) =>
-      tradeCategories.includes(previousCategory)
+      TRADE_CATEGORIES.includes(previousCategory)
         ? tradeCategoryForProfile
         : previousCategory,
     );
   }, [tradeCategoryForProfile]);
 
-  const isTradeCategory = tradeCategories.includes(selectedCategory);
+  const isTradeCategory = TRADE_CATEGORIES.includes(selectedCategory);
   const filteredExperiences = isTradeCategory
     ? []
     : experiences.filter((exp) => exp.category === selectedCategory);
