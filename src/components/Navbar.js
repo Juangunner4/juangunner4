@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import Drawer from '@mui/material/Drawer';
 import List from '@mui/material/List';
@@ -14,11 +14,60 @@ const Navbar = () => {
   const { isWeb3, toggleProfile } = useProfile();
   const currentImage = isWeb3 ? web3Image : web2Image;
   const [drawerOpen, setDrawerOpen] = useState(false);
+  const [floatingMessage, setFloatingMessage] = useState(null);
   const { t, i18n } = useTranslation();
 
   const toggleDrawer = (open) => () => {
     setDrawerOpen(open);
   };
+
+  useEffect(() => {
+    const web2Messages = [
+      'Hi',
+      'Click me',
+      'Come on you gunners',
+      'Trakas',
+      'Odiame Mas',
+      'Arriba las Aguilas',
+    ];
+    const web3Messages = ['GmGn', '$JUAN', '$troll', '$peri', '$sns', '$doggy', '$mask'];
+    const sequence = isWeb3 ? web3Messages : web2Messages;
+
+    if (sequence.length === 0) return undefined;
+
+    let index = 0;
+    let intervalId = null;
+    let removalTimeoutId = null;
+
+    const showNext = () => {
+      const message = sequence[index];
+      setFloatingMessage({
+        value: message,
+        key: `${isWeb3 ? 'web3' : 'web2'}-${index}-${Date.now()}`,
+      });
+      index += 1;
+
+      if (index >= sequence.length) {
+        if (intervalId) clearInterval(intervalId);
+        removalTimeoutId = setTimeout(() => {
+          setFloatingMessage(null);
+        }, 2000);
+      }
+    };
+
+    showNext();
+    intervalId = setInterval(() => {
+      if (index < sequence.length) {
+        showNext();
+      }
+    }, 2000);
+
+    return () => {
+      if (intervalId) clearInterval(intervalId);
+      if (removalTimeoutId) clearTimeout(removalTimeoutId);
+      setFloatingMessage(null);
+    };
+  }, [isWeb3]);
 
   return (
     <nav className="navbar">
@@ -36,6 +85,11 @@ const Navbar = () => {
               className="navbar-pfp"
               draggable="false"
             />
+            {floatingMessage && (
+              <span key={floatingMessage.key} className="pfp-float-text">
+                {floatingMessage.value}
+              </span>
+            )}
             <span className="pfp-tag">{isWeb3 ? t('navbar.web3') : t('navbar.web2')}</span>
           </div>
         </button>
