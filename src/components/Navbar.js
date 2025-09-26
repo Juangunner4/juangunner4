@@ -39,6 +39,8 @@ const Navbar = () => {
     let intervalId = null;
     let removalTimeoutId = null;
 
+    const displayDuration = 4000;
+
     const showNext = () => {
       const message = sequence[index];
       setFloatingMessage({
@@ -51,7 +53,7 @@ const Navbar = () => {
         if (intervalId) clearInterval(intervalId);
         removalTimeoutId = setTimeout(() => {
           setFloatingMessage(null);
-        }, 2000);
+        }, displayDuration);
       }
     };
 
@@ -60,7 +62,7 @@ const Navbar = () => {
       if (index < sequence.length) {
         showNext();
       }
-    }, 2000);
+    }, displayDuration);
 
     return () => {
       if (intervalId) clearInterval(intervalId);
