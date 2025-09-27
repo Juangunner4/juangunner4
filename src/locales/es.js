@@ -37,6 +37,7 @@ const es = {
     },
     trade: {
       referralCodeLabel: 'Código de referido',
+      tagsLabel: 'Etiquetas',
       copyCode: 'Copiar código',
       copied: '¡Copiado!',
       copyError: 'No se pudo copiar automáticamente. Usa el código manualmente.',
@@ -52,6 +53,18 @@ const es = {
                 'Gráficos avanzados, trading en horario extendido y soporte multi-activo para inversores activos.',
               linkLabel: 'Obtén tu bono de Webull',
             },
+            cashapp: {
+              name: 'Cash App',
+              description:
+                'Envía, gasta e invierte al instante con transferencias inmediatas e inversión fraccionada en acciones.',
+              linkLabel: 'Únete a Cash App con mi enlace',
+            },
+            sofi: {
+              name: 'SoFi Money',
+              description:
+                'Una cuenta híbrida de cheques y ahorros con inversión automatizada y beneficios para miembros.',
+              linkLabel: 'Activa tu bono de SoFi',
+            },
           },
         },
         trade: {
@@ -59,17 +72,53 @@ const es = {
           description:
             'Estas plataformas on-chain impulsan mis estrategias. Regístrate con mis enlaces para recibir beneficios y apoyar mi trabajo.',
           platforms: {
+            okx: {
+              name: 'OKX',
+              description:
+                'Un hub cripto global con gran liquidez, gráficos potentes y derivados de nivel profesional.',
+              linkLabel: 'Comienza a operar en OKX',
+            },
+            ourbit: {
+              name: 'Ourbit',
+              description:
+                'Perpetuos y productos estructurados simplificados para estrategias cripto de alta velocidad.',
+              linkLabel: 'Explora Ourbit',
+            },
+            aster: {
+              name: 'Aster',
+              description:
+                'Acceso curado a trading web3 con bóvedas gestionadas y analíticas en tiempo real.',
+              linkLabel: 'Descubre Aster',
+            },
             coinbase: {
               name: 'Coinbase Advanced',
               description:
                 'Gráficos profesionales, liquidez profunda y seguridad robusta para traders activos de cripto.',
               linkLabel: 'Activa el referido de Coinbase',
             },
-            binance: {
-              name: 'Binance Global',
+            axiom: {
+              name: 'Axiom',
               description:
-                'Comisiones bajas en spot y futuros con acceso a cientos de pares y productos de rendimiento.',
-              linkLabel: 'Únete a Binance con mi código',
+                'Copia, refleja y automatiza estrategias en los principales DEX desde un solo panel.',
+              linkLabel: 'Opera con Axiom',
+            },
+            backpack: {
+              name: 'Backpack Exchange',
+              description:
+                'Un exchange impulsado por la comunidad con enrutamiento inteligente y billetera xNFT integrada.',
+              linkLabel: 'Únete a Backpack Exchange',
+            },
+            drip: {
+              name: 'Drip',
+              description:
+                'Apoya a creadores y desbloquea lanzamientos exclusivos con pagos nativos de Solana.',
+              linkLabel: 'Colecciona en Drip',
+            },
+            sns: {
+              name: 'SNS',
+              description:
+                'Descubre proyectos emergentes de Solana con mints curados, datos y herramientas de lanzamiento.',
+              linkLabel: 'Explora SNS',
             },
           },
         },
