@@ -13,8 +13,9 @@ import mthreeLogo from '../assets/mthree.jpg';
 import emuLogo from '../assets/emu.png';
 import horizonsedgelogo from '../assets/horizonsedgelogo.png';
 import coinbaseLogo from '../assets/coinbase.svg';
-import binanceLogo from '../assets/binance.svg';
 import webullLogo from '../assets/webull.svg';
+import web3Placeholder from '../assets/web3.jpg';
+import profilePlaceholder from '../assets/profile.png';
 import { useTranslation } from 'react-i18next';
 import { useProfile } from '../ProfileContext';
 
@@ -211,22 +212,70 @@ const tradingPlatforms = {
     {
       id: 'webull',
       logo: webullLogo,
-      link: 'https://a.webull.com/i/JuanGunner',
-      code: 'JUANWEBULL',
+      link: 'https://a.webull.com/NMixfRYZu7bzStLzxT',
+      tags: ['Tag TBD'],
+    },
+    {
+      id: 'cashapp',
+      link: 'https://cash.app/app/BWSDDQZ',
+      tags: ['Tag TBD'],
+      logo: profilePlaceholder,
+    },
+    {
+      id: 'sofi',
+      link: 'https://www.sofi.com/invite/money?gcp=3972bc11-fd65-4573-8eca-5afb3831d790&isAliasGcp=false',
+      tags: ['Tag TBD'],
+      logo: profilePlaceholder,
     },
   ],
   trade: [
     {
-      id: 'coinbase',
-      logo: coinbaseLogo,
-      link: 'https://www.coinbase.com/join?code=JUANCOINBASE',
-      code: 'JUANCOINBASE',
+      id: 'okx',
+      link: 'https://t.co/bgPKR6NG0R',
+      tags: ['Tag TBD'],
+      logo: web3Placeholder,
     },
     {
-      id: 'binance',
-      logo: binanceLogo,
-      link: 'https://accounts.binance.com/en/register?ref=JUANGUNNER',
-      code: 'JUANGUNNER',
+      id: 'ourbit',
+      link: 'https://t.co/bVED6Lt670',
+      tags: ['Tag TBD'],
+      logo: web3Placeholder,
+    },
+    {
+      id: 'aster',
+      link: 'https://t.co/2Vp8ELVY5W',
+      tags: ['Tag TBD'],
+      logo: web3Placeholder,
+    },
+    {
+      id: 'coinbase',
+      logo: coinbaseLogo,
+      link: 'https://coinbase.onelink.me/2ysS/rx5ndund?src=ios-link',
+      tags: ['Tag TBD'],
+    },
+    {
+      id: 'axiom',
+      link: 'https://axiom.trade/@0x1juan',
+      tags: ['Tag TBD'],
+      logo: web3Placeholder,
+    },
+    {
+      id: 'backpack',
+      link: 'https://backpack.exchange/refer/4tji5qyt',
+      tags: ['Tag TBD'],
+      logo: web3Placeholder,
+    },
+    {
+      id: 'drip',
+      link: 'https://drip.market/?ref=juangunner4',
+      tags: ['Tag TBD'],
+      logo: web3Placeholder,
+    },
+    {
+      id: 'sns',
+      link: 'https://www.sns.id?ref=juangunner4',
+      tags: ['Tag TBD'],
+      logo: web3Placeholder,
     },
   ],
 };
@@ -373,20 +422,46 @@ const About = () => {
           </p>
           <div className="referrals-grid">
             {(tradingPlatforms[selectedCategory] || []).map((platform) => {
-              const isActivePlatform = copyStatus.code === platform.code;
+              const isActivePlatform =
+                platform.code && copyStatus.code === platform.code;
               const platformName = t(`about.trade.categories.${selectedCategory}.platforms.${platform.id}.name`);
               const platformDescription = t(`about.trade.categories.${selectedCategory}.platforms.${platform.id}.description`);
               const platformLinkLabel = t(`about.trade.categories.${selectedCategory}.platforms.${platform.id}.linkLabel`);
+              const fallbackAccessibilityProps = !platform.logo
+                ? { role: 'img', 'aria-label': `${platformName} placeholder icon` }
+                : {};
+
               return (
                 <article key={platform.id} className="referral-card">
-                  <div className="referral-logo">
-                    <img
-                      src={platform.logo}
-                      alt={`${platformName} logo`}
-                    />
+                  <div
+                    className={`referral-logo ${!platform.logo ? 'referral-logo--fallback' : ''}`}
+                    {...fallbackAccessibilityProps}
+                  >
+                    {platform.logo ? (
+                      <img
+                        src={platform.logo}
+                        alt={`${platformName} logo`}
+                      />
+                    ) : (
+                      <span aria-hidden="true">{platformName.charAt(0)}</span>
+                    )}
                   </div>
                   <h4>{platformName}</h4>
                   <p>{platformDescription}</p>
+                  {platform.tags && platform.tags.length > 0 && (
+                    <div className="referral-tags">
+                      <span className="referral-tags__label">
+                        {t('about.trade.tagsLabel')}
+                      </span>
+                      <ul>
+                        {platform.tags.map((tag) => (
+                          <li key={tag} className="referral-tag">
+                            {tag}
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  )}
                   <a
                     className="referral-link"
                     href={platform.link}
@@ -395,20 +470,22 @@ const About = () => {
                   >
                     {platformLinkLabel}
                   </a>
-                  <div className="referral-code" aria-live="polite">
-                    <span>{t('about.trade.referralCodeLabel')}</span>
-                    <code>{platform.code}</code>
-                    <button
-                      type="button"
-                      className="copy-button"
-                      onClick={() => handleCopyCode(platform.code)}
-                    >
-                      {isActivePlatform && !copyStatus.error
-                        ? t('about.trade.copied')
-                        : t('about.trade.copyCode')}
-                    </button>
-                  </div>
-                  {isActivePlatform && copyStatus.error && (
+                  {platform.code && (
+                    <div className="referral-code" aria-live="polite">
+                      <span>{t('about.trade.referralCodeLabel')}</span>
+                      <code>{platform.code}</code>
+                      <button
+                        type="button"
+                        className="copy-button"
+                        onClick={() => handleCopyCode(platform.code)}
+                      >
+                        {isActivePlatform && !copyStatus.error
+                          ? t('about.trade.copied')
+                          : t('about.trade.copyCode')}
+                      </button>
+                    </div>
+                  )}
+                  {platform.code && isActivePlatform && copyStatus.error && (
                     <p className="copy-feedback" role="status">
                       {t('about.trade.copyError')}
                     </p>

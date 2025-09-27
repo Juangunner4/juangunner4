@@ -157,6 +157,24 @@
     box-shadow: 0 6px 14px rgba(0, 0, 0, 0.12);
 }
 
+.referral-logo--fallback {
+    width: 56px;
+    height: 56px;
+    border-radius: 12px;
+    background: linear-gradient(135deg, #2563eb, #7c3aed);
+    color: #ffffff;
+    font-weight: 700;
+    font-size: 1.25rem;
+    justify-content: center;
+    align-items: center;
+    text-transform: uppercase;
+}
+
+.referral-logo--fallback span {
+    display: inline-block;
+    line-height: 1;
+}
+
 .referral-card h4 {
     margin: 0;
     font-size: 1.25rem;
@@ -168,6 +186,38 @@
     font-size: 0.95rem;
     line-height: 1.5;
     color: #4b5563;
+}
+
+.referral-tags {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.referral-tags__label {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #1f2937;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.referral-tags ul {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+
+.referral-tag {
+    padding: 4px 10px;
+    border-radius: 999px;
+    background-color: rgba(37, 99, 235, 0.08);
+    color: #1d4ed8;
+    font-size: 0.8rem;
+    font-weight: 600;
 }
 
 .referral-link {

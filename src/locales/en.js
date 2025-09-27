@@ -37,6 +37,7 @@ const en = {
     },
     trade: {
       referralCodeLabel: 'Referral Code',
+      tagsLabel: 'Tags',
       copyCode: 'Copy code',
       copied: 'Copied!',
       copyError: 'Unable to copy automatically. Please use the code manually.',
@@ -52,6 +53,18 @@ const en = {
                 'Advanced charting, extended-hours trading, and multi-asset support tailored for active investors.',
               linkLabel: 'Unlock your Webull bonus',
             },
+            cashapp: {
+              name: 'Cash App',
+              description:
+                'Send, spend, and invest seamlessly with instant transfers and fractional stock investing.',
+              linkLabel: 'Join Cash App with my link',
+            },
+            sofi: {
+              name: 'SoFi Money',
+              description:
+                'A hybrid checking and savings experience with automated investing and member benefits.',
+              linkLabel: 'Activate your SoFi bonus',
+            },
           },
         },
         trade: {
@@ -59,17 +72,53 @@ const en = {
           description:
             'These on-chain platforms power my trading strategies. Sign up with my links to receive perks while supporting the journey.',
           platforms: {
+            okx: {
+              name: 'OKX',
+              description:
+                'A global crypto hub with deep liquidity, powerful charting, and pro-grade derivatives trading.',
+              linkLabel: 'Start trading on OKX',
+            },
+            ourbit: {
+              name: 'Ourbit',
+              description:
+                'Simplified perpetuals and structured products designed for high-velocity crypto strategies.',
+              linkLabel: 'Explore Ourbit',
+            },
+            aster: {
+              name: 'Aster',
+              description:
+                'Curated web3 trading access with managed vaults and real-time analytics.',
+              linkLabel: 'Discover Aster',
+            },
             coinbase: {
               name: 'Coinbase Advanced',
               description:
                 'Institutional-grade charts, deep liquidity, and robust security for active crypto traders.',
               linkLabel: 'Activate Coinbase referral',
             },
-            binance: {
-              name: 'Binance Global',
+            axiom: {
+              name: 'Axiom',
               description:
-                'Low-fee spot and futures trading with access to hundreds of crypto pairs and earning products.',
-              linkLabel: 'Join Binance with my code',
+                'Copy, mirror, and automate strategies across top decentralized exchanges from one dashboard.',
+              linkLabel: 'Trade with Axiom',
+            },
+            backpack: {
+              name: 'Backpack Exchange',
+              description:
+                'A community-driven exchange featuring smart order routing and xNFT wallet integration.',
+              linkLabel: 'Join Backpack Exchange',
+            },
+            drip: {
+              name: 'Drip',
+              description:
+                'Support creators and unlock exclusive drops with streamlined Solana-native payments.',
+              linkLabel: 'Collect on Drip',
+            },
+            sns: {
+              name: 'SNS',
+              description:
+                'Discover emerging Solana projects with curated mints, data insights, and launchpad tooling.',
+              linkLabel: 'Explore SNS',
             },
           },
         },
