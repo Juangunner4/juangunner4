@@ -12,6 +12,12 @@ const projectData = [
   { domain: 'perionsol.xyz', tags: ['web3', 'meme', 'landing page'] },
   { domain: 'dogwif.hair', tags: ['web3', 'meme', 'openai', 'landing page'] },
   { domain: 'www.christonpump.xyz', tags: ['web3', 'sql db', 'meme', 'landing page'] },
+  {
+    domain: 'limitless.exchange',
+    url: 'https://limitless.exchange/?r=CEPG7UAMEV',
+    logo: 'https://limitless.exchange/favicon.ico',
+    tags: ['web3', 'trading', 'prediction market'],
+  },
 ];
 
 const devProjectData = [
@@ -71,7 +77,7 @@ const Projects = () => {
           {filteredProjectData.map((project, index) => (
             <div key={index} className="project-card">
               <a
-                href={`https://${project.domain}`}
+                href={project.url ? project.url : `https://${project.domain}`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="project-link"
