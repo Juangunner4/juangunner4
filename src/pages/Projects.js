@@ -12,12 +12,6 @@ const projectData = [
   { domain: 'perionsol.xyz', tags: ['web3', 'meme', 'landing page'] },
   { domain: 'dogwif.hair', tags: ['web3', 'meme', 'openai', 'landing page'] },
   { domain: 'www.christonpump.xyz', tags: ['web3', 'sql db', 'meme', 'landing page'] },
-  {
-    domain: 'limitless.exchange',
-    url: 'https://limitless.exchange/?r=CEPG7UAMEV',
-    logo: 'https://limitless.exchange/favicon.ico',
-    tags: ['web3', 'trading', 'prediction market'],
-  },
 ];
 
 const devProjectData = [
