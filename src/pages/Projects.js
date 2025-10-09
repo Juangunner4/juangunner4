@@ -71,7 +71,7 @@ const Projects = () => {
           {filteredProjectData.map((project, index) => (
             <div key={index} className="project-card">
               <a
-                href={`https://${project.domain}`}
+                href={project.url ? project.url : `https://${project.domain}`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="project-link"
