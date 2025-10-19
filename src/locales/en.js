@@ -120,6 +120,12 @@ const en = {
                 'Discover emerging Solana projects with curated mints, data insights, and launchpad tooling.',
               linkLabel: 'Explore SNS',
             },
+            footballfun: {
+              name: 'Football Fun Pro',
+              description:
+                'Collect officially licensed football player cards, build squads, and trade on-chain with real match utility.',
+              linkLabel: 'Join Football Fun Pro',
+            },
           },
         },
       },
