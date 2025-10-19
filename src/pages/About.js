@@ -277,6 +277,12 @@ const tradingPlatforms = {
       tags: ['Tag TBD'],
       logo: web3Placeholder,
     },
+    {
+      id: 'footballfun',
+      link: 'https://pro.football.fun/login/?referral_code=UGCIJDHWTGL',
+      tags: ['Football', 'Player Cards'],
+      logo: web3Placeholder,
+    },
   ],
 };
 

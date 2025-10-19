@@ -120,6 +120,12 @@ const es = {
                 'Descubre proyectos emergentes de Solana con mints curados, datos y herramientas de lanzamiento.',
               linkLabel: 'Explora SNS',
             },
+            footballfun: {
+              name: 'Football Fun Pro',
+              description:
+                'Colecciona cartas oficiales de futbolistas, arma plantillas y comercia on-chain con utilidad de partidos reales.',
+              linkLabel: 'Únete a Football Fun Pro',
+            },
           },
         },
       },
