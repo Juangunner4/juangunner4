@@ -205,6 +205,19 @@ const experiences = [
   },
 ];
 
+const contentCreatorExperiences = [
+  {
+    title: 'SNS Ambassador',
+    company: 'Solana Name Service',
+    location: 'Remote',
+    date: 'Jul 2025 - Present',
+    description:
+      'Supporting the SNS community by promoting .sol adoption, educating new users, and amplifying Solana-native projects.',
+    logo: web3Placeholder,
+    category: 'content',
+  },
+];
+
 const TRADE_CATEGORIES = ['invest', 'trade'];
 
 const tradingPlatforms = {
@@ -307,7 +320,11 @@ const About = () => {
     isTradeCategory && selectedCategory === tradeCategoryForProfile;
   const filteredExperiences = shouldShowTradeSection
     ? []
-    : experiences.filter((exp) => exp.category === selectedCategory);
+    : isWeb3 && selectedCategory === 'software'
+      ? []
+      : isWeb3 && selectedCategory === 'soccer'
+        ? contentCreatorExperiences
+        : experiences.filter((exp) => exp.category === selectedCategory);
 
   useEffect(() => {
     setCopyStatus({ code: '', error: false });
@@ -399,7 +416,7 @@ const About = () => {
             }`}
           onClick={() => handleCategorySelect('soccer')}
         >
-          {t('about.soccer')}
+          {isWeb3 ? t('about.contentCreator') : t('about.soccer')}
         </button>
         {!isWeb3 && (
           <button
@@ -503,35 +520,41 @@ const About = () => {
         </section>
       ) : (
         <div className="timeline">
-          {filteredExperiences.map((experience, index) => (
-            <div key={index} className="timeline-item">
-              <div className="timeline-content">
-                <div className="company-logo">
-                  <img
-                    src={experience.logo}
-                    alt={`${experience.company} logo`}
-                  />
-                </div>
-                <h3>{experience.title}</h3>
-                <h4>{experience.company}</h4>
-                <p className="timeline-location">{experience.location}</p>
-                <p className="timeline-date">{experience.date}</p>
-                {experience.description && <p>{experience.description}</p>}
-                {experience.responsibilities && (
-                  <ul>
-                    {experience.responsibilities.map((resp, i) => (
-                      <li key={i}>{resp}</li>
-                    ))}
-                  </ul>
-                )}
-                {experience.skills && (
-                  <p className="timeline-skills">
-                    <strong>Skills:</strong> {experience.skills.join(', ')}
-                  </p>
-                )}
-              </div>
+          {isWeb3 && selectedCategory === 'software' ? (
+            <div className="timeline-empty">
+              <p>{t('about.web3SoftwarePlaceholder')}</p>
             </div>
-          ))}
+          ) : (
+            filteredExperiences.map((experience, index) => (
+              <div key={index} className="timeline-item">
+                <div className="timeline-content">
+                  <div className="company-logo">
+                    <img
+                      src={experience.logo}
+                      alt={`${experience.company} logo`}
+                    />
+                  </div>
+                  <h3>{experience.title}</h3>
+                  <h4>{experience.company}</h4>
+                  <p className="timeline-location">{experience.location}</p>
+                  <p className="timeline-date">{experience.date}</p>
+                  {experience.description && <p>{experience.description}</p>}
+                  {experience.responsibilities && (
+                    <ul>
+                      {experience.responsibilities.map((resp, i) => (
+                        <li key={i}>{resp}</li>
+                      ))}
+                    </ul>
+                  )}
+                  {experience.skills && (
+                    <p className="timeline-skills">
+                      <strong>Skills:</strong> {experience.skills.join(', ')}
+                    </p>
+                  )}
+                </div>
+              </div>
+            ))
+          )}
         </div>
       )}
     </div>

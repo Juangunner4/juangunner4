@@ -31,6 +31,9 @@ const en = {
     heading: 'About',
     software: 'Software Engineer',
     soccer: 'Football/Soccer',
+    contentCreator: 'Content Creator',
+    web3SoftwarePlaceholder:
+      'Currently looking for part-time opportunities as a full stack developer within web3 teams and communities.',
     tradeTabs: {
       invest: 'Invest with Me',
       trade: 'Trade with Me',

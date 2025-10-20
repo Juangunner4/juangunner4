@@ -31,6 +31,9 @@ const es = {
     heading: 'Acerca de',
     software: 'Ingeniero de Software',
     soccer: 'Fútbol',
+    contentCreator: 'Creador de Contenido',
+    web3SoftwarePlaceholder:
+      'Actualmente busco oportunidades de medio tiempo como desarrollador full stack en equipos y comunidades web3.',
     tradeTabs: {
       invest: 'Invierte conmigo',
       trade: 'Opera conmigo',
