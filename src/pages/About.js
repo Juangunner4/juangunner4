@@ -255,6 +255,12 @@ const tradingPlatforms = {
       logo: web3Placeholder,
     },
     {
+      id: 'moonshot',
+      link: 'https://moonshot.com?ref=YOVb1F',
+      tags: ['Memecoins', 'Referral Bonus'],
+      logo: web3Placeholder,
+    },
+    {
       id: 'aster',
       link: 'https://t.co/2Vp8ELVY5W',
       tags: ['Tag TBD'],
