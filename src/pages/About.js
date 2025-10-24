@@ -261,6 +261,12 @@ const tradingPlatforms = {
       logo: web3Placeholder,
     },
     {
+      id: 'gemini',
+      link: 'https://creditcard.exchange.gemini.com/credit-card/apply?referral_code=epgwn2epa',
+      tags: ['Tag TBD'],
+      logo: web3Placeholder,
+    },
+    {
       id: 'coinbase',
       logo: coinbaseLogo,
       link: 'https://coinbase.onelink.me/2ysS/rx5ndund?src=ios-link',

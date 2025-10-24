@@ -93,6 +93,12 @@ const en = {
                 'Curated web3 trading access with managed vaults and real-time analytics.',
               linkLabel: 'Discover Aster',
             },
+            gemini: {
+              name: 'Gemini Credit Card',
+              description:
+                'Use my referral to earn an extra $50 in crypto when you apply and explore cardholder perks.',
+              linkLabel: 'Check out the Gemini Card offer',
+            },
             coinbase: {
               name: 'Coinbase Advanced',
               description:
