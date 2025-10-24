@@ -93,6 +93,12 @@ const es = {
                 'Acceso curado a trading web3 con bóvedas gestionadas y analíticas en tiempo real.',
               linkLabel: 'Descubre Aster',
             },
+            gemini: {
+              name: 'Tarjeta de Crédito Gemini',
+              description:
+                'Usa mi referido para obtener $50 USD extra en cripto al aplicar y conoce todos los beneficios.',
+              linkLabel: 'Revisa la oferta de la tarjeta Gemini',
+            },
             coinbase: {
               name: 'Coinbase Advanced',
               description:
