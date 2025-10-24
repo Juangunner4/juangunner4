@@ -291,6 +291,12 @@ const tradingPlatforms = {
       logo: web3Placeholder,
     },
     {
+      id: 'pyro',
+      link: 'https://www.pyro.buzz/add-creator?ref=Juangunner4',
+      tags: ['Creator Network', 'Referral Hub'],
+      logo: web3Placeholder,
+    },
+    {
       id: 'footballfun',
       link: 'https://pro.football.fun/login/?referral_code=UGCIJDHWTGL',
       tags: ['Football', 'Player Cards'],
