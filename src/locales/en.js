@@ -117,6 +117,12 @@ const en = {
                 'Support creators and unlock exclusive drops with streamlined Solana-native payments.',
               linkLabel: 'Collect on Drip',
             },
+            pyro: {
+              name: 'Pyro.buzz',
+              description:
+                'Accelerate creator growth with Web3-native referral funnels, automated payouts, and community analytics.',
+              linkLabel: 'Join Pyro.buzz',
+            },
             sns: {
               name: 'SNS',
               description:

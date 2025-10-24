@@ -117,6 +117,12 @@ const es = {
                 'Apoya a creadores y desbloquea lanzamientos exclusivos con pagos nativos de Solana.',
               linkLabel: 'Colecciona en Drip',
             },
+            pyro: {
+              name: 'Pyro.buzz',
+              description:
+                'Impulsa el crecimiento de creadores con embudos de referidos web3, pagos automatizados y analítica comunitaria.',
+              linkLabel: 'Únete a Pyro.buzz',
+            },
             sns: {
               name: 'SNS',
               description:
