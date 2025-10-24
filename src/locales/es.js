@@ -87,6 +87,12 @@ const es = {
                 'Perpetuos y productos estructurados simplificados para estrategias cripto de alta velocidad.',
               linkLabel: 'Explora Ourbit',
             },
+            moonshot: {
+              name: 'Moonshot',
+              description:
+                'Obtén hasta $100 USD en memecoins gratis al depositar en Moonshot con mi enlace.',
+              linkLabel: 'Reclama el bono de Moonshot',
+            },
             aster: {
               name: 'Aster',
               description:
