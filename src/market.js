@@ -1,4 +1,4 @@
-const DEXSCREENER_BASE_URL = 'https://api.dexscreener.com/tokens/v1/solana';
+const DEXSCREENER_BASE_URL = 'https://api.dexscreener.com/tokens/v1/solana/';
 
 const parseNumeric = (value) => {
   if (value === null || value === undefined) {
@@ -10,7 +10,7 @@ const parseNumeric = (value) => {
 };
 
 export const fetchMarketStats = async (tokenAddress) => {
-  const response = await fetch(`${DEXSCREENER_BASE_URL}/${tokenAddress}`);
+  const response = await fetch(`${DEXSCREENER_BASE_URL}${tokenAddress}`);
 
   if (!response.ok) {
     throw new Error('Failed to fetch market data');
