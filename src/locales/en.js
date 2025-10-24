@@ -117,6 +117,12 @@ const en = {
                 'A community-driven exchange featuring smart order routing and xNFT wallet integration.',
               linkLabel: 'Join Backpack Exchange',
             },
+            moby: {
+              name: 'Moby',
+              description:
+                'Join me on Moby for curated crypto research and trading alerts. Use my invite link to unlock premium insights.',
+              linkLabel: 'Join me on Moby',
+            },
             drip: {
               name: 'Drip',
               description:

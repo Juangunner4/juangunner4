@@ -117,6 +117,12 @@ const es = {
                 'Un exchange impulsado por la comunidad con enrutamiento inteligente y billetera xNFT integrada.',
               linkLabel: 'Únete a Backpack Exchange',
             },
+            moby: {
+              name: 'Moby',
+              description:
+                'Acompáñame en Moby para investigación cripto curada y alertas de trading. Usa mi enlace para desbloquear insights premium.',
+              linkLabel: 'Únete a Moby',
+            },
             drip: {
               name: 'Drip',
               description:
