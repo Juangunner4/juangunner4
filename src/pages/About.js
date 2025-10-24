@@ -285,6 +285,12 @@ const tradingPlatforms = {
       logo: web3Placeholder,
     },
     {
+      id: 'moby',
+      link: 'https://invite.mobyscreener.com/pYqqj2AizXb',
+      tags: ['Research', 'Analytics'],
+      logo: web3Placeholder,
+    },
+    {
       id: 'drip',
       link: 'https://drip.market/?ref=juangunner4',
       tags: ['Tag TBD'],
