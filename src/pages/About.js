@@ -17,7 +17,9 @@ import webullLogo from '../assets/webull.svg';
 import web3Placeholder from '../assets/web3.jpg';
 import profilePlaceholder from '../assets/profile.png';
 import { useTranslation } from 'react-i18next';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { useProfile } from '../ProfileContext';
+import { buildProfileAwarePath } from '../utils/profileRouting';
 
 
 const experiences = [
@@ -329,6 +331,8 @@ const About = () => {
   const copyTimeoutRef = useRef(null);
   const { t } = useTranslation();
   const { isWeb3, setProfile } = useProfile();
+  const navigate = useNavigate();
+  const location = useLocation();
   const tradeCategoryForProfile = isWeb3 ? 'trade' : 'invest';
 
   useEffect(() => {
@@ -371,8 +375,10 @@ const About = () => {
 
     if (category === 'invest') {
       setProfile(false);
+      navigate(buildProfileAwarePath(location.pathname, false));
     } else if (category === 'trade') {
       setProfile(true);
+      navigate(buildProfileAwarePath(location.pathname, true));
     }
   };
 

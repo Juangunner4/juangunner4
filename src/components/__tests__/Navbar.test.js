@@ -7,7 +7,7 @@ import '../../i18n';
 const setup = () =>
   render(
     <ProfileProvider>
-      <MemoryRouter>
+      <MemoryRouter initialEntries={["/profile=web2"]}>
         <Navbar />
       </MemoryRouter>
     </ProfileProvider>

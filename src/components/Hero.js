@@ -7,10 +7,12 @@ import '../styles/Hero.css';
 import { useProfile } from '../ProfileContext';
 import { useTranslation, Trans } from 'react-i18next';
 import { Link } from 'react-router-dom';
+import { getProfileBasePath } from '../utils/profileRouting';
 
 const Hero = () => {
   const { isWeb3 } = useProfile();
   const { t } = useTranslation();
+  const basePath = getProfileBasePath(isWeb3);
 
   return (
     <Box className="hero-container">
@@ -64,7 +66,7 @@ const Hero = () => {
       <Button
         variant="contained"
         component={Link}
-        to="/projects"
+        to={`${basePath}/projects`}
         className="project-button"
       >
         {t('hero.viewProjects')}
