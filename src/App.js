@@ -41,7 +41,7 @@ function App() {
       <Router>
         <Routes>
           <Route path="/" element={<Navigate to={getProfileBasePath(false)} replace />} />
-          <Route path="/profile=:profileType" element={<Layout />}>
+          <Route path="/profile/:profileType/*" element={<Layout />}>
             <Route index element={<Home />} />
             <Route path="booknow" element={<BookNow />} />
             <Route path="about" element={<About />} />
