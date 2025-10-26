@@ -5,7 +5,7 @@ import '../../i18n';
 
 const renderWithProfile = (isWeb3) =>
   render(
-    <ProfileContext.Provider value={{ isWeb3, toggleProfile: jest.fn() }}>
+    <ProfileContext.Provider value={{ isWeb3, toggleProfile: jest.fn(), setProfile: jest.fn() }}>
       <Projects />
     </ProfileContext.Provider>
   );

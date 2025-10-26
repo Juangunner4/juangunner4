@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import Drawer from '@mui/material/Drawer';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
@@ -9,16 +9,28 @@ import web2Image from '../assets/profile.png';
 import web3Image from '../assets/web3.jpg';
 import { useProfile } from '../ProfileContext';
 import { useTranslation } from 'react-i18next';
+import { buildProfileAwarePath, getProfileBasePath } from '../utils/profileRouting';
 
 const Navbar = () => {
-  const { isWeb3, toggleProfile } = useProfile();
+  const { isWeb3, setProfile } = useProfile();
   const currentImage = isWeb3 ? web3Image : web2Image;
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [floatingMessage, setFloatingMessage] = useState(null);
   const { t, i18n } = useTranslation();
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  const basePath = getProfileBasePath(isWeb3);
 
   const toggleDrawer = (open) => () => {
     setDrawerOpen(open);
+  };
+
+  const handleToggleProfile = () => {
+    const nextIsWeb3 = !isWeb3;
+    const targetPath = buildProfileAwarePath(location.pathname, nextIsWeb3);
+    setProfile(nextIsWeb3);
+    navigate(targetPath);
   };
 
   useEffect(() => {
@@ -76,7 +88,7 @@ const Navbar = () => {
       <div className="navbar-left">
         <button
           className="navbar-pfp-btn"
-          onClick={toggleProfile}
+          onClick={handleToggleProfile}
           aria-label={t('navbar.profile')}
           style={{ background: 'none', border: 'none', padding: 0, cursor: 'pointer' }}
         >
@@ -116,10 +128,10 @@ const Navbar = () => {
       </div>
 
       <div className="navbar-right">
-        <Link to="/" >{t('navbar.home')}</Link>
-        <Link to="/booknow" >{t('navbar.bookNow')}</Link>
-        <Link to="/about" >{t('navbar.about')}</Link>
-        <Link to="/projects" >{t('navbar.projects')}</Link>
+        <Link to={basePath}>{t('navbar.home')}</Link>
+        <Link to={`${basePath}/booknow`}>{t('navbar.bookNow')}</Link>
+        <Link to={`${basePath}/about`}>{t('navbar.about')}</Link>
+        <Link to={`${basePath}/projects`}>{t('navbar.projects')}</Link>
       </div>
 
       <button className="hamburger" onClick={toggleDrawer(true)}>
@@ -128,16 +140,16 @@ const Navbar = () => {
 
       <Drawer anchor="left" open={drawerOpen} onClose={toggleDrawer(false)}>
         <List>
-          <ListItem button component={Link} to="/" onClick={toggleDrawer(false)}>
+          <ListItem button component={Link} to={basePath} onClick={toggleDrawer(false)}>
             <ListItemText primary={t('navbar.home')} />
           </ListItem>
-          <ListItem button component={Link} to="/booknow" onClick={toggleDrawer(false)}>
+          <ListItem button component={Link} to={`${basePath}/booknow`} onClick={toggleDrawer(false)}>
             <ListItemText primary={t('navbar.bookNow')} />
           </ListItem>
-          <ListItem button component={Link} to="/about" onClick={toggleDrawer(false)}>
+          <ListItem button component={Link} to={`${basePath}/about`} onClick={toggleDrawer(false)}>
             <ListItemText primary={t('navbar.about')} />
           </ListItem>
-          <ListItem button component={Link} to="/projects" onClick={toggleDrawer(false)}>
+          <ListItem button component={Link} to={`${basePath}/projects`} onClick={toggleDrawer(false)}>
             <ListItemText primary={t('navbar.projects')} />
           </ListItem>
         </List>
