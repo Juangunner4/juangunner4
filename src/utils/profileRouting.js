@@ -1,6 +1,6 @@
-const PROFILE_PATH_PATTERN = /^\/profile=(web2|web3)/;
+const PROFILE_PATH_PATTERN = /^\/profile\/(web2|web3)/;
 
-export const getProfileBasePath = (isWeb3) => `/profile=${isWeb3 ? 'web3' : 'web2'}`;
+export const getProfileBasePath = (isWeb3) => `/profile/${isWeb3 ? 'web3' : 'web2'}`;
 
 export const buildProfileAwarePath = (pathname, targetIsWeb3) => {
   const basePath = getProfileBasePath(targetIsWeb3);
