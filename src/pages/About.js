@@ -229,6 +229,18 @@ const contentCreatorExperiences = [
     description:
       'Supporting the SNS community by promoting .sol adoption, educating new users, and amplifying Solana-native projects.',
     logo: web3Placeholder,
+    faviconUrl: 'https://www.sns.id/',
+    category: 'content',
+  },
+  {
+    title: 'Project Scout',
+    company: 'Dev.Fun',
+    location: 'Remote',
+    date: 'Oct 2025 - Present',
+    description:
+      'Project Scout for Dev.Fun, powering ICM (Initial Coin Machine) on Pump.fun. Scouting and evaluating innovative blockchain projects.',
+    logo: web3Placeholder,
+    faviconUrl: 'https://dev.fun/',
     category: 'content',
   },
 ];
@@ -596,6 +608,25 @@ const About = () => {
                       src={experience.logo}
                       alt={`${experience.company} logo`}
                     />
+                    {experience.faviconUrl && (
+                      <img
+                        src={getFaviconUrl(experience.faviconUrl)}
+                        alt={`${experience.company} favicon`}
+                        className="company-favicon"
+                        style={{
+                          width: '16px',
+                          height: '16px',
+                          marginLeft: '8px',
+                          borderRadius: '50%',
+                          border: '2px solid white',
+                          backgroundColor: 'white',
+                          boxShadow: '0px 2px 4px rgba(0, 0, 0, 0.2)'
+                        }}
+                        onError={(e) => {
+                          e.target.style.display = 'none';
+                        }}
+                      />
+                    )}
                   </div>
                   <h3>{experience.title}</h3>
                   <h4>{experience.company}</h4>
