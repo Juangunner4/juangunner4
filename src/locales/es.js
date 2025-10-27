@@ -106,7 +106,7 @@ const es = {
               linkLabel: 'Revisa la oferta de la tarjeta Gemini',
             },
             coinbase: {
-              name: 'Coinbase Advanced',
+              name: 'Coinbase',
               description:
                 'Gráficos profesionales, liquidez profunda y seguridad robusta para traders activos de cripto.',
               linkLabel: 'Activa el referido de Coinbase',
@@ -152,6 +152,12 @@ const es = {
               description:
                 'Colecciona cartas oficiales de futbolistas, arma plantillas y comercia on-chain con utilidad de partidos reales.',
               linkLabel: 'Únete a Football Fun Pro',
+            },
+            cflfun: {
+              name: 'CFL Fun',
+              description:
+                'Únete a la liga de fantasía cripto donde la estrategia se encuentra con blockchain. Arma tu equipo y compite por recompensas cripto.',
+              linkLabel: 'Únete a CFL Fun',
             },
           },
         },

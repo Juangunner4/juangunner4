@@ -12,14 +12,27 @@ import shenandoahLogo from '../assets/shenandoah.png';
 import mthreeLogo from '../assets/mthree.jpg';
 import emuLogo from '../assets/emu.png';
 import horizonsedgelogo from '../assets/horizonsedgelogo.png';
-import coinbaseLogo from '../assets/coinbase.svg';
-import webullLogo from '../assets/webull.svg';
 import web3Placeholder from '../assets/web3.jpg';
-import profilePlaceholder from '../assets/profile.png';
 import { useTranslation } from 'react-i18next';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useProfile } from '../ProfileContext';
 import { buildProfileAwarePath } from '../utils/profileRouting';
+
+// Helper function to get favicon URL from a website URL
+const getFaviconUrl = (url, faviconDomain = null) => {
+  try {
+    let domain;
+    if (faviconDomain) {
+      domain = faviconDomain;
+    } else {
+      const urlObj = new URL(url);
+      domain = urlObj.hostname;
+    }
+    return `https://www.google.com/s2/favicons?domain=${domain}&sz=64`;
+  } catch (error) {
+    return null;
+  }
+};
 
 
 const experiences = [
@@ -226,101 +239,107 @@ const tradingPlatforms = {
   invest: [
     {
       id: 'webull',
-      logo: webullLogo,
       link: 'https://a.webull.com/NMixfRYZu7bzStLzxT',
+      faviconDomain: 'webull.com',
       tags: ['Tag TBD'],
     },
     {
       id: 'cashapp',
       link: 'https://cash.app/app/BWSDDQZ',
+      faviconDomain: 'cash.app',
       tags: ['Tag TBD'],
-      logo: profilePlaceholder,
     },
     {
       id: 'sofi',
       link: 'https://www.sofi.com/invite/money?gcp=3972bc11-fd65-4573-8eca-5afb3831d790&isAliasGcp=false',
+      faviconDomain: 'sofi.com',
       tags: ['Tag TBD'],
-      logo: profilePlaceholder,
     },
   ],
   trade: [
     {
       id: 'okx',
       link: 'https://t.co/bgPKR6NG0R',
+      faviconDomain: 'okx.com',
       tags: ['Tag TBD'],
-      logo: web3Placeholder,
     },
     {
       id: 'ourbit',
       link: 'https://t.co/bVED6Lt670',
+      faviconDomain: 'ourbit.com',
       tags: ['Tag TBD'],
-      logo: web3Placeholder,
     },
     {
       id: 'moonshot',
       link: 'https://moonshot.com?ref=YOVb1F',
+      faviconDomain: 'moonshot.com',
       tags: ['Memecoins', 'Referral Bonus'],
-      logo: web3Placeholder,
     },
     {
       id: 'aster',
       link: 'https://t.co/2Vp8ELVY5W',
+      faviconDomain: 'asterdex.com',
       tags: ['Tag TBD'],
-      logo: web3Placeholder,
     },
     {
       id: 'gemini',
       link: 'https://creditcard.exchange.gemini.com/credit-card/apply?referral_code=epgwn2epa',
+      faviconDomain: 'gemini.com',
       tags: ['Tag TBD'],
-      logo: web3Placeholder,
     },
     {
       id: 'coinbase',
-      logo: coinbaseLogo,
       link: 'https://coinbase.onelink.me/2ysS/rx5ndund?src=ios-link',
+      faviconDomain: 'coinbase.com',
       tags: ['Tag TBD'],
     },
     {
       id: 'axiom',
       link: 'https://axiom.trade/@0x1juan',
+      faviconDomain: 'axiom.trade',
       tags: ['Tag TBD'],
-      logo: web3Placeholder,
     },
     {
       id: 'backpack',
       link: 'https://backpack.exchange/refer/4tji5qyt',
+      faviconDomain: 'backpack.exchange',
       tags: ['Tag TBD'],
-      logo: web3Placeholder,
     },
     {
       id: 'moby',
       link: 'https://invite.mobyscreener.com/pYqqj2AizXb',
+      faviconDomain: 'mobyscreener.com',
       tags: ['Research', 'Analytics'],
-      logo: web3Placeholder,
     },
     {
       id: 'drip',
       link: 'https://drip.market/?ref=juangunner4',
+      faviconDomain: 'drip.market',
       tags: ['Tag TBD'],
-      logo: web3Placeholder,
     },
     {
       id: 'sns',
       link: 'https://www.sns.id?ref=juangunner4',
+      faviconDomain: 'sns.id',
       tags: ['Tag TBD'],
-      logo: web3Placeholder,
     },
     {
       id: 'pyro',
       link: 'https://www.pyro.buzz/add-creator?ref=Juangunner4',
+      faviconDomain: 'www.pyro.buzz',
       tags: ['Creator Network', 'Referral Hub'],
-      logo: web3Placeholder,
     },
     {
       id: 'footballfun',
       link: 'https://pro.football.fun/login/?referral_code=UGCIJDHWTGL',
+      faviconDomain: 'football.fun',
       tags: ['Football', 'Player Cards'],
-      logo: web3Placeholder,
+    },
+    {
+      id: 'cflfun',
+      link: 'https://preseason.cfl.fun/?ref=YKV71NH',
+      faviconDomain: 'cfl.fun',
+      tags: ['Fantasy League', 'Crypto'],
     },
   ],
 };
@@ -480,24 +499,38 @@ const About = () => {
               const platformName = t(`about.trade.categories.${selectedCategory}.platforms.${platform.id}.name`);
               const platformDescription = t(`about.trade.categories.${selectedCategory}.platforms.${platform.id}.description`);
               const platformLinkLabel = t(`about.trade.categories.${selectedCategory}.platforms.${platform.id}.linkLabel`);
-              const fallbackAccessibilityProps = !platform.logo
-                ? { role: 'img', 'aria-label': `${platformName} placeholder icon` }
-                : {};
+              const faviconUrl = getFaviconUrl(platform.link, platform.faviconDomain);
 
               return (
                 <article key={platform.id} className="referral-card">
-                  <div
-                    className={`referral-logo ${!platform.logo ? 'referral-logo--fallback' : ''}`}
-                    {...fallbackAccessibilityProps}
-                  >
-                    {platform.logo ? (
+                  <div className="referral-logo">
+                    {faviconUrl && (
                       <img
-                        src={platform.logo}
-                        alt={`${platformName} logo`}
+                        src={faviconUrl}
+                        alt={`${platformName} favicon`}
+                        onError={(e) => {
+                          e.target.style.display = 'none';
+                          const fallback = e.target.parentNode.querySelector('.referral-logo--fallback');
+                          if (fallback) {
+                            fallback.style.display = 'flex';
+                          }
+                        }}
+                        onLoad={(e) => {
+                          const fallback = e.target.parentNode.querySelector('.referral-logo--fallback');
+                          if (fallback) {
+                            fallback.style.display = 'none';
+                          }
+                        }}
                       />
-                    ) : (
-                      <span aria-hidden="true">{platformName.charAt(0)}</span>
                     )}
+                    <div 
+                      className="referral-logo--fallback"
+                      style={{ display: 'flex' }}
+                      role="img" 
+                      aria-label={`${platformName} placeholder icon`}
+                    >
+                      <span aria-hidden="true">{platformName.charAt(0)}</span>
+                    </div>
                   </div>
                   <h4>{platformName}</h4>
                   <p>{platformDescription}</p>
