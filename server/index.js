@@ -23,8 +23,40 @@ if (!BEARER_TOKEN) {
 
 // Security and logging middleware
 app.use(helmet());
+
 // Enable CORS for allowed origins
-app.use(cors({ origin: process.env.CORS_ORIGIN || '*' }));
+const allowedOrigins = [
+  'https://www.juangunner4.com',
+  'https://juangunner4.com',
+  'http://localhost:3000',
+  'http://localhost:5000'
+];
+
+// Add custom CORS_ORIGIN from environment if specified
+if (process.env.CORS_ORIGIN && process.env.CORS_ORIGIN !== '*') {
+  allowedOrigins.push(process.env.CORS_ORIGIN);
+}
+
+app.use(cors({
+  origin: function (origin, callback) {
+    // Allow requests with no origin (like mobile apps or curl requests)
+    if (!origin) return callback(null, true);
+    
+    // Allow all origins if CORS_ORIGIN is explicitly set to '*'
+    if (process.env.CORS_ORIGIN === '*') return callback(null, true);
+    
+    if (allowedOrigins.indexOf(origin) !== -1) {
+      callback(null, true);
+    } else {
+      console.warn(`Blocked by CORS: ${origin}`);
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
+  credentials: true,
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization']
+}));
+
 // Parse JSON bodies
 app.use(express.json());
 // HTTP request logging
