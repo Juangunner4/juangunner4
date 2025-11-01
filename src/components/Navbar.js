@@ -129,7 +129,6 @@ const Navbar = () => {
 
       <div className="navbar-right">
         <Link to={basePath}>{t('navbar.home')}</Link>
-        <Link to={`${basePath}/booknow`}>{t('navbar.bookNow')}</Link>
         <Link to={`${basePath}/about`}>{t('navbar.about')}</Link>
         <Link to={`${basePath}/projects`}>{t('navbar.projects')}</Link>
       </div>
@@ -142,9 +141,6 @@ const Navbar = () => {
         <List>
           <ListItem button component={Link} to={basePath} onClick={toggleDrawer(false)}>
             <ListItemText primary={t('navbar.home')} />
-          </ListItem>
-          <ListItem button component={Link} to={`${basePath}/booknow`} onClick={toggleDrawer(false)}>
-            <ListItemText primary={t('navbar.bookNow')} />
           </ListItem>
           <ListItem button component={Link} to={`${basePath}/about`} onClick={toggleDrawer(false)}>
             <ListItemText primary={t('navbar.about')} />

@@ -16,7 +16,6 @@ const setup = () =>
 test('renders navigation links', () => {
   setup();
   expect(screen.getByRole('link', { name: /home/i })).toBeInTheDocument();
-  expect(screen.getByRole('link', { name: /book now/i })).toBeInTheDocument();
   expect(screen.getByRole('link', { name: /about/i })).toBeInTheDocument();
   expect(screen.getByRole('link', { name: /projects/i })).toBeInTheDocument();
 });
