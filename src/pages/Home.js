@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import Hero from '../components/Hero';
+import RandomTradingLinkSection from '../components/RandomTradingLinkSection';
 import SocialTabs from '../components/socials/SocialTabs';
 import SocialTimeline from '../components/socials/SocialTimeline';
 import XFeed from '../components/socials/XFeed';
@@ -32,6 +33,7 @@ const Home = () => {
   return (
     <div className="home-page">
       <Hero />
+      <RandomTradingLinkSection />
       <SocialTabs value={safeTab} setValue={setTab} />
       {FeedComponent}
       {safeTab !== 'pumpfun' && <SocialTimeline platform={safeTab} />}
