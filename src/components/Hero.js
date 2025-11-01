@@ -14,6 +14,8 @@ const Hero = () => {
   const { t } = useTranslation();
   const basePath = getProfileBasePath(isWeb3);
 
+  const introText = isWeb3 ? t('hero.intro.web3') : t('hero.intro.web2');
+
   const linkItems = [
     {
       key: 'x',
@@ -61,14 +63,8 @@ const Hero = () => {
 
   return (
     <Box className="hero-container">
-      <Typography variant="h3" component="h1" gutterBottom className="hero-title">
-        {t('hero.welcome')}
-      </Typography>
-      <Typography variant="subtitle1" className="hero-description">
-        {t(isWeb3 ? 'hero.description.web3' : 'hero.description.web2')}
-      </Typography>
-      <Typography variant="h6" className="hero-linktree-heading">
-        {t('hero.linktreeHeading')}
+      <Typography variant="h4" component="h1" gutterBottom className="hero-title">
+        {introText}
       </Typography>
       <Box className="hero-linktree">
         {linkItems.map((item) => {
