@@ -10,14 +10,10 @@ const en = {
       web3: 'Web3'
     },
   hero: {
-    welcome: 'Welcome to my corner of the internet',
-    description: {
-      web3:
-        "I'm a hood developer pushing web3 culture—building on Solana and other blockchains while trading and creating content.",
-      web2:
-        "I'm Juan, a full stack developer and amateur footballer who also games and streams."
+    intro: {
+      web3: 'Juangunner4.sol/sui coding, trolling, trading, gaming, & building culture.',
+      web2: 'Footballer and Software Engineer.'
     },
-    linktreeHeading: 'Link up with me',
     links: {
       xWeb3: 'Follow on X (@0x1JuanGunner4)',
       xWeb2: 'Follow on X (@Juangunner4)',

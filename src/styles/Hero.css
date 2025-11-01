@@ -6,6 +6,11 @@
   width: 100%;
 }
 
+.hero-title {
+  animation: fadeIn 1.5s ease-in-out;
+  margin-bottom: 32px;
+}
+
 .hero-link {
   color: inherit;
   text-decoration: none;
@@ -17,10 +22,6 @@
 .hero-link:focus {
   color: #ffe082;
   text-decoration: none;
-}
-
-.hero-title {
-  animation: fadeIn 2s ease-in-out;
 }
 
 @keyframes fadeIn {
@@ -62,48 +63,34 @@
   50% { transform: translateY(-8px); }
 }
 
-.hero-description {
-  max-width: 640px;
-  margin: 0 auto 32px;
-  line-height: 1.6;
-}
-
-.hero-linktree-heading {
-  font-weight: 600;
-  margin-bottom: 16px;
-}
-
 .hero-linktree {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 16px;
+  gap: 8px;
   width: 100%;
   margin: 0 auto;
 }
 
 .hero-linktree-button {
   width: min(360px, 90%);
-  background-color: #ffffff !important;
-  color: #ff0000 !important;
-  border-radius: 32px !important;
+  background-color: transparent !important;
+  color: #ffffff !important;
+  border-radius: 0 !important;
   text-transform: none !important;
   font-weight: 600 !important;
   display: flex !important;
   align-items: center;
   justify-content: space-between;
   padding: 12px 20px !important;
-  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
-  transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease,
-    color 0.2s ease;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.25) !important;
+  box-shadow: none !important;
+  transition: color 0.2s ease;
 }
 
 .hero-linktree-button:hover,
 .hero-linktree-button:focus {
-  transform: translateY(-2px);
-  box-shadow: 0 16px 28px rgba(0, 0, 0, 0.18);
-  background-color: #ffe082 !important;
-  color: #b71c1c !important;
+  color: rgba(255, 255, 255, 0.8) !important;
 }
 
 .hero-linktree-icon {
@@ -133,10 +120,6 @@
 @media (max-width: 600px) {
   .hero-container {
     padding: 48px 16px;
-  }
-
-  .hero-description {
-    margin-bottom: 24px;
   }
 
   .hero-linktree-button {
