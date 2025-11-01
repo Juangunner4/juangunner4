@@ -22,6 +22,11 @@ const en = {
       tiktok: 'Follow on TikTok (@0x1JuanGunner4)',
       projects: 'Explore Projects',
       about: 'About Juan'
+    },
+    randomTrade: {
+      headingWeb3: 'Featured Web3 Trading Link',
+      headingWeb2: 'Featured Investing Link',
+      ariaLabel: 'Open referral for {{platform}}',
     }
   },
   about: {
