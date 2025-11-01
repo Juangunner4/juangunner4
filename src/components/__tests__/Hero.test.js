@@ -13,6 +13,15 @@ test('renders hero section', () => {
     </MemoryRouter>
   );
   expect(screen.getByText(/welcome to my corner/i)).toBeInTheDocument();
-  expect(screen.getByText(/i'm juan, a full stack developer/i)).toBeInTheDocument();
-  expect(screen.getByRole('link', { name: /view projects/i })).toBeInTheDocument();
+  expect(
+    screen.getByText(/i'm juan, a full stack developer and amateur footballer/i)
+  ).toBeInTheDocument();
+  expect(screen.getByText(/link up with me/i)).toBeInTheDocument();
+  expect(screen.getByRole('link', { name: /follow on x \(@juangunner4\)/i })).toBeInTheDocument();
+  expect(
+    screen.getByRole('link', { name: /follow on instagram \(@juangunner4\)/i })
+  ).toBeInTheDocument();
+  expect(screen.getByRole('link', { name: /follow on tiktok/i })).toBeInTheDocument();
+  expect(screen.getByRole('link', { name: /explore projects/i })).toBeInTheDocument();
+  expect(screen.getByRole('link', { name: /about juan/i })).toBeInTheDocument();
 });

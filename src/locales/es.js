@@ -1,7 +1,6 @@
 const es = {
     navbar: {
       home: 'Inicio',
-      bookNow: 'Reservar',
       about: 'Acerca de',
       projects: 'Proyectos',
       langEn: 'English',
@@ -12,20 +11,22 @@ const es = {
     },
   hero: {
     welcome: 'Bienvenido a mi rincón en internet',
-    web3text: 'Soy un desarrollador hood que impulsa la cultura web3: construyo en Solana y otros blockchains mientras opero y creo contenido. Sigue mi trabajo en <x>X @0x1JuanGunner4</x>.',
-    web2text: 'Soy Juan, un desarrollador full stack y futbolista amateur que también juega y hace streams. Mira mis novedades en <x>X @Juangunner4</x> y <ig>Instagram @juangunner4</ig>.',
-    viewProjects: 'Ver Proyectos',
+    description: {
+      web3:
+        'Soy un desarrollador hood que impulsa la cultura web3: construyo en Solana y otros blockchains mientras opero y creo contenido.',
+      web2:
+        'Soy Juan, un desarrollador full stack y futbolista amateur que también juega y hace streams.'
+    },
+    linktreeHeading: 'Conecta conmigo',
     links: {
-      web3X: 'Sigue a Juan en X en @0x1JuanGunner4',
-      web2X: 'Sigue a Juan en X en @Juangunner4',
-      instagram: 'Sigue a Juan en Instagram en @juangunner4'
+      xWeb3: 'Sígueme en X (@0x1JuanGunner4)',
+      xWeb2: 'Sígueme en X (@Juangunner4)',
+      instagramWeb3: 'Sígueme en Instagram (@0x1JuanGunner4)',
+      instagramWeb2: 'Sígueme en Instagram (@juangunner4)',
+      tiktok: 'Sígueme en TikTok (@0x1JuanGunner4)',
+      projects: 'Explora Proyectos',
+      about: 'Sobre Juan'
     }
-  },
-  eventbooking: {
-    signUp: 'Regístrate para un Evento',
-    selectEvent: 'Seleccione un tipo de evento y reserve una sesión:',
-    personal: 'Entrenamiento Personal',
-    group: 'Entrenamiento en Grupo'
   },
   about: {
     heading: 'Acerca de',

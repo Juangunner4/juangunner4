@@ -1,7 +1,6 @@
 const en = {
     navbar: {
       home: 'Home',
-      bookNow: 'Book Now',
       about: 'About',
       projects: 'Projects',
       langEn: 'English',
@@ -12,20 +11,22 @@ const en = {
     },
   hero: {
     welcome: 'Welcome to my corner of the internet',
-    web3text: "I'm a hood developer pushing web3 culture—building on Solana and other blockchains while trading and creating content. Follow along on <x>X @0x1JuanGunner4</x>.",
-    web2text: "I'm Juan, a full stack developer and amateur footballer who games and streams. Catch my updates on <x>X @Juangunner4</x> and <ig>Instagram @juangunner4</ig>.",
-    viewProjects: 'View Projects',
+    description: {
+      web3:
+        "I'm a hood developer pushing web3 culture—building on Solana and other blockchains while trading and creating content.",
+      web2:
+        "I'm Juan, a full stack developer and amateur footballer who also games and streams."
+    },
+    linktreeHeading: 'Link up with me',
     links: {
-      web3X: 'Follow Juan on X at @0x1JuanGunner4',
-      web2X: 'Follow Juan on X at @Juangunner4',
-      instagram: 'Follow Juan on Instagram at @juangunner4'
+      xWeb3: 'Follow on X (@0x1JuanGunner4)',
+      xWeb2: 'Follow on X (@Juangunner4)',
+      instagramWeb3: 'Follow on Instagram (@0x1JuanGunner4)',
+      instagramWeb2: 'Follow on Instagram (@juangunner4)',
+      tiktok: 'Follow on TikTok (@0x1JuanGunner4)',
+      projects: 'Explore Projects',
+      about: 'About Juan'
     }
-  },
-  eventbooking: {
-    signUp: 'Sign up for an Event',
-    selectEvent: 'Select an event type and sign up for a session:',
-    personal: 'Personal Coaching',
-    group: 'Group Training'
   },
   about: {
     heading: 'About',
