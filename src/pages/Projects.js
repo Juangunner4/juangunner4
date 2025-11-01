@@ -9,8 +9,6 @@ const projectData = [
   { domain: 'dosamigosmoving.com', tags: ['web2', 'business', 'landing page', 'backend'] },
   { domain: 'goshenretirementhomes.com', tags: ['web2', 'business', 'landing page'] },
   { domain: 'perionsol.xyz', tags: ['web3', 'meme', 'landing page'] },
-  { domain: 'dogwif.hair', tags: ['web3', 'meme', 'openai', 'landing page'] },
-  { domain: 'www.christonpump.xyz', tags: ['web3', 'sql db', 'meme', 'landing page'] },
 ];
 
 const devProjectData = [
