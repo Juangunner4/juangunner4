@@ -30,6 +30,14 @@ const devProjectData = [
       test: 'https://footballcoin.fun',
     },
   },
+  {
+    name: 'Photographer Portfolio',
+    logo: 'https://website-47f9b91f.ehn.vdj.temporary.site/favicon.ico',
+    tags: ['web2', 'portfolio'],
+    environments: {
+      dev: 'https://website-47f9b91f.ehn.vdj.temporary.site/',
+    },
+  },
 ];
 
 const Projects = () => {
@@ -125,22 +133,34 @@ const Projects = () => {
             </button>
             <h3>{filteredDevProjectData[openProject].name}</h3>
             <div className="env-icons">
-              <a
-                href={filteredDevProjectData[openProject].environments.dev}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="env-icon"
-              >
-                <i className="fas fa-wrench" /> Dev
-              </a>
-              <a
-                href={filteredDevProjectData[openProject].environments.test}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="env-icon"
-              >
-                <i className="fas fa-vial" /> Test
-              </a>
+              {Object.entries(filteredDevProjectData[openProject].environments || {}).map(
+                ([environment, url]) => {
+                  const iconMap = {
+                    dev: { className: 'fas fa-wrench', label: 'Dev' },
+                    test: { className: 'fas fa-vial', label: 'Test' },
+                    staging: { className: 'fas fa-layer-group', label: 'Staging' },
+                    preview: { className: 'fas fa-eye', label: 'Preview' },
+                    production: { className: 'fas fa-rocket', label: 'Production' },
+                  };
+
+                  const { className, label } = iconMap[environment] || {
+                    className: 'fas fa-link',
+                    label: environment.charAt(0).toUpperCase() + environment.slice(1),
+                  };
+
+                  return (
+                    <a
+                      key={environment}
+                      href={url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="env-icon"
+                    >
+                      <i className={className} /> {label}
+                    </a>
+                  );
+                }
+              )}
             </div>
           </div>
         </>
