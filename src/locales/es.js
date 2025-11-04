@@ -120,6 +120,12 @@ const es = {
                 'Copia, refleja y automatiza estrategias en los principales DEX desde un solo panel.',
               linkLabel: 'Opera con Axiom',
             },
+            token: {
+              name: 'Token.com',
+              description:
+                'Únete a Token.com para seguir traders, copiar estrategias y colaborar en movimientos cripto sociales.',
+              linkLabel: 'Conéctate conmigo en Token.com',
+            },
             backpack: {
               name: 'Backpack Exchange',
               description:
