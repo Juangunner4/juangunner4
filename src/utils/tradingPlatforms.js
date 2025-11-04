@@ -65,6 +65,12 @@ export const tradingPlatforms = {
       tags: ['Tag TBD'],
     },
     {
+      id: 'token',
+      link: 'https://www.token.com/ref/v7gmmwtu',
+      faviconDomain: 'token.com',
+      tags: ['Social Trading', 'Referral Bonus'],
+    },
+    {
       id: 'backpack',
       link: 'https://backpack.exchange/refer/4tji5qyt',
       faviconDomain: 'backpack.exchange',

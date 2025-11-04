@@ -119,6 +119,12 @@ const en = {
                 'Copy, mirror, and automate strategies across top decentralized exchanges from one dashboard.',
               linkLabel: 'Trade with Axiom',
             },
+            token: {
+              name: 'Token.com',
+              description:
+                'Tap into Token.com to follow traders, mirror strategies, and collaborate on social-first crypto plays.',
+              linkLabel: 'Connect with me on Token.com',
+            },
             backpack: {
               name: 'Backpack Exchange',
               description:
