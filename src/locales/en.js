@@ -125,6 +125,12 @@ const en = {
                 'Tap into Token.com to follow traders, mirror strategies, and collaborate on social-first crypto plays.',
               linkLabel: 'Connect with me on Token.com',
             },
+            wallchain: {
+              name: 'Wallchain.xyz',
+              description:
+                'Wallchain powers Quacks, a social trading network for mindshare builders and on-chain creators. Join with my referral to sync into the flock.',
+              linkLabel: 'Enter Wallchain via Quacks',
+            },
             backpack: {
               name: 'Backpack Exchange',
               description:

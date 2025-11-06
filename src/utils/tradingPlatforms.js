@@ -71,6 +71,12 @@ export const tradingPlatforms = {
       tags: ['Social Trading', 'Referral Bonus'],
     },
     {
+      id: 'wallchain',
+      link: 'https://quacks.app/?ref=0x1JuanGunner4',
+      faviconDomain: 'wallchain.xyz',
+      tags: ['SocialFi', 'Mindshare'],
+    },
+    {
       id: 'backpack',
       link: 'https://backpack.exchange/refer/4tji5qyt',
       faviconDomain: 'backpack.exchange',
