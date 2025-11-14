@@ -96,6 +96,12 @@ const es = {
                 'Obtén hasta $100 USD en memecoins gratis al depositar en Moonshot con mi enlace.',
               linkLabel: 'Reclama el bono de Moonshot',
             },
+            dmfun: {
+              name: 'dm.fun',
+              description:
+                'Únete a dm.fun para coordinar con degens, seguir memecoins en tiempo real y operar junto a la comunidad.',
+              linkLabel: 'Únete a dm.fun',
+            },
             aster: {
               name: 'Aster',
               description:
