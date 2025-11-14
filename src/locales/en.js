@@ -95,6 +95,12 @@ const en = {
                 'Get up to $100 in free memecoins after depositing on Moonshot with my link.',
               linkLabel: 'Claim the Moonshot bonus',
             },
+            dmfun: {
+              name: 'dm.fun',
+              description:
+                'Join me on dm.fun to co-pilot degens, track real-time memecoins, and trade alongside the community.',
+              linkLabel: 'Join me on dm.fun',
+            },
             aster: {
               name: 'Aster',
               description:

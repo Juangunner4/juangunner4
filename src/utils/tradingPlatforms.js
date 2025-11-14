@@ -41,6 +41,12 @@ export const tradingPlatforms = {
       tags: ['Memecoins', 'Referral Bonus'],
     },
     {
+      id: 'dmfun',
+      link: 'https://dm.fun/ref/F2XVGJHF',
+      faviconDomain: 'dm.fun',
+      tags: ['Social Trading', 'Memecoins'],
+    },
+    {
       id: 'aster',
       link: 'https://t.co/2Vp8ELVY5W',
       faviconDomain: 'asterdex.com',
