@@ -70,42 +70,36 @@
   background: rgba(17, 24, 39, 0.06);
 }
 
-.platform-page__breadcrumbs {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  font-size: 0.95rem;
-  color: #6b7280;
-  margin-bottom: 16px;
-  flex-wrap: wrap;
-}
-
-.platform-page__breadcrumb-pill {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  padding: 6px 12px;
-  border-radius: 999px;
-  background: rgba(37, 99, 235, 0.12);
-  color: #1d4ed8;
-  font-weight: 700;
-}
-
-.platform-page__breadcrumbs a {
-  color: #111827;
-  font-weight: 600;
-  text-decoration: none;
-}
-
-.platform-page__breadcrumb-current {
-  color: #111827;
-  font-weight: 700;
-}
-
 .platform-page__header h1 {
   margin: 8px 0 12px;
   font-size: 2rem;
   color: #0f172a;
+}
+
+.platform-page__title {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.platform-page__favicon {
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  box-shadow: 0 10px 24px rgba(15, 23, 42, 0.18);
+  border: 1px solid #e5e7eb;
+  object-fit: cover;
+  background: #ffffff;
+}
+
+.platform-page__favicon--fallback {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #111827, #1f2937);
+  color: #ffffff;
+  font-weight: 800;
+  font-size: 1.1rem;
 }
 
 .platform-page__eyebrow {
