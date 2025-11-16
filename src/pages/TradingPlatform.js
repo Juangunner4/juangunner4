@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link, Navigate, useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { getTradingPlatformById } from '../utils/tradingPlatforms';
 import { getProfileBasePath } from '../utils/profileRouting';
+import { getFaviconUrl } from '../utils/favicon';
 import '../styles/TradingPlatform.css';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import HomeIcon from '@mui/icons-material/Home';
@@ -12,6 +13,7 @@ const TradingPlatform = () => {
   const { platformId, profileType } = useParams();
   const isProfileWeb3 = profileType === 'web3';
   const { t } = useTranslation();
+  const [showFavicon, setShowFavicon] = useState(true);
 
   const platform = getTradingPlatformById(platformId);
 
@@ -35,6 +37,7 @@ const TradingPlatform = () => {
   const platformDescription = t(`${platformKey}.description`);
   const platformLinkLabel = t(`${platformKey}.linkLabel`);
   const backLink = `${getProfileBasePath(expectedIsWeb3)}/about?category=${platform.category}`;
+  const faviconUrl = getFaviconUrl(platform.link, platform.faviconDomain);
 
   return (
     <div className="platform-page">
@@ -53,20 +56,27 @@ const TradingPlatform = () => {
             <span className="platform-page__nav-label">{t('about.trade.details.backToList')}</span>
           </Link>
         </div>
-        <div className="platform-page__breadcrumbs" aria-label="Breadcrumb">
-          <span className="platform-page__breadcrumb-pill">{t('about.trade.details.heading')}</span>
-          <span aria-hidden="true">/</span>
-          <Link to={backLink}>{t('about.trade.details.backToList')}</Link>
-          <span aria-hidden="true">/</span>
-          <span className="platform-page__breadcrumb-current">{platformName}</span>
-        </div>
       </div>
 
       <header className="platform-page__header">
         <div className="platform-page__eyebrow">
           {t('about.trade.details.heading')}
         </div>
-        <h1>{platformName}</h1>
+        <div className="platform-page__title">
+          {showFavicon && faviconUrl ? (
+            <img
+              src={faviconUrl}
+              alt={`${platformName} favicon`}
+              className="platform-page__favicon"
+              onError={() => setShowFavicon(false)}
+            />
+          ) : (
+            <div className="platform-page__favicon platform-page__favicon--fallback" aria-hidden="true">
+              {platformName.charAt(0)}
+            </div>
+          )}
+          <h1>{platformName}</h1>
+        </div>
         <p className="platform-page__description">{platformDescription}</p>
       </header>
 
@@ -99,10 +109,6 @@ const TradingPlatform = () => {
             <span>{platformLinkLabel}</span>
             <OpenInNewIcon fontSize="inherit" aria-hidden="true" />
           </a>
-          <Link className="platform-page__secondary" to={backLink}>
-            <ArrowBackIcon fontSize="inherit" aria-hidden="true" />
-            <span>{t('about.trade.details.backToList')}</span>
-          </Link>
         </div>
       </section>
     </div>
