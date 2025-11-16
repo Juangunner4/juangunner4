@@ -109,10 +109,6 @@ const TradingPlatform = () => {
             <span>{platformLinkLabel}</span>
             <OpenInNewIcon fontSize="inherit" aria-hidden="true" />
           </a>
-          <Link className="platform-page__secondary" to={backLink}>
-            <ArrowBackIcon fontSize="inherit" aria-hidden="true" />
-            <span>{t('about.trade.details.backToList')}</span>
-          </Link>
         </div>
       </section>
     </div>

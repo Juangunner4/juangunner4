@@ -172,8 +172,7 @@
   align-items: center;
 }
 
-.platform-page__cta,
-.platform-page__secondary {
+.platform-page__cta {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -195,17 +194,6 @@
 .platform-page__cta:focus-visible {
   transform: translateY(-2px);
   box-shadow: 0 18px 40px rgba(15, 23, 42, 0.28);
-}
-
-.platform-page__secondary {
-  background: #f3f4f6;
-  color: #111827;
-}
-
-.platform-page__secondary:hover,
-.platform-page__secondary:focus-visible {
-  transform: translateY(-2px);
-  box-shadow: 0 12px 28px rgba(55, 65, 81, 0.18);
 }
 
 @media (max-width: 640px) {
