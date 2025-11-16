@@ -4,6 +4,9 @@ import { useTranslation } from 'react-i18next';
 import { getTradingPlatformById } from '../utils/tradingPlatforms';
 import { getProfileBasePath } from '../utils/profileRouting';
 import '../styles/TradingPlatform.css';
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import HomeIcon from '@mui/icons-material/Home';
+import OpenInNewIcon from '@mui/icons-material/OpenInNew';
 
 const TradingPlatform = () => {
   const { platformId, profileType } = useParams();
@@ -38,11 +41,15 @@ const TradingPlatform = () => {
       <div className="platform-page__nav">
         <div className="platform-page__nav-actions" aria-label={t('about.trade.details.backToList')}>
           <Link className="platform-page__nav-button" to={getProfileBasePath(expectedIsWeb3)}>
-            <span className="platform-page__nav-icon" aria-hidden="true">⌂</span>
+            <HomeIcon className="platform-page__nav-icon" fontSize="inherit" aria-hidden="true" />
             <span className="platform-page__nav-label">{t('navbar.home')}</span>
           </Link>
           <Link className="platform-page__nav-button platform-page__nav-button--secondary" to={backLink}>
-            <span className="platform-page__nav-icon" aria-hidden="true">↩</span>
+            <ArrowBackIcon
+              className="platform-page__nav-icon"
+              fontSize="inherit"
+              aria-hidden="true"
+            />
             <span className="platform-page__nav-label">{t('about.trade.details.backToList')}</span>
           </Link>
         </div>
@@ -90,10 +97,10 @@ const TradingPlatform = () => {
             rel="noopener noreferrer"
           >
             <span>{platformLinkLabel}</span>
-            <span aria-hidden="true">↗</span>
+            <OpenInNewIcon fontSize="inherit" aria-hidden="true" />
           </a>
           <Link className="platform-page__secondary" to={backLink}>
-            <span aria-hidden="true">↩</span>
+            <ArrowBackIcon fontSize="inherit" aria-hidden="true" />
             <span>{t('about.trade.details.backToList')}</span>
           </Link>
         </div>

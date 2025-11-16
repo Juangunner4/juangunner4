@@ -19,6 +19,7 @@ import { useProfile } from '../ProfileContext';
 import { buildProfileAwarePath, getProfileBasePath } from '../utils/profileRouting';
 import { getFaviconUrl } from '../utils/favicon';
 import tradingPlatforms, { TRADE_CATEGORIES } from '../utils/tradingPlatforms';
+import OpenInNewIcon from '@mui/icons-material/OpenInNew';
 
 
 const experiences = [
@@ -470,7 +471,11 @@ const About = () => {
                     onClick={(event) => event.stopPropagation()}
                   >
                     <span className="referral-link__label">{platformLinkLabel}</span>
-                    <span className="referral-link__icon" aria-hidden="true">↗</span>
+                    <OpenInNewIcon
+                      className="referral-link__icon"
+                      fontSize="inherit"
+                      aria-hidden="true"
+                    />
                   </a>
                   {platform.code && (
                     <div className="referral-code" aria-live="polite">

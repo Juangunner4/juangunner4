@@ -22,7 +22,7 @@ test('renders navigation links', () => {
 
 test('opens drawer when hamburger clicked', () => {
   setup();
-  const button = screen.getByRole('button', { name: /\u2630/i });
+  const button = screen.getByRole('button', { name: /open navigation menu/i });
   fireEvent.click(button);
   expect(screen.getAllByText(/home/i).length).toBeGreaterThan(1);
 });
