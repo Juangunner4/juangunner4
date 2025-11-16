@@ -14,6 +14,7 @@ import Home from './pages/Home';
 import Footer from './components/Footer';
 import { ProfileProvider, useProfile } from './ProfileContext';
 import { getProfileBasePath } from './utils/profileRouting';
+import TradingPlatform from './pages/TradingPlatform';
 
 const Layout = () => {
   const { profileType } = useParams();
@@ -44,6 +45,7 @@ function App() {
             <Route index element={<Home />} />
             <Route path="about" element={<About />} />
             <Route path="projects" element={<Projects />} />
+            <Route path=":platformId" element={<TradingPlatform />} />
           </Route>
           <Route path="*" element={<Navigate to={getProfileBasePath(false)} replace />} />
         </Routes>

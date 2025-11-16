@@ -143,4 +143,19 @@ export const getRandomTradingPlatformForProfile = (isWeb3, randomFn = Math.rando
   return getRandomTradingPlatformForCategory(category, randomFn);
 };
 
+export const getTradingPlatformById = (platformId) => {
+  const matchedCategory = Object.entries(tradingPlatforms).find(([_, platforms]) =>
+    platforms.some((platform) => platform.id === platformId),
+  );
+
+  if (!matchedCategory) {
+    return null;
+  }
+
+  const [category, platforms] = matchedCategory;
+  const platform = platforms.find((candidate) => candidate.id === platformId);
+
+  return platform ? { ...platform, category } : null;
+};
+
 export default tradingPlatforms;
