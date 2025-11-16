@@ -162,7 +162,7 @@
     display: flex;
     flex-direction: column;
     gap: 12px;
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
     cursor: pointer;
 }
 
@@ -170,6 +170,7 @@
 .referral-card:focus-within {
     transform: translateY(-4px);
     box-shadow: 0 16px 32px rgba(15, 23, 42, 0.12);
+    border-color: rgba(37, 99, 235, 0.35);
 }
 
 .referral-logo {
@@ -251,21 +252,43 @@
 .referral-link {
     display: inline-flex;
     align-items: center;
-    justify-content: center;
-    padding: 10px 16px;
-    border-radius: 999px;
-    background-color: #111827;
+    justify-content: space-between;
+    gap: 10px;
+    padding: 12px 16px;
+    border-radius: 14px;
+    background: linear-gradient(135deg, #111827, #1f2937);
     color: #ffffff;
-    font-weight: 600;
+    font-weight: 700;
     text-decoration: none;
-    transition: background-color 0.2s ease, transform 0.2s ease;
-    width: fit-content;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+    width: 100%;
+    box-shadow: 0 14px 28px rgba(15, 23, 42, 0.16);
+    border: 1px solid rgba(255, 255, 255, 0.06);
 }
 
 .referral-link:hover,
 .referral-link:focus-visible {
-    background-color: #2563eb;
+    background: linear-gradient(135deg, #0f172a, #0b1220);
     transform: translateY(-2px);
+    box-shadow: 0 18px 32px rgba(15, 23, 42, 0.2);
+}
+
+.referral-link__label {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.referral-link__icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.14);
+    color: #ffffff;
+    font-size: 0.9rem;
 }
 
 .referral-code {

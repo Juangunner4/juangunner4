@@ -7,6 +7,69 @@
   max-width: 960px;
 }
 
+.platform-page__nav {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.platform-page__nav-actions {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.platform-page__nav-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 14px;
+  border-radius: 999px;
+  background: linear-gradient(135deg, #111827, #1f2937);
+  color: #ffffff;
+  font-weight: 700;
+  text-decoration: none;
+  box-shadow: 0 12px 28px rgba(15, 23, 42, 0.2);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+}
+
+.platform-page__nav-button:hover,
+.platform-page__nav-button:focus-visible {
+  transform: translateY(-2px);
+  box-shadow: 0 16px 32px rgba(15, 23, 42, 0.24);
+  background: linear-gradient(135deg, #0f172a, #0b1220);
+}
+
+.platform-page__nav-button--secondary {
+  background: #f3f4f6;
+  color: #111827;
+  box-shadow: 0 10px 20px rgba(55, 65, 81, 0.18);
+  border: 1px solid #e5e7eb;
+}
+
+.platform-page__nav-button--secondary:hover,
+.platform-page__nav-button--secondary:focus-visible {
+  background: #e5e7eb;
+  box-shadow: 0 12px 24px rgba(55, 65, 81, 0.2);
+}
+
+.platform-page__nav-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.14);
+  color: inherit;
+  font-size: 0.95rem;
+}
+
+.platform-page__nav-button--secondary .platform-page__nav-icon {
+  background: rgba(17, 24, 39, 0.06);
+}
+
 .platform-page__breadcrumbs {
   display: flex;
   align-items: center;
@@ -15,6 +78,17 @@
   color: #6b7280;
   margin-bottom: 16px;
   flex-wrap: wrap;
+}
+
+.platform-page__breadcrumb-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  border-radius: 999px;
+  background: rgba(37, 99, 235, 0.12);
+  color: #1d4ed8;
+  font-weight: 700;
 }
 
 .platform-page__breadcrumbs a {
@@ -144,6 +218,10 @@
   .platform-page {
     padding: 24px;
     margin: 16px;
+  }
+
+  .platform-page__nav-actions {
+    flex-direction: column;
   }
 
   .platform-page__header h1 {

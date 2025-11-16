@@ -35,12 +35,24 @@ const TradingPlatform = () => {
 
   return (
     <div className="platform-page">
-      <div className="platform-page__breadcrumbs">
-        <Link to={getProfileBasePath(expectedIsWeb3)}>{t('navbar.home')}</Link>
-        <span aria-hidden="true">/</span>
-        <Link to={backLink}>{t('about.trade.details.backToList')}</Link>
-        <span aria-hidden="true">/</span>
-        <span className="platform-page__breadcrumb-current">{platformName}</span>
+      <div className="platform-page__nav">
+        <div className="platform-page__nav-actions" aria-label={t('about.trade.details.backToList')}>
+          <Link className="platform-page__nav-button" to={getProfileBasePath(expectedIsWeb3)}>
+            <span className="platform-page__nav-icon" aria-hidden="true">⌂</span>
+            <span className="platform-page__nav-label">{t('navbar.home')}</span>
+          </Link>
+          <Link className="platform-page__nav-button platform-page__nav-button--secondary" to={backLink}>
+            <span className="platform-page__nav-icon" aria-hidden="true">↩</span>
+            <span className="platform-page__nav-label">{t('about.trade.details.backToList')}</span>
+          </Link>
+        </div>
+        <div className="platform-page__breadcrumbs" aria-label="Breadcrumb">
+          <span className="platform-page__breadcrumb-pill">{t('about.trade.details.heading')}</span>
+          <span aria-hidden="true">/</span>
+          <Link to={backLink}>{t('about.trade.details.backToList')}</Link>
+          <span aria-hidden="true">/</span>
+          <span className="platform-page__breadcrumb-current">{platformName}</span>
+        </div>
       </div>
 
       <header className="platform-page__header">
@@ -77,10 +89,12 @@ const TradingPlatform = () => {
             target="_blank"
             rel="noopener noreferrer"
           >
-            {platformLinkLabel}
+            <span>{platformLinkLabel}</span>
+            <span aria-hidden="true">↗</span>
           </a>
           <Link className="platform-page__secondary" to={backLink}>
-            {t('about.trade.details.backToList')}
+            <span aria-hidden="true">↩</span>
+            <span>{t('about.trade.details.backToList')}</span>
           </Link>
         </div>
       </section>
