@@ -7,7 +7,8 @@ const en = {
       langEs: 'Español',
       profile: 'Profile',
       web2: 'Web2',
-      web3: 'Web3'
+      web3: 'Web3',
+      menuLabel: 'Open navigation menu'
     },
   hero: {
     intro: {

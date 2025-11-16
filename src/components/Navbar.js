@@ -10,6 +10,7 @@ import web3Image from '../assets/web3.jpg';
 import { useProfile } from '../ProfileContext';
 import { useTranslation } from 'react-i18next';
 import { buildProfileAwarePath, getProfileBasePath } from '../utils/profileRouting';
+import MenuIcon from '@mui/icons-material/Menu';
 
 const Navbar = () => {
   const { isWeb3, setProfile } = useProfile();
@@ -133,8 +134,12 @@ const Navbar = () => {
         <Link to={`${basePath}/projects`}>{t('navbar.projects')}</Link>
       </div>
 
-      <button className="hamburger" onClick={toggleDrawer(true)}>
-        ☰
+      <button
+        className="hamburger"
+        onClick={toggleDrawer(true)}
+        aria-label={t('navbar.menuLabel', 'Open navigation menu')}
+      >
+        <MenuIcon fontSize="inherit" aria-hidden="true" />
       </button>
 
       <Drawer anchor="left" open={drawerOpen} onClose={toggleDrawer(false)}>
