@@ -469,7 +469,8 @@ const About = () => {
                     rel="noopener noreferrer"
                     onClick={(event) => event.stopPropagation()}
                   >
-                    {platformLinkLabel}
+                    <span className="referral-link__label">{platformLinkLabel}</span>
+                    <span className="referral-link__icon" aria-hidden="true">↗</span>
                   </a>
                   {platform.code && (
                     <div className="referral-code" aria-live="polite">
