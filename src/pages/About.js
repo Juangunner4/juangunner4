@@ -16,7 +16,7 @@ import web3Placeholder from '../assets/web3.jpg';
 import { useTranslation } from 'react-i18next';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useProfile } from '../ProfileContext';
-import { buildProfileAwarePath } from '../utils/profileRouting';
+import { buildProfileAwarePath, getProfileBasePath } from '../utils/profileRouting';
 import { getFaviconUrl } from '../utils/favicon';
 import tradingPlatforms, { TRADE_CATEGORIES } from '../utils/tradingPlatforms';
 
@@ -270,6 +270,15 @@ const About = () => {
   }, [selectedCategory]);
 
   useEffect(() => {
+    const params = new URLSearchParams(location.search);
+    const requestedCategory = params.get('category');
+
+    if (requestedCategory && TRADE_CATEGORIES.includes(requestedCategory)) {
+      setSelectedCategory(requestedCategory);
+    }
+  }, [location.search]);
+
+  useEffect(() => {
     return () => {
       if (copyTimeoutRef.current) {
         clearTimeout(copyTimeoutRef.current);
@@ -287,6 +296,11 @@ const About = () => {
       setProfile(true);
       navigate(buildProfileAwarePath(location.pathname, true));
     }
+  };
+
+  const handleNavigateToPlatform = (platformId) => {
+    const basePath = getProfileBasePath(isWeb3);
+    navigate(`${basePath}/${platformId}`);
   };
 
   const handleCopyCode = (code) => {
@@ -390,7 +404,19 @@ const About = () => {
               const faviconUrl = getFaviconUrl(platform.link, platform.faviconDomain);
 
               return (
-                <article key={platform.id} className="referral-card">
+                <article
+                  key={platform.id}
+                  className="referral-card"
+                  tabIndex={0}
+                  role="button"
+                  onClick={() => handleNavigateToPlatform(platform.id)}
+                  onKeyDown={(event) => {
+                    if (event.key === 'Enter' || event.key === ' ') {
+                      event.preventDefault();
+                      handleNavigateToPlatform(platform.id);
+                    }
+                  }}
+                >
                   <div className="referral-logo">
                     {faviconUrl && (
                       <img
@@ -441,6 +467,7 @@ const About = () => {
                     href={platform.link}
                     target="_blank"
                     rel="noopener noreferrer"
+                    onClick={(event) => event.stopPropagation()}
                   >
                     {platformLinkLabel}
                   </a>
@@ -451,7 +478,10 @@ const About = () => {
                       <button
                         type="button"
                         className="copy-button"
-                        onClick={() => handleCopyCode(platform.code)}
+                        onClick={(event) => {
+                          event.stopPropagation();
+                          handleCopyCode(platform.code);
+                        }}
                       >
                         {isActivePlatform && !copyStatus.error
                           ? t('about.trade.copied')

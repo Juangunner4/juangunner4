@@ -46,6 +46,10 @@ const en = {
       copyCode: 'Copy code',
       copied: 'Copied!',
       copyError: 'Unable to copy automatically. Please use the code manually.',
+      details: {
+        heading: 'Trading Platform',
+        backToList: 'Back to trading links',
+      },
       categories: {
         invest: {
           heading: 'Invest with Me',
