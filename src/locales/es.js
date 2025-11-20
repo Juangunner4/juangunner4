@@ -185,6 +185,12 @@ const es = {
                 'Únete a la liga de fantasía cripto donde la estrategia se encuentra con blockchain. Arma tu equipo y compite por recompensas cripto.',
               linkLabel: 'Únete a CFL Fun',
             },
+            pawtato: {
+              name: 'Pawtato',
+              description:
+                'Forma equipo con Pawtato en Sui para incubar papas NFT, comerciar activos del juego y subir en los marcadores con mi referido.',
+              linkLabel: 'Comienza en Pawtato con mi código',
+            },
           },
         },
       },
