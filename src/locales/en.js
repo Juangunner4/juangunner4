@@ -184,6 +184,12 @@ const en = {
                 'Join the crypto fantasy league where strategy meets blockchain. Build your team and compete for crypto rewards.',
               linkLabel: 'Join CFL Fun',
             },
+            pawtato: {
+              name: 'Pawtato',
+              description:
+                'Team up with Pawtato on Sui to hatch NFT potatoes, trade in-game assets, and climb the leaderboards with my referral.',
+              linkLabel: 'Start Pawtato with my code',
+            },
           },
         },
       },

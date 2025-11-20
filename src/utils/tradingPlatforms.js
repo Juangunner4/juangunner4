@@ -124,6 +124,13 @@ export const tradingPlatforms = {
       faviconDomain: 'cfl.fun',
       tags: ['Fantasy League', 'Crypto'],
     },
+    {
+      id: 'pawtato',
+      link: 'https://t.me/PawtatoBot?start=goAmVremTFUC',
+      code: 'AmVremTFUC',
+      faviconDomain: 'pawtato.app',
+      tags: ['Sui', 'NFT Game', 'Telegram'],
+    },
   ],
 };
 
