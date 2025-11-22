@@ -12,6 +12,7 @@ import About from './pages/About';
 import Projects from './pages/Projects';
 import Home from './pages/Home';
 import Footer from './components/Footer';
+import AdBanner from './components/AdBanner';
 import { ProfileProvider, useProfile } from './ProfileContext';
 import { getProfileBasePath } from './utils/profileRouting';
 import TradingPlatform from './pages/TradingPlatform';
@@ -30,6 +31,7 @@ const Layout = () => {
       <main>
         <Outlet />
       </main>
+      <AdBanner />
       <Footer />
     </div>
   );
