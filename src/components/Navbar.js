@@ -132,6 +132,9 @@ const Navbar = () => {
         <Link to={basePath}>{t('navbar.home')}</Link>
         <Link to={`${basePath}/about`}>{t('navbar.about')}</Link>
         <Link to={`${basePath}/projects`}>{t('navbar.projects')}</Link>
+        <Link to={`${basePath}/services`}>{t('navbar.services')}</Link>
+        <Link to={`${basePath}/blog`}>{t('navbar.blog')}</Link>
+        <Link to={`${basePath}/contact`}>{t('navbar.contact')}</Link>
       </div>
 
       <button
@@ -152,6 +155,15 @@ const Navbar = () => {
           </ListItem>
           <ListItem button component={Link} to={`${basePath}/projects`} onClick={toggleDrawer(false)}>
             <ListItemText primary={t('navbar.projects')} />
+          </ListItem>
+          <ListItem button component={Link} to={`${basePath}/services`} onClick={toggleDrawer(false)}>
+            <ListItemText primary={t('navbar.services')} />
+          </ListItem>
+          <ListItem button component={Link} to={`${basePath}/blog`} onClick={toggleDrawer(false)}>
+            <ListItemText primary={t('navbar.blog')} />
+          </ListItem>
+          <ListItem button component={Link} to={`${basePath}/contact`} onClick={toggleDrawer(false)}>
+            <ListItemText primary={t('navbar.contact')} />
           </ListItem>
         </List>
       </Drawer>

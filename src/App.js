@@ -16,6 +16,13 @@ import AdBanner from './components/AdBanner';
 import { ProfileProvider, useProfile } from './ProfileContext';
 import { getProfileBasePath } from './utils/profileRouting';
 import TradingPlatform from './pages/TradingPlatform';
+import Contact from './pages/Contact';
+import PrivacyPolicy from './pages/PrivacyPolicy';
+import TermsOfService from './pages/TermsOfService';
+import Blog from './pages/Blog';
+import BlogPost from './pages/BlogPost';
+import Portfolio from './pages/Portfolio';
+import Services from './pages/Services';
 
 const Layout = () => {
   const { profileType } = useParams();
@@ -47,6 +54,13 @@ function App() {
             <Route index element={<Home />} />
             <Route path="about" element={<About />} />
             <Route path="projects" element={<Projects />} />
+            <Route path="services" element={<Services />} />
+            <Route path="contact" element={<Contact />} />
+            <Route path="portfolio" element={<Portfolio />} />
+            <Route path="blog" element={<Blog />} />
+            <Route path="blog/:slug" element={<BlogPost />} />
+            <Route path="privacy" element={<PrivacyPolicy />} />
+            <Route path="terms" element={<TermsOfService />} />
             <Route path=":platformId" element={<TradingPlatform />} />
           </Route>
           <Route path="*" element={<Navigate to={getProfileBasePath(false)} replace />} />
