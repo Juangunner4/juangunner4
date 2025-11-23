@@ -1,6 +1,6 @@
 .page-wrapper {
   width: 100%;
-  max-width: 1100px;
+  max-width: 1080px;
   margin: 32px auto 64px;
   padding: 0 16px;
   display: flex;
@@ -166,7 +166,7 @@
 
 .blog-post-container {
   width: 100%;
-  max-width: 900px;
+  max-width: 880px;
   margin: 32px auto 64px;
   padding: 0 16px;
   color: #1b1b1b;
