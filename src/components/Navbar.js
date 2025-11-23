@@ -155,25 +155,32 @@ const Navbar = () => {
         </button>
       </div>
 
-      <Drawer anchor="left" open={drawerOpen} onClose={toggleDrawer(false)}>
+      <Drawer
+        anchor="left"
+        open={drawerOpen}
+        onClose={toggleDrawer(false)}
+        PaperProps={{
+          sx: { backgroundColor: '#FF0000', color: '#fff', width: 260 },
+        }}
+      >
         <List>
           <ListItem button component={Link} to={basePath} onClick={toggleDrawer(false)}>
-            <ListItemText primary={t('navbar.home')} />
+            <ListItemText primary={t('navbar.home')} primaryTypographyProps={{ sx: { color: '#fff' } }} />
           </ListItem>
           <ListItem button component={Link} to={`${basePath}/about`} onClick={toggleDrawer(false)}>
-            <ListItemText primary={t('navbar.about')} />
+            <ListItemText primary={t('navbar.about')} primaryTypographyProps={{ sx: { color: '#fff' } }} />
           </ListItem>
           <ListItem button component={Link} to={`${basePath}/projects`} onClick={toggleDrawer(false)}>
-            <ListItemText primary={t('navbar.projects')} />
+            <ListItemText primary={t('navbar.projects')} primaryTypographyProps={{ sx: { color: '#fff' } }} />
           </ListItem>
           <ListItem button component={Link} to={`${basePath}/services`} onClick={toggleDrawer(false)}>
-            <ListItemText primary={t('navbar.services')} />
+            <ListItemText primary={t('navbar.services')} primaryTypographyProps={{ sx: { color: '#fff' } }} />
           </ListItem>
           <ListItem button component={Link} to={`${basePath}/blog`} onClick={toggleDrawer(false)}>
-            <ListItemText primary={t('navbar.blog')} />
+            <ListItemText primary={t('navbar.blog')} primaryTypographyProps={{ sx: { color: '#fff' } }} />
           </ListItem>
           <ListItem button component={Link} to={`${basePath}/contact`} onClick={toggleDrawer(false)}>
-            <ListItemText primary={t('navbar.contact')} />
+            <ListItemText primary={t('navbar.contact')} primaryTypographyProps={{ sx: { color: '#fff' } }} />
           </ListItem>
         </List>
       </Drawer>
