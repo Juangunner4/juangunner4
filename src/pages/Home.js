@@ -11,7 +11,6 @@ import PumpFunFeed from '../components/socials/PumpFunFeed';
 import '../styles/Home.css';
 import { useProfile } from '../ProfileContext';
 import { getProfileBasePath } from '../utils/profileRouting';
-import { blogPosts } from '../utils/siteContent';
 
 const VALID_TABS = ['x', 'instagram', 'twitch', 'pumpfun', 'youtube'];
 const Home = () => {
@@ -39,8 +38,6 @@ const Home = () => {
       detail: 'Signal-focused dashboards that track engagement across social and on-chain events.',
     },
   ];
-
-  const latestPosts = blogPosts.slice(0, 3);
 
   // Only allow valid tab values
   const setTab = (newTab) => {
@@ -105,28 +102,25 @@ const Home = () => {
 
         <section className="home-section">
           <div className="home-section__header">
-            <h2>Latest blog posts</h2>
-            <p>Long-form breakdowns of builds, experiments, and lessons from the field.</p>
+            <h2>Blog</h2>
+            <p>Long-form writing will be published here after the editorial plan is finalized.</p>
           </div>
           <div className="home-content__grid">
-            {latestPosts.map((post) => (
-              <div key={post.slug} className="home-content__card">
-                <div className="home-card-meta">
-                  <span>{post.date}</span>
-                  <span>•</span>
-                  <span>{post.readTime}</span>
-                </div>
-                <h3>{post.title}</h3>
-                <p>{post.excerpt}</p>
-                <Link className="home-link" to={`${basePath}/blog/${post.slug}`}>
-                  Read more
-                </Link>
+            <div className="home-content__card">
+              <div className="home-card-meta">
+                <span>Author name</span>
+                <span>•</span>
+                <span>Publish date</span>
               </div>
-            ))}
+              <h3>Blog post title</h3>
+              <div className="blog-outline__placeholder-line" />
+              <div className="blog-outline__placeholder-line" />
+              <div className="blog-outline__placeholder-line" />
+              <Link className="home-link" to={`${basePath}/blog`}>
+                View the blog outline
+              </Link>
+            </div>
           </div>
-          <Link className="home-link" to={`${basePath}/blog`}>
-            Browse all posts
-          </Link>
         </section>
       </div>
     </div>

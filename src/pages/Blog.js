@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import '../styles/ContentPages.css';
-import { blogPosts } from '../utils/siteContent';
+import BlogOutline from '../components/BlogOutline';
 import { useProfile } from '../ProfileContext';
 import { getProfileBasePath } from '../utils/profileRouting';
 
@@ -13,26 +13,15 @@ const Blog = () => {
     <div className="page-wrapper">
       <div className="page-hero">
         <h1>Blog</h1>
-        <p>Notes on building products, collaborating with teams, and growing community online.</p>
+        <p>Long-form articles will be published here after the writing schedule is finalized.</p>
       </div>
 
-      <div className="page-grid">
-        {blogPosts.map((post) => (
-          <article key={post.slug} className="page-card page-image-card">
-            <img src={post.image} alt="" />
-            <div className="meta-row">
-              <span>{post.date}</span>
-              <span>•</span>
-              <span>{post.readTime}</span>
-            </div>
-            <h3>{post.title}</h3>
-            <p>{post.excerpt}</p>
-            <div className="blog-card-actions">
-              <span>{post.author}</span>
-              <Link to={`${basePath}/blog/${post.slug}`}>Read more</Link>
-            </div>
-          </article>
-        ))}
+      <div className="page-section">
+        <p>The layout below shows how each entry will be structured once drafts are ready.</p>
+        <BlogOutline />
+        <Link className="cta-button" to={`${basePath}/contact`} style={{ marginTop: 16 }}>
+          Connect about future articles
+        </Link>
       </div>
     </div>
   );
