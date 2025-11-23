@@ -137,13 +137,23 @@ const Navbar = () => {
         <Link to={`${basePath}/contact`}>{t('navbar.contact')}</Link>
       </div>
 
-      <button
-        className="hamburger"
-        onClick={toggleDrawer(true)}
-        aria-label={t('navbar.menuLabel', 'Open navigation menu')}
-      >
-        <MenuIcon fontSize="inherit" aria-hidden="true" />
-      </button>
+      <div className="navbar-actions">
+        <button
+          type="button"
+          className="signup-btn"
+          aria-label={t('navbar.signUpAria', 'Create an account to join via Google or email')}
+        >
+          {t('navbar.signUp')}
+        </button>
+
+        <button
+          className="hamburger"
+          onClick={toggleDrawer(true)}
+          aria-label={t('navbar.menuLabel', 'Open navigation menu')}
+        >
+          <MenuIcon fontSize="inherit" aria-hidden="true" />
+        </button>
+      </div>
 
       <Drawer anchor="left" open={drawerOpen} onClose={toggleDrawer(false)}>
         <List>

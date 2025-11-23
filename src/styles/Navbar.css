@@ -111,6 +111,31 @@
     text-decoration: underline;
 }
 
+.navbar-actions {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.signup-btn {
+    background-color: #ffffff;
+    color: #ff0000;
+    border: none;
+    border-radius: 8px;
+    padding: 8px 14px;
+    font-weight: 700;
+    font-size: 15px;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+    transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+}
+
+.signup-btn:hover {
+    background-color: #ffe4e4;
+    transform: translateY(-1px);
+    box-shadow: 0 6px 14px rgba(0, 0, 0, 0.2);
+}
+
 .hamburger {
     display: none;
     background-color: transparent;
@@ -139,6 +164,11 @@
 
     .hamburger {
         display: block;
+    }
+
+    .signup-btn {
+        padding: 7px 12px;
+        font-size: 14px;
     }
 
     .mobile-lang {
