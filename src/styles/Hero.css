@@ -139,6 +139,16 @@
   opacity: 0.8;
 }
 
+@media (max-width: 800px) {
+  .hero-container {
+    padding: 56px 24px;
+  }
+
+  .hero-linktree-button {
+    width: min(420px, 95%);
+  }
+}
+
 @media (max-width: 600px) {
   .hero-container {
     padding: 48px 16px;

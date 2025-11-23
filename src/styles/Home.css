@@ -24,7 +24,7 @@
 .home-headline h1 {
   margin: 0 0 12px;
   font-size: 2rem;
-  color: #b30000;
+  color: #ff0000;
 }
 
 .home-headline p {
@@ -41,7 +41,7 @@
 
 .home-section__header h2 {
   margin: 0 0 8px;
-  color: #b30000;
+  color: #ff0000;
 }
 
 .home-section__header p {
@@ -57,7 +57,7 @@
 .home-content__header h2 {
   margin: 0 0 12px;
   font-size: 1.6rem;
-  color: #b30000;
+  color: #ff0000;
 }
 
 .home-content__header p {
@@ -73,7 +73,7 @@
 }
 
 .home-content__card {
-  background: linear-gradient(145deg, #ffffff, #ffecec);
+  background: #ffffff;
   border: 1px solid #f4bcbc;
   border-radius: 14px;
   padding: 16px 18px;
@@ -90,7 +90,7 @@
   margin-top: 0;
   margin-bottom: 8px;
   font-size: 1.1rem;
-  color: #b30000;
+  color: #ff0000;
 }
 
 .home-content__card p {
@@ -109,7 +109,7 @@
 
 .home-link {
   display: inline-flex;
-  color: #c40000;
+  color: #ff0000;
   font-weight: 700;
   text-decoration: none;
   margin-top: 10px;
@@ -130,6 +130,22 @@
 
 .home-content__card li + li {
   margin-top: 6px;
+}
+
+@media (max-width: 800px) {
+  .home-content {
+    padding: 20px;
+    margin: 40px auto 56px;
+  }
+
+  .home-headline h1 {
+    font-size: 1.8rem;
+  }
+
+  .home-section__header h2,
+  .home-content__header h2 {
+    font-size: 1.4rem;
+  }
 }
 
 @media (max-width: 600px) {
