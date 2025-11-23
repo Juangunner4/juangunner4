@@ -11,7 +11,9 @@ const en = {
       profile: 'Profile',
       web2: 'Web2',
       web3: 'Web3',
-      menuLabel: 'Open navigation menu'
+      menuLabel: 'Open navigation menu',
+      signUp: 'Create account',
+      signUpAria: 'Create an account to join via Google or email'
     },
   hero: {
     intro: {
