@@ -8,7 +8,10 @@ import {
   useParams,
 } from 'react-router-dom';
 import Navbar from './components/Navbar';
-import About from './pages/About';
+import Career from './pages/Career';
+import Football from './pages/Football';
+import ContentCreator from './pages/ContentCreator';
+import Trading from './pages/Trading';
 import Projects from './pages/Projects';
 import Home from './pages/Home';
 import Footer from './components/Footer';
@@ -52,7 +55,10 @@ function App() {
           <Route path="/" element={<Navigate to={getProfileBasePath(false)} replace />} />
           <Route path="/profile/:profileType/*" element={<Layout />}>
             <Route index element={<Home />} />
-            <Route path="about" element={<About />} />
+            <Route path="career" element={<Career />} />
+            <Route path="football" element={<Football />} />
+            <Route path="content-creator" element={<ContentCreator />} />
+            <Route path="trading" element={<Trading />} />
             <Route path="projects" element={<Projects />} />
             <Route path="services" element={<Services />} />
             <Route path="contact" element={<Contact />} />

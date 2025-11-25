@@ -11,31 +11,33 @@ import PumpFunFeed from '../components/socials/PumpFunFeed';
 import '../styles/Home.css';
 import { useProfile } from '../ProfileContext';
 import { getProfileBasePath } from '../utils/profileRouting';
+import { useTranslation } from 'react-i18next';
 
 const VALID_TABS = ['x', 'instagram', 'twitch', 'pumpfun', 'youtube'];
 const Home = () => {
   const [tab, setTabRaw] = useState('x');
   const { isWeb3 } = useProfile();
   const basePath = getProfileBasePath(isWeb3);
+  const { t } = useTranslation();
 
   const introParagraphs = [
-    'Welcome to my corner of the internet where football, software engineering, trading, and content creation collide.',
-    'I split my time between writing production-grade code, coaching athletes, and experimenting with on-chain culture. This site shares the latest projects, trading experiments, and long-form notes from the journey.',
-    'Whether you found me through a pitch, a repo, or a meme, I am glad you are here.',
+    isWeb3 ? t('home.intro1Web3') : t('home.intro1'),
+    isWeb3 ? t('home.intro2Web3') : t('home.intro2'),
+    isWeb3 ? t('home.intro3Web3') : t('home.intro3'),
   ];
 
   const previewProjects = [
     {
-      title: 'Creator Commerce Microsites',
-      detail: 'Launch-ready landing pages that ship fast and convert audiences into communities.',
+      title: isWeb3 ? t('home.project1TitleWeb3') : t('home.project1Title'),
+      detail: isWeb3 ? t('home.project1DetailWeb3') : t('home.project1Detail'),
     },
     {
-      title: 'Match Analysis Dashboard',
-      detail: 'Interactive visuals that blend player tracking, tactics, and training notes.',
+      title: isWeb3 ? t('home.project2TitleWeb3') : t('home.project2Title'),
+      detail: isWeb3 ? t('home.project2DetailWeb3') : t('home.project2Detail'),
     },
     {
-      title: 'Community Analytics Toolkit',
-      detail: 'Signal-focused dashboards that track engagement across social and on-chain events.',
+      title: isWeb3 ? t('home.project3TitleWeb3') : t('home.project3Title'),
+      detail: isWeb3 ? t('home.project3DetailWeb3') : t('home.project3Detail'),
     },
   ];
 
@@ -63,7 +65,7 @@ const Home = () => {
       {safeTab !== 'pumpfun' && <SocialTimeline platform={safeTab} />}
       <div className="home-content">
         <section className="home-headline">
-          <h1>Building culture at the intersection of code and sport</h1>
+          <h1>{isWeb3 ? t('home.headlineWeb3') : t('home.headline')}</h1>
           {introParagraphs.map((text) => (
             <p key={text}>{text}</p>
           ))}
@@ -71,21 +73,8 @@ const Home = () => {
 
         <section className="home-section">
           <div className="home-section__header">
-            <h2>About me</h2>
-            <p>
-              Software engineer, footballer, trader, streamer, and content creator obsessed with systems that help teams move faster. I share
-              behind-the-scenes notes on what is shipping next.
-            </p>
-          </div>
-          <Link className="home-link" to={`${basePath}/about`}>
-            Read the full bio
-          </Link>
-        </section>
-
-        <section className="home-section">
-          <div className="home-section__header">
-            <h2>Projects</h2>
-            <p>Recent builds that blend product strategy, design, and technical execution.</p>
+            <h2>{isWeb3 ? t('home.projectsHeadingWeb3') : t('home.projectsHeading')}</h2>
+            <p>{isWeb3 ? t('home.projectsDescriptionWeb3') : t('home.projectsDescription')}</p>
           </div>
           <div className="home-content__grid">
             {previewProjects.map((project) => (
@@ -96,14 +85,14 @@ const Home = () => {
             ))}
           </div>
           <Link className="home-link" to={`${basePath}/projects`}>
-            View the full project list
+            {t('home.projectsLink')}
           </Link>
         </section>
 
         <section className="home-section">
           <div className="home-section__header">
-            <h2>Blog</h2>
-            <p>Long-form writing will be published here after the editorial plan is finalized.</p>
+            <h2>{isWeb3 ? t('home.blogHeadingWeb3') : t('home.blogHeading')}</h2>
+            <p>{isWeb3 ? t('home.blogDescriptionWeb3') : t('home.blogDescription')}</p>
           </div>
           <div className="home-content__grid">
             <div className="home-content__card">
@@ -117,7 +106,7 @@ const Home = () => {
               <div className="blog-outline__placeholder-line" />
               <div className="blog-outline__placeholder-line" />
               <Link className="home-link" to={`${basePath}/blog`}>
-                View the blog outline
+                {t('home.blogLink')}
               </Link>
             </div>
           </div>

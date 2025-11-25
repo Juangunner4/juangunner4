@@ -19,7 +19,7 @@ const Footer = () => {
             {t('footer.contact')} <a href="mailto:juanje1019@gmail.com">juanje1019@gmail.com</a>
           </p>
           <div className="footer-links">
-            <Link to={`${basePath}/about`}>About</Link>
+            <Link to={`${basePath}/career`}>Career</Link>
             <Link to={`${basePath}/contact`}>Contact</Link>
             <Link to={`${basePath}/privacy`}>Privacy</Link>
           </div>
@@ -28,16 +28,32 @@ const Footer = () => {
           </p>
         </div>
         <div className="social-links">
-          <a href="https://www.instagram.com/juangunner4" target="_blank" rel="noopener noreferrer">
+          <a 
+            href={isWeb3 ? "https://www.instagram.com/0x1JuanGunner4" : "https://www.instagram.com/juangunner4"} 
+            target="_blank" 
+            rel="noopener noreferrer"
+          >
             <i className="fab fa-instagram"></i>
           </a>
-          <a href="https://twitter.com/juangunner4" target="_blank" rel="noopener noreferrer">
+          <a 
+            href={isWeb3 ? "https://twitter.com/0x1JuanGunner4" : "https://twitter.com/juangunner4"} 
+            target="_blank" 
+            rel="noopener noreferrer"
+          >
             <i className="fab fa-x-twitter"></i>
           </a>
-          <a href="https://www.tiktok.com/@juangunner4" target="_blank" rel="noopener noreferrer">
+          <a 
+            href={isWeb3 ? "https://www.tiktok.com/@0x1JuanGunner4" : "https://www.tiktok.com/@juangunner4"} 
+            target="_blank" 
+            rel="noopener noreferrer"
+          >
             <i className="fab fa-tiktok"></i>
           </a>
-          <a href="https://www.youtube.com/@juangunner4" target="_blank" rel="noopener noreferrer">
+          <a 
+            href={isWeb3 ? "https://www.youtube.com/@0x1JuanGunner4" : "https://www.youtube.com/@juangunner4"} 
+            target="_blank" 
+            rel="noopener noreferrer"
+          >
             <i className="fab fa-youtube"></i>
           </a>
         </div>

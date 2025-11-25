@@ -89,7 +89,7 @@ const Hero = () => {
       label: t('hero.links.about'),
       icon: 'fa-solid fa-user',
       external: false,
-      to: `${basePath}/about`,
+      scrollTo: '.home-content',
       ariaLabel: t('hero.links.about'),
     },
   ];
@@ -101,7 +101,17 @@ const Hero = () => {
       </Typography>
       <Box className="hero-linktree">
         {linkItems.map((item) => {
-          const buttonProps = item.external
+          const buttonProps = item.scrollTo
+            ? {
+                component: 'button',
+                onClick: () => {
+                  const element = document.querySelector(item.scrollTo);
+                  if (element) {
+                    element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                  }
+                },
+              }
+            : item.external
             ? {
                 component: 'a',
                 href: item.href,

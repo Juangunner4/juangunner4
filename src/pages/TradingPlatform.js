@@ -36,7 +36,7 @@ const TradingPlatform = () => {
   const platformName = t(`${platformKey}.name`);
   const platformDescription = t(`${platformKey}.description`);
   const platformLinkLabel = t(`${platformKey}.linkLabel`);
-  const backLink = `${getProfileBasePath(expectedIsWeb3)}/about?category=${platform.category}`;
+  const backLink = `${getProfileBasePath(expectedIsWeb3)}/trading?category=${platform.category}`;
   const faviconUrl = getFaviconUrl(platform.link, platform.faviconDomain);
 
   return (

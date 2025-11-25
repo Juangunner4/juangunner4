@@ -4,16 +4,18 @@ import { services } from '../utils/siteContent';
 import { Link } from 'react-router-dom';
 import { useProfile } from '../ProfileContext';
 import { getProfileBasePath } from '../utils/profileRouting';
+import { useTranslation } from 'react-i18next';
 
 const Services = () => {
   const { isWeb3 } = useProfile();
+  const { t } = useTranslation();
   const basePath = getProfileBasePath(isWeb3);
 
   return (
     <div className="page-wrapper">
       <div className="page-hero">
-        <h1>Services</h1>
-        <p>Hands-on support for builders, teams, and creators who need momentum.</p>
+        <h1>{isWeb3 ? t('services.headingWeb3') : t('services.heading')}</h1>
+        <p>{isWeb3 ? t('services.subheadingWeb3') : t('services.subheading')}</p>
       </div>
 
       <div className="page-grid">
@@ -26,12 +28,12 @@ const Services = () => {
       </div>
 
       <div className="page-section">
-        <h2>Ready to collaborate?</h2>
+        <h2>{t('services.ctaHeading')}</h2>
         <p>
-          Tell me about your project scope, timeline, and goals. I will reply with a short plan and next steps within 48 hours.
+          {t('services.ctaDescription')}
         </p>
         <Link className="cta-button" to={`${basePath}/contact`}>
-          Contact me
+          {t('services.ctaButton')}
         </Link>
       </div>
     </div>

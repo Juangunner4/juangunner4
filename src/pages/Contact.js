@@ -3,39 +3,41 @@ import '../styles/ContentPages.css';
 import { useProfile } from '../ProfileContext';
 import { getProfileBasePath } from '../utils/profileRouting';
 import { Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
 const Contact = () => {
   const { isWeb3 } = useProfile();
   const basePath = getProfileBasePath(isWeb3);
+  const { t } = useTranslation();
 
   return (
     <div className="page-wrapper">
       <div className="page-hero">
-        <h1>Contact</h1>
-        <p>Let’s connect about collaborations, coaching, or product ideas.</p>
+        <h1>{t('contact.heading')}</h1>
+        <p>{t('contact.subheading')}</p>
       </div>
 
       <div className="page-section">
-        <h2>Send a quick note</h2>
-        <p>Drop your info and I will reply with next steps.</p>
+        <h2>{t('contact.formHeading')}</h2>
+        <p>{t('contact.formDescription')}</p>
         <form className="page-grid" style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))' }}>
           <label className="page-card" htmlFor="name">
-            <span>Name</span>
-            <input id="name" name="name" type="text" placeholder="Your name" style={{ marginTop: 8, padding: 10 }} />
+            <span>{t('contact.nameLabel')}</span>
+            <input id="name" name="name" type="text" placeholder={t('contact.namePlaceholder')} style={{ marginTop: 8, padding: 10 }} />
           </label>
           <label className="page-card" htmlFor="email">
-            <span>Email</span>
+            <span>{t('contact.emailLabel')}</span>
             <input
               id="email"
               name="email"
               type="email"
-              placeholder="you@example.com"
+              placeholder={t('contact.emailPlaceholder')}
               style={{ marginTop: 8, padding: 10 }}
             />
           </label>
           <label className="page-card" htmlFor="topic">
-            <span>Topic</span>
-            <input id="topic" name="topic" type="text" placeholder="Project, coaching, or inquiry" style={{ marginTop: 8, padding: 10 }} />
+            <span>{t('contact.topicLabel')}</span>
+            <input id="topic" name="topic" type="text" placeholder={t('contact.topicPlaceholder')} style={{ marginTop: 8, padding: 10 }} />
           </label>
         </form>
         <div style={{ marginTop: 14 }}>
@@ -46,26 +48,26 @@ const Contact = () => {
       </div>
 
       <div className="page-section">
-        <h2>Connect on socials</h2>
+        <h2>{t('contact.socialsHeading')}</h2>
         <div className="inline-links">
           <a href="https://x.com/Juangunner4" target="_blank" rel="noopener noreferrer">
-            X / Twitter
+            {t('contact.xTwitter')}
           </a>
           <a href="https://www.instagram.com/juangunner4" target="_blank" rel="noopener noreferrer">
-            Instagram
+            {t('contact.instagram')}
           </a>
           <a href="https://www.youtube.com/@juangunner4" target="_blank" rel="noopener noreferrer">
-            YouTube
+            {t('contact.youtube')}
           </a>
           <a href="https://www.tiktok.com/@juangunner4" target="_blank" rel="noopener noreferrer">
-            TikTok
+            {t('contact.tiktok')}
           </a>
         </div>
         <p style={{ marginTop: 12 }}>
-          Prefer a call? Mention it in your note and I will share a calendar link.
+          {t('contact.callNote')}
         </p>
         <p>
-          Looking for services? Visit the <Link to={`${basePath}/services`}>Services page</Link> to see how we can work together.
+          {t('contact.servicesNote')} <Link to={`${basePath}/services`}>{t('contact.servicesLink')}</Link> {t('contact.servicesNote2')}
         </p>
       </div>
     </div>

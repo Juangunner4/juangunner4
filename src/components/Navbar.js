@@ -130,7 +130,9 @@ const Navbar = () => {
 
       <div className="navbar-right">
         <Link to={basePath}>{t('navbar.home')}</Link>
-        <Link to={`${basePath}/about`}>{t('navbar.about')}</Link>
+        <Link to={`${basePath}/career`}>{t('navbar.career')}</Link>
+        <Link to={isWeb3 ? `${basePath}/content-creator` : `${basePath}/football`}>{isWeb3 ? t('navbar.contentCreator') : t('navbar.football')}</Link>
+        <Link to={`${basePath}/trading`}>{t('navbar.trading')}</Link>
         <Link to={`${basePath}/projects`}>{t('navbar.projects')}</Link>
         <Link to={`${basePath}/services`}>{t('navbar.services')}</Link>
         <Link to={`${basePath}/blog`}>{t('navbar.blog')}</Link>
@@ -140,10 +142,10 @@ const Navbar = () => {
       <div className="navbar-actions">
         <button
           type="button"
-          className="signup-btn"
-          aria-label={t('navbar.signUpAria', 'Create an account to join via Google or email')}
+          className="lang-btn"
+          aria-label={t('navbar.loginAria', 'Login to your account')}
         >
-          {t('navbar.signUp')}
+          {t('navbar.login')}
         </button>
 
         <button
@@ -167,8 +169,14 @@ const Navbar = () => {
           <ListItem button component={Link} to={basePath} onClick={toggleDrawer(false)}>
             <ListItemText primary={t('navbar.home')} primaryTypographyProps={{ sx: { color: '#fff' } }} />
           </ListItem>
-          <ListItem button component={Link} to={`${basePath}/about`} onClick={toggleDrawer(false)}>
-            <ListItemText primary={t('navbar.about')} primaryTypographyProps={{ sx: { color: '#fff' } }} />
+          <ListItem button component={Link} to={`${basePath}/career`} onClick={toggleDrawer(false)}>
+            <ListItemText primary={t('navbar.career')} primaryTypographyProps={{ sx: { color: '#fff' } }} />
+          </ListItem>
+          <ListItem button component={Link} to={isWeb3 ? `${basePath}/content-creator` : `${basePath}/football`} onClick={toggleDrawer(false)}>
+            <ListItemText primary={isWeb3 ? t('navbar.contentCreator') : t('navbar.football')} primaryTypographyProps={{ sx: { color: '#fff' } }} />
+          </ListItem>
+          <ListItem button component={Link} to={`${basePath}/trading`} onClick={toggleDrawer(false)}>
+            <ListItemText primary={t('navbar.trading')} primaryTypographyProps={{ sx: { color: '#fff' } }} />
           </ListItem>
           <ListItem button component={Link} to={`${basePath}/projects`} onClick={toggleDrawer(false)}>
             <ListItemText primary={t('navbar.projects')} primaryTypographyProps={{ sx: { color: '#fff' } }} />

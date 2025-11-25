@@ -200,14 +200,7 @@
 .blog-outline__image {
   display: block;
   border-style: dashed;
-  background: repeating-linear-gradient(
-      45deg,
-      rgba(255, 77, 77, 0.08),
-      rgba(255, 77, 77, 0.08) 12px,
-      rgba(255, 177, 177, 0.12) 12px,
-      rgba(255, 177, 177, 0.12) 24px
-    ),
-    #fff7f7;
+  background: #fff7f7;
 }
 
 .blog-post-body {
@@ -246,7 +239,7 @@
 .blog-outline__placeholder-line {
   height: 12px;
   width: 100%;
-  background: #ffe8e8;
+  background: #f0f0f0;
   border-radius: 8px;
 }
 
@@ -258,7 +251,7 @@
   display: inline-block;
   height: 12px;
   width: 120px;
-  background: #ffe8e8;
+  background: #f0f0f0;
   border-radius: 999px;
 }
 
