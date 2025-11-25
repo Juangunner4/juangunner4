@@ -23,6 +23,9 @@ const Footer = () => {
             <Link to={`${basePath}/contact`}>Contact</Link>
             <Link to={`${basePath}/privacy`}>Privacy</Link>
           </div>
+          <p style={{ marginTop: '12px', fontSize: '0.9rem', opacity: 0.9 }}>
+            © {new Date().getFullYear()} Juangunner4 LLC. All rights reserved.
+          </p>
         </div>
         <div className="social-links">
           <a href="https://www.instagram.com/juangunner4" target="_blank" rel="noopener noreferrer">

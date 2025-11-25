@@ -1,15 +1,22 @@
 {
-  "short_name": "React App",
-  "name": "Juangunner4",
+  "short_name": "Juangunner4",
+  "name": "Juangunner4 - Software Engineer, Footballer, Trader & Streamer",
+  "description": "Portfolio and media hub for Juangunner4 LLC",
   "icons": [
     {
       "src": "favicon.ico",
       "sizes": "64x64 32x32 24x24 16x16",
       "type": "image/x-icon"
+    },
+    {
+      "src": "favicon.ico",
+      "sizes": "192x192",
+      "type": "image/x-icon",
+      "purpose": "any maskable"
     }
   ],
   "start_url": ".",
   "display": "standalone",
-  "theme_color": "#000000",
+  "theme_color": "#ff0000",
   "background_color": "#ffffff"
 }

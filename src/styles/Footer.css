@@ -35,6 +35,13 @@ html, body, #root, .App {
 }  /* Contact Section Styling */
   .contact {
     font-size: 16px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .contact p {
+    margin: 4px 0;
   }
 
   .contact a {

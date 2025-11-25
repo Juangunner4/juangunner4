@@ -19,7 +19,7 @@ const Home = () => {
   const basePath = getProfileBasePath(isWeb3);
 
   const introParagraphs = [
-    'Welcome to my corner of the internet where football, software engineering, and community building collide.',
+    'Welcome to my corner of the internet where football, software engineering, trading, and content creation collide.',
     'I split my time between writing production-grade code, coaching athletes, and experimenting with on-chain culture. This site shares the latest projects, trading experiments, and long-form notes from the journey.',
     'Whether you found me through a pitch, a repo, or a meme, I am glad you are here.',
   ];
@@ -73,7 +73,7 @@ const Home = () => {
           <div className="home-section__header">
             <h2>About me</h2>
             <p>
-              Software engineer, footballer, and community builder obsessed with systems that help teams move faster. I share
+              Software engineer, footballer, trader, streamer, and content creator obsessed with systems that help teams move faster. I share
               behind-the-scenes notes on what is shipping next.
             </p>
           </div>
