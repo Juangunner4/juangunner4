@@ -11,8 +11,16 @@ const XFeed = () => {
   const handle = isWeb3 ? '0x1Juangunner4' : 'juangunner4';
 
   return (
-    <Card sx={{ my: 2, width: '100%' }}>
-      <CardContent sx={{ textAlign: 'center' }}>
+    <Card sx={{ my: 2, width: '100%', maxWidth: '90%', mx: 'auto' }}>
+      <CardContent 
+        sx={{ 
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          gap: 1,
+          textAlign: 'center'
+        }}
+      >
         <Twitter sx={{ fontSize: 40, color: '#ff0000' }} />
         <Typography variant="h6">Follow me on X</Typography>
         <Link 

@@ -73,8 +73,16 @@ const PumpFunFeed = () => {
   ];
 
   return (
-    <Card sx={{ my: 2, width: '100%' }}>
-      <CardContent sx={{ textAlign: 'center', display: 'flex', flexDirection: 'column', gap: 2 }}>
+    <Card sx={{ my: 2, width: '100%', maxWidth: '90%', mx: 'auto' }}>
+      <CardContent 
+        sx={{ 
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          gap: 2,
+          textAlign: 'center'
+        }}
+      >
         <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 1 }}>
           <LocalFireDepartment sx={{ fontSize: 40, color: '#ff9100' }} />
           <Typography variant="h6">Watch me on Pump.fun</Typography>

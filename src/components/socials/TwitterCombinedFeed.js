@@ -65,7 +65,16 @@ const TwitterCombinedFeed = () => {
   if (error) return <Typography color="error">Failed to load tweets</Typography>;
 
   return (
-    <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
+    <Box 
+      sx={{ 
+        display: 'flex', 
+        flexDirection: 'column', 
+        gap: 2,
+        width: '100%',
+        maxWidth: '90%',
+        mx: 'auto'
+      }}
+    >
       {tweets.map((t) => (
         <Box key={t.id}>
           <TwitterTweetEmbed tweetId={t.id} options={{ conversation: 'none' }} />

@@ -25,8 +25,16 @@ const TwitchFeed = () => {
 
   if (videos.length === 0) {
     return (
-      <Card sx={{ my: 2, width: '100%' }}>
-        <CardContent sx={{ textAlign: 'center' }}>
+      <Card sx={{ my: 2, width: '100%', maxWidth: '90%', mx: 'auto' }}>
+        <CardContent 
+          sx={{ 
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            gap: 1,
+            textAlign: 'center'
+          }}
+        >
           <SportsEsports sx={{ fontSize: 40, color: '#ff0000' }} />
           <Typography variant="h6">Watch me on Twitch</Typography>
           <Link
@@ -47,7 +55,7 @@ const TwitchFeed = () => {
 
   return (
     <>
-      <Card sx={{ my: 2, width: '100%' }}>
+      <Card sx={{ my: 2, width: '100%', maxWidth: '90%', mx: 'auto' }}>
         <CardContent sx={{ textAlign: 'center' }}>
           <Typography variant="h6">Latest Twitch Stream</Typography>
           <Box sx={{ position: 'relative', pt: '56.25%' }}>
@@ -69,7 +77,7 @@ const TwitchFeed = () => {
         </CardContent>
       </Card>
       {previous.length > 0 && (
-        <Card sx={{ my: 2, width: '100%' }}>
+        <Card sx={{ my: 2, width: '100%', maxWidth: '90%', mx: 'auto' }}>
           <CardContent>
             <Typography variant="h6" sx={{ textAlign: 'center' }}>
               Previous Streams
