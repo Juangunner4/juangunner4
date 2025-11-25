@@ -4,7 +4,7 @@ import '../styles/About.css';
 import { useTranslation } from 'react-i18next';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useProfile } from '../ProfileContext';
-import { buildProfileAwarePath, getProfileBasePath } from '../utils/profileRouting';
+import { getProfileBasePath } from '../utils/profileRouting';
 import { getFaviconUrl } from '../utils/favicon';
 import tradingPlatforms, { TRADE_CATEGORIES } from '../utils/tradingPlatforms';
 import OpenInNewIcon from '@mui/icons-material/OpenInNew';
@@ -14,7 +14,7 @@ const Trading = () => {
   const [copyStatus, setCopyStatus] = useState({ code: '', error: false });
   const copyTimeoutRef = useRef(null);
   const { t } = useTranslation();
-  const { isWeb3, setProfile } = useProfile();
+  const { isWeb3 } = useProfile();
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -52,15 +52,6 @@ const Trading = () => {
       }
     };
   }, []);
-
-  const handleCategorySelect = (category) => {
-    setSelectedCategory(category);
-
-    if (category === 'trade') {
-      setProfile(true);
-      navigate(buildProfileAwarePath(location.pathname, true));
-    }
-  };
 
   const handleNavigateToPlatform = (platformId) => {
     const basePath = getProfileBasePath(isWeb3);
