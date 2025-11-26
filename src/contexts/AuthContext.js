@@ -1,4 +1,5 @@
-import React, { createContext, useState, useContext, useEffect } from 'react';
+import React, { createContext, useState, useContext, useEffect, useMemo } from 'react';
+import PropTypes from 'prop-types';
 import axios from 'axios';
 
 const AuthContext = createContext();
@@ -153,17 +154,24 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
-  const value = {
-    user,
-    loading,
-    isAuthenticated: !!user,
-    login,
-    loginWithWallet,
-    register,
-    logout,
-    updateProfile,
-    uploadProfilePicture,
-  };
+  const value = useMemo(
+    () => ({
+      user,
+      loading,
+      isAuthenticated: !!user,
+      login,
+      loginWithWallet,
+      register,
+      logout,
+      updateProfile,
+      uploadProfilePicture,
+    }),
+    [user, loading, login, loginWithWallet, register, logout, updateProfile, uploadProfilePicture]
+  );
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
+};
+
+AuthProvider.propTypes = {
+  children: PropTypes.node.isRequired
 };

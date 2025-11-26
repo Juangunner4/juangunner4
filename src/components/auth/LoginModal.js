@@ -208,4 +208,10 @@ const LoginModal = ({ isOpen, onClose, onSwitchToRegister }) => {
   );
 };
 
+LoginModal.propTypes = {
+  isOpen: PropTypes.bool.isRequired,
+  onClose: PropTypes.func.isRequired,
+  onSwitchToRegister: PropTypes.func.isRequired
+};
+
 export default LoginModal;

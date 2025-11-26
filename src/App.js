@@ -21,6 +21,7 @@ import Projects from './pages/Projects';
 import Home from './pages/Home';
 import Footer from './components/Footer';
 import AdBanner from './components/AdBanner';
+import ErrorBoundary from './components/ErrorBoundary';
 import { ProfileProvider, useProfile } from './ProfileContext';
 import { AuthProvider } from './contexts/AuthContext';
 import { getProfileBasePath } from './utils/profileRouting';
@@ -69,38 +70,40 @@ function App() {
   );
 
   return (
-    <ConnectionProvider endpoint={endpoint}>
-      <WalletProvider wallets={wallets} autoConnect>
-        <WalletModalProvider>
-          <AuthProvider>
-            <ProfileProvider>
-              <Router>
-                <Routes>
-                  <Route path="/" element={<Navigate to={getProfileBasePath(false)} replace />} />
-                  <Route path="/profile/:profileType/*" element={<Layout />}>
-                    <Route index element={<Home />} />
-                    <Route path="career" element={<Career />} />
-                    <Route path="football" element={<Football />} />
-                    <Route path="content-creator" element={<ContentCreator />} />
-                    <Route path="trading" element={<Trading />} />
-                    <Route path="projects" element={<Projects />} />
-                    <Route path="services" element={<Services />} />
-                    <Route path="contact" element={<Contact />} />
-                    <Route path="portfolio" element={<Portfolio />} />
-                    <Route path="blog" element={<Blog />} />
-                    <Route path="blog/:slug" element={<BlogPost />} />
-                    <Route path="privacy" element={<PrivacyPolicy />} />
-                    <Route path="terms" element={<TermsOfService />} />
-                    <Route path=":platformId" element={<TradingPlatform />} />
-                  </Route>
-                  <Route path="*" element={<Navigate to={getProfileBasePath(false)} replace />} />
-                </Routes>
-              </Router>
-            </ProfileProvider>
-          </AuthProvider>
-        </WalletModalProvider>
-      </WalletProvider>
-    </ConnectionProvider>
+    <ErrorBoundary>
+      <ConnectionProvider endpoint={endpoint}>
+        <WalletProvider wallets={wallets} autoConnect>
+          <WalletModalProvider>
+            <AuthProvider>
+              <ProfileProvider>
+                <Router>
+                  <Routes>
+                    <Route path="/" element={<Navigate to={getProfileBasePath(false)} replace />} />
+                    <Route path="/profile/:profileType/*" element={<Layout />}>
+                      <Route index element={<Home />} />
+                      <Route path="career" element={<Career />} />
+                      <Route path="football" element={<Football />} />
+                      <Route path="content-creator" element={<ContentCreator />} />
+                      <Route path="trading" element={<Trading />} />
+                      <Route path="projects" element={<Projects />} />
+                      <Route path="services" element={<Services />} />
+                      <Route path="contact" element={<Contact />} />
+                      <Route path="portfolio" element={<Portfolio />} />
+                      <Route path="blog" element={<Blog />} />
+                      <Route path="blog/:slug" element={<BlogPost />} />
+                      <Route path="privacy" element={<PrivacyPolicy />} />
+                      <Route path="terms" element={<TermsOfService />} />
+                      <Route path=":platformId" element={<TradingPlatform />} />
+                    </Route>
+                    <Route path="*" element={<Navigate to={getProfileBasePath(false)} replace />} />
+                  </Routes>
+                </Router>
+              </ProfileProvider>
+            </AuthProvider>
+          </WalletModalProvider>
+        </WalletProvider>
+      </ConnectionProvider>
+    </ErrorBoundary>
   );
 }
 

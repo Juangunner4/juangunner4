@@ -23,3 +23,22 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 .env
+server/.env
+
+# logs
+logs/
+*.log
+
+# uploads (generated files)
+/server/public/uploads/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+Thumbs.db
+
