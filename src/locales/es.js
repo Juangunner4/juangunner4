@@ -16,7 +16,9 @@ const es = {
       web3: 'Web3',
       menuLabel: 'Abrir menú de navegación',
       login: 'Iniciar sesión',
-      loginAria: 'Inicia sesión en tu cuenta'
+      loginAria: 'Inicia sesión en tu cuenta',
+      logout: 'Cerrar sesión',
+      logoutAria: 'Cerrar sesión de tu cuenta'
     },
   hero: {
     intro: {
