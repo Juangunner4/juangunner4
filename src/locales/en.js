@@ -16,7 +16,9 @@ const en = {
       web3: 'Web3',
       menuLabel: 'Open navigation menu',
       login: 'Login',
-      loginAria: 'Login to your account'
+      loginAria: 'Login to your account',
+      logout: 'Logout',
+      logoutAria: 'Logout of your account'
     },
   hero: {
     intro: {
@@ -235,39 +237,29 @@ const en = {
     youtube: 'YouTube'
   },
   home: {
-    headline: 'Building culture at the intersection of code and sport',
-    headlineWeb3: 'Building culture at the intersection of crypto, trading, and memes',
-    intro1: 'Welcome to my corner of the internet where football, software engineering, trading, and content creation collide.',
-    intro1Web3: 'Welcome to my corner of the internet where crypto trading, memecoin culture, and Web3 building collide.',
-    intro2: 'I split my time between writing production-grade code, coaching athletes, and experimenting with on-chain culture. This site shares the latest projects, trading experiments, and long-form notes from the journey.',
-    intro2Web3: 'I split my time between trading on-chain, scouting memecoins, and creating content for the Web3 community. This site shares the latest referral links, trading strategies, and insights from the trenches.',
-    intro3: 'Whether you found me through a pitch, a repo, or a meme, I am glad you are here.',
-    intro3Web3: 'Whether you found me through a referral link, a trade signal, or a viral post, I am glad you are here.',
-    aboutHeading: 'About me',
-    aboutDescription: 'Software engineer, footballer, trader, streamer, and content creator obsessed with systems that help teams move faster. I share behind-the-scenes notes on what is shipping next.',
-    aboutLink: 'Read the full bio',
-    projectsHeading: 'Projects',
-    projectsHeadingWeb3: 'Featured Content',
-    projectsDescription: 'Recent builds that blend product strategy, design, and technical execution.',
-    projectsDescriptionWeb3: 'Top trading platforms, content creation work, and community initiatives.',
-    projectsLink: 'View the full project list',
-    blogHeading: 'Blog',
-    blogHeadingWeb3: 'Trading Insights',
-    blogDescription: 'Long-form writing will be published here after the editorial plan is finalized.',
-    blogDescriptionWeb3: 'Deep dives on memecoin strategies, market analysis, and Web3 culture.',
-    blogLink: 'View the blog outline',
-    project1Title: 'Creator Commerce Microsites',
-    project1TitleWeb3: 'Crypto Trading Platforms',
-    project1Detail: 'Launch-ready landing pages that ship fast and convert audiences into communities.',
-    project1DetailWeb3: 'Curated list of the best exchanges and platforms for trading memecoins and altcoins.',
-    project2Title: 'Match Analysis Dashboard',
-    project2TitleWeb3: 'Memecoin Scouting',
-    project2Detail: 'Interactive visuals that blend player tracking, tactics, and training notes.',
-    project2DetailWeb3: 'Finding early gems on Pump.fun and Dev.fun before they moon. Project evaluation and due diligence.',
-    project3Title: 'Community Analytics Toolkit',
-    project3TitleWeb3: 'Web3 Content Creation',
-    project3Detail: 'Signal-focused dashboards that track engagement across social and on-chain events.',
-    project3DetailWeb3: 'Building the Juangunner4 brand across X, Instagram, and Web3 platforms with authentic crypto content.'
+    title: 'Software Engineering & Athletic Performance',
+    welcome: 'Building products and training as a football athlete.',
+    overviewParagraphs: [
+      'Welcome to my personal website, where I combine my work as a software engineer with my experience as a football athlete. Here I share the tools, training methods, and systems that help me improve in both my professional career and my athletic development.',
+      'I focus on building reliable backend services, improving technical workflows, and creating practical solutions that support real production work. Outside of engineering, I stay committed to football by tracking my training, studying performance, and maintaining a consistent fitness routine.',
+      'This site features my latest engineering projects, football development notes, and resources that support productivity, discipline, and long-term growth. Whether you came here for tech, training, or personal improvement — I am glad you are here.',
+    ],
+    projectsTitle: 'Projects',
+    projectsSummary:
+      'Latest engineering projects and football development notes curated for growth.',
+    projectsLink: 'Explore projects',
+    findTitle: 'What You’ll Find Here',
+    findIntro: 'Resources that support productivity, discipline, and long-term growth.',
+    findList: [
+      'Software engineering projects and backend development',
+      'Football training routines and performance insights',
+      'Productivity tools and discipline frameworks',
+      'Practical notes on career growth and continuous improvement',
+    ],
+    blogTitle: 'Latest blog drop',
+    blogSummary: 'A quick preview of the newest newsletter-style blog. Subscribe for full updates.',
+    blogLink: 'Read the full blog',
+    blogSubscribe: 'Subscribe for updates',
   },
   contact: {
     heading: 'Contact',
@@ -318,8 +310,8 @@ const en = {
     subheadingWeb3: 'Content creation and community building in Web3',
   },
   trading: {
-    heading: 'Invest with Me',
-    headingWeb3: 'Trade with Me',
+    heading: 'Investing platforms & invites',
+    headingWeb3: 'Web3 trading platforms & invites',
     subheading: 'Traditional investing platforms and referral links',
     subheadingWeb3: 'Web3 trading platforms and referral links',
   },
@@ -339,6 +331,34 @@ const en = {
     subheadingWeb3: 'Insights on Web3 culture, trading strategies, and building in crypto.',
     layoutDescription: 'The layout below shows how each entry will be structured once drafts are ready.',
     ctaButton: 'Connect about future articles',
+    latestBodyHeading: 'Latest blog for subscribers',
+    servicePrompt: 'Learn more about services',
+    latest: {
+      title: 'Designing a weekly newsletter that blends code, culture, and sport',
+      publishDate: 'January 2025',
+      readTime: '5 min read',
+      summary:
+        'This newsletter captures the systems I use to ship reliable code, stay sharp on-chain, and keep my football training disciplined.',
+      homeSummary:
+        'Peek at the newest newsletter-style blog covering how I balance Web3 engineering, trading, and football without losing momentum.',
+      newsletterNote:
+        'Subscribers get the full breakdown each week—frameworks, routines, and behind-the-scenes experiments you can apply immediately.',
+      imageAlt: 'Workspace with laptop, headphones, and training gear arranged on a desk.',
+      sections: [
+        {
+          heading: 'Why ship this as a newsletter?',
+          body: 'A weekly drop keeps me honest about progress. It is where I track experiments in codebases, product growth, and how I adjust my training load to stay match-ready.',
+        },
+        {
+          heading: 'What to expect inside',
+          body: 'Each issue blends engineering notes, trading links I am actually using, and a short recap of drills that worked on the field. Expect templates you can reuse and transparent results.',
+        },
+        {
+          heading: 'How to get the next update',
+          body: 'Subscribe to the list and reply with what you want covered next. Your feedback sets the roadmap for upcoming deep dives and code walk-throughs.',
+        },
+      ],
+    },
   },
   footer: {
     contact: 'Contact:'

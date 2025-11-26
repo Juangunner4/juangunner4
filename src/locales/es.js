@@ -16,7 +16,9 @@ const es = {
       web3: 'Web3',
       menuLabel: 'Abrir menú de navegación',
       login: 'Iniciar sesión',
-      loginAria: 'Inicia sesión en tu cuenta'
+      loginAria: 'Inicia sesión en tu cuenta',
+      logout: 'Cerrar sesión',
+      logoutAria: 'Cerrar sesión de tu cuenta'
     },
   hero: {
     intro: {
@@ -236,39 +238,30 @@ const es = {
     youtube: 'YouTube'
   },
   home: {
-    headline: 'Construyendo cultura en la intersección del código y el deporte',
-    headlineWeb3: 'Construyendo cultura en la intersección del crypto, trading y memes',
-    intro1: 'Bienvenido a mi rincón de internet donde el fútbol, la ingeniería de software, el trading y la creación de contenido se encuentran.',
-    intro1Web3: 'Bienvenido a mi rincón de internet donde el trading de crypto, la cultura de memecoins y la construcción Web3 se encuentran.',
-    intro2: 'Divido mi tiempo entre escribir código de calidad, entrenar atletas y experimentar con cultura on-chain. Este sitio comparte los últimos proyectos, experimentos de trading y notas del camino.',
-    intro2Web3: 'Divido mi tiempo entre tradear on-chain, descubrir memecoins y crear contenido para la comunidad Web3. Este sitio comparte los últimos enlaces de referidos, estrategias de trading e insights desde las trincheras.',
-    intro3: 'Ya sea que me encontraste por un pitch, un repo o un meme, me alegra que estés aquí.',
-    intro3Web3: 'Ya sea que me encontraste por un enlace de referido, una señal de trading o un post viral, me alegra que estés aquí.',
-    aboutHeading: 'Sobre mí',
-    aboutDescription: 'Ingeniero de software, futbolista, trader, streamer y creador de contenido obsesionado con sistemas que ayudan a los equipos a moverse más rápido. Comparto notas detrás de escena sobre lo que viene.',
-    aboutLink: 'Leer la biografía completa',
-    projectsHeading: 'Proyectos',
-    projectsHeadingWeb3: 'Contenido Destacado',
-    projectsDescription: 'Construcciones recientes que combinan estrategia de producto, diseño y ejecución técnica.',
-    projectsDescriptionWeb3: 'Las mejores plataformas de trading, trabajo de creación de contenido e iniciativas comunitarias.',
-    projectsLink: 'Ver la lista completa de proyectos',
-    blogHeading: 'Blog',
-    blogHeadingWeb3: 'Insights de Trading',
-    blogDescription: 'La escritura de formato largo se publicará aquí después de finalizar el plan editorial.',
-    blogDescriptionWeb3: 'Análisis profundos sobre estrategias de memecoins, análisis de mercado y cultura Web3.',
-    blogLink: 'Ver el esquema del blog',
-    project1Title: 'Micrositios de comercio para creadores',
-    project1TitleWeb3: 'Plataformas de Trading Crypto',
-    project1Detail: 'Páginas de destino listas para lanzar que se envían rápido y convierten audiencias en comunidades.',
-    project1DetailWeb3: 'Lista curada de los mejores exchanges y plataformas para tradear memecoins y altcoins.',
-    project2Title: 'Panel de análisis de partidos',
-    project2TitleWeb3: 'Scouting de Memecoins',
-    project2Detail: 'Visuales interactivas que combinan seguimiento de jugadores, tácticas y notas de entrenamiento.',
-    project2DetailWeb3: 'Encontrando gemas tempranas en Pump.fun y Dev.fun antes de que exploten. Evaluación de proyectos y due diligence.',
-    project3Title: 'Kit de analítica comunitaria',
-    project3TitleWeb3: 'Creación de Contenido Web3',
-    project3Detail: 'Paneles enfocados en señales que rastrean el compromiso en eventos sociales y on-chain.',
-    project3DetailWeb3: 'Construyendo la marca Juangunner4 en X, Instagram y plataformas Web3 con contenido crypto auténtico.'
+    title: 'Ingeniería de software y rendimiento atlético',
+    welcome:
+      'Bienvenido a mi sitio personal, donde combino mi trabajo como ingeniero de software con mi experiencia como futbolista.',
+    overviewParagraphs: [
+      'Bienvenido a mi sitio personal, donde combino mi trabajo como ingeniero de software con mi experiencia como futbolista. Aquí comparto las herramientas, métodos de entrenamiento y sistemas que me ayudan a mejorar tanto en mi carrera profesional como en mi desarrollo atlético.',
+      'Me enfoco en construir servicios backend confiables, mejorar flujos técnicos y crear soluciones prácticas que apoyen trabajo real en producción. Fuera de la ingeniería, me mantengo comprometido con el fútbol al seguir mis entrenamientos, estudiar el rendimiento y mantener una rutina de acondicionamiento constante.',
+      'Este sitio presenta mis últimos proyectos de ingeniería, notas de desarrollo futbolístico y recursos que apoyan la productividad, la disciplina y el crecimiento a largo plazo. Ya sea que hayas venido por tecnología, entrenamiento o mejora personal, me alegra que estés aquí.',
+    ],
+    projectsTitle: 'Proyectos',
+    projectsSummary:
+      'Últimos proyectos de ingeniería y notas de desarrollo futbolístico curados para el crecimiento.',
+    projectsLink: 'Explorar proyectos',
+    findTitle: 'Lo que encontrarás aquí',
+    findIntro: 'Recursos que apoyan la productividad, la disciplina y el crecimiento a largo plazo.',
+    findList: [
+      'Proyectos de ingeniería de software y desarrollo de backend',
+      'Rutinas de entrenamiento de fútbol e ideas sobre rendimiento',
+      'Herramientas de productividad y marcos de disciplina',
+      'Notas prácticas sobre crecimiento profesional y mejora continua',
+    ],
+    blogTitle: 'Última entrada del blog',
+    blogSummary: 'Una vista previa rápida del blog con formato de boletín. Suscríbete para recibir las entregas completas.',
+    blogLink: 'Leer el blog completo',
+    blogSubscribe: 'Suscribirse a las actualizaciones',
   },
   contact: {
     heading: 'Contacto',
@@ -319,8 +312,8 @@ const es = {
     subheadingWeb3: 'Creación de contenido y construcción de comunidad en Web3',
   },
   trading: {
-    heading: 'Invierte conmigo',
-    headingWeb3: 'Opera conmigo',
+    heading: 'Plataformas de inversión y referidos',
+    headingWeb3: 'Plataformas de trading Web3 y referidos',
     subheading: 'Plataformas de inversión tradicionales y enlaces de referidos',
     subheadingWeb3: 'Plataformas de trading Web3 y enlaces de referidos',
   },
@@ -340,6 +333,34 @@ const es = {
     subheadingWeb3: 'Perspectivas sobre cultura Web3, estrategias de trading y construcción en crypto.',
     layoutDescription: 'El diseño a continuación muestra cómo se estructurará cada entrada una vez que los borradores estén listos.',
     ctaButton: 'Conecta sobre futuros artículos',
+    latestBodyHeading: 'Último blog para suscriptores',
+    servicePrompt: 'Conoce más sobre los servicios',
+    latest: {
+      title: 'Diseñando un boletín semanal que mezcla código, cultura y deporte',
+      publishDate: 'Enero 2025',
+      readTime: 'Lectura de 5 min',
+      summary:
+        'Este boletín captura los sistemas que uso para entregar código confiable, mantenerme agudo on-chain y mantener la disciplina en mi entrenamiento de fútbol.',
+      homeSummary:
+        'Explora el nuevo blog estilo boletín sobre cómo equilibro ingeniería Web3, trading y fútbol sin perder impulso.',
+      newsletterNote:
+        'Los suscriptores reciben el desglose completo cada semana: marcos, rutinas y experimentos entre bastidores que puedes aplicar de inmediato.',
+      imageAlt: 'Escritorio con portátil, audífonos y equipo de entrenamiento organizado.',
+      sections: [
+        {
+          heading: '¿Por qué enviarlo como boletín?',
+          body: 'Un envío semanal me mantiene honesto sobre el progreso. Aquí registro experimentos en código, crecimiento de producto y cómo ajusto la carga de entrenamiento para mantenerme listo para el partido.',
+        },
+        {
+          heading: 'Qué encontrarás adentro',
+          body: 'Cada edición mezcla notas de ingeniería, enlaces de trading que realmente uso y un breve repaso de los ejercicios que funcionaron en la cancha. Espera plantillas reutilizables y resultados transparentes.',
+        },
+        {
+          heading: 'Cómo recibir la próxima actualización',
+          body: 'Suscríbete a la lista y responde con lo que quieres que cubra después. Tus comentarios definen la hoja de ruta para próximos análisis y recorridos de código.',
+        },
+      ],
+    },
   },
   footer: {
     contact: 'Contacto:'

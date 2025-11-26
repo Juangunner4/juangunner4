@@ -27,6 +27,13 @@
   color: #ff0000;
 }
 
+.home-lead {
+  margin: 0;
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: #2d2d2d;
+}
+
 .home-headline p {
   margin: 0 0 10px;
   line-height: 1.6;
@@ -37,6 +44,23 @@
   border-top: 1px solid #e0e0e0;
   padding-top: 18px;
   margin-top: 18px;
+}
+
+.home-section--stacked {
+  border: 1px solid #f1d4d4;
+  background: linear-gradient(180deg, #fffafa 0%, #ffffff 100%);
+  border-radius: 12px;
+  padding: 20px;
+}
+
+.home-section--accent {
+  border: 1px solid #f1d4d4;
+  background: #fffafa;
+  border-radius: 12px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
 }
 
 .home-section__header h2 {
@@ -98,12 +122,27 @@
   line-height: 1.5;
 }
 
+.home-content__card--list {
+  border-left: 4px solid #ff0000;
+}
+
 .home-card-meta {
   display: flex;
   align-items: center;
   gap: 8px;
   color: #5a5a5a;
   font-size: 0.95rem;
+}
+
+.home-article {
+  display: grid;
+  gap: 12px;
+}
+
+.home-article p {
+  margin: 0;
+  line-height: 1.7;
+  color: #2c2c2c;
 }
 
 .home-link {
@@ -129,6 +168,46 @@
 
 .home-content__card li + li {
   margin-top: 6px;
+}
+
+.home-blog-teaser {
+  border: 1px solid #f1d4d4;
+  background: linear-gradient(180deg, #fffafa 0%, #ffffff 100%);
+  border-radius: 12px;
+  padding: 20px;
+}
+
+.home-blog-card {
+  display: grid;
+  grid-template-columns: 2fr 3fr;
+  gap: 16px;
+  align-items: center;
+  margin-top: 12px;
+}
+
+.home-blog-card__media img {
+  width: 100%;
+  height: 100%;
+  max-height: 260px;
+  object-fit: cover;
+  border-radius: 12px;
+  border: 1px solid #e0e0e0;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.home-blog-card__content h3 {
+  margin: 8px 0 6px;
+}
+
+.home-blog-card__content p {
+  margin: 0 0 12px;
+}
+
+.home-blog-card__actions {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
 }
 
 @media (max-width: 800px) {
@@ -161,5 +240,13 @@
 
   .home-content__grid {
     grid-template-columns: 1fr;
+  }
+
+  .home-blog-card {
+    grid-template-columns: 1fr;
+  }
+
+  .home-blog-card__media img {
+    max-height: 220px;
   }
 }

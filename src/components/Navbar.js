@@ -166,67 +166,73 @@ const Navbar = () => {
       </div>
 
       <div className="navbar-actions">
-        {isAuthenticated ? (
-          <div className="user-menu">
-            <button
-              type="button"
-              className="user-menu-button"
-              onClick={() => setUserMenuOpen(!userMenuOpen)}
-              aria-label="User menu"
-            >
-              {user?.profilePicture ? (
-                <img
-                  src={user.profilePicture}
-                  alt={user.username}
-                  className="user-avatar"
-                />
-              ) : (
-                <div className="user-avatar" style={{ background: '#ff0000', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'white', fontWeight: 'bold' }}>
-                  {user?.username?.charAt(0).toUpperCase()}
+        <div className="auth-controls">
+          {isAuthenticated && (
+            <div className="user-menu">
+              <button
+                type="button"
+                className="user-menu-button"
+                onClick={() => setUserMenuOpen(!userMenuOpen)}
+                aria-label="User menu"
+              >
+                {user?.profilePicture ? (
+                  <img
+                    src={user.profilePicture}
+                    alt={user.username}
+                    className="user-avatar"
+                  />
+                ) : (
+                  <div className="user-avatar" style={{ background: '#ff0000', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'white', fontWeight: 'bold' }}>
+                    {user?.username?.charAt(0).toUpperCase()}
+                  </div>
+                )}
+                <span>{user?.username}</span>
+              </button>
+
+              {userMenuOpen && (
+                <div className="user-dropdown">
+                  <button
+                    className="user-dropdown-item"
+                    onClick={() => {
+                      setUserMenuOpen(false);
+                      navigate(`${basePath}/profile`);
+                    }}
+                  >
+                    Profile
+                  </button>
+                  <button
+                    className="user-dropdown-item"
+                    onClick={() => {
+                      setUserMenuOpen(false);
+                      navigate(`${basePath}/settings`);
+                    }}
+                  >
+                    Settings
+                  </button>
+                  <button
+                    className="user-dropdown-item logout"
+                    onClick={handleLogout}
+                  >
+                    {t('navbar.logout')}
+                  </button>
                 </div>
               )}
-              <span>{user?.username}</span>
-            </button>
+            </div>
+          )}
 
-            {userMenuOpen && (
-              <div className="user-dropdown">
-                <button
-                  className="user-dropdown-item"
-                  onClick={() => {
-                    setUserMenuOpen(false);
-                    navigate(`${basePath}/profile`);
-                  }}
-                >
-                  Profile
-                </button>
-                <button
-                  className="user-dropdown-item"
-                  onClick={() => {
-                    setUserMenuOpen(false);
-                    navigate(`${basePath}/settings`);
-                  }}
-                >
-                  Settings
-                </button>
-                <button
-                  className="user-dropdown-item logout"
-                  onClick={handleLogout}
-                >
-                  Logout
-                </button>
-              </div>
-            )}
-          </div>
-        ) : (
           <button
             type="button"
             className="lang-btn"
-            onClick={handleLoginClick}
-            aria-label={t('navbar.loginAria', 'Login to your account')}
+            onClick={isAuthenticated ? handleLogout : handleLoginClick}
+            aria-label={
+              isAuthenticated
+                ? t('navbar.logoutAria', 'Logout of your account')
+                : t('navbar.loginAria', 'Login to your account')
+            }
           >
-            {t('navbar.login')}
+            {isAuthenticated ? t('navbar.logout') : t('navbar.login')}
           </button>
-        )}
+        </div>
 
         <button
           className="hamburger"
