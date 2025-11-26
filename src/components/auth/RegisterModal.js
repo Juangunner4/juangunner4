@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import { Turnstile } from '@marsidev/react-turnstile';
 import { useAuth } from '../../contexts/AuthContext';
 import '../../styles/Auth.css';
