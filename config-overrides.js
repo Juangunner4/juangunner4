@@ -4,6 +4,7 @@ module.exports = function override(config) {
     ...(config.resolve.fallback || {}),
     crypto: require.resolve("crypto-browserify"),
     stream: require.resolve("stream-browserify"),
+    vm: require.resolve("vm-browserify"),
   };
 
   // Suppress source-map-loader warnings for third-party libraries

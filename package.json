@@ -21,6 +21,7 @@
     "@testing-library/user-event": "^13.5.0",
     "axios": "^1.13.2",
     "bs58": "^6.0.0",
+    "crypto-browserify": "^3.12.0",
     "dotenv": "^16.0.3",
     "express": "^4.18.2",
     "i18next": "23.16.8",
@@ -32,14 +33,14 @@
     "react-router-dom": "^6.27.0",
     "react-scripts": "5.0.1",
     "react-twitter-embed": "^4.0.4",
+    "stream-browserify": "^3.0.0",
     "twitter-api-v2": "^1.14.0",
-    "web-vitals": "^2.1.4",
-    "crypto-browserify": "^3.12.0",
-    "stream-browserify": "^3.0.0"
+    "vm-browserify": "^1.1.2",
+    "web-vitals": "^2.1.4"
   },
   "scripts": {
     "start": "concurrently \"npm run server\" \"npm run client\"",
-    "server": "node server/index.js",
+    "server": "cd server && node index.js",
     "client": "react-app-rewired start",
     "build": "react-app-rewired build",
     "test": "react-app-rewired test",
@@ -64,11 +65,11 @@
     ]
   },
   "devDependencies": {
+    "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
     "@testing-library/jest-dom": "^6.4.6",
     "@testing-library/react": "^16.0.0",
     "concurrently": "^9.2.0",
-    "typescript": "~4.9.5",
     "react-app-rewired": "^2.2.1",
-    "@babel/plugin-proposal-private-property-in-object": "^7.21.11"
+    "typescript": "~4.9.5"
   }
 }
