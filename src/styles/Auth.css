@@ -178,7 +178,7 @@
   align-items: center;
   justify-content: center;
   gap: 12px;
-  background: linear-gradient(135deg, #9945ff 0%, #14f195 100%);
+  background: #ff0000;
   color: white;
   border: none;
   padding: 14px 24px;
@@ -190,7 +190,7 @@
 }
 
 .wallet-connect-btn:hover {
-  opacity: 0.9;
+  background: #cc0000;
 }
 
 .wallet-connect-btn:active {
@@ -374,7 +374,7 @@
 
 /* Solana Wallet Adapter Overrides */
 .wallet-adapter-button {
-  background: linear-gradient(135deg, #9945ff 0%, #14f195 100%) !important;
+  background: #ff0000 !important;
   color: white !important;
   border: none !important;
   padding: 14px 24px !important;
@@ -388,7 +388,7 @@
 }
 
 .wallet-adapter-button:hover {
-  opacity: 0.9 !important;
+  background: #cc0000 !important;
 }
 
 .wallet-adapter-button:active {
@@ -396,7 +396,7 @@
 }
 
 .wallet-adapter-button-trigger {
-  background: linear-gradient(135deg, #9945ff 0%, #14f195 100%) !important;
+  background: #ff0000 !important;
 }
 
 .wallet-adapter-modal-wrapper {
