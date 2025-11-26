@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import Turnstile from '@marsidev/react-turnstile';
+import { Turnstile } from '@marsidev/react-turnstile';
 import { useAuth } from '../../contexts/AuthContext';
 import '../../styles/Auth.css';
 
