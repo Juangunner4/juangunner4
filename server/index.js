@@ -3,9 +3,14 @@ const express = require('express');
 const helmet = require('helmet');
 const cors = require('cors');
 const morgan = require('morgan');
+const cookieParser = require('cookie-parser');
 const fetch = require('node-fetch');
+const connectDB = require('./config/database');
 const app = express();
 const port = process.env.PORT || 4000;
+
+// Connect to MongoDB
+connectDB();
 
 const BEARER_TOKEN = process.env.TWITTER_BEARER_TOKEN;
 // In-memory caches to reduce Twitter API calls
@@ -59,8 +64,20 @@ app.use(cors({
 
 // Parse JSON bodies
 app.use(express.json());
+// Parse cookies
+app.use(cookieParser());
 // HTTP request logging
 app.use(morgan('combined'));
+// Serve uploaded files
+app.use('/uploads', express.static('public/uploads'));
+
+// Auth routes
+const authRoutes = require('./routes/auth');
+app.use('/api/auth', authRoutes);
+
+// User routes
+const userRoutes = require('./routes/user');
+app.use('/api/user', userRoutes);
 
 // Proxy endpoint for Twitter timeline
 app.get('/api/twitter/:username', async (req, res) => {

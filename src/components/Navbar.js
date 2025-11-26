@@ -11,12 +11,19 @@ import { useProfile } from '../ProfileContext';
 import { useTranslation } from 'react-i18next';
 import { buildProfileAwarePath, getProfileBasePath } from '../utils/profileRouting';
 import MenuIcon from '@mui/icons-material/Menu';
+import { useAuth } from '../contexts/AuthContext';
+import LoginModal from './auth/LoginModal';
+import RegisterModal from './auth/RegisterModal';
 
 const Navbar = () => {
   const { isWeb3, setProfile } = useProfile();
+  const { user, isAuthenticated, logout } = useAuth();
   const currentImage = isWeb3 ? web3Image : web2Image;
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [floatingMessage, setFloatingMessage] = useState(null);
+  const [loginModalOpen, setLoginModalOpen] = useState(false);
+  const [registerModalOpen, setRegisterModalOpen] = useState(false);
+  const [userMenuOpen, setUserMenuOpen] = useState(false);
   const { t, i18n } = useTranslation();
   const navigate = useNavigate();
   const location = useLocation();
@@ -32,6 +39,25 @@ const Navbar = () => {
     const targetPath = buildProfileAwarePath(location.pathname, nextIsWeb3);
     setProfile(nextIsWeb3);
     navigate(targetPath);
+  };
+
+  const handleLogout = () => {
+    logout();
+    setUserMenuOpen(false);
+  };
+
+  const handleLoginClick = () => {
+    setLoginModalOpen(true);
+  };
+
+  const handleSwitchToRegister = () => {
+    setLoginModalOpen(false);
+    setRegisterModalOpen(true);
+  };
+
+  const handleSwitchToLogin = () => {
+    setRegisterModalOpen(false);
+    setLoginModalOpen(true);
   };
 
   useEffect(() => {
@@ -140,13 +166,67 @@ const Navbar = () => {
       </div>
 
       <div className="navbar-actions">
-        <button
-          type="button"
-          className="lang-btn"
-          aria-label={t('navbar.loginAria', 'Login to your account')}
-        >
-          {t('navbar.login')}
-        </button>
+        {isAuthenticated ? (
+          <div className="user-menu">
+            <button
+              type="button"
+              className="user-menu-button"
+              onClick={() => setUserMenuOpen(!userMenuOpen)}
+              aria-label="User menu"
+            >
+              {user?.profilePicture ? (
+                <img
+                  src={user.profilePicture}
+                  alt={user.username}
+                  className="user-avatar"
+                />
+              ) : (
+                <div className="user-avatar" style={{ background: '#ff0000', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'white', fontWeight: 'bold' }}>
+                  {user?.username?.charAt(0).toUpperCase()}
+                </div>
+              )}
+              <span>{user?.username}</span>
+            </button>
+
+            {userMenuOpen && (
+              <div className="user-dropdown">
+                <button
+                  className="user-dropdown-item"
+                  onClick={() => {
+                    setUserMenuOpen(false);
+                    navigate(`${basePath}/profile`);
+                  }}
+                >
+                  Profile
+                </button>
+                <button
+                  className="user-dropdown-item"
+                  onClick={() => {
+                    setUserMenuOpen(false);
+                    navigate(`${basePath}/settings`);
+                  }}
+                >
+                  Settings
+                </button>
+                <button
+                  className="user-dropdown-item logout"
+                  onClick={handleLogout}
+                >
+                  Logout
+                </button>
+              </div>
+            )}
+          </div>
+        ) : (
+          <button
+            type="button"
+            className="lang-btn"
+            onClick={handleLoginClick}
+            aria-label={t('navbar.loginAria', 'Login to your account')}
+          >
+            {t('navbar.login')}
+          </button>
+        )}
 
         <button
           className="hamburger"
@@ -192,6 +272,18 @@ const Navbar = () => {
           </ListItem>
         </List>
       </Drawer>
+
+      {/* Auth Modals */}
+      <LoginModal
+        isOpen={loginModalOpen}
+        onClose={() => setLoginModalOpen(false)}
+        onSwitchToRegister={handleSwitchToRegister}
+      />
+      <RegisterModal
+        isOpen={registerModalOpen}
+        onClose={() => setRegisterModalOpen(false)}
+        onSwitchToLogin={handleSwitchToLogin}
+      />
     </nav>
   );
 };
