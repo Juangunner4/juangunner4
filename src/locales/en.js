@@ -255,6 +255,10 @@ const en = {
       'Productivity tools and discipline frameworks',
       'Practical notes on career growth and continuous improvement',
     ],
+    blogTitle: 'Latest blog drop',
+    blogSummary: 'A quick preview of the newest newsletter-style blog. Subscribe for full updates.',
+    blogLink: 'Read the full blog',
+    blogSubscribe: 'Subscribe for updates',
   },
   contact: {
     heading: 'Contact',
@@ -326,6 +330,34 @@ const en = {
     subheadingWeb3: 'Insights on Web3 culture, trading strategies, and building in crypto.',
     layoutDescription: 'The layout below shows how each entry will be structured once drafts are ready.',
     ctaButton: 'Connect about future articles',
+    latestBodyHeading: 'Latest blog for subscribers',
+    servicePrompt: 'Learn more about services',
+    latest: {
+      title: 'Designing a weekly newsletter that blends code, culture, and sport',
+      publishDate: 'January 2025',
+      readTime: '5 min read',
+      summary:
+        'This newsletter captures the systems I use to ship reliable code, stay sharp on-chain, and keep my football training disciplined.',
+      homeSummary:
+        'Peek at the newest newsletter-style blog covering how I balance Web3 engineering, trading, and football without losing momentum.',
+      newsletterNote:
+        'Subscribers get the full breakdown each week—frameworks, routines, and behind-the-scenes experiments you can apply immediately.',
+      imageAlt: 'Workspace with laptop, headphones, and training gear arranged on a desk.',
+      sections: [
+        {
+          heading: 'Why ship this as a newsletter?',
+          body: 'A weekly drop keeps me honest about progress. It is where I track experiments in codebases, product growth, and how I adjust my training load to stay match-ready.',
+        },
+        {
+          heading: 'What to expect inside',
+          body: 'Each issue blends engineering notes, trading links I am actually using, and a short recap of drills that worked on the field. Expect templates you can reuse and transparent results.',
+        },
+        {
+          heading: 'How to get the next update',
+          body: 'Subscribe to the list and reply with what you want covered next. Your feedback sets the roadmap for upcoming deep dives and code walk-throughs.',
+        },
+      ],
+    },
   },
   footer: {
     contact: 'Contact:'
