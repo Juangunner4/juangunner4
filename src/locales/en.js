@@ -236,8 +236,7 @@ const en = {
   },
   home: {
     title: 'Software Engineering & Athletic Performance',
-    welcome:
-      'Welcome to my personal website, where I combine my work as a software engineer with my experience as a football athlete.',
+    welcome: 'Building products and training as a football athlete.',
     overviewParagraphs: [
       'Welcome to my personal website, where I combine my work as a software engineer with my experience as a football athlete. Here I share the tools, training methods, and systems that help me improve in both my professional career and my athletic development.',
       'I focus on building reliable backend services, improving technical workflows, and creating practical solutions that support real production work. Outside of engineering, I stay committed to football by tracking my training, studying performance, and maintaining a consistent fitness routine.',
