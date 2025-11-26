@@ -12,6 +12,7 @@ import '../styles/Home.css';
 import { useProfile } from '../ProfileContext';
 import { getProfileBasePath } from '../utils/profileRouting';
 import { useTranslation } from 'react-i18next';
+import blogCover from '../assets/web3.jpg';
 
 const VALID_TABS = ['x', 'instagram', 'twitch', 'pumpfun', 'youtube'];
 const Home = () => {
@@ -22,6 +23,7 @@ const Home = () => {
 
   const introParagraphs = t('home.overviewParagraphs', { returnObjects: true });
   const highlights = t('home.findList', { returnObjects: true });
+  const latestBlog = t('blog.latest', { returnObjects: true });
   const safeIntroParagraphs = Array.isArray(introParagraphs)
     ? introParagraphs
     : [introParagraphs];
@@ -71,6 +73,35 @@ const Home = () => {
           <Link className="home-link" to={`${basePath}/projects`}>
             {t('home.projectsLink')}
           </Link>
+        </section>
+
+        <section className="home-section home-blog-teaser">
+          <div className="home-section__header">
+            <h2>{t('home.blogTitle')}</h2>
+            <p>{t('home.blogSummary')}</p>
+          </div>
+          <div className="home-blog-card">
+            <div className="home-blog-card__media">
+              <img src={blogCover} alt={latestBlog?.imageAlt} />
+            </div>
+            <div className="home-blog-card__content">
+              <div className="home-card-meta">
+                <span>{latestBlog?.publishDate}</span>
+                <span>•</span>
+                <span>{latestBlog?.readTime}</span>
+              </div>
+              <h3>{latestBlog?.title}</h3>
+              <p>{latestBlog?.homeSummary || latestBlog?.summary}</p>
+              <div className="home-blog-card__actions">
+                <Link className="home-link" to={`${basePath}/blog`}>
+                  {t('home.blogLink')}
+                </Link>
+                <Link className="home-link" to={`${basePath}/contact`}>
+                  {t('home.blogSubscribe')}
+                </Link>
+              </div>
+            </div>
+          </div>
         </section>
 
         <section className="home-section">

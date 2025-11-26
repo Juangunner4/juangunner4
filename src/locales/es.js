@@ -256,6 +256,10 @@ const es = {
       'Herramientas de productividad y marcos de disciplina',
       'Notas prácticas sobre crecimiento profesional y mejora continua',
     ],
+    blogTitle: 'Última entrada del blog',
+    blogSummary: 'Una vista previa rápida del blog con formato de boletín. Suscríbete para recibir las entregas completas.',
+    blogLink: 'Leer el blog completo',
+    blogSubscribe: 'Suscribirse a las actualizaciones',
   },
   contact: {
     heading: 'Contacto',
@@ -327,6 +331,34 @@ const es = {
     subheadingWeb3: 'Perspectivas sobre cultura Web3, estrategias de trading y construcción en crypto.',
     layoutDescription: 'El diseño a continuación muestra cómo se estructurará cada entrada una vez que los borradores estén listos.',
     ctaButton: 'Conecta sobre futuros artículos',
+    latestBodyHeading: 'Último blog para suscriptores',
+    servicePrompt: 'Conoce más sobre los servicios',
+    latest: {
+      title: 'Diseñando un boletín semanal que mezcla código, cultura y deporte',
+      publishDate: 'Enero 2025',
+      readTime: 'Lectura de 5 min',
+      summary:
+        'Este boletín captura los sistemas que uso para entregar código confiable, mantenerme agudo on-chain y mantener la disciplina en mi entrenamiento de fútbol.',
+      homeSummary:
+        'Explora el nuevo blog estilo boletín sobre cómo equilibro ingeniería Web3, trading y fútbol sin perder impulso.',
+      newsletterNote:
+        'Los suscriptores reciben el desglose completo cada semana: marcos, rutinas y experimentos entre bastidores que puedes aplicar de inmediato.',
+      imageAlt: 'Escritorio con portátil, audífonos y equipo de entrenamiento organizado.',
+      sections: [
+        {
+          heading: '¿Por qué enviarlo como boletín?',
+          body: 'Un envío semanal me mantiene honesto sobre el progreso. Aquí registro experimentos en código, crecimiento de producto y cómo ajusto la carga de entrenamiento para mantenerme listo para el partido.',
+        },
+        {
+          heading: 'Qué encontrarás adentro',
+          body: 'Cada edición mezcla notas de ingeniería, enlaces de trading que realmente uso y un breve repaso de los ejercicios que funcionaron en la cancha. Espera plantillas reutilizables y resultados transparentes.',
+        },
+        {
+          heading: 'Cómo recibir la próxima actualización',
+          body: 'Suscríbete a la lista y responde con lo que quieres que cubra después. Tus comentarios definen la hoja de ruta para próximos análisis y recorridos de código.',
+        },
+      ],
+    },
   },
   footer: {
     contact: 'Contacto:'
