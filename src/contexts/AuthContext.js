@@ -1,4 +1,4 @@
-import React, { createContext, useState, useContext, useEffect, useMemo } from 'react';
+import React, { createContext, useState, useContext, useEffect, useMemo, useCallback } from 'react';
 import PropTypes from 'prop-types';
 import axios from 'axios';
 
@@ -48,7 +48,7 @@ export const AuthProvider = ({ children }) => {
   }, [token]);
 
   // Email/Password Login
-  const login = async (email, password, turnstileToken) => {
+  const login = useCallback(async (email, password, turnstileToken) => {
     try {
       const response = await axios.post('/api/auth/login', {
         email,
@@ -67,10 +67,10 @@ export const AuthProvider = ({ children }) => {
       const message = error.response?.data?.message || 'Login failed';
       return { success: false, error: message };
     }
-  };
+  }, []);
 
   // Solana Wallet Login
-  const loginWithWallet = async (walletAddress, signature, message) => {
+  const loginWithWallet = useCallback(async (walletAddress, signature, message) => {
     try {
       const response = await axios.post('/api/auth/wallet-login', {
         walletAddress,
@@ -89,10 +89,10 @@ export const AuthProvider = ({ children }) => {
       const message = error.response?.data?.message || 'Wallet login failed';
       return { success: false, error: message };
     }
-  };
+  }, []);
 
   // Register
-  const register = async (username, email, password, confirmPassword, turnstileToken) => {
+  const register = useCallback(async (username, email, password, confirmPassword, turnstileToken) => {
     try {
       const response = await axios.post('/api/auth/register', {
         username,
@@ -113,17 +113,17 @@ export const AuthProvider = ({ children }) => {
       const message = error.response?.data?.message || 'Registration failed';
       return { success: false, error: message };
     }
-  };
+  }, []);
 
   // Logout
-  const logout = () => {
+  const logout = useCallback(() => {
     localStorage.removeItem('token');
     setToken(null);
     setUser(null);
-  };
+  }, []);
 
   // Update user profile
-  const updateProfile = async (updates) => {
+  const updateProfile = useCallback(async (updates) => {
     try {
       const response = await axios.put('/api/user/profile', updates);
       setUser(response.data);
@@ -132,10 +132,10 @@ export const AuthProvider = ({ children }) => {
       const message = error.response?.data?.message || 'Update failed';
       return { success: false, error: message };
     }
-  };
+  }, []);
 
   // Upload profile picture
-  const uploadProfilePicture = async (file) => {
+  const uploadProfilePicture = useCallback(async (file) => {
     try {
       const formData = new FormData();
       formData.append('profilePicture', file);
@@ -152,7 +152,7 @@ export const AuthProvider = ({ children }) => {
       const message = error.response?.data?.message || 'Upload failed';
       return { success: false, error: message };
     }
-  };
+  }, []);
 
   const value = useMemo(
     () => ({
