@@ -142,7 +142,7 @@
 .trade-section h3 {
   margin-top: 0;
   font-size: 1.75rem;
-  color: #b30000;
+  color: #ff0000;
 }
 
 .trade-description {
@@ -214,7 +214,7 @@
 .referral-card h4 {
   margin: 0;
   font-size: 1.25rem;
-  color: #b30000;
+  color: #ff0000;
 }
 
 .referral-card p {
@@ -233,7 +233,7 @@
 .referral-tags__label {
   font-size: 0.85rem;
   font-weight: 600;
-  color: #b30000;
+  color: #ff0000;
   text-transform: uppercase;
   letter-spacing: 0.05em;
 }
@@ -251,7 +251,7 @@
   padding: 4px 10px;
   border-radius: 999px;
   background-color: #ffffff;
-  color: #b30000;
+  color: #ff0000;
   font-size: 0.8rem;
   font-weight: 600;
 }
@@ -310,13 +310,13 @@
 
 .referral-code span {
   font-weight: 600;
-  color: #b30000;
+  color: #ff0000;
 }
 
 .referral-code code {
   font-family: 'Source Code Pro', 'SFMono-Regular', Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;
   font-weight: 600;
-  color: #b30000;
+  color: #ff0000;
 }
 
 .copy-button {
@@ -340,7 +340,7 @@
 .copy-feedback {
   margin: 0;
   font-size: 0.85rem;
-  color: #b30000;
+  color: #ff0000;
 }
 
 @media (max-width: 600px) {

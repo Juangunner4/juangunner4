@@ -45,7 +45,7 @@
 
 .platform-page__nav-button--secondary {
   background: #ffffff;
-  color: #b30000;
+  color: #ff0000;
   box-shadow: 0 10px 20px rgba(255, 0, 0, 0.12);
   border: 1px solid #f4bcbc;
 }
@@ -69,13 +69,13 @@
 }
 
 .platform-page__nav-button--secondary .platform-page__nav-icon {
-  background: rgba(179, 0, 0, 0.1);
+  background: rgba(255, 0, 0, 0.1);
 }
 
 .platform-page__header h1 {
   margin: 8px 0 12px;
   font-size: 2rem;
-  color: #b30000;
+  color: #ff0000;
 }
 
 .platform-page__title {
@@ -111,7 +111,7 @@
   padding: 6px 12px;
   border-radius: 999px;
   background: #ffffff;
-  color: #b30000;
+  color: #ff0000;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.08em;
@@ -134,7 +134,7 @@
 
 .platform-page__section h2 {
   margin: 0 0 12px;
-  color: #b30000;
+  color: #ff0000;
   font-size: 1.1rem;
 }
 
@@ -151,7 +151,7 @@
   padding: 6px 12px;
   border-radius: 999px;
   background: #ffffff;
-  color: #b30000;
+  color: #ff0000;
   font-weight: 600;
   font-size: 0.9rem;
 }
@@ -163,7 +163,7 @@
   padding: 10px 14px;
   border-radius: 8px;
   background: #ffffff;
-  color: #b30000;
+  color: #ff0000;
   font-weight: 700;
   letter-spacing: 0.05em;
   border: 1px solid #f4bcbc;
