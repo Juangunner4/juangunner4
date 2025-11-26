@@ -308,8 +308,8 @@ const en = {
     subheadingWeb3: 'Content creation and community building in Web3',
   },
   trading: {
-    heading: 'Invest with Me',
-    headingWeb3: 'Trade with Me',
+    heading: 'Investing platforms & invites',
+    headingWeb3: 'Web3 trading platforms & invites',
     subheading: 'Traditional investing platforms and referral links',
     subheadingWeb3: 'Web3 trading platforms and referral links',
   },

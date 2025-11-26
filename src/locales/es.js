@@ -310,8 +310,8 @@ const es = {
     subheadingWeb3: 'Creación de contenido y construcción de comunidad en Web3',
   },
   trading: {
-    heading: 'Invierte conmigo',
-    headingWeb3: 'Opera conmigo',
+    heading: 'Plataformas de inversión y referidos',
+    headingWeb3: 'Plataformas de trading Web3 y referidos',
     subheading: 'Plataformas de inversión tradicionales y enlaces de referidos',
     subheadingWeb3: 'Plataformas de trading Web3 y enlaces de referidos',
   },
