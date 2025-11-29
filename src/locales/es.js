@@ -7,6 +7,7 @@ const es = {
       trading: 'Trading',
       projects: 'Proyectos',
       services: 'Servicios',
+      shop: 'Tienda',
       blog: 'Blog',
       contact: 'Contacto',
       langEn: 'English',
@@ -361,6 +362,42 @@ const es = {
         },
       ],
     },
+  },
+  shop: {
+    heading: 'Tienda',
+    subheading:
+      'Explora merch, productos digitales y sesiones de coaching para apoyar la marca y subir de nivel.',
+    subheadingWeb3:
+      'Drops con token-gate, herramientas para creadores y merch amigable con cripto para la comunidad web3.',
+    filters: {
+      allCategories: 'Todas las categorías',
+      merch: 'Merch',
+      digital: 'Digital',
+      coaching: 'Coaching',
+      anyPrice: 'Cualquier tipo de precio',
+      fixed: 'Pago único',
+      subscription: 'Suscripción',
+      anyPayment: 'Cualquier método de pago',
+      square: 'Square',
+      crypto: 'Cripto',
+    },
+    filterLabels: {
+      category: 'Categoría',
+      priceType: 'Tipo de precio',
+      paymentType: 'Método de pago',
+    },
+    priceLabel: '{{price}} {{currency}}',
+    priceTypes: {
+      fixed: 'Compra única',
+      subscription: 'Suscripción',
+    },
+    paymentTypesLabel: 'Pagar con: {{methods}}',
+    squareCta: 'Pagar con Square',
+    cryptoCta: 'Pagar con cripto',
+    empty: 'No hay artículos que coincidan con estos filtros aún. Próximos drops aparecerán aquí.',
+    loadError: 'No se pueden cargar los artículos de la tienda en este momento.',
+    checkoutError: 'No se pudo iniciar el pago de Square. Intenta de nuevo más tarde.',
+    checkoutSuccess: 'El enlace de pago de Square se abrió en una nueva pestaña.',
   },
   footer: {
     contact: 'Contacto:'

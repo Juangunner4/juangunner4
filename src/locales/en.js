@@ -7,6 +7,7 @@ const en = {
       trading: 'Trading',
       projects: 'Projects',
       services: 'Services',
+      shop: 'Shop',
       blog: 'Blog',
       contact: 'Contact',
       langEn: 'English',
@@ -359,6 +360,42 @@ const en = {
         },
       ],
     },
+  },
+  shop: {
+    heading: 'Shop',
+    subheading:
+      'Browse merch, digital drops, and coaching sessions. Everything you need to support the brand and level up.',
+    subheadingWeb3:
+      'Token-gated drops, creator tools, and crypto-friendly merch — built for the web3 community.',
+    filters: {
+      allCategories: 'All categories',
+      merch: 'Merch',
+      digital: 'Digital',
+      coaching: 'Coaching',
+      anyPrice: 'Any price type',
+      fixed: 'One-time',
+      subscription: 'Subscription',
+      anyPayment: 'Any payment method',
+      square: 'Square',
+      crypto: 'Crypto',
+    },
+    filterLabels: {
+      category: 'Category',
+      priceType: 'Price type',
+      paymentType: 'Payment method',
+    },
+    priceLabel: '{{price}} {{currency}}',
+    priceTypes: {
+      fixed: 'One-time purchase',
+      subscription: 'Subscription',
+    },
+    paymentTypesLabel: 'Pay with: {{methods}}',
+    squareCta: 'Checkout with Square',
+    cryptoCta: 'Pay with crypto',
+    empty: 'No items match these filters yet. New drops will appear here soon.',
+    loadError: 'Unable to load shop items right now.',
+    checkoutError: 'Square checkout could not be started. Please try again later.',
+    checkoutSuccess: 'Square checkout link created in a new tab.',
   },
   footer: {
     contact: 'Contact:'

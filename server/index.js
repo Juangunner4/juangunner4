@@ -135,6 +135,10 @@ app.use('/api/auth', authLimiter, authRoutes);
 const userRoutes = require('./routes/user');
 app.use('/api/user', userRoutes);
 
+// Shop routes
+const shopRoutes = require('./routes/shop');
+app.use('/api/shop', shopRoutes);
+
 // Proxy endpoint for Twitter timeline
 app.get('/api/twitter/:username', async (req, res) => {
   const username = req.params.username;

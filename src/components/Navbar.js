@@ -161,6 +161,7 @@ const Navbar = () => {
         <Link to={`${basePath}/trading`}>{t('navbar.trading')}</Link>
         <Link to={`${basePath}/projects`}>{t('navbar.projects')}</Link>
         <Link to={`${basePath}/services`}>{t('navbar.services')}</Link>
+        <Link to={`${basePath}/shop`}>{t('navbar.shop')}</Link>
         <Link to={`${basePath}/blog`}>{t('navbar.blog')}</Link>
         <Link to={`${basePath}/contact`}>{t('navbar.contact')}</Link>
       </div>
@@ -269,6 +270,9 @@ const Navbar = () => {
           </ListItem>
           <ListItem button component={Link} to={`${basePath}/services`} onClick={toggleDrawer(false)}>
             <ListItemText primary={t('navbar.services')} primaryTypographyProps={{ sx: { color: '#fff' } }} />
+          </ListItem>
+          <ListItem button component={Link} to={`${basePath}/shop`} onClick={toggleDrawer(false)}>
+            <ListItemText primary={t('navbar.shop')} primaryTypographyProps={{ sx: { color: '#fff' } }} />
           </ListItem>
           <ListItem button component={Link} to={`${basePath}/blog`} onClick={toggleDrawer(false)}>
             <ListItemText primary={t('navbar.blog')} primaryTypographyProps={{ sx: { color: '#fff' } }} />
