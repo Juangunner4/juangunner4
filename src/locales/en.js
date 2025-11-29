@@ -375,14 +375,17 @@ const en = {
       anyPrice: 'Any price type',
       fixed: 'One-time',
       subscription: 'Subscription',
-      anyPayment: 'Any payment method',
-      square: 'Square',
-      crypto: 'Crypto',
     },
     filterLabels: {
       category: 'Category',
       priceType: 'Price type',
-      paymentType: 'Payment method',
+    },
+    sortLabel: 'Sort',
+    sortOptions: {
+      bestMatch: 'Best match',
+      release: 'Newest release',
+      priceHigh: 'Price: High to Low',
+      priceLow: 'Price: Low to High',
     },
     priceLabel: '{{price}} {{currency}}',
     priceTypes: {

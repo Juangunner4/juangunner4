@@ -45,12 +45,11 @@ const fallbackItems = [
 
 router.get('/items', async (req, res) => {
   try {
-    const { category, priceType, paymentType } = req.query;
+    const { category, priceType } = req.query;
     const query = { isAvailable: true };
 
     if (category) query.category = category;
     if (priceType) query.priceType = priceType;
-    if (paymentType) query.paymentTypes = { $in: [paymentType] };
 
     const items = await ShopItem.find(query).sort({ createdAt: -1 }).lean();
 
@@ -58,8 +57,7 @@ router.get('/items', async (req, res) => {
       const filteredFallback = fallbackItems.filter((item) => {
         const matchesCategory = !category || item.category === category;
         const matchesPriceType = !priceType || item.priceType === priceType;
-        const matchesPayment = !paymentType || item.paymentTypes.includes(paymentType);
-        return matchesCategory && matchesPriceType && matchesPayment;
+        return matchesCategory && matchesPriceType;
       });
       return res.json({ items: filteredFallback });
     }
