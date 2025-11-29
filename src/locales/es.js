@@ -377,14 +377,17 @@ const es = {
       anyPrice: 'Cualquier tipo de precio',
       fixed: 'Pago único',
       subscription: 'Suscripción',
-      anyPayment: 'Cualquier método de pago',
-      square: 'Square',
-      crypto: 'Cripto',
     },
     filterLabels: {
       category: 'Categoría',
       priceType: 'Tipo de precio',
-      paymentType: 'Método de pago',
+    },
+    sortLabel: 'Ordenar',
+    sortOptions: {
+      bestMatch: 'Mejor coincidencia',
+      release: 'Más reciente',
+      priceHigh: 'Precio: de mayor a menor',
+      priceLow: 'Precio: de menor a mayor',
     },
     priceLabel: '{{price}} {{currency}}',
     priceTypes: {

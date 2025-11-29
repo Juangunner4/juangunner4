@@ -7,7 +7,6 @@ import { useProfile } from '../ProfileContext';
 const defaultFilters = {
   category: 'all',
   priceType: 'all',
-  paymentType: 'all',
 };
 
 const Shop = () => {
@@ -15,6 +14,7 @@ const Shop = () => {
   const { isWeb3 } = useProfile();
   const [items, setItems] = useState([]);
   const [filters, setFilters] = useState(defaultFilters);
+  const [sortOption, setSortOption] = useState('best');
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
   const [checkoutStatus, setCheckoutStatus] = useState('idle');
@@ -32,12 +32,17 @@ const Shop = () => {
         { value: 'fixed', label: t('shop.filters.fixed') },
         { value: 'subscription', label: t('shop.filters.subscription') },
       ],
-      paymentType: [
-        { value: 'all', label: t('shop.filters.anyPayment') },
-        { value: 'square', label: t('shop.filters.square') },
-        { value: 'crypto', label: t('shop.filters.crypto') },
-      ],
     }),
+    [t]
+  );
+
+  const sortOptions = useMemo(
+    () => [
+      { value: 'best', label: t('shop.sortOptions.bestMatch') },
+      { value: 'release', label: t('shop.sortOptions.release') },
+      { value: 'priceHigh', label: t('shop.sortOptions.priceHigh') },
+      { value: 'priceLow', label: t('shop.sortOptions.priceLow') },
+    ],
     [t]
   );
 
@@ -49,7 +54,6 @@ const Shop = () => {
         params: {
           category: filters.category !== 'all' ? filters.category : undefined,
           priceType: filters.priceType !== 'all' ? filters.priceType : undefined,
-          paymentType: filters.paymentType !== 'all' ? filters.paymentType : undefined,
         },
       });
       setItems(data.items || []);
@@ -60,7 +64,7 @@ const Shop = () => {
     } finally {
       setLoading(false);
     }
-  }, [filters.category, filters.paymentType, filters.priceType, t]);
+  }, [filters.category, filters.priceType, t]);
 
   useEffect(() => {
     fetchItems();
@@ -79,11 +83,32 @@ const Shop = () => {
         filters.category === 'all' || item.category === filters.category;
       const matchesPriceType =
         filters.priceType === 'all' || item.priceType === filters.priceType;
-      const matchesPayment =
-        filters.paymentType === 'all' || (item.paymentTypes || []).includes(filters.paymentType);
-      return matchesCategory && matchesPriceType && matchesPayment;
+      return matchesCategory && matchesPriceType;
     });
-  }, [filters.category, filters.paymentType, filters.priceType, items]);
+  }, [filters.category, filters.priceType, items]);
+
+  const sortedItems = useMemo(() => {
+    const toPriceNumber = (item) => Number(item.price?.amount ?? item.price ?? 0);
+    const byRelease = (a, b) => new Date(b.createdAt || 0) - new Date(a.createdAt || 0);
+
+    const itemsCopy = [...filteredItems];
+
+    switch (sortOption) {
+      case 'priceHigh':
+        itemsCopy.sort((a, b) => toPriceNumber(b) - toPriceNumber(a));
+        break;
+      case 'priceLow':
+        itemsCopy.sort((a, b) => toPriceNumber(a) - toPriceNumber(b));
+        break;
+      case 'release':
+        itemsCopy.sort(byRelease);
+        break;
+      default:
+        break;
+    }
+
+    return itemsCopy;
+  }, [filteredItems, sortOption]);
 
   const handleCheckout = async (item) => {
     setCheckoutStatus('pending');
@@ -139,6 +164,21 @@ const Shop = () => {
             </select>
           </div>
         ))}
+
+        <div className="filter-group">
+          <label htmlFor="sort">{t('shop.sortLabel')}</label>
+          <select
+            id="sort"
+            value={sortOption}
+            onChange={(e) => setSortOption(e.target.value)}
+          >
+            {sortOptions.map((option) => (
+              <option key={option.value} value={option.value}>
+                {option.label}
+              </option>
+            ))}
+          </select>
+        </div>
       </div>
 
       {error && <div className="shop-message error">{error}</div>}
@@ -159,7 +199,7 @@ const Shop = () => {
         </div>
       ) : (
         <div className="page-grid">
-          {filteredItems.map((item) => (
+          {sortedItems.map((item) => (
             <div key={item._id || item.name} className="page-card shop-card">
               <div className="shop-card-header">
                 <span className="shop-badge">{item.category}</span>
@@ -195,7 +235,7 @@ const Shop = () => {
         </div>
       )}
 
-      {!loading && filteredItems.length === 0 && (
+      {!loading && sortedItems.length === 0 && (
         <div className="shop-message info">{t('shop.empty')}</div>
       )}
     </div>
