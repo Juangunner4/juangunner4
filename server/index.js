@@ -82,6 +82,7 @@ const allowedOrigins = [
   'https://www.juangunner4.com',
   'https://juangunner4.com',
   'http://localhost:3000',
+  'http://localhost:4000',
   'http://localhost:5000'
 ];
 
@@ -98,16 +99,23 @@ app.use(cors({
     // Allow all origins if CORS_ORIGIN is explicitly set to '*'
     if (process.env.CORS_ORIGIN === '*') return callback(null, true);
     
-    if (allowedOrigins.indexOf(origin) !== -1) {
+    // Normalize origin by removing trailing slash for comparison
+    const normalizedOrigin = origin.replace(/\/$/, '');
+    const normalizedAllowedOrigins = allowedOrigins.map(o => o.replace(/\/$/, ''));
+    
+    if (normalizedAllowedOrigins.indexOf(normalizedOrigin) !== -1) {
+      console.log(`CORS allowed: ${origin}`);
       callback(null, true);
     } else {
-      console.warn(`Blocked by CORS: ${origin}`);
+      console.error(`Blocked by CORS: ${origin}`);
+      console.error(`Allowed origins are: ${allowedOrigins.join(', ')}`);
       callback(new Error('Not allowed by CORS'));
     }
   },
   credentials: true,
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-  allowedHeaders: ['Content-Type', 'Authorization']
+  allowedHeaders: ['Content-Type', 'Authorization'],
+  optionsSuccessStatus: 200
 }));
 
 // Parse JSON bodies

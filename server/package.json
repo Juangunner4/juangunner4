@@ -8,7 +8,6 @@
   },
   "dependencies": {
     "@solana/web3.js": "^1.98.4",
-    "square": "^43.2.1",
     "axios": "^1.6.0",
     "bcryptjs": "^2.4.3",
     "bs58": "^6.0.0",
@@ -22,9 +21,10 @@
     "jsonwebtoken": "^9.0.2",
     "mongoose": "^8.0.0",
     "morgan": "^1.10.0",
-    "multer": "^1.4.5-lts.1",
+    "multer": "^2.0.2",
     "node-fetch": "^2.6.7",
     "prop-types": "^15.8.1",
+    "square": "^43.2.1",
     "tweetnacl": "^1.0.3",
     "vm-browserify": "^1.1.2",
     "xss-clean": "^0.1.4"
