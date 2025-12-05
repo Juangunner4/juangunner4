@@ -3,12 +3,19 @@ import '../styles/Projects.css';
 import '@fortawesome/fontawesome-free/css/all.min.css';
 import { useTranslation } from 'react-i18next';
 import { useProfile } from '../ProfileContext';
+import web3Placeholder from '../assets/web3.jpg';
 
 const projectData = [
   { domain: 'angelstowinghva.com', tags: ['web2', 'service'] },
   { domain: 'dosamigosmoving.com', tags: ['web2', 'business', 'landing page', 'backend'] },
   { domain: 'goshenretirementhomes.com', tags: ['web2', 'business', 'landing page'] },
   { domain: 'perionsol.xyz', tags: ['web3', 'meme', 'landing page'] },
+  {
+    domain: 'Sleepagotchi (Solana Mobile)',
+    url: 'https://mcpst.app.link/7s1pISJjCYb',
+    logo: web3Placeholder,
+    tags: ['web3', 'mobile', 'wellness'],
+  },
 ];
 
 const devProjectData = [
