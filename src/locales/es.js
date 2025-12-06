@@ -202,6 +202,12 @@ const es = {
                 'Forma equipo con Pawtato en Sui para incubar papas NFT, comerciar activos del juego y subir en los marcadores con mi referido.',
               linkLabel: 'Comienza en Pawtato con mi código',
             },
+            sleepagotchi: {
+              name: 'Sleepagotchi',
+              description:
+                'Un juego de sueño para Solana Mobile que premia hábitos de descanso saludables. Registra tu sueño, gana recompensas y únete a la comunidad de bienestar en Solana.',
+              linkLabel: 'Descansa y gana con Sleepagotchi',
+            },
           },
         },
       },

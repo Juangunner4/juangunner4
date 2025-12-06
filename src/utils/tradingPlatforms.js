@@ -131,6 +131,12 @@ export const tradingPlatforms = {
       faviconDomain: 'pawtato.app',
       tags: ['Sui', 'NFT Game', 'Telegram'],
     },
+    {
+      id: 'sleepagotchi',
+      link: 'https://mcpst.app.link/7s1pISJjCYb',
+      faviconDomain: 'sleepagotchi.com',
+      tags: ['Solana Mobile', 'Sleep', 'Health'],
+    },
   ],
 };
 

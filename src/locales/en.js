@@ -201,6 +201,12 @@ const en = {
                 'Team up with Pawtato on Sui to hatch NFT potatoes, trade in-game assets, and climb the leaderboards with my referral.',
               linkLabel: 'Start Pawtato with my code',
             },
+            sleepagotchi: {
+              name: 'Sleepagotchi',
+              description:
+                'A Solana Mobile sleep game that rewards healthy rest habits. Track your sleep, earn in-game rewards, and join the wellness-driven Solana community.',
+              linkLabel: 'Rest and earn with Sleepagotchi',
+            },
           },
         },
       },
