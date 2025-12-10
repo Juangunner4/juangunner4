@@ -2,6 +2,52 @@
   gap: 18px;
 }
 
+.marketplaces-section {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  background: linear-gradient(135deg, rgba(255, 0, 0, 0.06), #ffffff);
+  border: 1px solid #ffd7d7;
+  border-radius: 12px;
+  padding: 16px;
+}
+
+.marketplaces-subtitle {
+  color: #5a5a5a;
+  margin: 0;
+}
+
+.marketplaces-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 12px;
+}
+
+.marketplace-card {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 12px;
+  border: 1px solid #e0e0e0;
+  border-radius: 10px;
+  background: #ffffff;
+  color: #1b1b1b;
+  text-decoration: none;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.marketplace-card:hover {
+  transform: translateY(-2px);
+  border-color: #ff0000;
+  box-shadow: 0 6px 14px rgba(255, 0, 0, 0.12);
+}
+
+.marketplace-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
 .shop-filters {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -53,6 +99,16 @@
   padding: 6px 12px;
   font-weight: 700;
   font-size: 0.9rem;
+}
+
+.shop-badge.marketplace {
+  background: rgba(19, 80, 255, 0.1);
+  color: #1350ff;
+}
+
+.shop-badge.alt {
+  background: rgba(27, 27, 27, 0.08);
+  color: #1b1b1b;
 }
 
 .shop-price {

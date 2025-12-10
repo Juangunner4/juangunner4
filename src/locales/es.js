@@ -380,13 +380,18 @@ const es = {
       merch: 'Merch',
       digital: 'Digital',
       coaching: 'Coaching',
+      collectibles: 'Coleccionables',
       anyPrice: 'Cualquier tipo de precio',
       fixed: 'Pago único',
       subscription: 'Suscripción',
+      allMarketplaces: 'Todos los marketplaces',
+      siteOnly: 'Solo en el sitio',
+      ebayOnly: 'Artículos en eBay',
     },
     filterLabels: {
       category: 'Categoría',
       priceType: 'Tipo de precio',
+      marketplace: 'Marketplace',
     },
     sortLabel: 'Ordenar',
     sortOptions: {
@@ -403,10 +408,22 @@ const es = {
     paymentTypesLabel: 'Pagar con: {{methods}}',
     squareCta: 'Pagar con Square',
     cryptoCta: 'Pagar con cripto',
+    ebayCta: 'Ver en eBay',
+    viewListing: 'Ver publicación',
+    marketplaceBadge: {
+      ebay: 'Artículo en eBay',
+    },
     empty: 'No hay artículos que coincidan con estos filtros aún. Próximos drops aparecerán aquí.',
     loadError: 'No se pueden cargar los artículos de la tienda en este momento.',
     checkoutError: 'No se pudo iniciar el pago de Square. Intenta de nuevo más tarde.',
     checkoutSuccess: 'El enlace de pago de Square se abrió en una nueva pestaña.',
+    marketplaces: {
+      heading: 'Marketplaces',
+      subheading: 'Dónde encontrar mis drops, coleccionables y artículos especiales.',
+      ebay: 'Publicaciones verificadas con protección al comprador, envío rápido y fotos detalladas.',
+      etsy: 'Arte, impresiones y pedidos personalizados enfocados en merch de creador.',
+      tcg: 'Cartas y lotes para coleccionistas.',
+    },
   },
   footer: {
     contact: 'Contacto:'
