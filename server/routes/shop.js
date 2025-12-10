@@ -22,6 +22,7 @@ const fallbackItems = [
     description: 'Premium match-day scarf with club colors and a woven crest.',
     category: 'merch',
     priceType: 'fixed',
+    marketplace: 'site',
     price: { amount: 35, currency: 'USD' },
     paymentTypes: ['square', 'crypto'],
   },
@@ -30,6 +31,7 @@ const fallbackItems = [
     description: 'Monthly access to creator templates, editing presets, and livestream office hours.',
     category: 'digital',
     priceType: 'subscription',
+    marketplace: 'site',
     price: { amount: 15, currency: 'USD' },
     paymentTypes: ['square'],
   },
@@ -38,6 +40,7 @@ const fallbackItems = [
     description: 'A 45-minute strategy session on football training, coding career moves, or trading routines.',
     category: 'coaching',
     priceType: 'fixed',
+    marketplace: 'site',
     price: { amount: 120, currency: 'USD' },
     paymentTypes: ['square', 'crypto'],
   },
@@ -71,7 +74,18 @@ router.get('/items', async (req, res) => {
 
 router.post('/items', async (req, res) => {
   try {
-    const { name, description, category, priceType, price, paymentTypes, tags, mediaUrl } = req.body;
+    const {
+      name,
+      description,
+      category,
+      priceType,
+      price,
+      paymentTypes,
+      marketplace,
+      listingUrl,
+      tags,
+      mediaUrl,
+    } = req.body;
     const item = await ShopItem.create({
       name,
       description,
@@ -79,6 +93,8 @@ router.post('/items', async (req, res) => {
       priceType,
       price,
       paymentTypes,
+      marketplace,
+      listingUrl,
       tags,
       mediaUrl,
     });

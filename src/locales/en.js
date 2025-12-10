@@ -385,6 +385,8 @@ const en = {
       allMarketplaces: 'All marketplaces',
       siteOnly: 'On-site only',
       ebayOnly: 'eBay items',
+      etsyOnly: 'Etsy items',
+      tcgOnly: 'TCGplayer items',
     },
     filterLabels: {
       category: 'Category',
@@ -409,7 +411,20 @@ const en = {
     ebayCta: 'View on eBay',
     viewListing: 'View listing',
     marketplaceBadge: {
+      site: 'On-site',
       ebay: 'eBay item',
+      etsy: 'Etsy item',
+      tcg: 'TCGplayer item',
+    },
+    marketplaceNames: {
+      site: 'On-site',
+      ebay: 'eBay',
+      etsy: 'Etsy',
+      tcg: 'TCGplayer',
+    },
+    marketplaceCta: {
+      default: 'View on {{marketplace}}',
+      ebay: 'View on eBay',
     },
     empty: 'No items match these filters yet. New drops will appear here soon.',
     loadError: 'Unable to load shop items right now.',
