@@ -38,6 +38,42 @@ const placeholderItem = {
   mediaUrls: placeholderImages,
 };
 
+const placeholderItems = [
+  placeholderItem,
+  {
+    ...placeholderItem,
+    sku: 'ebay1234',
+    name: 'Marketplace preview (eBay)',
+    marketplace: 'ebay',
+    description: 'Example card showing how eBay items will look once they are published.',
+    listingUrl: 'https://www.ebay.com/usr/juangunner4',
+    tags: ['ebay', 'placeholder', 'coming-soon'],
+  },
+  {
+    ...placeholderItem,
+    sku: 'etsy1234',
+    name: 'Marketplace preview (Etsy)',
+    marketplace: 'etsy',
+    description: 'Example card showing how Etsy-ready artwork and merch will appear.',
+    listingUrl: 'https://www.etsy.com/shop/juangunner4',
+    tags: ['etsy', 'placeholder', 'coming-soon'],
+  },
+  {
+    ...placeholderItem,
+    sku: 'tcg1234',
+    name: 'Marketplace preview (TCGplayer)',
+    marketplace: 'tcg',
+    description: 'Example card showing how TCGplayer drops will render for collectors.',
+    listingUrl: 'https://www.tcgplayer.com/',
+    tags: ['tcgplayer', 'placeholder', 'coming-soon'],
+  },
+];
+
+const placeholderLookup = placeholderItems.reduce((lookup, item) => {
+  lookup[item.sku] = item;
+  return lookup;
+}, {});
+
 const sanitizeMediaUrls = (mediaUrls = []) =>
   (Array.isArray(mediaUrls) ? mediaUrls.slice(0, 4) : []).filter(Boolean);
 
@@ -57,14 +93,15 @@ router.get('/items', async (req, res) => {
     const items = await ShopItem.find(query).sort({ createdAt: -1 }).lean();
 
     if (!items.length) {
-      const matchesCategory = !category || placeholderItem.category === category;
-      const matchesPriceType = !priceType || placeholderItem.priceType === priceType;
+      const fallbacks = placeholderItems
+        .filter((item) => {
+          const matchesCategory = !category || item.category === category;
+          const matchesPriceType = !priceType || item.priceType === priceType;
+          return matchesCategory && matchesPriceType;
+        })
+        .map((item) => ({ ...item, mediaUrls: resolveMediaUrls(item.mediaUrls) }));
 
-      if (!matchesCategory || !matchesPriceType) {
-        return res.json({ items: [] });
-      }
-
-      return res.json({ items: [{ ...placeholderItem, mediaUrls: resolveMediaUrls(placeholderItem.mediaUrls) }] });
+      return res.json({ items: fallbacks });
     }
 
     return res.json({ items: items.map((item) => ({ ...item, mediaUrls: resolveMediaUrls(item.mediaUrls) })) });
@@ -89,8 +126,8 @@ router.get('/items/:sku', async (req, res) => {
       });
     }
 
-    if (sku === placeholderItem.sku) {
-      return res.json({ item: { ...placeholderItem, mediaUrls: resolveMediaUrls(placeholderItem.mediaUrls) } });
+    if (placeholderLookup[sku]) {
+      return res.json({ item: { ...placeholderLookup[sku], mediaUrls: resolveMediaUrls(placeholderLookup[sku].mediaUrls) } });
     }
 
     return res.status(404).json({ error: 'Shop item not found.' });
