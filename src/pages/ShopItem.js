@@ -120,6 +120,11 @@ const ShopItem = () => {
     [item]
   );
 
+  const isPlaceholderItem = useMemo(
+    () => Boolean(item?.sku && placeholderLookup[item.sku]),
+    [item]
+  );
+
   const marketplaceCtaLabel = useMemo(() => {
     if (!item) return '';
 
