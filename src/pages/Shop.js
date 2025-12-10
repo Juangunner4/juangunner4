@@ -225,16 +225,16 @@ const Shop = () => {
               href: ebayStorefrontUrl,
             },
             {
-              key: 'etsy',
-              name: 'Etsy',
-              description: t('shop.marketplaces.etsy'),
-              href: 'https://www.etsy.com/',
-            },
-            {
               key: 'tcg',
               name: 'TCGplayer',
               description: t('shop.marketplaces.tcg'),
               href: 'https://www.tcgplayer.com/',
+            },
+            {
+              key: 'etsy',
+              name: 'Etsy',
+              description: t('shop.marketplaces.etsy'),
+              href: 'https://www.etsy.com/',
             },
           ].map((marketplace) => (
             <a
