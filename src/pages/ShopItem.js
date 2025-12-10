@@ -76,7 +76,12 @@ const ShopItem = () => {
     fetchItem();
   }, [sku]);
 
-  const isSiteMarketplace = useMemo(() => (item?.marketplace || 'site') === 'site', [item?.marketplace]);
+  const isPlaceholderItem = item?.sku === placeholderItem.sku;
+
+  const isSiteMarketplace = useMemo(
+    () => isPlaceholderItem || (item?.marketplace || 'site') === 'site',
+    [isPlaceholderItem, item?.marketplace]
+  );
 
   const marketplaceCtaLabel = useMemo(() => {
     if (!item) return '';
@@ -260,7 +265,7 @@ const ShopItem = () => {
                 ))}
               </div>
             ) : null}
-            {item.marketplace !== 'site' && item.listingUrl ? (
+            {!isPlaceholderItem && !isSiteMarketplace && item.listingUrl ? (
               <p>{t('shop.item.marketplaceNote')}</p>
             ) : (
               <p>{t('shop.item.placeholderNote')}</p>
@@ -277,7 +282,7 @@ const ShopItem = () => {
                   {t('shop.cryptoCta')}
                 </button>
               </>
-            ) : (
+            ) : !isPlaceholderItem && item.listingUrl ? (
               <a
                 className="cta-button"
                 href={item.listingUrl || undefined}
@@ -287,6 +292,8 @@ const ShopItem = () => {
               >
                 {marketplaceCtaLabel}
               </a>
+            ) : (
+              <div className="shop-message info">{t('shop.item.placeholderNote')}</div>
             )}
           </div>
 
