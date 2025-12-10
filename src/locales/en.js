@@ -378,13 +378,18 @@ const en = {
       merch: 'Merch',
       digital: 'Digital',
       coaching: 'Coaching',
+      collectibles: 'Collectibles',
       anyPrice: 'Any price type',
       fixed: 'One-time',
       subscription: 'Subscription',
+      allMarketplaces: 'All marketplaces',
+      siteOnly: 'On-site only',
+      ebayOnly: 'eBay items',
     },
     filterLabels: {
       category: 'Category',
       priceType: 'Price type',
+      marketplace: 'Marketplace',
     },
     sortLabel: 'Sort',
     sortOptions: {
@@ -401,10 +406,22 @@ const en = {
     paymentTypesLabel: 'Pay with: {{methods}}',
     squareCta: 'Checkout with Square',
     cryptoCta: 'Pay with crypto',
+    ebayCta: 'View on eBay',
+    viewListing: 'View listing',
+    marketplaceBadge: {
+      ebay: 'eBay item',
+    },
     empty: 'No items match these filters yet. New drops will appear here soon.',
     loadError: 'Unable to load shop items right now.',
     checkoutError: 'Square checkout could not be started. Please try again later.',
     checkoutSuccess: 'Square checkout link created in a new tab.',
+    marketplaces: {
+      heading: 'Marketplaces',
+      subheading: 'Where to find my drops, collectibles, and specialty items.',
+      ebay: 'Verified listings with buyer protection, fast shipping, and detailed photos.',
+      etsy: 'Artwork, prints, and custom requests focused on creator merch.',
+      tcg: 'Trading card singles and bundles for collectors.',
+    },
   },
   footer: {
     contact: 'Contact:'

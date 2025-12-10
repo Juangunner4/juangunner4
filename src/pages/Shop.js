@@ -4,9 +4,37 @@ import '../styles/Shop.css';
 import { useTranslation } from 'react-i18next';
 import { useProfile } from '../ProfileContext';
 
+const ebayStorefrontUrl = 'https://ebay.us/m/gJNYDE';
+
+const ebayItems = [
+  {
+    name: 'Signed football collector card bundle',
+    description:
+      'Handpicked signed cards with protective sleeves and tracked shipping through eBay.',
+    price: { amount: 44.99, currency: 'USD' },
+    priceType: 'fixed',
+    category: 'collectibles',
+    marketplace: 'ebay',
+    listingUrl: `${ebayStorefrontUrl}?itm=cards-signed`,
+    paymentTypes: ['eBay checkout'],
+  },
+  {
+    name: 'Game-ready football gloves lot',
+    description:
+      'Lightly used gloves in multiple sizes. Verified pictures, fast fulfillment, and eBay buyer protection.',
+    price: { amount: 34.99, currency: 'USD' },
+    priceType: 'fixed',
+    category: 'merch',
+    marketplace: 'ebay',
+    listingUrl: `${ebayStorefrontUrl}?itm=gloves`,
+    paymentTypes: ['eBay checkout'],
+  },
+];
+
 const defaultFilters = {
   category: 'all',
   priceType: 'all',
+  marketplace: 'all',
 };
 
 const Shop = () => {
@@ -26,11 +54,17 @@ const Shop = () => {
         { value: 'merch', label: t('shop.filters.merch') },
         { value: 'digital', label: t('shop.filters.digital') },
         { value: 'coaching', label: t('shop.filters.coaching') },
+        { value: 'collectibles', label: t('shop.filters.collectibles') },
       ],
       priceType: [
         { value: 'all', label: t('shop.filters.anyPrice') },
         { value: 'fixed', label: t('shop.filters.fixed') },
         { value: 'subscription', label: t('shop.filters.subscription') },
+      ],
+      marketplace: [
+        { value: 'all', label: t('shop.filters.allMarketplaces') },
+        { value: 'site', label: t('shop.filters.siteOnly') },
+        { value: 'ebay', label: t('shop.filters.ebayOnly') },
       ],
     }),
     [t]
@@ -56,11 +90,16 @@ const Shop = () => {
           priceType: filters.priceType !== 'all' ? filters.priceType : undefined,
         },
       });
-      setItems(data.items || []);
+      const siteItems = (data.items || []).map((item) => ({
+        marketplace: 'site',
+        ...item,
+      }));
+
+      setItems([...siteItems, ...ebayItems]);
     } catch (err) {
       console.error('Failed to load shop items', err);
       setError(t('shop.loadError'));
-      setItems([]);
+      setItems([...ebayItems]);
     } finally {
       setLoading(false);
     }
@@ -83,9 +122,11 @@ const Shop = () => {
         filters.category === 'all' || item.category === filters.category;
       const matchesPriceType =
         filters.priceType === 'all' || item.priceType === filters.priceType;
-      return matchesCategory && matchesPriceType;
+      const matchesMarketplace =
+        filters.marketplace === 'all' || item.marketplace === filters.marketplace;
+      return matchesCategory && matchesPriceType && matchesMarketplace;
     });
-  }, [filters.category, filters.priceType, items]);
+  }, [filters.category, filters.priceType, filters.marketplace, items]);
 
   const sortedItems = useMemo(() => {
     const toPriceNumber = (item) => Number(item.price?.amount ?? item.price ?? 0);
@@ -147,6 +188,47 @@ const Shop = () => {
         <p>{isWeb3 ? t('shop.subheadingWeb3') : t('shop.subheading')}</p>
       </div>
 
+      <div className="marketplaces-section">
+        <h2>{t('shop.marketplaces.heading')}</h2>
+        <p className="marketplaces-subtitle">{t('shop.marketplaces.subheading')}</p>
+
+        <div className="marketplaces-grid">
+          {[
+            {
+              key: 'ebay',
+              name: 'eBay',
+              description: t('shop.marketplaces.ebay'),
+              href: ebayStorefrontUrl,
+            },
+            {
+              key: 'etsy',
+              name: 'Etsy',
+              description: t('shop.marketplaces.etsy'),
+              href: 'https://www.etsy.com/',
+            },
+            {
+              key: 'tcg',
+              name: 'TCGplayer',
+              description: t('shop.marketplaces.tcg'),
+              href: 'https://www.tcgplayer.com/',
+            },
+          ].map((marketplace) => (
+            <a
+              key={marketplace.key}
+              className="marketplace-card"
+              href={marketplace.href}
+              target="_blank"
+              rel="noreferrer"
+            >
+              <div className="marketplace-card-header">
+                <span className="shop-badge alt">{marketplace.name}</span>
+              </div>
+              <p>{marketplace.description}</p>
+            </a>
+          ))}
+        </div>
+      </div>
+
       <div className="shop-filters">
         {Object.keys(availableFilters).map((filterKey) => (
           <div className="filter-group" key={filterKey}>
@@ -203,6 +285,9 @@ const Shop = () => {
             <div key={item._id || item.name} className="page-card shop-card">
               <div className="shop-card-header">
                 <span className="shop-badge">{item.category}</span>
+                {item.marketplace === 'ebay' && (
+                  <span className="shop-badge marketplace">{t('shop.marketplaceBadge.ebay')}</span>
+                )}
                 <span className="shop-price">
                   {t('shop.priceLabel', {
                     price: item.price?.amount || item.price,
@@ -223,12 +308,35 @@ const Shop = () => {
               </div>
 
               <div className="shop-actions">
-                <button type="button" className="cta-button" onClick={() => handleCheckout(item)}>
-                  {t('shop.squareCta')}
-                </button>
-                <button type="button" className="secondary-button">
-                  {t('shop.cryptoCta')}
-                </button>
+                {item.marketplace === 'ebay' ? (
+                  <a
+                    className="cta-button"
+                    href={item.listingUrl || ebayStorefrontUrl}
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    {t('shop.ebayCta')}
+                  </a>
+                ) : (
+                  <>
+                    <button type="button" className="cta-button" onClick={() => handleCheckout(item)}>
+                      {t('shop.squareCta')}
+                    </button>
+                    <button type="button" className="secondary-button">
+                      {t('shop.cryptoCta')}
+                    </button>
+                  </>
+                )}
+                {item.listingUrl && item.marketplace !== 'ebay' && (
+                  <a
+                    className="secondary-button"
+                    href={item.listingUrl}
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    {t('shop.viewListing')}
+                  </a>
+                )}
               </div>
             </div>
           ))}
