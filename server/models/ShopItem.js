@@ -17,6 +17,11 @@ const ShopItemSchema = new mongoose.Schema(
       enum: ['merch', 'digital', 'coaching'],
       default: 'merch',
     },
+    marketplace: {
+      type: String,
+      enum: ['site', 'ebay', 'etsy', 'tcg'],
+      default: 'site',
+    },
     priceType: {
       type: String,
       enum: ['fixed', 'subscription'],
@@ -39,6 +44,9 @@ const ShopItemSchema = new mongoose.Schema(
       default: [],
     },
     mediaUrl: {
+      type: String,
+    },
+    listingUrl: {
       type: String,
     },
   },

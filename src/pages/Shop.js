@@ -37,6 +37,8 @@ const defaultFilters = {
   marketplace: 'all',
 };
 
+const isSiteMarketplace = (marketplace) => (marketplace || 'site') === 'site';
+
 const Shop = () => {
   const { t } = useTranslation();
   const { isWeb3 } = useProfile();
@@ -65,10 +67,32 @@ const Shop = () => {
         { value: 'all', label: t('shop.filters.allMarketplaces') },
         { value: 'site', label: t('shop.filters.siteOnly') },
         { value: 'ebay', label: t('shop.filters.ebayOnly') },
+        { value: 'etsy', label: t('shop.filters.etsyOnly') },
+        { value: 'tcg', label: t('shop.filters.tcgOnly') },
       ],
     }),
     [t]
   );
+
+  const marketplaceLabels = useMemo(
+    () => ({
+      site: t('shop.marketplaceNames.site'),
+      ebay: t('shop.marketplaceNames.ebay'),
+      etsy: t('shop.marketplaceNames.etsy'),
+      tcg: t('shop.marketplaceNames.tcg'),
+    }),
+    [t]
+  );
+
+  const getMarketplaceLabel = (marketplace) =>
+    marketplaceLabels[marketplace] || marketplace || marketplaceLabels.site;
+
+  const getMarketplaceCtaLabel = (marketplace) =>
+    t(`shop.marketplaceCta.${marketplace}`, {
+      defaultValue: t('shop.marketplaceCta.default', {
+        marketplace: getMarketplaceLabel(marketplace),
+      }),
+    });
 
   const sortOptions = useMemo(
     () => [
@@ -91,8 +115,8 @@ const Shop = () => {
         },
       });
       const siteItems = (data.items || []).map((item) => ({
-        marketplace: 'site',
         ...item,
+        marketplace: item.marketplace || 'site',
       }));
 
       setItems([...siteItems, ...ebayItems]);
@@ -285,8 +309,12 @@ const Shop = () => {
             <div key={item._id || item.name} className="page-card shop-card">
               <div className="shop-card-header">
                 <span className="shop-badge">{item.category}</span>
-                {item.marketplace === 'ebay' && (
-                  <span className="shop-badge marketplace">{t('shop.marketplaceBadge.ebay')}</span>
+                {!isSiteMarketplace(item.marketplace) && (
+                  <span className="shop-badge marketplace">
+                    {t(`shop.marketplaceBadge.${item.marketplace}`, {
+                      defaultValue: getMarketplaceLabel(item.marketplace),
+                    })}
+                  </span>
                 )}
                 <span className="shop-price">
                   {t('shop.priceLabel', {
@@ -308,16 +336,7 @@ const Shop = () => {
               </div>
 
               <div className="shop-actions">
-                {item.marketplace === 'ebay' ? (
-                  <a
-                    className="cta-button"
-                    href={item.listingUrl || ebayStorefrontUrl}
-                    target="_blank"
-                    rel="noreferrer"
-                  >
-                    {t('shop.ebayCta')}
-                  </a>
-                ) : (
+                {isSiteMarketplace(item.marketplace) ? (
                   <>
                     <button type="button" className="cta-button" onClick={() => handleCheckout(item)}>
                       {t('shop.squareCta')}
@@ -325,16 +344,26 @@ const Shop = () => {
                     <button type="button" className="secondary-button">
                       {t('shop.cryptoCta')}
                     </button>
+                    {item.listingUrl && (
+                      <a
+                        className="secondary-button"
+                        href={item.listingUrl}
+                        target="_blank"
+                        rel="noreferrer"
+                      >
+                        {t('shop.viewListing')}
+                      </a>
+                    )}
                   </>
-                )}
-                {item.listingUrl && item.marketplace !== 'ebay' && (
+                ) : (
                   <a
-                    className="secondary-button"
-                    href={item.listingUrl}
+                    className="cta-button"
+                    href={item.listingUrl || (item.marketplace === 'ebay' ? ebayStorefrontUrl : undefined)}
                     target="_blank"
                     rel="noreferrer"
+                    aria-disabled={!item.listingUrl && item.marketplace !== 'ebay'}
                   >
-                    {t('shop.viewListing')}
+                    {getMarketplaceCtaLabel(item.marketplace)}
                   </a>
                 )}
               </div>

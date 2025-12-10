@@ -387,6 +387,8 @@ const es = {
       allMarketplaces: 'Todos los marketplaces',
       siteOnly: 'Solo en el sitio',
       ebayOnly: 'Artículos en eBay',
+      etsyOnly: 'Artículos en Etsy',
+      tcgOnly: 'Artículos en TCGplayer',
     },
     filterLabels: {
       category: 'Categoría',
@@ -411,7 +413,20 @@ const es = {
     ebayCta: 'Ver en eBay',
     viewListing: 'Ver publicación',
     marketplaceBadge: {
+      site: 'En el sitio',
       ebay: 'Artículo en eBay',
+      etsy: 'Artículo en Etsy',
+      tcg: 'Artículo en TCGplayer',
+    },
+    marketplaceNames: {
+      site: 'En el sitio',
+      ebay: 'eBay',
+      etsy: 'Etsy',
+      tcg: 'TCGplayer',
+    },
+    marketplaceCta: {
+      default: 'Ver en {{marketplace}}',
+      ebay: 'Ver en eBay',
     },
     empty: 'No hay artículos que coincidan con estos filtros aún. Próximos drops aparecerán aquí.',
     loadError: 'No se pueden cargar los artículos de la tienda en este momento.',
