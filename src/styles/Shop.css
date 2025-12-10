@@ -22,15 +22,16 @@
   flex-wrap: wrap;
   gap: 12px;
   align-items: stretch;
+  justify-content: space-between;
 }
 
 .marketplace-card {
   display: flex;
   flex-direction: column;
   gap: 6px;
-  width: 100%;
-  min-width: 170px;
-  max-width: 220px;
+  flex: 1 1 20%;
+  max-width: 20%;
+  min-width: 120px;
   padding: 10px 12px;
   border: 1px solid #e8e8e8;
   border-radius: 10px;
