@@ -51,6 +51,7 @@ const ShopItem = () => {
   const [item, setItem] = useState(null);
   const [status, setStatus] = useState('loading');
   const [checkoutStatus, setCheckoutStatus] = useState('idle');
+  const [activeImageIndex, setActiveImageIndex] = useState(0);
 
   useEffect(() => {
     const fetchItem = async () => {
@@ -58,11 +59,13 @@ const ShopItem = () => {
       try {
         const { data } = await axios.get(`/api/shop/items/${sku}`);
         setItem(formatItem(data.item || {}));
+        setActiveImageIndex(0);
         setStatus('ready');
       } catch (err) {
         console.error('Unable to load shop item', err);
         if (sku === placeholderItem.sku) {
           setItem(formatItem(placeholderItem));
+          setActiveImageIndex(0);
           setStatus('ready');
           return;
         }
@@ -74,6 +77,23 @@ const ShopItem = () => {
   }, [sku]);
 
   const isSiteMarketplace = useMemo(() => (item?.marketplace || 'site') === 'site', [item?.marketplace]);
+
+  const mediaUrls = useMemo(
+    () => (item?.mediaUrls?.length ? item.mediaUrls : placeholderMedia).slice(0, 4),
+    [item?.mediaUrls]
+  );
+
+  const handleNextImage = () => {
+    setActiveImageIndex((prev) => (prev + 1) % mediaUrls.length);
+  };
+
+  const handlePrevImage = () => {
+    setActiveImageIndex((prev) => (prev - 1 + mediaUrls.length) % mediaUrls.length);
+  };
+
+  const handleSelectImage = (index) => {
+    setActiveImageIndex(index);
+  };
 
   const handleCheckout = async () => {
     if (!item) return;
@@ -151,13 +171,46 @@ const ShopItem = () => {
 
       <div className="shop-detail">
         <div className="shop-detail-card">
-          <div className="shop-media">
-            <img src={item.mediaUrls?.[0] || placeholderMedia[0]} alt={`${item.name} preview`} loading="lazy" />
-          </div>
-          <div className="shop-gallery">
-            {item.mediaUrls?.map((media, index) => (
-              <img key={media + index} src={media} alt={`${item.name} preview ${index + 1}`} loading="lazy" />
-            ))}
+          <div className="shop-gallery-wrapper">
+            <div className="shop-main-media">
+              <button
+                type="button"
+                className="gallery-nav"
+                onClick={handlePrevImage}
+                aria-label={t('shop.item.prevImage', { current: activeImageIndex + 1, total: mediaUrls.length })}
+              >
+                ‹
+              </button>
+              <img
+                src={mediaUrls[activeImageIndex]}
+                alt={`${item.name} preview ${activeImageIndex + 1}`}
+                loading="lazy"
+              />
+              <button
+                type="button"
+                className="gallery-nav"
+                onClick={handleNextImage}
+                aria-label={t('shop.item.nextImage', { current: activeImageIndex + 1, total: mediaUrls.length })}
+              >
+                ›
+              </button>
+              <div className="gallery-counter">
+                {activeImageIndex + 1} / {mediaUrls.length}
+              </div>
+            </div>
+            <div className="shop-gallery-thumbnails">
+              {mediaUrls.map((media, index) => (
+                <button
+                  key={media + index}
+                  type="button"
+                  className={`gallery-thumbnail ${activeImageIndex === index ? 'active' : ''}`}
+                  onClick={() => handleSelectImage(index)}
+                  aria-label={t('shop.item.selectImage', { index: index + 1 })}
+                >
+                  <img src={media} alt={`${item.name} thumbnail ${index + 1}`} loading="lazy" />
+                </button>
+              ))}
+            </div>
           </div>
         </div>
 

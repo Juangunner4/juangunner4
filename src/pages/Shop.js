@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import axios from 'axios';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import '../styles/Shop.css';
 import { useTranslation } from 'react-i18next';
 import { useProfile } from '../ProfileContext';
@@ -28,6 +28,37 @@ const placeholderItem = {
   mediaUrls: placeholderMedia,
 };
 
+const placeholderItems = [
+  placeholderItem,
+  {
+    ...placeholderItem,
+    sku: 'sku12356',
+    name: 'Marketplace preview (eBay)',
+    marketplace: 'ebay',
+    description: 'Example card showing how eBay items will look once they are published.',
+    listingUrl: 'https://www.ebay.com/usr/juangunner4',
+    tags: ['ebay', 'placeholder', 'coming-soon'],
+  },
+  {
+    ...placeholderItem,
+    sku: 'sku12357',
+    name: 'Marketplace preview (Etsy)',
+    marketplace: 'etsy',
+    description: 'Example card showing how Etsy-ready artwork and merch will appear.',
+    listingUrl: 'https://www.etsy.com/shop/juangunner4',
+    tags: ['etsy', 'placeholder', 'coming-soon'],
+  },
+  {
+    ...placeholderItem,
+    sku: 'sku12358',
+    name: 'Marketplace preview (TCGplayer)',
+    marketplace: 'tcg',
+    description: 'Example card showing how TCGplayer drops will render for collectors.',
+    listingUrl: 'https://www.tcgplayer.com/',
+    tags: ['tcgplayer', 'placeholder', 'coming-soon'],
+  },
+];
+
 const defaultFilters = {
   category: 'all',
   priceType: 'all',
@@ -46,6 +77,7 @@ const Shop = () => {
   const [error, setError] = useState('');
   const [checkoutStatus, setCheckoutStatus] = useState('idle');
   const basePath = getProfileBasePath(isWeb3);
+  const navigate = useNavigate();
 
   const availableFilters = useMemo(
     () => ({
@@ -150,13 +182,13 @@ const Shop = () => {
         },
       });
       const siteItems = (data.items || []).map(formatItem);
-      const fallbacks = siteItems.length ? siteItems : [formatItem(placeholderItem)];
+      const fallbacks = siteItems.length ? siteItems : placeholderItems.map(formatItem);
 
       setItems(fallbacks);
     } catch (err) {
       console.error('Failed to load shop items', err);
       setError(t('shop.loadError'));
-      setItems([formatItem(placeholderItem)]);
+      setItems(placeholderItems.map(formatItem));
     } finally {
       setLoading(false);
     }
@@ -320,7 +352,19 @@ const Shop = () => {
       ) : (
         <div className="page-grid">
           {sortedItems.map((item) => (
-            <div key={item.sku} className="page-card shop-card">
+            <div
+              key={item.sku}
+              role="button"
+              tabIndex={0}
+              className="page-card shop-card shop-card-clickable"
+              onClick={() => navigate(`${basePath}/shop/${item.sku}`)}
+              onKeyDown={(event) => {
+                if (event.key === 'Enter' || event.key === ' ') {
+                  event.preventDefault();
+                  navigate(`${basePath}/shop/${item.sku}`);
+                }
+              }}
+            >
               <div className="shop-media">
                 <img src={getItemImage(item)} alt={`${item.name} preview`} loading="lazy" />
               </div>
@@ -365,22 +409,23 @@ const Shop = () => {
               <div className="shop-actions">
                 {isSiteMarketplace(item.marketplace) ? (
                   <>
-                    <button type="button" className="cta-button" onClick={() => handleCheckout(item)}>
+                    <button
+                      type="button"
+                      className="cta-button"
+                      onClick={(event) => {
+                        event.stopPropagation();
+                        handleCheckout(item);
+                      }}
+                    >
                       {t('shop.squareCta')}
                     </button>
-                    <button type="button" className="secondary-button">
+                    <button
+                      type="button"
+                      className="secondary-button"
+                      onClick={(event) => event.stopPropagation()}
+                    >
                       {t('shop.cryptoCta')}
                     </button>
-                    {item.listingUrl && (
-                      <a
-                        className="secondary-button"
-                        href={item.listingUrl}
-                        target="_blank"
-                        rel="noreferrer"
-                      >
-                        {t('shop.viewListing')}
-                      </a>
-                    )}
                   </>
                 ) : (
                   <a
@@ -389,14 +434,11 @@ const Shop = () => {
                     target="_blank"
                     rel="noreferrer"
                     aria-disabled={!item.listingUrl}
+                    onClick={(event) => event.stopPropagation()}
                   >
                     {getMarketplaceCtaLabel(item.marketplace)}
                   </a>
                 )}
-
-                <Link className="secondary-button outline" to={`${basePath}/shop/${item.sku}`}>
-                  {t('shop.viewDetails')}
-                </Link>
               </div>
             </div>
           ))}

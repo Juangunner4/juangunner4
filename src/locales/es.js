@@ -441,6 +441,9 @@ const es = {
       notFoundBody: 'No encontramos ese SKU. Inténtalo cuando se publiquen nuevos listados.',
       marketplaceNote: 'Este anuncio se completa en su marketplace con protecciones para el comprador.',
       placeholderNote: 'Contenido de ejemplo mientras se agregan nuevos artículos.',
+      prevImage: 'Ver imagen anterior ({{current}} de {{total}})',
+      nextImage: 'Ver imagen siguiente ({{current}} de {{total}})',
+      selectImage: 'Seleccionar imagen {{index}}',
     },
     marketplaces: {
       heading: 'Marketplaces',
