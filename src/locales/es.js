@@ -448,9 +448,9 @@ const es = {
     marketplaces: {
       heading: 'Marketplaces',
       subheading: 'Dónde encontrar mis drops, coleccionables y artículos especiales.',
-      ebay: 'Publicaciones verificadas con protección al comprador, envío rápido y fotos detalladas.',
-      etsy: 'Arte, impresiones y pedidos personalizados enfocados en merch de creador.',
-      tcg: 'Cartas y lotes para coleccionistas.',
+      ebay: 'Artículos verificados en eBay.',
+      etsy: 'Arte e impresos.',
+      tcg: 'Cartas coleccionables.',
     },
   },
   footer: {
