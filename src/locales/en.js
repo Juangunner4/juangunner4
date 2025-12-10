@@ -439,6 +439,9 @@ const en = {
       notFoundBody: 'We could not find that SKU. Try again after new listings are published.',
       marketplaceNote: 'This listing is fulfilled on its marketplace with buyer protections.',
       placeholderNote: 'Placeholder content while new drops are being added.',
+      prevImage: 'View previous image ({{current}} of {{total}})',
+      nextImage: 'View next image ({{current}} of {{total}})',
+      selectImage: 'Select image {{index}}',
     },
     marketplaces: {
       heading: 'Marketplaces',
