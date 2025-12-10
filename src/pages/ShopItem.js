@@ -28,18 +28,57 @@ const placeholderItem = {
   mediaUrls: placeholderMedia,
 };
 
+const placeholderItems = [
+  placeholderItem,
+  {
+    ...placeholderItem,
+    sku: 'ebay1234',
+    name: 'Marketplace preview (eBay)',
+    marketplace: 'ebay',
+    description: 'Example card showing how eBay items will look once they are published.',
+    listingUrl: 'https://www.ebay.com/usr/juangunner4',
+    tags: ['ebay', 'placeholder', 'coming-soon'],
+  },
+  {
+    ...placeholderItem,
+    sku: 'etsy1234',
+    name: 'Marketplace preview (Etsy)',
+    marketplace: 'etsy',
+    description: 'Example card showing how Etsy-ready artwork and merch will appear.',
+    listingUrl: 'https://www.etsy.com/shop/juangunner4',
+    tags: ['etsy', 'placeholder', 'coming-soon'],
+  },
+  {
+    ...placeholderItem,
+    sku: 'tcg1234',
+    name: 'Marketplace preview (TCGplayer)',
+    marketplace: 'tcg',
+    description: 'Example card showing how TCGplayer drops will render for collectors.',
+    listingUrl: 'https://www.tcgplayer.com/',
+    tags: ['tcgplayer', 'placeholder', 'coming-soon'],
+  },
+];
+
+const placeholderLookup = placeholderItems.reduce((lookup, item) => {
+  lookup[item.sku] = item;
+  return lookup;
+}, {});
+
 const formatItem = (incoming) => {
+  const fallback = placeholderLookup[incoming.sku] || placeholderItem;
   const mediaUrls = Array.isArray(incoming.mediaUrls) && incoming.mediaUrls.length
     ? incoming.mediaUrls.slice(0, 4)
-    : placeholderMedia;
+    : Array.isArray(fallback.mediaUrls) && fallback.mediaUrls.length
+        ? fallback.mediaUrls.slice(0, 4)
+        : placeholderMedia;
 
   return {
-    ...placeholderItem,
+    ...fallback,
     ...incoming,
-    sku: incoming.sku || placeholderItem.sku,
-    marketplace: incoming.marketplace || 'site',
+    sku: incoming.sku || fallback.sku,
+    marketplace: incoming.marketplace || fallback.marketplace || 'site',
     mediaUrls,
-    tags: Array.isArray(incoming.tags) && incoming.tags.length ? incoming.tags : placeholderItem.tags,
+    tags: Array.isArray(incoming.tags) && incoming.tags.length ? incoming.tags : fallback.tags,
   };
 };
 
@@ -63,8 +102,8 @@ const ShopItem = () => {
         setStatus('ready');
       } catch (err) {
         console.error('Unable to load shop item', err);
-        if (sku === placeholderItem.sku) {
-          setItem(formatItem(placeholderItem));
+        if (placeholderLookup[sku]) {
+          setItem(formatItem(placeholderLookup[sku]));
           setActiveImageIndex(0);
           setStatus('ready');
           return;
@@ -76,11 +115,9 @@ const ShopItem = () => {
     fetchItem();
   }, [sku]);
 
-  const isPlaceholderItem = item?.sku === placeholderItem.sku;
-
   const isSiteMarketplace = useMemo(
-    () => isPlaceholderItem || (item?.marketplace || 'site') === 'site',
-    [isPlaceholderItem, item]
+    () => (item?.marketplace || 'site') === 'site',
+    [item]
   );
 
   const marketplaceCtaLabel = useMemo(() => {

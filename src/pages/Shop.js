@@ -32,7 +32,7 @@ const placeholderItems = [
   placeholderItem,
   {
     ...placeholderItem,
-    sku: 'sku12356',
+    sku: 'ebay1234',
     name: 'Marketplace preview (eBay)',
     marketplace: 'ebay',
     description: 'Example card showing how eBay items will look once they are published.',
@@ -41,7 +41,7 @@ const placeholderItems = [
   },
   {
     ...placeholderItem,
-    sku: 'sku12357',
+    sku: 'etsy1234',
     name: 'Marketplace preview (Etsy)',
     marketplace: 'etsy',
     description: 'Example card showing how Etsy-ready artwork and merch will appear.',
@@ -50,7 +50,7 @@ const placeholderItems = [
   },
   {
     ...placeholderItem,
-    sku: 'sku12358',
+    sku: 'tcg1234',
     name: 'Marketplace preview (TCGplayer)',
     marketplace: 'tcg',
     description: 'Example card showing how TCGplayer drops will render for collectors.',
