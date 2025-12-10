@@ -446,9 +446,9 @@ const en = {
     marketplaces: {
       heading: 'Marketplaces',
       subheading: 'Where to find my drops, collectibles, and specialty items.',
-      ebay: 'Verified listings with buyer protection, fast shipping, and detailed photos.',
-      etsy: 'Artwork, prints, and custom requests focused on creator merch.',
-      tcg: 'Trading card singles and bundles for collectors.',
+      ebay: 'Verified eBay items.',
+      etsy: 'Art and prints.',
+      tcg: 'Trading cards.',
     },
   },
   footer: {
