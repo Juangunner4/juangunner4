@@ -1,35 +1,32 @@
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 import '../styles/Shop.css';
 import { useTranslation } from 'react-i18next';
 import { useProfile } from '../ProfileContext';
+import { getProfileBasePath } from '../utils/profileRouting';
 
-const ebayStorefrontUrl = 'https://ebay.us/m/gJNYDE';
-
-const ebayItems = [
-  {
-    name: 'Signed football collector card bundle',
-    description:
-      'Handpicked signed cards with protective sleeves and tracked shipping through eBay.',
-    price: { amount: 44.99, currency: 'USD' },
-    priceType: 'fixed',
-    category: 'collectibles',
-    marketplace: 'ebay',
-    listingUrl: `${ebayStorefrontUrl}?itm=cards-signed`,
-    paymentTypes: ['eBay checkout'],
-  },
-  {
-    name: 'Game-ready football gloves lot',
-    description:
-      'Lightly used gloves in multiple sizes. Verified pictures, fast fulfillment, and eBay buyer protection.',
-    price: { amount: 34.99, currency: 'USD' },
-    priceType: 'fixed',
-    category: 'merch',
-    marketplace: 'ebay',
-    listingUrl: `${ebayStorefrontUrl}?itm=gloves`,
-    paymentTypes: ['eBay checkout'],
-  },
+const placeholderMedia = [
+  'https://images.placeholders.dev/?width=960&height=540&text=Shop%20preview%201',
+  'https://images.placeholders.dev/?width=960&height=540&text=Shop%20preview%202',
+  'https://images.placeholders.dev/?width=960&height=540&text=Shop%20preview%203',
+  'https://images.placeholders.dev/?width=960&height=540&text=Shop%20preview%204',
 ];
+
+const placeholderItem = {
+  sku: 'sku12355',
+  name: 'Placeholder drop',
+  description:
+    'This example listing shows how items, marketplace links, and images render while the shop is being stocked.',
+  price: { amount: 0, currency: 'USD' },
+  priceType: 'fixed',
+  category: 'merch',
+  marketplace: 'site',
+  listingUrl: 'https://juangunner4.com/profile/web2/shop/sku12355',
+  paymentTypes: ['square', 'crypto'],
+  tags: ['placeholder', 'coming-soon', 'example'],
+  mediaUrls: placeholderMedia,
+};
 
 const defaultFilters = {
   category: 'all',
@@ -48,6 +45,7 @@ const Shop = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
   const [checkoutStatus, setCheckoutStatus] = useState('idle');
+  const basePath = getProfileBasePath(isWeb3);
 
   const availableFilters = useMemo(
     () => ({
@@ -94,6 +92,43 @@ const Shop = () => {
       }),
     });
 
+  const marketplaceCards = useMemo(
+    () => [
+      {
+        key: 'ebay',
+        name: 'eBay',
+        description: t('shop.marketplaces.ebay'),
+        href: 'https://www.ebay.com/usr/juangunner4',
+      },
+      {
+        key: 'tcg',
+        name: 'TCGplayer',
+        description: t('shop.marketplaces.tcg'),
+        href: 'https://www.tcgplayer.com/',
+      },
+      {
+        key: 'etsy',
+        name: 'Etsy',
+        description: t('shop.marketplaces.etsy'),
+        href: 'https://www.etsy.com/shop/juangunner4',
+      },
+    ],
+    [t]
+  );
+
+  const formatItem = useCallback((item) => {
+    const mediaUrls = Array.isArray(item.mediaUrls) && item.mediaUrls.length ? item.mediaUrls : placeholderMedia;
+    return {
+      ...item,
+      sku: item.sku || item._id || placeholderItem.sku,
+      marketplace: item.marketplace || 'site',
+      tags: Array.isArray(item.tags) && item.tags.length ? item.tags : placeholderItem.tags,
+      mediaUrls: mediaUrls.slice(0, 4),
+    };
+  }, []);
+
+  const getItemImage = (item) => (item.mediaUrls && item.mediaUrls[0]) || placeholderMedia[0];
+
   const sortOptions = useMemo(
     () => [
       { value: 'best', label: t('shop.sortOptions.bestMatch') },
@@ -114,20 +149,18 @@ const Shop = () => {
           priceType: filters.priceType !== 'all' ? filters.priceType : undefined,
         },
       });
-      const siteItems = (data.items || []).map((item) => ({
-        ...item,
-        marketplace: item.marketplace || 'site',
-      }));
+      const siteItems = (data.items || []).map(formatItem);
+      const fallbacks = siteItems.length ? siteItems : [formatItem(placeholderItem)];
 
-      setItems([...siteItems, ...ebayItems]);
+      setItems(fallbacks);
     } catch (err) {
       console.error('Failed to load shop items', err);
       setError(t('shop.loadError'));
-      setItems([...ebayItems]);
+      setItems([formatItem(placeholderItem)]);
     } finally {
       setLoading(false);
     }
-  }, [filters.category, filters.priceType, t]);
+  }, [filters.category, filters.priceType, formatItem, t]);
 
   useEffect(() => {
     fetchItems();
@@ -217,26 +250,7 @@ const Shop = () => {
         <p className="marketplaces-subtitle">{t('shop.marketplaces.subheading')}</p>
 
         <div className="marketplaces-grid">
-          {[
-            {
-              key: 'ebay',
-              name: 'eBay',
-              description: t('shop.marketplaces.ebay'),
-              href: ebayStorefrontUrl,
-            },
-            {
-              key: 'tcg',
-              name: 'TCGplayer',
-              description: t('shop.marketplaces.tcg'),
-              href: 'https://www.tcgplayer.com/',
-            },
-            {
-              key: 'etsy',
-              name: 'Etsy',
-              description: t('shop.marketplaces.etsy'),
-              href: 'https://www.etsy.com/',
-            },
-          ].map((marketplace) => (
+          {marketplaceCards.map((marketplace) => (
             <a
               key={marketplace.key}
               className="marketplace-card"
@@ -306,7 +320,10 @@ const Shop = () => {
       ) : (
         <div className="page-grid">
           {sortedItems.map((item) => (
-            <div key={item._id || item.name} className="page-card shop-card">
+            <div key={item.sku} className="page-card shop-card">
+              <div className="shop-media">
+                <img src={getItemImage(item)} alt={`${item.name} preview`} loading="lazy" />
+              </div>
               <div className="shop-card-header">
                 <span className="shop-badge">{item.category}</span>
                 {!isSiteMarketplace(item.marketplace) && (
@@ -325,6 +342,16 @@ const Shop = () => {
               </div>
               <h3>{item.name}</h3>
               <p>{item.description}</p>
+
+              {item.tags?.length ? (
+                <div className="shop-tags">
+                  {item.tags.map((tag) => (
+                    <span className="shop-tag" key={tag}>
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+              ) : null}
 
               <div className="shop-meta">
                 <span>{t(`shop.priceTypes.${item.priceType}`)}</span>
@@ -358,14 +385,18 @@ const Shop = () => {
                 ) : (
                   <a
                     className="cta-button"
-                    href={item.listingUrl || (item.marketplace === 'ebay' ? ebayStorefrontUrl : undefined)}
+                    href={item.listingUrl || undefined}
                     target="_blank"
                     rel="noreferrer"
-                    aria-disabled={!item.listingUrl && item.marketplace !== 'ebay'}
+                    aria-disabled={!item.listingUrl}
                   >
                     {getMarketplaceCtaLabel(item.marketplace)}
                   </a>
                 )}
+
+                <Link className="secondary-button outline" to={`${basePath}/shop/${item.sku}`}>
+                  {t('shop.viewDetails')}
+                </Link>
               </div>
             </div>
           ))}

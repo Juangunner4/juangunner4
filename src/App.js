@@ -34,6 +34,7 @@ import BlogPost from './pages/BlogPost';
 import Portfolio from './pages/Portfolio';
 import Services from './pages/Services';
 import Shop from './pages/Shop';
+import ShopItem from './pages/ShopItem';
 
 const Layout = () => {
   const { profileType } = useParams();
@@ -89,6 +90,7 @@ function App() {
                       <Route path="projects" element={<Projects />} />
                       <Route path="services" element={<Services />} />
                       <Route path="shop" element={<Shop />} />
+                      <Route path="shop/:sku" element={<ShopItem />} />
                       <Route path="contact" element={<Contact />} />
                       <Route path="portfolio" element={<Portfolio />} />
                       <Route path="blog" element={<Blog />} />

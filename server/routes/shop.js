@@ -16,35 +16,35 @@ const squareClient = SQUARE_ACCESS_TOKEN
     })
   : null;
 
-const fallbackItems = [
-  {
-    name: 'Gameday Scarf',
-    description: 'Premium match-day scarf with club colors and a woven crest.',
-    category: 'merch',
-    priceType: 'fixed',
-    marketplace: 'site',
-    price: { amount: 35, currency: 'USD' },
-    paymentTypes: ['square', 'crypto'],
-  },
-  {
-    name: 'Content Lab Membership',
-    description: 'Monthly access to creator templates, editing presets, and livestream office hours.',
-    category: 'digital',
-    priceType: 'subscription',
-    marketplace: 'site',
-    price: { amount: 15, currency: 'USD' },
-    paymentTypes: ['square'],
-  },
-  {
-    name: '1:1 Strategy Session',
-    description: 'A 45-minute strategy session on football training, coding career moves, or trading routines.',
-    category: 'coaching',
-    priceType: 'fixed',
-    marketplace: 'site',
-    price: { amount: 120, currency: 'USD' },
-    paymentTypes: ['square', 'crypto'],
-  },
+const placeholderImages = [
+  'https://images.placeholders.dev/?width=960&height=540&text=Shop%20preview%201',
+  'https://images.placeholders.dev/?width=960&height=540&text=Shop%20preview%202',
+  'https://images.placeholders.dev/?width=960&height=540&text=Shop%20preview%203',
+  'https://images.placeholders.dev/?width=960&height=540&text=Shop%20preview%204',
 ];
+
+const placeholderItem = {
+  sku: 'sku12355',
+  name: 'Placeholder drop',
+  description:
+    'This is an example shop item showing how marketplace listings, media, and tags render while inventory is added.',
+  category: 'merch',
+  priceType: 'fixed',
+  marketplace: 'site',
+  price: { amount: 0, currency: 'USD' },
+  paymentTypes: ['square', 'crypto'],
+  tags: ['placeholder', 'coming-soon', 'example'],
+  listingUrl: 'https://juangunner4.com/profile/web2/shop/sku12355',
+  mediaUrls: placeholderImages,
+};
+
+const sanitizeMediaUrls = (mediaUrls = []) =>
+  (Array.isArray(mediaUrls) ? mediaUrls.slice(0, 4) : []).filter(Boolean);
+
+const resolveMediaUrls = (mediaUrls = []) => {
+  const sanitized = sanitizeMediaUrls(mediaUrls);
+  return sanitized.length ? sanitized : placeholderImages;
+};
 
 router.get('/items', async (req, res) => {
   try {
@@ -57,24 +57,53 @@ router.get('/items', async (req, res) => {
     const items = await ShopItem.find(query).sort({ createdAt: -1 }).lean();
 
     if (!items.length) {
-      const filteredFallback = fallbackItems.filter((item) => {
-        const matchesCategory = !category || item.category === category;
-        const matchesPriceType = !priceType || item.priceType === priceType;
-        return matchesCategory && matchesPriceType;
-      });
-      return res.json({ items: filteredFallback });
+      const matchesCategory = !category || placeholderItem.category === category;
+      const matchesPriceType = !priceType || placeholderItem.priceType === priceType;
+
+      if (!matchesCategory || !matchesPriceType) {
+        return res.json({ items: [] });
+      }
+
+      return res.json({ items: [{ ...placeholderItem, mediaUrls: resolveMediaUrls(placeholderItem.mediaUrls) }] });
     }
 
-    return res.json({ items });
+    return res.json({ items: items.map((item) => ({ ...item, mediaUrls: resolveMediaUrls(item.mediaUrls) })) });
   } catch (err) {
     console.error('Error fetching shop items', err);
     return res.status(500).json({ error: 'Unable to fetch shop items' });
   }
 });
 
+router.get('/items/:sku', async (req, res) => {
+  const { sku } = req.params;
+
+  try {
+    const item = await ShopItem.findOne({ sku }).lean();
+
+    if (item) {
+      return res.json({
+        item: {
+          ...item,
+          mediaUrls: resolveMediaUrls(item.mediaUrls),
+        },
+      });
+    }
+
+    if (sku === placeholderItem.sku) {
+      return res.json({ item: { ...placeholderItem, mediaUrls: resolveMediaUrls(placeholderItem.mediaUrls) } });
+    }
+
+    return res.status(404).json({ error: 'Shop item not found.' });
+  } catch (err) {
+    console.error('Error fetching shop item', err);
+    return res.status(500).json({ error: 'Unable to fetch shop item' });
+  }
+});
+
 router.post('/items', async (req, res) => {
   try {
     const {
+      sku,
       name,
       description,
       category,
@@ -84,9 +113,10 @@ router.post('/items', async (req, res) => {
       marketplace,
       listingUrl,
       tags,
-      mediaUrl,
+      mediaUrls = [],
     } = req.body;
     const item = await ShopItem.create({
+      sku,
       name,
       description,
       category,
@@ -96,7 +126,7 @@ router.post('/items', async (req, res) => {
       marketplace,
       listingUrl,
       tags,
-      mediaUrl,
+      mediaUrls: sanitizeMediaUrls(mediaUrls),
     });
     return res.status(201).json({ item });
   } catch (err) {
