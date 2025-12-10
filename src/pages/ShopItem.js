@@ -80,7 +80,7 @@ const ShopItem = () => {
 
   const isSiteMarketplace = useMemo(
     () => isPlaceholderItem || (item?.marketplace || 'site') === 'site',
-    [isPlaceholderItem, item?.marketplace]
+    [isPlaceholderItem, item]
   );
 
   const marketplaceCtaLabel = useMemo(() => {
@@ -93,11 +93,11 @@ const ShopItem = () => {
         }),
       }),
     });
-  }, [item?.marketplace, t]);
+  }, [item, t]);
 
   const mediaUrls = useMemo(
     () => (item?.mediaUrls?.length ? item.mediaUrls : placeholderMedia).slice(0, 4),
-    [item?.mediaUrls]
+    [item]
   );
 
   const handleNextImage = () => {
