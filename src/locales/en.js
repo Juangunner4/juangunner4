@@ -410,6 +410,7 @@ const en = {
     cryptoCta: 'Pay with crypto',
     ebayCta: 'View on eBay',
     viewListing: 'View listing',
+    viewDetails: 'View item details',
     marketplaceBadge: {
       site: 'On-site',
       ebay: 'eBay item',
@@ -430,6 +431,15 @@ const en = {
     loadError: 'Unable to load shop items right now.',
     checkoutError: 'Square checkout could not be started. Please try again later.',
     checkoutSuccess: 'Square checkout link created in a new tab.',
+    item: {
+      backToShop: 'Back to shop',
+      loadingTitle: 'Loading item…',
+      loadingBody: 'Preparing media and marketplace details.',
+      notFoundTitle: 'Item not found',
+      notFoundBody: 'We could not find that SKU. Try again after new listings are published.',
+      marketplaceNote: 'This listing is fulfilled on its marketplace with buyer protections.',
+      placeholderNote: 'Placeholder content while new drops are being added.',
+    },
     marketplaces: {
       heading: 'Marketplaces',
       subheading: 'Where to find my drops, collectibles, and specialty items.',

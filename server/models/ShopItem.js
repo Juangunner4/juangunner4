@@ -10,11 +10,12 @@ const PriceSchema = new mongoose.Schema(
 
 const ShopItemSchema = new mongoose.Schema(
   {
+    sku: { type: String, required: true, unique: true },
     name: { type: String, required: true },
     description: { type: String, required: true },
     category: {
       type: String,
-      enum: ['merch', 'digital', 'coaching'],
+      enum: ['merch', 'digital', 'coaching', 'collectibles'],
       default: 'merch',
     },
     marketplace: {
@@ -35,6 +36,14 @@ const ShopItemSchema = new mongoose.Schema(
       type: [String],
       default: ['square', 'crypto'],
     },
+    mediaUrls: {
+      type: [String],
+      default: [],
+      validate: {
+        validator: (value) => !Array.isArray(value) || value.length <= 4,
+        message: 'A maximum of 4 images is allowed per item.',
+      },
+    },
     isAvailable: {
       type: Boolean,
       default: true,
@@ -42,9 +51,6 @@ const ShopItemSchema = new mongoose.Schema(
     tags: {
       type: [String],
       default: [],
-    },
-    mediaUrl: {
-      type: String,
     },
     listingUrl: {
       type: String,

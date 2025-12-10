@@ -412,6 +412,7 @@ const es = {
     cryptoCta: 'Pagar con cripto',
     ebayCta: 'Ver en eBay',
     viewListing: 'Ver publicación',
+    viewDetails: 'Ver detalles del artículo',
     marketplaceBadge: {
       site: 'En el sitio',
       ebay: 'Artículo en eBay',
@@ -432,6 +433,15 @@ const es = {
     loadError: 'No se pueden cargar los artículos de la tienda en este momento.',
     checkoutError: 'No se pudo iniciar el pago de Square. Intenta de nuevo más tarde.',
     checkoutSuccess: 'El enlace de pago de Square se abrió en una nueva pestaña.',
+    item: {
+      backToShop: 'Volver a la tienda',
+      loadingTitle: 'Cargando artículo…',
+      loadingBody: 'Preparando imágenes y detalles del marketplace.',
+      notFoundTitle: 'Artículo no encontrado',
+      notFoundBody: 'No encontramos ese SKU. Inténtalo cuando se publiquen nuevos listados.',
+      marketplaceNote: 'Este anuncio se completa en su marketplace con protecciones para el comprador.',
+      placeholderNote: 'Contenido de ejemplo mientras se agregan nuevos artículos.',
+    },
     marketplaces: {
       heading: 'Marketplaces',
       subheading: 'Dónde encontrar mis drops, coleccionables y artículos especiales.',
