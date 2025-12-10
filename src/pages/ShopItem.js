@@ -60,12 +60,14 @@ const placeholderItems = [
 ];
 
 const placeholderLookup = placeholderItems.reduce((lookup, item) => {
-  lookup[item.sku] = item;
+  lookup[item.sku.toLowerCase()] = item;
   return lookup;
 }, {});
 
+const getPlaceholderBySku = (sku) => placeholderLookup[(sku || '').toLowerCase()] || placeholderItem;
+
 const formatItem = (incoming) => {
-  const fallback = placeholderLookup[incoming.sku] || placeholderItem;
+  const fallback = getPlaceholderBySku(incoming.sku);
   const mediaUrls = Array.isArray(incoming.mediaUrls) && incoming.mediaUrls.length
     ? incoming.mediaUrls.slice(0, 4)
     : Array.isArray(fallback.mediaUrls) && fallback.mediaUrls.length
@@ -102,8 +104,9 @@ const ShopItem = () => {
         setStatus('ready');
       } catch (err) {
         console.error('Unable to load shop item', err);
-        if (placeholderLookup[sku]) {
-          setItem(formatItem(placeholderLookup[sku]));
+        const placeholder = getPlaceholderBySku(sku);
+        if (placeholder) {
+          setItem(formatItem(placeholder));
           setActiveImageIndex(0);
           setStatus('ready');
           return;

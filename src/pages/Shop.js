@@ -59,6 +59,11 @@ const placeholderItems = [
   },
 ];
 
+const placeholderLookup = placeholderItems.reduce((lookup, item) => {
+  lookup[item.sku.toLowerCase()] = item;
+  return lookup;
+}, {});
+
 const defaultFilters = {
   category: 'all',
   priceType: 'all',
@@ -148,16 +153,23 @@ const Shop = () => {
     [t]
   );
 
+  const getPlaceholderBySku = useCallback(
+    (sku) => placeholderLookup[(sku || '').toLowerCase()] || placeholderItem,
+    []
+  );
+
   const formatItem = useCallback((item) => {
-    const mediaUrls = Array.isArray(item.mediaUrls) && item.mediaUrls.length ? item.mediaUrls : placeholderMedia;
+    const fallback = getPlaceholderBySku(item.sku || item._id);
+    const mediaUrls = Array.isArray(item.mediaUrls) && item.mediaUrls.length ? item.mediaUrls : fallback.mediaUrls;
     return {
+      ...fallback,
       ...item,
-      sku: item.sku || item._id || placeholderItem.sku,
-      marketplace: item.marketplace || 'site',
-      tags: Array.isArray(item.tags) && item.tags.length ? item.tags : placeholderItem.tags,
+      sku: item.sku || item._id || fallback.sku,
+      marketplace: item.marketplace || fallback.marketplace || 'site',
+      tags: Array.isArray(item.tags) && item.tags.length ? item.tags : fallback.tags,
       mediaUrls: mediaUrls.slice(0, 4),
     };
-  }, []);
+  }, [getPlaceholderBySku]);
 
   const getItemImage = (item) => (item.mediaUrls && item.mediaUrls[0]) || placeholderMedia[0];
 

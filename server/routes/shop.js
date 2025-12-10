@@ -70,9 +70,11 @@ const placeholderItems = [
 ];
 
 const placeholderLookup = placeholderItems.reduce((lookup, item) => {
-  lookup[item.sku] = item;
+  lookup[item.sku.toLowerCase()] = item;
   return lookup;
 }, {});
+
+const getPlaceholderBySku = (sku) => placeholderLookup[(sku || '').toLowerCase()] || null;
 
 const sanitizeMediaUrls = (mediaUrls = []) =>
   (Array.isArray(mediaUrls) ? mediaUrls.slice(0, 4) : []).filter(Boolean);
@@ -126,8 +128,9 @@ router.get('/items/:sku', async (req, res) => {
       });
     }
 
-    if (placeholderLookup[sku]) {
-      return res.json({ item: { ...placeholderLookup[sku], mediaUrls: resolveMediaUrls(placeholderLookup[sku].mediaUrls) } });
+    const fallback = getPlaceholderBySku(sku);
+    if (fallback) {
+      return res.json({ item: { ...fallback, mediaUrls: resolveMediaUrls(fallback.mediaUrls) } });
     }
 
     return res.status(404).json({ error: 'Shop item not found.' });
