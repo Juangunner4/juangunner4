@@ -78,6 +78,18 @@ const ShopItem = () => {
 
   const isSiteMarketplace = useMemo(() => (item?.marketplace || 'site') === 'site', [item?.marketplace]);
 
+  const marketplaceCtaLabel = useMemo(() => {
+    if (!item) return '';
+
+    return t(`shop.marketplaceCta.${item.marketplace}`, {
+      defaultValue: t('shop.marketplaceCta.default', {
+        marketplace: t(`shop.marketplaceNames.${item.marketplace}`, {
+          defaultValue: t('shop.marketplaceNames.site'),
+        }),
+      }),
+    });
+  }, [item?.marketplace, t]);
+
   const mediaUrls = useMemo(
     () => (item?.mediaUrls?.length ? item.mediaUrls : placeholderMedia).slice(0, 4),
     [item?.mediaUrls]
@@ -264,11 +276,6 @@ const ShopItem = () => {
                 <button type="button" className="secondary-button">
                   {t('shop.cryptoCta')}
                 </button>
-                {item.listingUrl && (
-                  <a className="secondary-button" href={item.listingUrl} target="_blank" rel="noreferrer">
-                    {t('shop.viewListing')}
-                  </a>
-                )}
               </>
             ) : (
               <a
@@ -278,7 +285,7 @@ const ShopItem = () => {
                 rel="noreferrer"
                 aria-disabled={!item.listingUrl}
               >
-                {t('shop.marketplaceCta.default', { marketplace: t(`shop.marketplaceNames.${item.marketplace}`) })}
+                {marketplaceCtaLabel}
               </a>
             )}
           </div>

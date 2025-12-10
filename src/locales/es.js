@@ -411,7 +411,6 @@ const es = {
     squareCta: 'Pagar con Square',
     cryptoCta: 'Pagar con cripto',
     ebayCta: 'Ver en eBay',
-    viewListing: 'Ver publicación',
     viewDetails: 'Ver detalles del artículo',
     marketplaceBadge: {
       site: 'En el sitio',

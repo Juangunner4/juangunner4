@@ -409,7 +409,6 @@ const en = {
     squareCta: 'Checkout with Square',
     cryptoCta: 'Pay with crypto',
     ebayCta: 'View on eBay',
-    viewListing: 'View listing',
     viewDetails: 'View item details',
     marketplaceBadge: {
       site: 'On-site',
