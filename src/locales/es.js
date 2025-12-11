@@ -142,6 +142,12 @@ const es = {
                 'Deposita activos en pools de liquidez descentralizados y gana APY competitivo con rendimientos transparentes on-chain.',
               linkLabel: 'Comienza a ganar APY en Aave',
             },
+            lulo: {
+              name: 'Lulo Finance',
+              description:
+                'Plataforma DeFi centrada en ahorros, recompensas e intercambios intuitivos. Descarga la app y usa mi código 0CQNMB para desbloquear bonos.',
+              linkLabel: 'Descarga Lulo con mi código',
+            },
             axiom: {
               name: 'Axiom',
               description:

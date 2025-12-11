@@ -141,6 +141,12 @@ const en = {
                 'Supply assets to decentralized liquidity pools and earn competitive APY with transparent, on-chain yields.',
               linkLabel: 'Start earning APY on Aave',
             },
+            lulo: {
+              name: 'Lulo Finance',
+              description:
+                'A DeFi trading platform focused on intuitive savings, rewards, and swaps. Download the app and use my code 0CQNMB to unlock bonuses.',
+              linkLabel: 'Download Lulo with my code',
+            },
             axiom: {
               name: 'Axiom',
               description:

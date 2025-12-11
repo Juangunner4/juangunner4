@@ -71,6 +71,13 @@ export const tradingPlatforms = {
       tags: ['DeFi', 'Lending', 'APY'],
     },
     {
+      id: 'lulo',
+      link: 'https://apps.apple.com/us/app/lulo-finance/id6744358349',
+      code: '0CQNMB',
+      faviconDomain: 'lulo.finance',
+      tags: ['DeFi', 'Referral Bonus'],
+    },
+    {
       id: 'axiom',
       link: 'https://axiom.trade/@0x1juan',
       faviconDomain: 'axiom.trade',
