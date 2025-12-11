@@ -136,6 +136,12 @@ const es = {
                 'Gráficos profesionales, liquidez profunda y seguridad robusta para traders activos de cripto.',
               linkLabel: 'Activa el referido de Coinbase',
             },
+            aave: {
+              name: 'Aave',
+              description:
+                'Deposita activos en pools de liquidez descentralizados y gana APY competitivo con rendimientos transparentes on-chain.',
+              linkLabel: 'Comienza a ganar APY en Aave',
+            },
             axiom: {
               name: 'Axiom',
               description:

@@ -65,6 +65,12 @@ export const tradingPlatforms = {
       tags: ['Tag TBD'],
     },
     {
+      id: 'aave',
+      link: 'https://aave.com/r/89D3F8',
+      faviconDomain: 'aave.com',
+      tags: ['DeFi', 'Lending', 'APY'],
+    },
+    {
       id: 'axiom',
       link: 'https://axiom.trade/@0x1juan',
       faviconDomain: 'axiom.trade',

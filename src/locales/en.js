@@ -135,6 +135,12 @@ const en = {
                 'Institutional-grade charts, deep liquidity, and robust security for active crypto traders.',
               linkLabel: 'Activate Coinbase referral',
             },
+            aave: {
+              name: 'Aave',
+              description:
+                'Supply assets to decentralized liquidity pools and earn competitive APY with transparent, on-chain yields.',
+              linkLabel: 'Start earning APY on Aave',
+            },
             axiom: {
               name: 'Axiom',
               description:
