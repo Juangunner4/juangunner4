@@ -1,3 +1,5 @@
+import luloFavicon from '../assets/lulo-favicon.svg';
+
 export const TRADE_CATEGORIES = ['invest', 'trade'];
 
 export const tradingPlatforms = {
@@ -71,10 +73,17 @@ export const tradingPlatforms = {
       tags: ['DeFi', 'Lending', 'APY'],
     },
     {
+      id: 'jupiter',
+      link: 'https://jup.ag/?refId=RpL7KpsSDR68',
+      faviconDomain: 'jup.ag',
+      tags: ['Solana', 'Referral Event', 'Aggregator'],
+    },
+    {
       id: 'lulo',
       link: 'https://apps.apple.com/us/app/lulo-finance/id6744358349',
       code: '0CQNMB',
       faviconDomain: 'lulo.finance',
+      faviconUrl: luloFavicon,
       tags: ['DeFi', 'Referral Bonus'],
     },
     {
