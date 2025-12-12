@@ -26,7 +26,7 @@ export const tradingPlatforms = {
   trade: [
     {
       id: 'okx',
-      link: 'https://t.co/bgPKR6NG0R',
+      link: 'https://app.okx.com/en-us/join/79816884',
       faviconDomain: 'okx.com',
       tags: ['Tag TBD'],
     },
