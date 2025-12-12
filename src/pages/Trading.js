@@ -127,7 +127,8 @@ const Trading = () => {
                 const platformName = t(`about.trade.categories.${selectedCategory}.platforms.${platform.id}.name`);
                 const platformDescription = t(`about.trade.categories.${selectedCategory}.platforms.${platform.id}.description`);
                 const platformLinkLabel = t(`about.trade.categories.${selectedCategory}.platforms.${platform.id}.linkLabel`);
-                const faviconUrl = getFaviconUrl(platform.link, platform.faviconDomain);
+                const faviconUrl =
+                  platform.faviconUrl || getFaviconUrl(platform.link, platform.faviconDomain);
 
                 return (
                   <article

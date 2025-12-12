@@ -142,6 +142,12 @@ const es = {
                 'Deposita activos en pools de liquidez descentralizados y gana APY competitivo con rendimientos transparentes on-chain.',
               linkLabel: 'Comienza a ganar APY en Aave',
             },
+            jupiter: {
+              name: 'Jupiter',
+              description:
+                'Código de referido para el Jupiter Trading Card Game en Solana. Refer & Trade to Earn desde $1,000,000 en recompensas. El evento va del 11 de diciembre de 2025 a las 02:00 AM al 31 de enero de 2026 a las 06:59 PM (2 meses).',
+              linkLabel: 'Únete al Jupiter Trading Card Game',
+            },
             lulo: {
               name: 'Lulo Finance',
               description:
