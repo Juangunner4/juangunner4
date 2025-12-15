@@ -135,6 +135,12 @@ export const tradingPlatforms = {
       tags: ['Creator Network', 'Referral Hub'],
     },
     {
+      id: 'legion',
+      link: 'https://legion.cc?homie=PTVAR3IX',
+      faviconDomain: 'legion.cc',
+      tags: ['ICO Launchpad', 'Fundraising', 'Merit-Based'],
+    },
+    {
       id: 'footballfun',
       link: 'https://pro.football.fun/login/?referral_code=UGCIJDHWTGL',
       faviconDomain: 'football.fun',
