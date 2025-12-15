@@ -195,6 +195,12 @@ const en = {
                 'Accelerate creator growth with Web3-native referral funnels, automated payouts, and community analytics.',
               linkLabel: 'Join Pyro.buzz',
             },
+            legion: {
+              name: 'Legion',
+              description:
+                'Legion is a merit-based crypto fundraising platform for public ICO sales. Back teams you believe in and join mission-driven allocations.',
+              linkLabel: 'Explore Legion allocations',
+            },
             sns: {
               name: 'SNS',
               description:

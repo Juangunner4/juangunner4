@@ -196,6 +196,12 @@ const es = {
                 'Impulsa el crecimiento de creadores con embudos de referidos web3, pagos automatizados y analítica comunitaria.',
               linkLabel: 'Únete a Pyro.buzz',
             },
+            legion: {
+              name: 'Legion',
+              description:
+                'Legion es una plataforma de recaudación cripto basada en mérito para ventas públicas de ICO. Apoya equipos en los que crees y únete a asignaciones con propósito.',
+              linkLabel: 'Explora las asignaciones en Legion',
+            },
             sns: {
               name: 'SNS',
               description:
