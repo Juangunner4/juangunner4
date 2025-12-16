@@ -152,6 +152,44 @@
   color: #3f3f3f;
 }
 
+.trade-section__header {
+  margin-bottom: 20px;
+}
+
+.trade-section__header h4 {
+  margin: 0;
+  font-size: 1.25rem;
+  color: #1b1b1b;
+}
+
+.trade-section__subheading {
+  margin: 8px 0 0;
+  font-size: 1rem;
+  line-height: 1.6;
+  color: #3f3f3f;
+}
+
+.trade-section__group {
+  margin-top: 24px;
+}
+
+.trade-section__group-header {
+  margin-bottom: 12px;
+}
+
+.trade-section__group-title {
+  margin: 0;
+  font-size: 1.1rem;
+  color: #ff0000;
+}
+
+.trade-section__group-description {
+  margin: 6px 0 0;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  color: #3f3f3f;
+}
+
 .referrals-grid {
   display: grid;
   gap: 24px;

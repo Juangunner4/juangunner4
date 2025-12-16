@@ -9,18 +9,35 @@ export const tradingPlatforms = {
       link: 'https://a.webull.com/NMixfRYZu7bzStLzxT',
       faviconDomain: 'webull.com',
       tags: ['Tag TBD'],
+      section: 'investing',
     },
     {
       id: 'cashapp',
       link: 'https://cash.app/app/BWSDDQZ',
       faviconDomain: 'cash.app',
       tags: ['Tag TBD'],
+      section: 'investing',
     },
     {
       id: 'sofi',
       link: 'https://www.sofi.com/invite/money?gcp=3972bc11-fd65-4573-8eca-5afb3831d790&isAliasGcp=false',
       faviconDomain: 'sofi.com',
       tags: ['Tag TBD'],
+      section: 'investing',
+    },
+    {
+      id: 'kalshi',
+      link: 'https://kalshi.com/sign-up/?referral=86c29a94-0c94-4797-9270-044063f1fb1d&m=true',
+      faviconDomain: 'kalshi.com',
+      tags: ['Prediction Markets', 'Events'],
+      section: 'trading',
+    },
+    {
+      id: 'polymarket',
+      link: 'https://polymarket.us/7328',
+      faviconDomain: 'polymarket.us',
+      tags: ['Prediction Markets', 'Crypto'],
+      section: 'trading',
     },
   ],
   trade: [
@@ -47,12 +64,6 @@ export const tradingPlatforms = {
       link: 'https://dm.fun/ref/F2XVGJHF',
       faviconDomain: 'dm.fun',
       tags: ['Social Trading', 'Memecoins'],
-    },
-    {
-      id: 'polymarket',
-      link: 'https://polymarket.us/7328',
-      faviconDomain: 'polymarket.us',
-      tags: ['Prediction Markets', 'Crypto'],
     },
     {
       id: 'aster',
