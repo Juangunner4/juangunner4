@@ -87,6 +87,12 @@ const es = {
                 'Una cuenta híbrida de cheques y ahorros con inversión automatizada y beneficios para miembros.',
               linkLabel: 'Activa tu bono de SoFi',
             },
+            kalshi: {
+              name: 'Kalshi',
+              description:
+                'Opera contratos de eventos en un exchange regulado en EE. UU. Únete con mi referido para ganar $10 y seguir mis movimientos de mercado.',
+              linkLabel: 'Regístrate en Kalshi y gana $10',
+            },
           },
         },
         trade: {

@@ -86,6 +86,12 @@ const en = {
                 'A hybrid checking and savings experience with automated investing and member benefits.',
               linkLabel: 'Activate your SoFi bonus',
             },
+            kalshi: {
+              name: 'Kalshi',
+              description:
+                'Trade event contracts on a regulated U.S. exchange. Join with my referral to earn $10 and follow my market moves.',
+              linkLabel: 'Sign up for Kalshi and earn $10',
+            },
           },
         },
         trade: {
