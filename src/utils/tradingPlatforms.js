@@ -49,6 +49,12 @@ export const tradingPlatforms = {
       tags: ['Social Trading', 'Memecoins'],
     },
     {
+      id: 'polymarket',
+      link: 'https://polymarket.us/7328',
+      faviconDomain: 'polymarket.us',
+      tags: ['Prediction Markets', 'Crypto'],
+    },
+    {
       id: 'aster',
       link: 'https://t.co/2Vp8ELVY5W',
       faviconDomain: 'asterdex.com',

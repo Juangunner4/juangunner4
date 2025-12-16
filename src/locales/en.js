@@ -117,6 +117,12 @@ const en = {
                 'Join me on dm.fun to co-pilot degens, track real-time memecoins, and trade alongside the community.',
               linkLabel: 'Join me on dm.fun',
             },
+            polymarket: {
+              name: 'Polymarket',
+              description:
+                'Trade prediction markets on crypto-native events. Use my link to start trading with transparent odds and deep on-chain liquidity.',
+              linkLabel: 'Trade on Polymarket',
+            },
             aster: {
               name: 'Aster',
               description:

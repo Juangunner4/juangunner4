@@ -118,6 +118,12 @@ const es = {
                 'Únete a dm.fun para coordinar con degens, seguir memecoins en tiempo real y operar junto a la comunidad.',
               linkLabel: 'Únete a dm.fun',
             },
+            polymarket: {
+              name: 'Polymarket',
+              description:
+                'Opera en mercados de predicción sobre eventos cripto. Usa mi enlace para empezar a tradear con cuotas claras y liquidez on-chain.',
+              linkLabel: 'Opera en Polymarket',
+            },
             aster: {
               name: 'Aster',
               description:
