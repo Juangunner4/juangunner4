@@ -67,6 +67,18 @@ const en = {
           heading: 'Invest with Me',
           description:
             'Tap into the brokerages I trust for equities and options. Use these invite links to claim free stock rewards and grow your portfolio.',
+          sectionHeading: 'Investing Trading Platforms',
+          sectionDescription: 'Investing and trading platforms and referral links',
+          sections: {
+            investing: {
+              title: 'Investing',
+              description: 'Brokerages for equities, ETFs, and long-term portfolio building.',
+            },
+            trading: {
+              title: 'Trading',
+              description: 'Prediction markets to trade event outcomes with my referral links.',
+            },
+          },
           platforms: {
             webull: {
               name: 'Webull Financial',
@@ -85,6 +97,18 @@ const en = {
               description:
                 'A hybrid checking and savings experience with automated investing and member benefits.',
               linkLabel: 'Activate your SoFi bonus',
+            },
+            kalshi: {
+              name: 'Kalshi',
+              description:
+                'A regulated U.S. exchange for trading event contracts—sign up with my link and we’ll both earn $10.',
+              linkLabel: 'Claim $10 on Kalshi',
+            },
+            polymarket: {
+              name: 'Polymarket',
+              description:
+                'Trade prediction markets on crypto-native events. Use my link to start trading with transparent odds and deep on-chain liquidity.',
+              linkLabel: 'Trade on Polymarket',
             },
           },
         },
@@ -116,12 +140,6 @@ const en = {
               description:
                 'Join me on dm.fun to co-pilot degens, track real-time memecoins, and trade alongside the community.',
               linkLabel: 'Join me on dm.fun',
-            },
-            polymarket: {
-              name: 'Polymarket',
-              description:
-                'Trade prediction markets on crypto-native events. Use my link to start trading with transparent odds and deep on-chain liquidity.',
-              linkLabel: 'Trade on Polymarket',
             },
             aster: {
               name: 'Aster',
