@@ -22,6 +22,12 @@ export const tradingPlatforms = {
       faviconDomain: 'sofi.com',
       tags: ['Tag TBD'],
     },
+    {
+      id: 'kalshi',
+      link: 'https://kalshi.com/sign-up/?referral=86c29a94-0c94-4797-9270-044063f1fb1d&m=true',
+      faviconDomain: 'kalshi.com',
+      tags: ['Prediction Markets', 'Bonus'],
+    },
   ],
   trade: [
     {
