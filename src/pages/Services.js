@@ -1,6 +1,5 @@
 import React from 'react';
 import '../styles/ContentPages.css';
-import { services } from '../utils/siteContent';
 import { Link } from 'react-router-dom';
 import { useProfile } from '../ProfileContext';
 import { getProfileBasePath } from '../utils/profileRouting';
