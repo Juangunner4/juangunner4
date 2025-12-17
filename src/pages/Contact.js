@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from 'react';
+import React, { useMemo } from 'react';
 import '../styles/ContentPages.css';
 import { useTranslation } from 'react-i18next';
 
@@ -38,8 +38,8 @@ const Contact = () => {
     return days;
   };
 
-  const timeSlots = generateTimeSlots();
-  const days = generateDays();
+  const timeSlots = useMemo(() => generateTimeSlots(), []);
+  const days = useMemo(() => generateDays(), []);
 
   // Generate random available slots for each day (2-4 slots per day)
   const generateAvailableSlots = useMemo(() => {
@@ -61,7 +61,7 @@ const Contact = () => {
     });
 
     return availableSlots;
-  }, []);
+  }, [days, timeSlots]);
 
   const isSlotAvailable = (day, timeSlot) => {
     return generateAvailableSlots[day.fullDate]?.includes(timeSlot.timeString);
