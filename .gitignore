@@ -42,3 +42,11 @@ logs/
 # OS
 Thumbs.db
 
+# Documentation (keep local references only)
+/*_REPORT.md
+/*_CHECKLIST.md
+/*_SETUP.md
+*_DOCUMENTATION.md
+TROUBLESHOOTING.md
+QUICK_START.md
+
