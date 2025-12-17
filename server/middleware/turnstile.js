@@ -37,6 +37,14 @@ const turnstileMiddleware = async (req, res, next) => {
     return res.status(400).json({ error: 'Turnstile token is required' });
   }
 
+  // Skip validation in development with test keys
+  if (process.env.NODE_ENV === 'development' && 
+      process.env.CLOUDFLARE_TURNSTILE_SECRET_KEY && 
+      process.env.CLOUDFLARE_TURNSTILE_SECRET_KEY.includes('0000')) {
+    console.log('Skipping Turnstile verification in development mode with test keys');
+    return next();
+  }
+
   const clientIp = req.ip || req.connection.remoteAddress;
   const isValid = await verifyTurnstileToken(turnstileToken, clientIp);
 

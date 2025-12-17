@@ -12,6 +12,8 @@ router.post('/register', turnstileMiddleware, async (req, res) => {
   try {
     const { username, email, password, confirmPassword } = req.body;
 
+    console.log('Registration attempt:', { username, email });
+
     // Validation
     if (!username || !email || !password || !confirmPassword) {
       return res.status(400).json({ error: 'Please provide all required fields' });

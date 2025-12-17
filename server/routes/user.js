@@ -32,6 +32,39 @@ const upload = multer({
   }
 });
 
+// @route   GET /api/user/:username
+// @desc    Get public user profile by username
+// @access  Public
+router.get('/:username', async (req, res) => {
+  try {
+    console.log('Fetching public profile for username:', req.params.username);
+    // Case-insensitive username lookup
+    const user = await User.findOne({ username: new RegExp(`^${req.params.username}$`, 'i') });
+
+    console.log('Found user:', user ? user.username : 'Not found');
+
+    if (!user) {
+      return res.status(404).json({ error: 'User not found' });
+    }
+
+    // Return only public profile information
+    res.json({
+      success: true,
+      user: {
+        _id: user._id,
+        username: user.username,
+        profilePicture: user.profilePicture,
+        profile: user.profile,
+        createdAt: user.createdAt,
+        isVerified: user.isVerified
+      }
+    });
+  } catch (error) {
+    console.error('Get public profile error:', error);
+    res.status(500).json({ error: 'Server error fetching user profile' });
+  }
+});
+
 // @route   GET /api/user/profile
 // @desc    Get current user profile
 // @access  Private
@@ -50,9 +83,9 @@ router.get('/profile', authMiddleware, async (req, res) => {
 // @route   PUT /api/user/profile
 // @desc    Update user profile
 // @access  Private
-router.put('/profile', authMiddleware, async (req, res) => {
+router.put('/profile', authMiddleware, upload.single('profilePicture'), async (req, res) => {
   try {
-    const { username, bio, location, website, newsletter, profileType } = req.body;
+    const { bio, location, website, newsletter, profileType } = req.body;
 
     const user = await User.findById(req.user._id);
 
@@ -60,29 +93,15 @@ router.put('/profile', authMiddleware, async (req, res) => {
       return res.status(404).json({ error: 'User not found' });
     }
 
-    // Update username if provided and different
-    if (username && username !== user.username) {
-      if (username.length < 3 || username.length > 30) {
-        return res.status(400).json({ error: 'Username must be between 3 and 30 characters' });
-      }
-
-      if (!/^[a-zA-Z0-9_]+$/.test(username)) {
-        return res.status(400).json({ error: 'Username can only contain letters, numbers, and underscores' });
-      }
-
-      // Check if username is taken
-      const existingUser = await User.findOne({ username });
-      if (existingUser) {
-        return res.status(400).json({ error: 'Username already taken' });
-      }
-
-      user.username = username;
-    }
-
     // Update profile fields
     if (bio !== undefined) user.profile.bio = bio;
     if (location !== undefined) user.profile.location = location;
     if (website !== undefined) user.profile.website = website;
+
+    // Update profile picture if provided
+    if (req.file) {
+      user.profilePicture = `/uploads/avatars/${req.file.filename}`;
+    }
 
     // Update preferences
     if (newsletter !== undefined) user.preferences.newsletter = newsletter;

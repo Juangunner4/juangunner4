@@ -35,6 +35,8 @@ import Portfolio from './pages/Portfolio';
 import Services from './pages/Services';
 import Shop from './pages/Shop';
 import ShopItem from './pages/ShopItem';
+import Profile from './pages/Profile';
+import PublicProfile from './pages/PublicProfile';
 
 const Layout = () => {
   const { profileType } = useParams();
@@ -92,6 +94,7 @@ function App() {
                       <Route path="shop" element={<Shop />} />
                       <Route path="shop/:sku" element={<ShopItem />} />
                       <Route path="contact" element={<Contact />} />
+                      <Route path="profile" element={<Profile />} />
                       <Route path="portfolio" element={<Portfolio />} />
                       <Route path="blog" element={<Blog />} />
                       <Route path="blog/:slug" element={<BlogPost />} />
@@ -99,6 +102,7 @@ function App() {
                       <Route path="terms" element={<TermsOfService />} />
                       <Route path=":platformId" element={<TradingPlatform />} />
                     </Route>
+                    <Route path="/user/:username" element={<PublicProfile />} />
                     <Route path="*" element={<Navigate to={getProfileBasePath(false)} replace />} />
                   </Routes>
                 </Router>

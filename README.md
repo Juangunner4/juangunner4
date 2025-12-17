@@ -1,34 +1,241 @@
-# Getting Started with Create React App
+# JuanGunner4 Portfolio
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A full-stack React application with Express backend, MongoDB database, and Web3 integrations.
 
-## API integration
+## Prerequisites
 
-An Express server in `server/index.js` proxies requests to X (formerly Twitter), Twitch and YouTube APIs. Copy `.env.example` to `.env` and provide the credentials for each service.
+Before running this application, make sure you have the following installed:
 
-Required environment variables:
+- **Node.js** (v16 or higher) - [Download here](https://nodejs.org/)
+- **MongoDB** (v4.4 or higher) - [Download here](https://www.mongodb.com/try/download/community)
+- **npm** or **yarn** package manager
 
-- `TWITTER_BEARER_TOKEN`
-- `TWITCH_CLIENT_ID`
-- `TWITCH_ACCESS_TOKEN`
-- `YOUTUBE_API_KEY`
-- `YOUTUBE_CHANNEL_ID`
+## Local Development Setup
 
-### X API endpoints
+### 1. Install MongoDB
 
-The Express server provides helper routes for fetching data from the X API:
+#### Windows (using MongoDB Community Server):
+```bash
+# Download and install MongoDB from https://www.mongodb.com/try/download/community
+# Or use Chocolatey:
+choco install mongodb
+# Start MongoDB service
+net start MongoDB
+```
 
-- `GET /api/twitter/:username` – latest tweets from the given user.
-- `GET /api/twitter/tweet/:id/metrics` – metrics including like, retweet and reply counts for a tweet.
-- `GET /api/twitter/tweet/:id/replies` – recent replies for the tweet.
+#### macOS (using Homebrew):
+```bash
+brew install mongodb-community
+brew services start mongodb-community
+```
 
-### Twitch API endpoints
+#### Linux (Ubuntu/Debian):
+```bash
+sudo apt-get install mongodb
+sudo systemctl start mongodb
+```
 
-The server also exposes endpoints for Twitch videos. The Twitch feed displays
-the most recent stream prominently and shows four additional past streams.
+### 2. Clone and Install Dependencies
 
-- `GET /api/twitch` – latest Twitch videos (up to 5, most recent first).
-- `GET /api/twitch/latest` – the most recent Twitch stream video only.
+```bash
+# Clone the repository
+git clone <repository-url>
+cd juangunner4
+
+# Install frontend dependencies
+npm install
+
+# Install backend dependencies
+cd server
+npm install
+cd ..
+```
+
+### 3. Environment Configuration
+
+#### Frontend Environment (.env)
+Copy the example environment file:
+```bash
+cp .env.example .env
+```
+
+The `.env` file should contain:
+```env
+# Frontend environment variables
+REACT_APP_TURNSTILE_SITE_KEY=1x00000000000000000000AA
+REACT_APP_TWITTER_BEARER_TOKEN=your-twitter-bearer-token
+REACT_APP_TWITCH_CLIENT_ID=your-twitch-client-id
+REACT_APP_TWITCH_ACCESS_TOKEN=your-twitch-access-token
+REACT_APP_YOUTUBE_API_KEY=your-youtube-api-key
+REACT_APP_YOUTUBE_CHANNEL_ID=your-youtube-channel-id
+REACT_APP_SOLANA_NETWORK=mainnet-beta
+```
+
+#### Backend Environment (server/.env)
+The server environment file should contain:
+```env
+# Database Configuration
+MONGODB_URI=mongodb://localhost:27017/juangunner4
+
+# JWT Configuration
+JWT_SECRET=your-super-secret-jwt-key-minimum-32-characters-long
+JWT_EXPIRE=7d
+
+# Cloudflare Turnstile
+CLOUDFLARE_TURNSTILE_SECRET_KEY=1x0000000000000000000000000000000AA
+CLOUDFLARE_TURNSTILE_SITE_KEY=1x00000000000000000000AA
+
+# Social Media APIs
+TWITTER_BEARER_TOKEN=your-twitter-bearer-token
+TWITCH_CLIENT_ID=your-twitch-client-id
+TWITCH_ACCESS_TOKEN=your-twitch-access-token
+YOUTUBE_API_KEY=your-youtube-api-key
+YOUTUBE_CHANNEL_ID=your-youtube-channel-id
+
+# Server Configuration
+PORT=4000
+NODE_ENV=development
+
+# Optional: Email configuration
+EMAIL_HOST=smtp.gmail.com
+EMAIL_PORT=587
+EMAIL_SECURE=false
+EMAIL_USER=your-email@gmail.com
+EMAIL_PASS=your-app-password
+```
+
+### 4. Start the Application
+
+#### Development Mode (with hot reload):
+```bash
+# Start both frontend and backend concurrently
+npm run dev
+```
+
+#### Manual Startup:
+```bash
+# Terminal 1: Start the backend server
+cd server
+npm start
+
+# Terminal 2: Start the frontend
+npm start
+```
+
+The application will be available at:
+- **Frontend**: http://localhost:3000
+- **Backend API**: http://localhost:4000
+
+## API Integration
+
+An Express server in `server/index.js` proxies requests to X (formerly Twitter), Twitch and YouTube APIs.
+
+### Required Environment Variables:
+
+- `TWITTER_BEARER_TOKEN` - Twitter API Bearer Token
+- `TWITCH_CLIENT_ID` - Twitch API Client ID
+- `TWITCH_ACCESS_TOKEN` - Twitch API Access Token
+- `YOUTUBE_API_KEY` - YouTube Data API Key
+- `YOUTUBE_CHANNEL_ID` - Your YouTube Channel ID
+
+### API Endpoints
+
+#### X (Twitter) API:
+- `GET /api/twitter/:username` – Latest tweets from a user
+- `GET /api/twitter/tweet/:id/metrics` – Tweet metrics
+- `GET /api/twitter/tweet/:id/replies` – Tweet replies
+
+#### Twitch API:
+- `GET /api/twitch` – Latest videos (up to 5)
+- `GET /api/twitch/latest` – Most recent stream
+
+#### YouTube API:
+- `GET /api/youtube/videos` – Latest videos
+- `GET /api/youtube/channel` – Channel information
+
+## Database
+
+The application uses MongoDB for data persistence. The default connection string is:
+```
+mongodb://localhost:27017/juangunner4
+```
+
+## Available Scripts
+
+### Frontend Scripts:
+```bash
+npm start          # Start development server
+npm run build      # Build for production
+npm test           # Run tests
+npm run eject      # Eject from Create React App
+```
+
+### Backend Scripts:
+```bash
+cd server
+npm start          # Start production server
+npm run dev        # Start development server with nodemon
+```
+
+## Project Structure
+
+```
+juangunner4/
+├── public/                 # Static assets
+├── src/                    # Frontend React application
+│   ├── components/         # Reusable components
+│   ├── pages/             # Page components
+│   ├── locales/           # Translation files
+│   ├── utils/             # Utility functions
+│   └── styles/            # CSS styles
+├── server/                 # Backend Express server
+│   ├── index.js           # Main server file
+│   ├── middleware/        # Express middleware
+│   ├── models/            # MongoDB models
+│   ├── routes/            # API routes
+│   └── config/            # Server configuration
+├── .env                    # Frontend environment variables
+├── .env.example           # Environment template
+└── server/.env           # Backend environment variables
+```
+
+## Deployment
+
+For production deployment, make sure to:
+
+1. Set `NODE_ENV=production` in server/.env
+2. Use production MongoDB connection string
+3. Set secure JWT secrets
+4. Configure production Cloudflare Turnstile keys
+5. Set up proper CORS origins
+
+## Troubleshooting
+
+### MongoDB Connection Issues:
+- Ensure MongoDB is running: `sudo systemctl status mongodb` (Linux) or `net start MongoDB` (Windows)
+- Check connection string in server/.env
+- Verify MongoDB is listening on port 27017
+
+### API Key Issues:
+- Verify all required API keys are set in both .env files
+- Check API key permissions and quotas
+- Ensure API keys are not expired
+
+### Port Conflicts:
+- Default ports: Frontend (3000), Backend (4000)
+- Change ports in .env files if needed
+
+## Contributing
+
+1. Fork the repository
+2. Create a feature branch
+3. Make your changes
+4. Test thoroughly
+5. Submit a pull request
+
+## License
+
+This project is private and proprietary.
 
 ## Available Scripts
 

@@ -11,6 +11,7 @@ import { useProfile } from '../ProfileContext';
 import { useTranslation } from 'react-i18next';
 import { buildProfileAwarePath, getProfileBasePath } from '../utils/profileRouting';
 import MenuIcon from '@mui/icons-material/Menu';
+import PersonIcon from '@mui/icons-material/Person';
 import { useAuth } from '../contexts/AuthContext';
 import LoginModal from './auth/LoginModal';
 import RegisterModal from './auth/RegisterModal';
@@ -168,6 +169,18 @@ const Navbar = () => {
 
       <div className="navbar-actions">
         <div className="auth-controls">
+          {isAuthenticated && user?.username && (
+            <button
+              type="button"
+              className="user-profile-btn"
+              onClick={() => navigate(`/user/${user.username}`)}
+              aria-label="Go to profile"
+              title="Profile"
+            >
+              <PersonIcon />
+            </button>
+          )}
+
           {isAuthenticated && (
             <div className="user-menu">
               <button

@@ -32,7 +32,9 @@ export const AuthProvider = ({ children }) => {
       if (token) {
         try {
           const response = await axios.get('/api/user/profile');
-          setUser(response.data);
+          // Extract user from response if it's wrapped
+          const userData = response.data.user || response.data;
+          setUser(userData);
         } catch (error) {
           console.error('Failed to load user:', error);
           // Token might be invalid, clear it
