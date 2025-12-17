@@ -376,11 +376,48 @@ const es = {
   services: {
     heading: 'Servicios',
     headingWeb3: 'Servicios',
-    subheading: 'Apoyo práctico para constructores, equipos y creadores que necesitan impulso.',
+    subheading: 'Ingeniería de software probada en batalla para productos reales, escala real y usuarios reales.',
     subheadingWeb3: 'Soluciones nativas de Web3 para proyectos, comunidades y creadores construyendo on-chain.',
     ctaHeading: 'Ponte en contacto para cualquiera de estos servicios',
     ctaDescription: '¿Interesado en cualquiera de los servicios de arriba? Hablemos de cómo podemos trabajar juntos.',
     ctaButton: 'Contáctame',
+    web2Services: {
+      fullStack: {
+        title: 'Ingeniería de Productos Full-Stack',
+        description1: 'Diseño, construyo y lanzo software de producción.',
+        description2: 'Frontend a backend a infraestructura — React, Node, Java, APIs, bases de datos y cloud. Construido para rendimiento, escala y usuarios reales.',
+        description3: 'Sin sobreingeniería. Sin demos. Solo software que funciona en producción.',
+        description4: ''
+      },
+      systemsArchitecture: {
+        title: 'Arquitectura de Sistemas y Escalado de Backend',
+        description1: 'Diseño sistemas que escalan.',
+        description2: 'APIs, modelos de datos, autenticación y límites de servicios construidos para el crecimiento. Te ayudo a pasar de "funciona" a "escala".',
+        description3: 'Decisiones limpias. Ventaja a largo plazo.',
+        description4: ''
+      },
+      fabrication: {
+        title: 'Impresión 3D y Fabricación Digital',
+        description1: 'Diseño y produzco impresiones 3D funcionales.',
+        description2: 'De CAD a pieza terminada — prototipos, coleccionables y pequeños lotes. Construido para durabilidad y uso en el mundo real.',
+        description3: 'Sin impresiones de novedad. Solo resultados sólidos.',
+        description4: ''
+      },
+      soccerTraining: {
+        title: 'Entrenamiento Privado de Fútbol',
+        description1: 'Entreno jugadores para desempeño real en partidos.',
+        description2: 'Trabajo técnico, acondicionamiento e inteligencia de juego adaptados al jugador. Sesiones enfocadas que se traducen en el día del partido.',
+        description3: 'Sin relleno. Resultados reales.',
+        description4: ''
+      },
+      consulting: {
+        title: 'Consultoría de Software y Programación',
+        description1: 'Ayudo a equipos a tomar las decisiones técnicas correctas.',
+        description2: 'Revisiones de arquitectura, depuración y orientación de roadmap en todo el stack. Consejos claros que puedes ejecutar.',
+        description3: 'Sin buzzwords. Solo ingeniería real.',
+        description4: ''
+      }
+    },
     web3Services: {
       incubation: {
         title: 'Incubación Web3 y Búsqueda de IPO',

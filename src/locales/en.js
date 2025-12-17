@@ -374,11 +374,48 @@ const en = {
   services: {
     heading: 'Services',
     headingWeb3: 'Services',
-    subheading: 'Hands-on support for builders, teams, and creators who need momentum.',
+    subheading: 'Battle-tested software engineering for real products, real scale, and real users.',
     subheadingWeb3: 'Web3-native solutions for projects, communities, and creators building on-chain.',
     ctaHeading: 'Get in touch for any of these services',
     ctaDescription: 'Interested in any of the services above? Let\'s discuss how we can work together.',
     ctaButton: 'Contact me',
+    web2Services: {
+      fullStack: {
+        title: 'Full-Stack Product Engineering',
+        description1: 'I design, build, and ship production software.',
+        description2: 'Frontend to backend to infra — React, Node, Java, APIs, databases, and cloud. Built for performance, scale, and real users.',
+        description3: 'No overengineering. No demos. Just software that runs in prod.',
+        description4: ''
+      },
+      systemsArchitecture: {
+        title: 'Systems Architecture & Backend Scaling',
+        description1: 'I design systems that scale.',
+        description2: 'APIs, data models, auth, and service boundaries built for growth. I help you move from "it works" to "it scales."',
+        description3: 'Clean decisions. Long-term upside.',
+        description4: ''
+      },
+      fabrication: {
+        title: '3D Printing & Digital Fabrication',
+        description1: 'I design and produce functional 3D prints.',
+        description2: 'From CAD to finished part — prototypes, collectibles, and small batches. Built for durability and real-world use.',
+        description3: 'No novelty prints. Just solid output.',
+        description4: ''
+      },
+      soccerTraining: {
+        title: 'Private Soccer Training',
+        description1: 'I train players for real match performance.',
+        description2: 'Technical work, conditioning, and game IQ tailored to the player. Focused sessions that translate to game day.',
+        description3: 'No filler. Real results.',
+        description4: ''
+      },
+      consulting: {
+        title: 'Software & Programming Consulting',
+        description1: 'I help teams make the right technical calls.',
+        description2: 'Architecture reviews, debugging, and roadmap guidance across the stack. Clear advice you can execute on.',
+        description3: 'No buzzwords. Just real engineering.',
+        description4: ''
+      }
+    },
     web3Services: {
       incubation: {
         title: 'Web3 Incubation & IPO Scouting',

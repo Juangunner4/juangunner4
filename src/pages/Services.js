@@ -48,7 +48,66 @@ const Services = () => {
     },
   ];
 
-  const displayServices = isWeb3 ? web3Services : services;
+  // Define Web2-specific services
+  const web2Services = [
+    {
+      title: t('services.web2Services.fullStack.title'),
+      description: (
+        <>
+          <p><strong>{t('services.web2Services.fullStack.description1')}</strong></p>
+          <p>{t('services.web2Services.fullStack.description2')}</p>
+          <p><em>{t('services.web2Services.fullStack.description3')}</em></p>
+          <p>{t('services.web2Services.fullStack.description4')}</p>
+        </>
+      ),
+    },
+    {
+      title: t('services.web2Services.systemsArchitecture.title'),
+      description: (
+        <>
+          <p><strong>{t('services.web2Services.systemsArchitecture.description1')}</strong></p>
+          <p>{t('services.web2Services.systemsArchitecture.description2')}</p>
+          <p>{t('services.web2Services.systemsArchitecture.description3')}</p>
+          <p><em>{t('services.web2Services.systemsArchitecture.description4')}</em></p>
+        </>
+      ),
+    },
+    {
+      title: t('services.web2Services.fabrication.title'),
+      description: (
+        <>
+          <p><strong>{t('services.web2Services.fabrication.description1')}</strong></p>
+          <p>{t('services.web2Services.fabrication.description2')}</p>
+          <p><em>{t('services.web2Services.fabrication.description3')}</em></p>
+          <p>{t('services.web2Services.fabrication.description4')}</p>
+        </>
+      ),
+    },
+    {
+      title: t('services.web2Services.soccerTraining.title'),
+      description: (
+        <>
+          <p><strong>{t('services.web2Services.soccerTraining.description1')}</strong></p>
+          <p>{t('services.web2Services.soccerTraining.description2')}</p>
+          <p><em>{t('services.web2Services.soccerTraining.description3')}</em></p>
+          <p>{t('services.web2Services.soccerTraining.description4')}</p>
+        </>
+      ),
+    },
+    {
+      title: t('services.web2Services.consulting.title'),
+      description: (
+        <>
+          <p><strong>{t('services.web2Services.consulting.description1')}</strong></p>
+          <p>{t('services.web2Services.consulting.description2')}</p>
+          <p><em>{t('services.web2Services.consulting.description3')}</em></p>
+          <p>{t('services.web2Services.consulting.description4')}</p>
+        </>
+      ),
+    },
+  ];
+
+  const displayServices = isWeb3 ? web3Services : web2Services;
 
   return (
     <div className="page-wrapper">
