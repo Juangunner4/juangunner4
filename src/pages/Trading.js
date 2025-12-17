@@ -27,6 +27,7 @@ const Trading = () => {
 
   const isTradeCategory = TRADE_CATEGORIES.includes(selectedCategory);
   const shouldShowTradeSection = isTradeCategory;
+  const isInvestCategory = selectedCategory === 'invest';
 
   useEffect(() => {
     setCopyStatus({ code: '', error: false });
@@ -106,6 +107,18 @@ const Trading = () => {
     ? `trade-section trade-section--${selectedCategory}`
     : '';
 
+  const categoryPlatforms = tradingPlatforms[selectedCategory] || [];
+  const platformsBySection = categoryPlatforms.reduce((acc, platform) => {
+    const sectionKey = isInvestCategory ? platform.section || 'investing' : 'default';
+    if (!acc[sectionKey]) {
+      acc[sectionKey] = [];
+    }
+    acc[sectionKey].push(platform);
+    return acc;
+  }, {});
+
+  const orderedSections = isInvestCategory ? ['investing', 'trading'] : ['default'];
+
   return (
     <div className="page-wrapper">
       <div className="page-hero">
@@ -120,116 +133,155 @@ const Trading = () => {
             <p className="trade-description">
               {t(`about.trade.categories.${selectedCategory}.description`)}
             </p>
-            <div className="referrals-grid">
-              {(tradingPlatforms[selectedCategory] || []).map((platform) => {
-                const isActivePlatform =
-                  platform.code && copyStatus.code === platform.code;
-                const platformName = t(`about.trade.categories.${selectedCategory}.platforms.${platform.id}.name`);
-                const platformDescription = t(`about.trade.categories.${selectedCategory}.platforms.${platform.id}.description`);
-                const platformLinkLabel = t(`about.trade.categories.${selectedCategory}.platforms.${platform.id}.linkLabel`);
-                const faviconUrl =
-                  platform.faviconUrl || getFaviconUrl(platform.link, platform.faviconDomain);
+            {isInvestCategory && (
+              <div className="trade-section__header">
+                <h4>{t('about.trade.categories.invest.sectionHeading')}</h4>
+                <p className="trade-section__subheading">
+                  {t('about.trade.categories.invest.sectionDescription')}
+                </p>
+              </div>
+            )}
+            {orderedSections.map((sectionKey) => {
+              const platforms = platformsBySection[sectionKey] || [];
 
-                return (
-                  <article
-                    key={platform.id}
-                    className="referral-card"
-                    tabIndex={0}
-                    role="button"
-                    onClick={() => handleNavigateToPlatform(platform.id)}
-                    onKeyDown={(event) => {
-                      if (event.key === 'Enter' || event.key === ' ') {
-                        event.preventDefault();
-                        handleNavigateToPlatform(platform.id);
-                      }
-                    }}
-                  >
-                    <div className="referral-logo">
-                      {faviconUrl && (
-                        <img
-                          src={faviconUrl}
-                          alt={`${platformName} favicon`}
-                          onError={(e) => {
-                            e.target.style.display = 'none';
-                            const fallback = e.target.parentNode.querySelector('.referral-logo--fallback');
-                            if (fallback) {
-                              fallback.style.display = 'flex';
-                            }
-                          }}
-                          onLoad={(e) => {
-                            const fallback = e.target.parentNode.querySelector('.referral-logo--fallback');
-                            if (fallback) {
-                              fallback.style.display = 'none';
-                            }
-                          }}
-                        />
-                      )}
-                      <div
-                        className="referral-logo--fallback"
-                        style={{ display: 'flex' }}
-                        role="img"
-                        aria-label={`${platformName} placeholder icon`}
-                      >
-                        <span aria-hidden="true">{platformName.charAt(0)}</span>
-                      </div>
+              if (!platforms.length) {
+                return null;
+              }
+
+              const sectionTitle = isInvestCategory
+                ? t(`about.trade.categories.invest.sections.${sectionKey}.title`)
+                : null;
+              const sectionDescription = isInvestCategory
+                ? t(`about.trade.categories.invest.sections.${sectionKey}.description`)
+                : null;
+
+              return (
+                <div key={sectionKey} className="trade-section__group">
+                  {isInvestCategory && (
+                    <div className="trade-section__group-header">
+                      <h4 className="trade-section__group-title">{sectionTitle}</h4>
+                      <p className="trade-section__group-description">{sectionDescription}</p>
                     </div>
-                    <h4>{platformName}</h4>
-                    <p>{platformDescription}</p>
-                    {platform.tags && platform.tags.length > 0 && (
-                      <div className="referral-tags">
-                        <span className="referral-tags__label">
-                          {t('about.trade.tagsLabel')}
-                        </span>
-                        <ul>
-                          {platform.tags.map((tag) => (
-                            <li key={tag} className="referral-tag">
-                              {tag}
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
-                    )}
-                    <a
-                      className="referral-link"
-                      href={platform.link}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      onClick={(event) => event.stopPropagation()}
-                    >
-                      <span className="referral-link__label">{platformLinkLabel}</span>
-                      <OpenInNewIcon
-                        className="referral-link__icon"
-                        fontSize="inherit"
-                        aria-hidden="true"
-                      />
-                    </a>
-                    {platform.code && (
-                      <div className="referral-code" aria-live="polite">
-                        <span>{t('about.trade.referralCodeLabel')}</span>
-                        <code>{platform.code}</code>
-                        <button
-                          type="button"
-                          className="copy-button"
-                          onClick={(event) => {
-                            event.stopPropagation();
-                            handleCopyCode(platform.code);
+                  )}
+                  <div className="referrals-grid">
+                    {platforms.map((platform) => {
+                      const isActivePlatform =
+                        platform.code && copyStatus.code === platform.code;
+                      const platformName = t(
+                        `about.trade.categories.${selectedCategory}.platforms.${platform.id}.name`,
+                      );
+                      const platformDescription = t(
+                        `about.trade.categories.${selectedCategory}.platforms.${platform.id}.description`,
+                      );
+                      const platformLinkLabel = t(
+                        `about.trade.categories.${selectedCategory}.platforms.${platform.id}.linkLabel`,
+                      );
+                      const faviconUrl =
+                        platform.faviconUrl || getFaviconUrl(platform.link, platform.faviconDomain);
+
+                      return (
+                        <article
+                          key={platform.id}
+                          className="referral-card"
+                          tabIndex={0}
+                          role="button"
+                          onClick={() => handleNavigateToPlatform(platform.id)}
+                          onKeyDown={(event) => {
+                            if (event.key === 'Enter' || event.key === ' ') {
+                              event.preventDefault();
+                              handleNavigateToPlatform(platform.id);
+                            }
                           }}
                         >
-                          {isActivePlatform && !copyStatus.error
-                            ? t('about.trade.copied')
-                            : t('about.trade.copyCode')}
-                        </button>
-                      </div>
-                    )}
-                    {platform.code && isActivePlatform && copyStatus.error && (
-                      <p className="copy-feedback" role="status">
-                        {t('about.trade.copyError')}
-                      </p>
-                    )}
-                  </article>
-                );
-              })}
-            </div>
+                          <div className="referral-logo">
+                            {faviconUrl && (
+                              <img
+                                src={faviconUrl}
+                                alt={`${platformName} favicon`}
+                                onError={(e) => {
+                                  e.target.style.display = 'none';
+                                  const fallback = e.target.parentNode.querySelector('.referral-logo--fallback');
+                                  if (fallback) {
+                                    fallback.style.display = 'flex';
+                                  }
+                                }}
+                                onLoad={(e) => {
+                                  const fallback = e.target.parentNode.querySelector('.referral-logo--fallback');
+                                  if (fallback) {
+                                    fallback.style.display = 'none';
+                                  }
+                                }}
+                              />
+                            )}
+                            <div
+                              className="referral-logo--fallback"
+                              style={{ display: 'flex' }}
+                              role="img"
+                              aria-label={`${platformName} placeholder icon`}
+                            >
+                              <span aria-hidden="true">{platformName.charAt(0)}</span>
+                            </div>
+                          </div>
+                          <h4>{platformName}</h4>
+                          <p>{platformDescription}</p>
+                          {platform.tags && platform.tags.length > 0 && (
+                            <div className="referral-tags">
+                              <span className="referral-tags__label">
+                                {t('about.trade.tagsLabel')}
+                              </span>
+                              <ul>
+                                {platform.tags.map((tag) => (
+                                  <li key={tag} className="referral-tag">
+                                    {tag}
+                                  </li>
+                                ))}
+                              </ul>
+                            </div>
+                          )}
+                          <a
+                            className="referral-link"
+                            href={platform.link}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            onClick={(event) => event.stopPropagation()}
+                          >
+                            <span className="referral-link__label">{platformLinkLabel}</span>
+                            <OpenInNewIcon
+                              className="referral-link__icon"
+                              fontSize="inherit"
+                              aria-hidden="true"
+                            />
+                          </a>
+                          {platform.code && (
+                            <div className="referral-code" aria-live="polite">
+                              <span>{t('about.trade.referralCodeLabel')}</span>
+                              <code>{platform.code}</code>
+                              <button
+                                type="button"
+                                className="copy-button"
+                                onClick={(event) => {
+                                  event.stopPropagation();
+                                  handleCopyCode(platform.code);
+                                }}
+                              >
+                                {isActivePlatform && !copyStatus.error
+                                  ? t('about.trade.copied')
+                                  : t('about.trade.copyCode')}
+                              </button>
+                              {isActivePlatform && copyStatus.error && (
+                                <p className="copy-error" role="alert">
+                                  {t('about.trade.copyError')}
+                                </p>
+                              )}
+                            </div>
+                          )}
+                        </article>
+                      );
+                    })}
+                  </div>
+                </div>
+              );
+            })}
           </section>
         )}
       </div>

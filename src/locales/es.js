@@ -68,6 +68,18 @@ const es = {
           heading: 'Invierte conmigo',
           description:
             'Aprovecha los brókers que uso para operar acciones y opciones. Usa estos enlaces para reclamar acciones gratis y hacer crecer tu portafolio.',
+          sectionHeading: 'Plataformas de inversión y trading',
+          sectionDescription: 'Plataformas de inversión y trading con enlaces de referido',
+          sections: {
+            investing: {
+              title: 'Inversión',
+              description: 'Brókers para acciones, ETFs y construcción de portafolio a largo plazo.',
+            },
+            trading: {
+              title: 'Trading',
+              description: 'Mercados de predicción para operar resultados de eventos con mis referidos.',
+            },
+          },
           platforms: {
             webull: {
               name: 'Webull Financial',
@@ -86,6 +98,18 @@ const es = {
               description:
                 'Una cuenta híbrida de cheques y ahorros con inversión automatizada y beneficios para miembros.',
               linkLabel: 'Activa tu bono de SoFi',
+            },
+            kalshi: {
+              name: 'Kalshi',
+              description:
+                'Un exchange regulado en EE.UU. para operar contratos de eventos: regístrate con mi enlace y ambos ganamos $10.',
+              linkLabel: 'Recibe $10 en Kalshi',
+            },
+            polymarket: {
+              name: 'Polymarket',
+              description:
+                'Opera en mercados de predicción sobre eventos cripto. Usa mi enlace para empezar a tradear con cuotas claras y liquidez on-chain.',
+              linkLabel: 'Opera en Polymarket',
             },
           },
         },
@@ -117,12 +141,6 @@ const es = {
               description:
                 'Únete a dm.fun para coordinar con degens, seguir memecoins en tiempo real y operar junto a la comunidad.',
               linkLabel: 'Únete a dm.fun',
-            },
-            polymarket: {
-              name: 'Polymarket',
-              description:
-                'Opera en mercados de predicción sobre eventos cripto. Usa mi enlace para empezar a tradear con cuotas claras y liquidez on-chain.',
-              linkLabel: 'Opera en Polymarket',
             },
             aster: {
               name: 'Aster',
