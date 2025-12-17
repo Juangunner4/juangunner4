@@ -2,6 +2,11 @@ import React, { createContext, useState, useContext, useEffect, useMemo, useCall
 import PropTypes from 'prop-types';
 import axios from 'axios';
 
+const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:4000';
+
+// Configure axios base URL
+axios.defaults.baseURL = API_URL;
+
 const AuthContext = createContext();
 
 export const useAuth = () => {
@@ -50,10 +55,10 @@ export const AuthProvider = ({ children }) => {
   }, [token]);
 
   // Email/Password Login
-  const login = useCallback(async (email, password, turnstileToken) => {
+  const login = useCallback(async (identifier, password, turnstileToken) => {
     try {
       const response = await axios.post('/api/auth/login', {
-        email,
+        identifier,
         password,
         turnstileToken,
       });
@@ -66,7 +71,7 @@ export const AuthProvider = ({ children }) => {
 
       return { success: true };
     } catch (error) {
-      const message = error.response?.data?.message || 'Login failed';
+      const message = error.response?.data?.error || error.response?.data?.message || 'Login failed';
       return { success: false, error: message };
     }
   }, []);
@@ -88,7 +93,7 @@ export const AuthProvider = ({ children }) => {
 
       return { success: true };
     } catch (error) {
-      const message = error.response?.data?.message || 'Wallet login failed';
+      const message = error.response?.data?.error || error.response?.data?.message || 'Wallet login failed';
       return { success: false, error: message };
     }
   }, []);
@@ -112,7 +117,7 @@ export const AuthProvider = ({ children }) => {
 
       return { success: true };
     } catch (error) {
-      const message = error.response?.data?.message || 'Registration failed';
+      const message = error.response?.data?.error || error.response?.data?.message || 'Registration failed';
       return { success: false, error: message };
     }
   }, []);

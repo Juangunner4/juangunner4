@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import Drawer from '@mui/material/Drawer';
 import List from '@mui/material/List';
@@ -21,7 +21,6 @@ const Navbar = () => {
   const { user, isAuthenticated, logout } = useAuth();
   const currentImage = isWeb3 ? web3Image : web2Image;
   const [drawerOpen, setDrawerOpen] = useState(false);
-  const [floatingMessage, setFloatingMessage] = useState(null);
   const [loginModalOpen, setLoginModalOpen] = useState(false);
   const [registerModalOpen, setRegisterModalOpen] = useState(false);
   const [userMenuOpen, setUserMenuOpen] = useState(false);
@@ -61,56 +60,6 @@ const Navbar = () => {
     setLoginModalOpen(true);
   };
 
-  useEffect(() => {
-    const web2Messages = [
-      'Hi',
-      'Click me',
-      'Come on you gunners',
-      'Trakas',
-      'Odiame Mas',
-      'Arriba las Aguilas',
-    ];
-    const web3Messages = ['GmGn', '$JUAN', '$troll', '$peri', '$sns', '$doggy', '$mask'];
-    const sequence = isWeb3 ? web3Messages : web2Messages;
-
-    if (sequence.length === 0) return undefined;
-
-    let index = 0;
-    let intervalId = null;
-    let removalTimeoutId = null;
-
-    const displayDuration = 4000;
-
-    const showNext = () => {
-      const message = sequence[index];
-      setFloatingMessage({
-        value: message,
-        key: `${isWeb3 ? 'web3' : 'web2'}-${index}-${Date.now()}`,
-      });
-      index += 1;
-
-      if (index >= sequence.length) {
-        if (intervalId) clearInterval(intervalId);
-        removalTimeoutId = setTimeout(() => {
-          setFloatingMessage(null);
-        }, displayDuration);
-      }
-    };
-
-    showNext();
-    intervalId = setInterval(() => {
-      if (index < sequence.length) {
-        showNext();
-      }
-    }, displayDuration);
-
-    return () => {
-      if (intervalId) clearInterval(intervalId);
-      if (removalTimeoutId) clearTimeout(removalTimeoutId);
-      setFloatingMessage(null);
-    };
-  }, [isWeb3]);
-
   return (
     <nav className="navbar">
       <div className="navbar-left">
@@ -127,12 +76,6 @@ const Navbar = () => {
               className="navbar-pfp"
               draggable="false"
             />
-            {floatingMessage && (
-              <span key={floatingMessage.key} className="pfp-float-text">
-                {floatingMessage.value}
-              </span>
-            )}
-            <span className="pfp-tag">{isWeb3 ? t('navbar.web3') : t('navbar.web2')}</span>
           </div>
         </button>
       </div>

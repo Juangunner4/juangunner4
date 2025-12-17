@@ -79,19 +79,24 @@ router.post('/register', turnstileMiddleware, async (req, res) => {
 });
 
 // @route   POST /api/auth/login
-// @desc    Login user
+// @desc    Login user with email or username
 // @access  Public
 router.post('/login', turnstileMiddleware, async (req, res) => {
   try {
-    const { email, password } = req.body;
+    const { identifier, password } = req.body;
 
     // Validation
-    if (!email || !password) {
-      return res.status(400).json({ error: 'Please provide email and password' });
+    if (!identifier || !password) {
+      return res.status(400).json({ error: 'Please provide email/username and password' });
     }
 
-    // Find user
-    const user = await User.findOne({ email: email.toLowerCase() });
+    // Find user by email or username (case-insensitive for both)
+    const user = await User.findOne({
+      $or: [
+        { email: identifier.toLowerCase() },
+        { username: new RegExp(`^${identifier}$`, 'i') }
+      ]
+    });
 
     if (!user) {
       return res.status(401).json({ error: 'Invalid credentials' });
@@ -115,7 +120,7 @@ router.post('/login', turnstileMiddleware, async (req, res) => {
     });
   } catch (error) {
     console.error('Login error:', error);
-    res.status(500).json({ error: 'Server error during login' });
+    res.status(500).json({ error: 'Server error during login. Please try again later.' });
   }
 });
 
