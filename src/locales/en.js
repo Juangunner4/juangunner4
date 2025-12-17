@@ -378,6 +378,29 @@ const en = {
     ctaHeading: 'Ready to collaborate?',
     ctaDescription: 'Tell me about your project scope, timeline, and goals. I will reply with a short plan and next steps within 48 hours.',
     ctaButton: 'Contact me',
+    web3Services: {
+      incubation: {
+        title: 'Web3 Incubation & IPO Scouting',
+        description1: 'I scout real builders for dev.fun.',
+        description2: 'If you\'re gearing up for an on-chain IPO, I help vet the project and plug you into the dev.fun incubator — tech support, distribution, and guidance straight from the pump.fun ecosystem.',
+        description3: 'No spray-and-pray.',
+        description4: 'I earn when projects ship and win — incentives fully aligned.'
+      },
+      development: {
+        title: 'Web3 Development',
+        description1: 'I build and ship real Web3 products.',
+        description2: 'Smart contracts, dApps, APIs, and infra — no agencies, no fluff.',
+        description3: 'From MVP to mainnet, I focus on code that works and scales.',
+        description4: 'Built by a dev who actually ships.'
+      },
+      streaming: {
+        title: 'Live Streaming & On-Chain Game Showcases',
+        description1: 'I stream Web3 games and interactive demos live.',
+        description2: 'Projects unlock airtime through on-chain burns via pyro.buzz — burn = feature, simple as that. Everything happens live, transparent, and on-chain.',
+        description3: 'Think of it like a game mechanic: support → burn → unlock exposure.',
+        description4: 'Built for games, builders, and on-chain experiences that want real players watching.'
+      }
+    }
   },
   blog: {
     heading: 'Blog',

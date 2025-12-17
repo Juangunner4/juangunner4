@@ -11,6 +11,45 @@ const Services = () => {
   const { t } = useTranslation();
   const basePath = getProfileBasePath(isWeb3);
 
+  // Define Web3-specific service
+  const web3Services = [
+    {
+      title: t('services.web3Services.incubation.title'),
+      description: (
+        <>
+          <p><strong>{t('services.web3Services.incubation.description1')}</strong></p>
+          <p>{t('services.web3Services.incubation.description2')}</p>
+          <p><em>{t('services.web3Services.incubation.description3')}</em></p>
+          <p>{t('services.web3Services.incubation.description4')}</p>
+        </>
+      ),
+    },
+    {
+      title: t('services.web3Services.development.title'),
+      description: (
+        <>
+          <p><strong>{t('services.web3Services.development.description1')}</strong></p>
+          <p>{t('services.web3Services.development.description2')}</p>
+          <p>{t('services.web3Services.development.description3')}</p>
+          <p><em>{t('services.web3Services.development.description4')}</em></p>
+        </>
+      ),
+    },
+    {
+      title: t('services.web3Services.streaming.title'),
+      description: (
+        <>
+          <p><strong>{t('services.web3Services.streaming.description1')}</strong></p>
+          <p>{t('services.web3Services.streaming.description2')}</p>
+          <p>{t('services.web3Services.streaming.description3')}</p>
+          <p><em>{t('services.web3Services.streaming.description4')}</em></p>
+        </>
+      ),
+    },
+  ];
+
+  const displayServices = isWeb3 ? web3Services : services;
+
   return (
     <div className="page-wrapper">
       <div className="page-hero">
@@ -19,21 +58,21 @@ const Services = () => {
       </div>
 
       <div className="page-grid">
-        {services.map((service) => (
+        {displayServices.map((service) => (
           <div key={service.title} className="page-card">
             <h3>{service.title}</h3>
-            <p>{service.description}</p>
+            <div>{service.description}</div>
           </div>
         ))}
       </div>
 
       <div className="page-section">
-        <h2>{t('services.ctaHeading')}</h2>
+        <h2>Get in touch for any of these services</h2>
         <p>
-          {t('services.ctaDescription')}
+          Interested in any of the services above? Let's discuss how we can work together.
         </p>
         <Link className="cta-button" to={`${basePath}/contact`}>
-          {t('services.ctaButton')}
+          Contact me
         </Link>
       </div>
     </div>

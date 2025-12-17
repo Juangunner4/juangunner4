@@ -380,6 +380,29 @@ const es = {
     ctaHeading: '¿Listo para colaborar?',
     ctaDescription: 'Cuéntame sobre el alcance de tu proyecto, cronograma y objetivos. Responderé con un plan breve y los siguientes pasos en 48 horas.',
     ctaButton: 'Contáctame',
+    web3Services: {
+      incubation: {
+        title: 'Incubación Web3 y Búsqueda de IPO',
+        description1: 'Busco constructores reales para dev.fun.',
+        description2: 'Si estás preparándote para un IPO on-chain, ayudo a evaluar el proyecto y conectarte con el incubador dev.fun — soporte técnico, distribución y guía directamente del ecosistema pump.fun.',
+        description3: 'Sin spray-and-pray.',
+        description4: 'Gano cuando los proyectos se lanzan y ganan — incentivos completamente alineados.'
+      },
+      development: {
+        title: 'Desarrollo Web3',
+        description1: 'Construyo y envío productos Web3 reales.',
+        description2: 'Contratos inteligentes, dApps, APIs e infraestructura — sin agencias, sin relleno.',
+        description3: 'Desde MVP hasta mainnet, me enfoco en código que funciona y escala.',
+        description4: 'Construido por un dev que realmente envía.'
+      },
+      streaming: {
+        title: 'Streaming en Vivo y Demostraciones de Juegos On-Chain',
+        description1: 'Transmito juegos Web3 y demos interactivas en vivo.',
+        description2: 'Los proyectos desbloquean tiempo al aire a través de quemas on-chain vía pyro.buzz — quemar = destacar, tan simple como eso. Todo sucede en vivo, transparente y on-chain.',
+        description3: 'Piensa en ello como un mecánico de juego: soporte → quemar → desbloquear exposición.',
+        description4: 'Construido para juegos, constructores y experiencias on-chain que quieren que jugadores reales estén viendo.'
+      }
+    }
   },
   blog: {
     heading: 'Blog',
