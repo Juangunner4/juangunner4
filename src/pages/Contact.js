@@ -70,8 +70,8 @@ const Contact = () => {
   return (
     <div className="page-wrapper">
       <div className="page-hero">
-        <h1>Calendar</h1>
-        <p>Schedule a call with me. Available time slots are shown below.</p>
+        <h1>{t('contact.heading')}</h1>
+        <p>{t('contact.subheading')}</p>
       </div>
 
       <div className="page-section">
@@ -152,7 +152,7 @@ const Contact = () => {
 
         <div style={{ marginTop: '30px', textAlign: 'center' }}>
           <p style={{ color: '#666', fontSize: '0.9em' }}>
-            All times are shown in your local timezone.
+            {t('contact.timezoneNote')}
           </p>
         </div>
       </div>

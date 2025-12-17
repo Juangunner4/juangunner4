@@ -67,12 +67,12 @@ const Services = () => {
       </div>
 
       <div className="page-section">
-        <h2>Get in touch for any of these services</h2>
+        <h2>{t('services.ctaHeading')}</h2>
         <p>
-          Interested in any of the services above? Let's discuss how we can work together.
+          {t('services.ctaDescription')}
         </p>
         <Link className="cta-button" to={`${basePath}/contact`}>
-          Contact me
+          {t('services.ctaButton')}
         </Link>
       </div>
     </div>

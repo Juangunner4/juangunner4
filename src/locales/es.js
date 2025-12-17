@@ -319,8 +319,9 @@ const es = {
     blogSubscribe: 'Suscribirse a las actualizaciones',
   },
   contact: {
-    heading: 'Contacto',
-    subheading: 'Conectemos sobre colaboraciones, entrenamiento o ideas de productos.',
+    heading: 'Calendario',
+    subheading: 'Programa una llamada conmigo. Los horarios disponibles se muestran a continuación.',
+    timezoneNote: 'Todas las horas se muestran en tu zona horaria local.',
     formHeading: 'Envía una nota rápida',
     formDescription: 'Deja tu información y te responderé con los siguientes pasos.',
     nameLabel: 'Nombre',
@@ -377,8 +378,8 @@ const es = {
     headingWeb3: 'Servicios',
     subheading: 'Apoyo práctico para constructores, equipos y creadores que necesitan impulso.',
     subheadingWeb3: 'Soluciones nativas de Web3 para proyectos, comunidades y creadores construyendo on-chain.',
-    ctaHeading: '¿Listo para colaborar?',
-    ctaDescription: 'Cuéntame sobre el alcance de tu proyecto, cronograma y objetivos. Responderé con un plan breve y los siguientes pasos en 48 horas.',
+    ctaHeading: 'Ponte en contacto para cualquiera de estos servicios',
+    ctaDescription: '¿Interesado en cualquiera de los servicios de arriba? Hablemos de cómo podemos trabajar juntos.',
     ctaButton: 'Contáctame',
     web3Services: {
       incubation: {
