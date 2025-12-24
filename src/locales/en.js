@@ -159,6 +159,12 @@ const en = {
                 'Institutional-grade charts, deep liquidity, and robust security for active crypto traders.',
               linkLabel: 'Activate Coinbase referral',
             },
+            baseapp: {
+              name: 'Base App',
+              description:
+                'Join Base App, the Coinbase-backed onchain hub for trading, discovering, and sharing apps.',
+              linkLabel: 'Join Base App',
+            },
             aave: {
               name: 'Aave',
               description:

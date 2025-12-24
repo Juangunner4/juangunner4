@@ -84,6 +84,12 @@ export const tradingPlatforms = {
       tags: ['Tag TBD'],
     },
     {
+      id: 'baseapp',
+      link: 'https://base.app/invite/friends/9XXNSG11',
+      faviconDomain: 'base.app',
+      tags: ['Coinbase', 'Base', 'Onchain'],
+    },
+    {
       id: 'aave',
       link: 'https://aave.com/r/89D3F8',
       faviconDomain: 'aave.com',

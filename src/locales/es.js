@@ -160,6 +160,12 @@ const es = {
                 'Gráficos profesionales, liquidez profunda y seguridad robusta para traders activos de cripto.',
               linkLabel: 'Activa el referido de Coinbase',
             },
+            baseapp: {
+              name: 'Base App',
+              description:
+                'Únete a Base App, el hub onchain respaldado por Coinbase para tradear, descubrir y compartir apps.',
+              linkLabel: 'Únete a Base App',
+            },
             aave: {
               name: 'Aave',
               description:
