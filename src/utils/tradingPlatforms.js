@@ -116,6 +116,12 @@ export const tradingPlatforms = {
       tags: ['Tag TBD'],
     },
     {
+      id: 'kartatrade',
+      link: 'https://karta.trade/@436286f3',
+      faviconDomain: 'karta.trade',
+      tags: ['Tag TBD'],
+    },
+    {
       id: 'token',
       link: 'https://www.token.com/ref/v7gmmwtu',
       faviconDomain: 'token.com',
