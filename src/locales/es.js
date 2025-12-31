@@ -190,6 +190,12 @@ const es = {
                 'Copia, refleja y automatiza estrategias en los principales DEX desde un solo panel.',
               linkLabel: 'Opera con Axiom',
             },
+            kartatrade: {
+              name: 'Karta.Trade',
+              description:
+                'karta.trade is the first trading terminal with a real-time market map for Pump.fun. \nInstead of scrolling through endless tokens, you see the entire market on one screen in two dimensions: age and market cap',
+              linkLabel: 'Explora Karta.Trade',
+            },
             token: {
               name: 'Token.com',
               description:
