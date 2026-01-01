@@ -11,12 +11,20 @@ import { useProfile } from '../ProfileContext';
 
 const experiences = [
   {
+    title: "Senior Engineer",
+    company: "Option Care Health",
+    location: "Remote",
+    date: "Dec 2024 - Present",
+    description:
+      "Leading development efforts that improve patient-focused healthcare services and internal platforms.",
+  },
+  {
     title: "Software Engineer",
     company: "FedEx Dataworks",
     location: "Remote",
-    date: "Jun 2024 - Present",
+    date: "Jun 2024 - Dec 2025",
     description:
-      "Working on developing data-driven solutions and backend services for logistics and supply chain optimization.",
+      "Developed data-driven solutions and backend services for logistics and supply chain optimization.",
     logo: fedexLogo,
   },
   {
