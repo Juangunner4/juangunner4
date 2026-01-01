@@ -22,7 +22,7 @@ const devProjectData = [
     },
   },
   {
-    name: 'footballcoin.fun',
+    name: 'futcoin.fun',
     logo: 'https://footballcoin.fun/favicon.ico',
     tags: ['web3'],
     environments: {
