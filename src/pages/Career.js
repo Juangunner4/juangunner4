@@ -14,7 +14,7 @@ const experiences = [
     title: "Senior Engineer",
     company: "Option Care Health",
     location: "Remote",
-    date: "Dec 2024 - Present",
+    date: "Dec 2025 - Present",
     description:
       "Leading development efforts that improve patient-focused healthcare services and internal platforms.",
   },
