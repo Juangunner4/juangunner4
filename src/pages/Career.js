@@ -11,7 +11,7 @@ import { useProfile } from '../ProfileContext';
 
 const experiences = [
   {
-    title: "Senior Engineer",
+    title: "Senior Software Engineer",
     company: "Option Care Health",
     location: "Remote",
     date: "Dec 2025 - Present",
@@ -19,7 +19,7 @@ const experiences = [
       "Leading development efforts that improve patient-focused healthcare services and internal platforms.",
   },
   {
-    title: "Software Engineer",
+    title: "Software Engineer II",
     company: "FedEx Dataworks",
     location: "Remote",
     date: "Jun 2024 - Dec 2025",
