@@ -5,8 +5,10 @@ import Typography from '@mui/material/Typography';
 import Link from '@mui/material/Link';
 import Box from '@mui/material/Box';
 import { SportsEsports } from '@mui/icons-material';
+import { useTranslation } from 'react-i18next';
 
 const TwitchFeed = () => {
+  const { t } = useTranslation();
   const baseUrl =
     process.env.REACT_APP_API_URL ||
     (process.env.NODE_ENV === 'development' ? 'http://localhost:4000' : '');
@@ -36,7 +38,7 @@ const TwitchFeed = () => {
           }}
         >
           <SportsEsports sx={{ fontSize: 40, color: '#ff0000' }} />
-          <Typography variant="h6">Watch me on Twitch</Typography>
+          <Typography variant="h6">{t('socials.twitchFeed')}</Typography>
           <Link
             href="https://twitch.tv/juangunner4"
             target="_blank"
@@ -46,6 +48,10 @@ const TwitchFeed = () => {
           >
             twitch.tv/juangunner4
           </Link>
+          
+          <Typography variant="body2" sx={{ color: '#666', mt: 1 }}>
+            {t('socials.twitchVisit')}
+          </Typography>
         </CardContent>
       </Card>
     );
@@ -57,7 +63,7 @@ const TwitchFeed = () => {
     <>
       <Card sx={{ my: 2, width: '100%', maxWidth: '90%', mx: 'auto' }}>
         <CardContent sx={{ textAlign: 'center' }}>
-          <Typography variant="h6">Latest Twitch Stream</Typography>
+          <Typography variant="h6">{t('socials.twitchLatest')}</Typography>
           <Box sx={{ position: 'relative', pt: '56.25%' }}>
             <iframe
               title={latest.title}
@@ -80,7 +86,7 @@ const TwitchFeed = () => {
         <Card sx={{ my: 2, width: '100%', maxWidth: '90%', mx: 'auto' }}>
           <CardContent>
             <Typography variant="h6" sx={{ textAlign: 'center' }}>
-              Previous Streams
+              {t('socials.twitchPrevious')}
             </Typography>
             <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 2, justifyContent: 'center', mt: 1 }}>
               {previous.map((v) => (

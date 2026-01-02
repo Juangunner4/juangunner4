@@ -13,6 +13,7 @@ import { PhantomWalletAdapter, SolflareWalletAdapter, TorusWalletAdapter } from 
 import { clusterApiUrl } from '@solana/web3.js';
 import '@solana/wallet-adapter-react-ui/styles.css';
 import Navbar from './components/Navbar';
+import CookieConsent from './components/CookieConsent';
 import Career from './pages/Career';
 import Football from './pages/Football';
 import ContentCreator from './pages/ContentCreator';
@@ -45,6 +46,27 @@ const Layout = () => {
   useEffect(() => {
     setProfile(profileType === 'web3');
   }, [profileType, setProfile]);
+
+  return (
+    <div className="App">
+      <Navbar />
+      <main>
+        <Outlet />
+      </main>
+      <AdBanner />
+      <Footer />
+    </div>
+  );
+};
+
+const PublicProfileLayout = () => {
+  const { setProfile } = useProfile();
+
+  // Use the current profile setting for public profiles
+  useEffect(() => {
+    // Keep the current profile type when viewing public profiles
+    // No need to change it
+  }, [setProfile]);
 
   return (
     <div className="App">
@@ -102,9 +124,12 @@ function App() {
                       <Route path="terms" element={<TermsOfService />} />
                       <Route path=":platformId" element={<TradingPlatform />} />
                     </Route>
-                    <Route path="/user/:username" element={<PublicProfile />} />
+                    <Route path="/user/:username" element={<PublicProfileLayout />}>
+                      <Route index element={<PublicProfile />} />
+                    </Route>
                     <Route path="*" element={<Navigate to={getProfileBasePath(false)} replace />} />
                   </Routes>
+                  <CookieConsent />
                 </Router>
               </ProfileProvider>
             </AuthProvider>

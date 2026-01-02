@@ -64,6 +64,23 @@ const userSchema = new mongoose.Schema({
       type: String,
       maxlength: 200,
       default: ''
+    },
+    social: {
+      twitter: {
+        type: String,
+        maxlength: 100,
+        default: ''
+      },
+      discord: {
+        type: String,
+        maxlength: 100,
+        default: ''
+      },
+      telegram: {
+        type: String,
+        maxlength: 100,
+        default: ''
+      }
     }
   },
   preferences: {

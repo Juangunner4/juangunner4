@@ -3,12 +3,71 @@ import { useAuth } from '../contexts/AuthContext';
 import { useNavigate } from 'react-router-dom';
 import { useProfile } from '../ProfileContext';
 import { getProfileBasePath } from '../utils/profileRouting';
+import { useTranslation } from 'react-i18next';
 import '../styles/ContentPages.css';
 import axios from 'axios';
+import * as nsfwjs from 'nsfwjs';
+
+// Validation regex patterns
+const VALIDATION_PATTERNS = {
+  bio: {
+    // Allow letters, numbers, spaces, common punctuation, emojis - max 500 chars
+    regex: /^[a-zA-Z0-9\s.,!?'"&()@#*\-\u0080-\uffff]*$/,
+    error: 'Bio contains invalid characters. Only letters, numbers, and basic punctuation allowed.',
+  },
+  location: {
+    // Allow letters, numbers, spaces, hyphens, commas
+    regex: /^[a-zA-Z0-9\s,-]*$/,
+    error: 'Location contains invalid characters. Only letters, numbers, commas, and hyphens allowed.',
+  },
+  website: {
+    // Basic URL validation
+    regex: /^(https?:\/\/)?([\da-z.-]+)\.([a-z.]{2,6})(\/[\w .-]*)*\/?$/,
+    error: 'Please enter a valid website URL (e.g., https://example.com)',
+  },
+  twitter: {
+    // Twitter handles: alphanumeric and underscores only, 1-15 chars
+    regex: /^[a-zA-Z0-9_]{1,15}$/,
+    error: 'Twitter username must be 1-15 characters using only letters, numbers, and underscores.',
+  },
+  discord: {
+    // Discord usernames: alphanumeric, dots, hyphens, underscores, 1-32 chars
+    regex: /^[a-zA-Z0-9_.-]{1,32}$/,
+    error: 'Discord username must be 1-32 characters using letters, numbers, dots, hyphens, and underscores.',
+  },
+  telegram: {
+    // Telegram handles: alphanumeric and underscores, 5-32 chars
+    regex: /^[a-zA-Z0-9_]{5,32}$/,
+    error: 'Telegram username must be 5-32 characters using only letters, numbers, and underscores.',
+  },
+};
+
+// Generic profanity check function
+const hasProfanity = (text) => {
+  // Check for common offensive patterns and repeated characters (like *****)
+  const offensivePatterns = [
+    /f[*u]ck/gi,
+    /sh[i1]t/gi,
+    /a[s$]s/gi,
+    /b[i1]tch/gi,
+    /c[u0]nt/gi,
+    /d[a4]mn/gi,
+    /h[e3]ll/gi,
+    /p[i1]ss/gi,
+    /ass[*-]/gi,
+    /\*{5,}/g, // Excessive asterisks
+    /cock/gi,
+    /whore/gi,
+    /slut/gi,
+  ];
+  
+  return offensivePatterns.some(pattern => pattern.test(text));
+};
 
 const Profile = () => {
   const { user, isAuthenticated } = useAuth();
   const { isWeb3 } = useProfile();
+  const { t } = useTranslation();
   const navigate = useNavigate();
   const basePath = getProfileBasePath(isWeb3);
 
@@ -16,6 +75,9 @@ const Profile = () => {
     bio: '',
     location: '',
     website: '',
+    twitter: '',
+    discord: '',
+    telegram: '',
     profilePicture: null,
     profilePicturePreview: '',
   });
@@ -23,6 +85,7 @@ const Profile = () => {
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState('');
   const [error, setError] = useState('');
+  const [saved, setSaved] = useState(false);
 
   // Redirect if not authenticated
   useEffect(() => {
@@ -39,13 +102,48 @@ const Profile = () => {
         bio: user.profile?.bio || '',
         location: user.profile?.location || '',
         website: user.profile?.website || '',
+        twitter: user.profile?.social?.twitter || '',
+        discord: user.profile?.social?.discord || '',
+        telegram: user.profile?.social?.telegram || '',
         profilePicturePreview: user.profilePicture || '/default-avatar.png',
       }));
     }
   }, [user]);
 
+  // Validation function for individual fields
+  const validateField = (fieldName, value) => {
+    // Skip validation for empty optional fields
+    if (!value || value.trim() === '') {
+      return { valid: true, error: '' };
+    }
+
+    // Check for profanity in all fields
+    if (hasProfanity(value)) {
+      return { 
+        valid: false, 
+        error: 'This field contains inappropriate content. Please remove it and try again.' 
+      };
+    }
+
+    // Validate field-specific patterns
+    if (VALIDATION_PATTERNS[fieldName]) {
+      const pattern = VALIDATION_PATTERNS[fieldName];
+      if (!pattern.regex.test(value)) {
+        return { valid: false, error: pattern.error };
+      }
+    }
+
+    return { valid: true, error: '' };
+  };
+
   const handleInputChange = (e) => {
-    const { name, value } = e.target;
+    let { name, value } = e.target;
+    
+    // Strip @ symbol from social media fields
+    if (['twitter', 'discord', 'telegram'].includes(name)) {
+      value = value.replace(/^@+/, '');
+    }
+    
     setFormData(prev => ({
       ...prev,
       [name]: value,
@@ -53,7 +151,7 @@ const Profile = () => {
     setError('');
   };
 
-  const handleFileChange = (e) => {
+  const handleFileChange = async (e) => {
     const file = e.target.files[0];
     if (file) {
       if (!file.type.startsWith('image/')) {
@@ -65,15 +163,68 @@ const Profile = () => {
         return;
       }
 
-      const reader = new FileReader();
-      reader.onloadend = () => {
-        setFormData(prev => ({
-          ...prev,
-          profilePicture: file,
-          profilePicturePreview: reader.result,
-        }));
-      };
-      reader.readAsDataURL(file);
+      // Check image content for inappropriate material
+      try {
+        setError('');
+        setMessage('Scanning image for content safety...');
+        
+        const img = new Image();
+        img.onload = async () => {
+          try {
+            // Load the NSFWJS model
+            const model = await nsfwjs.load();
+            
+            // Predict the image
+            const predictions = await model.classify(img);
+            
+            // Check for explicit content
+            // Predictions include: Neutral, Drawing, Hentai, Porn, Sexy
+            const explicitPrediction = predictions.find(
+              p => p.className === 'Porn' || p.className === 'Hentai' || p.className === 'Sexy'
+            );
+            
+            if (explicitPrediction && explicitPrediction.probability > 0.5) {
+              setError('This image contains inappropriate content. Please choose a different image.');
+              setMessage('');
+              return;
+            }
+
+            // Image is safe, process it
+            const reader = new FileReader();
+            reader.onloadend = () => {
+              setFormData(prev => ({
+                ...prev,
+                profilePicture: file,
+                profilePicturePreview: reader.result,
+              }));
+              setMessage('Image uploaded and verified safe!');
+              setTimeout(() => setMessage(''), 2000);
+            };
+            reader.readAsDataURL(file);
+          } catch (error) {
+            console.error('Image moderation error:', error);
+            // If moderation fails, still allow upload but log it
+            const reader = new FileReader();
+            reader.onloadend = () => {
+              setFormData(prev => ({
+                ...prev,
+                profilePicture: file,
+                profilePicturePreview: reader.result,
+              }));
+              setMessage('Image uploaded.');
+            };
+            reader.readAsDataURL(file);
+          }
+        };
+        img.onerror = () => {
+          setError('Could not process image. Please try another.');
+          setMessage('');
+        };
+        img.src = URL.createObjectURL(file);
+      } catch (error) {
+        console.error('File change error:', error);
+        setError('Error processing image. Please try again.');
+      }
     }
   };
 
@@ -84,10 +235,25 @@ const Profile = () => {
     setMessage('');
 
     try {
+      // Validate all fields before submission
+      const fieldsToValidate = ['bio', 'location', 'website', 'twitter', 'discord', 'telegram'];
+      
+      for (const field of fieldsToValidate) {
+        const validation = validateField(field, formData[field]);
+        if (!validation.valid) {
+          setError(validation.error);
+          setLoading(false);
+          return;
+        }
+      }
+
       const formDataToSend = new FormData();
       formDataToSend.append('bio', formData.bio);
       formDataToSend.append('location', formData.location);
       formDataToSend.append('website', formData.website);
+      formDataToSend.append('twitter', formData.twitter);
+      formDataToSend.append('discord', formData.discord);
+      formDataToSend.append('telegram', formData.telegram);
 
       if (formData.profilePicture) {
         formDataToSend.append('profilePicture', formData.profilePicture);
@@ -100,9 +266,11 @@ const Profile = () => {
       });
 
       if (response.data.success) {
-        setMessage('Profile updated successfully!');
+        setMessage(t('profile.profileUpdated'));
+        setSaved(true);
         setTimeout(() => {
           setMessage('');
+          setSaved(false);
         }, 3000);
       }
     } catch (err) {
@@ -121,14 +289,14 @@ const Profile = () => {
   return (
     <div className="content-page">
       <div className="page-container">
-        <h1>User Profile</h1>
-        <p className="page-description">Edit your profile information</p>
+        <h1>{t('profile.heading')}</h1>
+        <p className="page-description">{t('profile.userProfile')}</p>
 
         <div className="profile-container">
           <form onSubmit={handleSubmit} className="profile-form">
             {/* Profile Picture */}
             <div className="form-section">
-              <h2>Profile Picture</h2>
+              <h2>{t('profile.profilePicture')}</h2>
               <div className="profile-picture-upload">
                 <div className="picture-preview">
                   <img
@@ -146,10 +314,10 @@ const Profile = () => {
                     className="file-input"
                   />
                   <label htmlFor="profilePicture" className="file-label">
-                    Choose Image
+                    {t('profile.chooseImage')}
                   </label>
                   <p className="file-info">
-                    Recommended: 500x500px, JPG or PNG, max 5MB
+                    {t('profile.recommendedImage')}
                   </p>
                 </div>
               </div>
@@ -157,48 +325,95 @@ const Profile = () => {
 
             {/* Bio */}
             <div className="form-section">
-              <label htmlFor="bio">Bio</label>
+              <label htmlFor="bio">{t('profile.bio')}</label>
               <textarea
                 id="bio"
                 name="bio"
                 value={formData.bio}
                 onChange={handleInputChange}
-                placeholder="Tell us about yourself..."
+                placeholder={t('profile.bioPlaceholder')}
                 maxLength={500}
                 rows={4}
                 className="form-textarea"
               />
               <p className="char-count">
-                {formData.bio.length}/500 characters
+                {t('profile.bioCharCount', { count: formData.bio.length })}
               </p>
             </div>
 
             {/* Location */}
             <div className="form-section">
-              <label htmlFor="location">Location</label>
+              <label htmlFor="location">{t('profile.location')}</label>
               <input
                 type="text"
                 id="location"
                 name="location"
                 value={formData.location}
                 onChange={handleInputChange}
-                placeholder="City, Country"
+                placeholder={t('profile.locationPlaceholder')}
                 className="form-input"
               />
             </div>
 
             {/* Website */}
             <div className="form-section">
-              <label htmlFor="website">Website</label>
+              <label htmlFor="website">{t('profile.website')}</label>
               <input
                 type="url"
                 id="website"
                 name="website"
                 value={formData.website}
                 onChange={handleInputChange}
-                placeholder="https://example.com"
+                placeholder={t('profile.websitePlaceholder')}
                 className="form-input"
               />
+            </div>
+
+            {/* Social Media Section */}
+            <div className="form-section">
+              <h3 style={{ marginTop: '30px', marginBottom: '15px', fontSize: '16px' }}>{t('profile.socialMedia')}</h3>
+              
+              {/* X / Twitter */}
+              <div className="form-section">
+                <label htmlFor="twitter">{t('profile.socialMediaTwitter')}</label>
+                <input
+                  type="text"
+                  id="twitter"
+                  name="twitter"
+                  value={formData.twitter}
+                  onChange={handleInputChange}
+                  placeholder={t('profile.twitterPlaceholder')}
+                  className="form-input"
+                />
+              </div>
+
+              {/* Discord */}
+              <div className="form-section">
+                <label htmlFor="discord">{t('profile.socialMediaDiscord')}</label>
+                <input
+                  type="text"
+                  id="discord"
+                  name="discord"
+                  value={formData.discord}
+                  onChange={handleInputChange}
+                  placeholder={t('profile.discordPlaceholder')}
+                  className="form-input"
+                />
+              </div>
+
+              {/* Telegram */}
+              <div className="form-section">
+                <label htmlFor="telegram">{t('profile.socialMediaTelegram')}</label>
+                <input
+                  type="text"
+                  id="telegram"
+                  name="telegram"
+                  value={formData.telegram}
+                  onChange={handleInputChange}
+                  placeholder={t('profile.telegramPlaceholder')}
+                  className="form-input"
+                />
+              </div>
             </div>
 
             {/* Messages */}
@@ -207,31 +422,32 @@ const Profile = () => {
 
             {/* Submit Button */}
             <button
-              type="submit"
+              type="button"
+              onClick={saved ? () => navigate(`${basePath}/profile`) : handleSubmit}
               disabled={loading}
               className="submit-btn"
             >
-              {loading ? 'Saving...' : 'Save Changes'}
+              {loading ? t('profile.saving') : saved ? t('profile.editProfile') : t('profile.saveChanges')}
             </button>
           </form>
 
           {/* User Info Display */}
           <div className="user-info-section">
-            <h2>Account Information</h2>
+            <h2>{t('profile.accountInformation')}</h2>
             <div className="info-item">
-              <strong>Username:</strong>
+              <strong>{t('profile.username')}</strong>
               <span>{user.username}</span>
             </div>
             <div className="info-item">
-              <strong>Email:</strong>
+              <strong>{t('profile.email')}</strong>
               <span>{user.email}</span>
             </div>
             <div className="info-item">
-              <strong>Verified:</strong>
-              <span>{user.isVerified ? '✓ Verified' : '✗ Not Verified'}</span>
+              <strong>{t('profile.verified')}</strong>
+              <span>{user.isVerified ? t('profile.verifiedBadge') : t('profile.notVerified')}</span>
             </div>
             <div className="info-item">
-              <strong>Member Since:</strong>
+              <strong>{t('profile.memberSince')}</strong>
               <span>{new Date(user.createdAt).toLocaleDateString()}</span>
             </div>
           </div>

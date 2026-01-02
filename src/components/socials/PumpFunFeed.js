@@ -7,6 +7,7 @@ import Box from '@mui/material/Box';
 import Divider from '@mui/material/Divider';
 import Grid from '@mui/material/Grid';
 import { LocalFireDepartment, Medication } from '@mui/icons-material';
+import { useTranslation } from 'react-i18next';
 import { fetchMarketStats } from '../../market';
 
 const JUAN_TOKEN_ADDRESS = '5JdqZmKZnn35F7ER6J3f7Zjx84DEN4u7PKtxuTxipump';
@@ -39,6 +40,7 @@ const formatPercent = (value) => {
 };
 
 const PumpFunFeed = () => {
+  const { t } = useTranslation();
   const [stats, setStats] = useState({
     marketCap: null,
     priceChange24h: null,
@@ -66,10 +68,10 @@ const PumpFunFeed = () => {
   }, []);
 
   const metrics = [
-    { label: 'Market Cap', value: formatCurrency(stats.marketCap) },
-    { label: 'Ticker', value: stats.ticker ?? '--' },
-    { label: '24h Change', value: formatPercent(stats.priceChange24h) },
-    { label: '24h Volume', value: formatCurrency(stats.volume24h) }
+    { label: t('socials.pumpfunMarketCap'), value: formatCurrency(stats.marketCap) },
+    { label: t('socials.pumpfunTicker'), value: stats.ticker ?? '--' },
+    { label: t('socials.pumpfun24hChange'), value: formatPercent(stats.priceChange24h) },
+    { label: t('socials.pumpfun24hVolume'), value: formatCurrency(stats.volume24h) }
   ];
 
   return (
@@ -85,7 +87,7 @@ const PumpFunFeed = () => {
       >
         <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 1 }}>
           <LocalFireDepartment sx={{ fontSize: 40, color: '#ff9100' }} />
-          <Typography variant="h6">Watch me on Pump.fun</Typography>
+          <Typography variant="h6">{t('socials.pumpfunFeed')}</Typography>
         </Box>
         <Link
           href="https://pump.fun/profile/juangunner4"
@@ -103,14 +105,14 @@ const PumpFunFeed = () => {
           <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, mb: 1 }}>
             <Medication sx={{ fontSize: 28, color: '#6a1b9a' }} />
             <Typography variant="subtitle1" fontWeight="bold">
-              Stream Token Overview
+              {t('socials.pumpfunTokenOverview')}
             </Typography>
           </Box>
           <Typography variant="body2" color="text.secondary" sx={{ mb: 2 }}>
-            Dive into the latest stats for my stream token and check back soon for live updates.
+            {t('socials.pumpfunDescription')}
           </Typography>
           <Typography variant="body2" sx={{ mb: 2 }}>
-            Token Link{' '}
+            {t('socials.pumpfunTokenLink')}{' '}
             <Link
               href="https://pump.fun/coin/5JdqZmKZnn35F7ER6J3f7Zjx84DEN4u7PKtxuTxipump"
               target="_blank"
@@ -118,7 +120,7 @@ const PumpFunFeed = () => {
               sx={{ fontWeight: 600 }}
               underline="none"
             >
-              View on pump.fun
+              {t('socials.pumpfunView')}
             </Link>
           </Typography>
           <Grid container spacing={2}>

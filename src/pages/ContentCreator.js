@@ -3,24 +3,22 @@ import '../styles/ContentPages.css';
 import web3Placeholder from '../assets/web3.jpg';
 import { useTranslation } from 'react-i18next';
 
-const contentCreatorExperiences = [
+const getExperiences = (t) => [
   {
-    title: 'SNS Ambassador',
-    company: 'Solana Name Service',
-    location: 'Remote',
-    date: 'Jul 2025 - Present',
-    description:
-      'Supporting the SNS community by promoting .sol adoption, educating new users, and amplifying Solana-native projects.',
+    title: t('contentCreator.experiences.sns.title'),
+    company: t('contentCreator.experiences.sns.company'),
+    location: t('contentCreator.experiences.sns.location'),
+    date: t('contentCreator.experiences.sns.date'),
+    description: t('contentCreator.experiences.sns.description'),
     logo: web3Placeholder,
     faviconUrl: 'https://www.sns.id/',
   },
   {
-    title: 'Project Scout',
-    company: 'Dev.Fun',
-    location: 'Remote',
-    date: 'Oct 2025 - Present',
-    description:
-      'Project Scout for Dev.Fun, powering ICM (Initial Coin Machine) on Pump.fun. Scouting and evaluating innovative blockchain projects.',
+    title: t('contentCreator.experiences.devFun.title'),
+    company: t('contentCreator.experiences.devFun.company'),
+    location: t('contentCreator.experiences.devFun.location'),
+    date: t('contentCreator.experiences.devFun.date'),
+    description: t('contentCreator.experiences.devFun.description'),
     logo: web3Placeholder,
     faviconUrl: 'https://dev.fun/',
   },
@@ -28,6 +26,7 @@ const contentCreatorExperiences = [
 
 const ContentCreator = () => {
   const { t } = useTranslation();
+  const contentCreatorExperiences = getExperiences(t);
 
   return (
     <div className="page-wrapper">

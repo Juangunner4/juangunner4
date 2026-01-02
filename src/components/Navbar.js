@@ -30,6 +30,16 @@ const Navbar = () => {
 
   const basePath = getProfileBasePath(isWeb3);
 
+  // Helper function to check if a route is active
+  const isActiveRoute = (path) => {
+    return location.pathname.startsWith(path);
+  };
+
+  // Check if language is active
+  const isLanguageActive = (lang) => {
+    return i18n.language === lang;
+  };
+
   const toggleDrawer = (open) => () => {
     setDrawerOpen(open);
   };
@@ -76,38 +86,97 @@ const Navbar = () => {
               className="navbar-pfp"
               draggable="false"
             />
+            <span className={`pfp-tag ${!isWeb3 ? 'pfp-tag-active' : 'pfp-tag-inactive'}`}>Web2</span>
+            <span className={`pfp-tag pfp-tag-web3 ${isWeb3 ? 'pfp-tag-active' : 'pfp-tag-inactive'}`}>Web3</span>
           </div>
         </button>
       </div>
 
       <div className="desktop-lang">
-        <button onClick={() => i18n.changeLanguage('en')} className="lang-btn">
+        <button 
+          onClick={() => i18n.changeLanguage('en')} 
+          className={`lang-btn ${isLanguageActive('en') ? 'lang-btn-active' : 'lang-btn-inactive'}`}
+        >
           {t('navbar.langEn')}
         </button>
-        <button onClick={() => i18n.changeLanguage('es')} className="lang-btn">
+        <button 
+          onClick={() => i18n.changeLanguage('es')} 
+          className={`lang-btn ${isLanguageActive('es') ? 'lang-btn-active' : 'lang-btn-inactive'}`}
+        >
           {t('navbar.langEs')}
         </button>
       </div>
 
       <div className="mobile-lang">
-        <button onClick={() => i18n.changeLanguage('en')} className="lang-btn">
+        <button 
+          onClick={() => i18n.changeLanguage('en')} 
+          className={`lang-btn ${isLanguageActive('en') ? 'lang-btn-active' : 'lang-btn-inactive'}`}
+        >
           {t('navbar.langEn')}
         </button>
-        <button onClick={() => i18n.changeLanguage('es')} className="lang-btn">
+        <button 
+          onClick={() => i18n.changeLanguage('es')} 
+          className={`lang-btn ${isLanguageActive('es') ? 'lang-btn-active' : 'lang-btn-inactive'}`}
+        >
           {t('navbar.langEs')}
         </button>
       </div>
 
       <div className="navbar-right">
-        <Link to={basePath}>{t('navbar.home')}</Link>
-        <Link to={`${basePath}/career`}>{t('navbar.career')}</Link>
-        <Link to={isWeb3 ? `${basePath}/content-creator` : `${basePath}/football`}>{isWeb3 ? t('navbar.contentCreator') : t('navbar.football')}</Link>
-        <Link to={`${basePath}/trading`}>{t('navbar.trading')}</Link>
-        <Link to={`${basePath}/projects`}>{t('navbar.projects')}</Link>
-        <Link to={`${basePath}/services`}>{t('navbar.services')}</Link>
-        <Link to={`${basePath}/shop`}>{t('navbar.shop')}</Link>
-        <Link to={`${basePath}/blog`}>{t('navbar.blog')}</Link>
-        <Link to={`${basePath}/contact`}>{t('navbar.contact')}</Link>
+        <Link 
+          to={basePath} 
+          className={isActiveRoute(basePath) && location.pathname.split('/').length === 2 ? 'nav-link active' : 'nav-link'}
+        >
+          {t('navbar.home')}
+        </Link>
+        <Link 
+          to={`${basePath}/career`} 
+          className={isActiveRoute(`${basePath}/career`) ? 'nav-link active' : 'nav-link'}
+        >
+          {t('navbar.career')}
+        </Link>
+        <Link 
+          to={isWeb3 ? `${basePath}/content-creator` : `${basePath}/football`}
+          className={isActiveRoute(isWeb3 ? `${basePath}/content-creator` : `${basePath}/football`) ? 'nav-link active' : 'nav-link'}
+        >
+          {isWeb3 ? t('navbar.contentCreator') : t('navbar.football')}
+        </Link>
+        <Link 
+          to={`${basePath}/trading`}
+          className={isActiveRoute(`${basePath}/trading`) ? 'nav-link active' : 'nav-link'}
+        >
+          {t('navbar.trading')}
+        </Link>
+        <Link 
+          to={`${basePath}/projects`}
+          className={isActiveRoute(`${basePath}/projects`) ? 'nav-link active' : 'nav-link'}
+        >
+          {t('navbar.projects')}
+        </Link>
+        <Link 
+          to={`${basePath}/services`}
+          className={isActiveRoute(`${basePath}/services`) ? 'nav-link active' : 'nav-link'}
+        >
+          {t('navbar.services')}
+        </Link>
+        <Link 
+          to={`${basePath}/shop`}
+          className={isActiveRoute(`${basePath}/shop`) ? 'nav-link active' : 'nav-link'}
+        >
+          {t('navbar.shop')}
+        </Link>
+        <Link 
+          to={`${basePath}/blog`}
+          className={isActiveRoute(`${basePath}/blog`) ? 'nav-link active' : 'nav-link'}
+        >
+          {t('navbar.blog')}
+        </Link>
+        <Link 
+          to={`${basePath}/contact`}
+          className={isActiveRoute(`${basePath}/contact`) ? 'nav-link active' : 'nav-link'}
+        >
+          {t('navbar.contact')}
+        </Link>
       </div>
 
       <div className="navbar-actions">
@@ -209,31 +278,88 @@ const Navbar = () => {
         }}
       >
         <List>
-          <ListItem button component={Link} to={basePath} onClick={toggleDrawer(false)}>
+          <ListItem 
+            button 
+            component={Link} 
+            to={basePath} 
+            onClick={toggleDrawer(false)}
+            className={isActiveRoute(basePath) && location.pathname.split('/').length === 2 ? 'drawer-item-active' : ''}
+          >
             <ListItemText primary={t('navbar.home')} primaryTypographyProps={{ sx: { color: '#fff' } }} />
           </ListItem>
-          <ListItem button component={Link} to={`${basePath}/career`} onClick={toggleDrawer(false)}>
+          <ListItem 
+            button 
+            component={Link} 
+            to={`${basePath}/career`} 
+            onClick={toggleDrawer(false)}
+            className={isActiveRoute(`${basePath}/career`) ? 'drawer-item-active' : ''}
+          >
             <ListItemText primary={t('navbar.career')} primaryTypographyProps={{ sx: { color: '#fff' } }} />
           </ListItem>
-          <ListItem button component={Link} to={isWeb3 ? `${basePath}/content-creator` : `${basePath}/football`} onClick={toggleDrawer(false)}>
-            <ListItemText primary={isWeb3 ? t('navbar.contentCreator') : t('navbar.football')} primaryTypographyProps={{ sx: { color: '#fff' } }} />
+          <ListItem 
+            button 
+            component={Link} 
+            to={isWeb3 ? `${basePath}/content-creator` : `${basePath}/football`} 
+            onClick={toggleDrawer(false)}
+            className={isActiveRoute(isWeb3 ? `${basePath}/content-creator` : `${basePath}/football`) ? 'drawer-item-active' : ''}
+          >
+            <ListItemText 
+              primary={isWeb3 ? t('navbar.contentCreator') : t('navbar.football')} 
+              primaryTypographyProps={{ sx: { color: '#fff' } }} 
+            />
           </ListItem>
-          <ListItem button component={Link} to={`${basePath}/trading`} onClick={toggleDrawer(false)}>
+          <ListItem 
+            button 
+            component={Link} 
+            to={`${basePath}/trading`} 
+            onClick={toggleDrawer(false)}
+            className={isActiveRoute(`${basePath}/trading`) ? 'drawer-item-active' : ''}
+          >
             <ListItemText primary={t('navbar.trading')} primaryTypographyProps={{ sx: { color: '#fff' } }} />
           </ListItem>
-          <ListItem button component={Link} to={`${basePath}/projects`} onClick={toggleDrawer(false)}>
+          <ListItem 
+            button 
+            component={Link} 
+            to={`${basePath}/projects`} 
+            onClick={toggleDrawer(false)}
+            className={isActiveRoute(`${basePath}/projects`) ? 'drawer-item-active' : ''}
+          >
             <ListItemText primary={t('navbar.projects')} primaryTypographyProps={{ sx: { color: '#fff' } }} />
           </ListItem>
-          <ListItem button component={Link} to={`${basePath}/services`} onClick={toggleDrawer(false)}>
+          <ListItem 
+            button 
+            component={Link} 
+            to={`${basePath}/services`} 
+            onClick={toggleDrawer(false)}
+            className={isActiveRoute(`${basePath}/services`) ? 'drawer-item-active' : ''}
+          >
             <ListItemText primary={t('navbar.services')} primaryTypographyProps={{ sx: { color: '#fff' } }} />
           </ListItem>
-          <ListItem button component={Link} to={`${basePath}/shop`} onClick={toggleDrawer(false)}>
+          <ListItem 
+            button 
+            component={Link} 
+            to={`${basePath}/shop`} 
+            onClick={toggleDrawer(false)}
+            className={isActiveRoute(`${basePath}/shop`) ? 'drawer-item-active' : ''}
+          >
             <ListItemText primary={t('navbar.shop')} primaryTypographyProps={{ sx: { color: '#fff' } }} />
           </ListItem>
-          <ListItem button component={Link} to={`${basePath}/blog`} onClick={toggleDrawer(false)}>
+          <ListItem 
+            button 
+            component={Link} 
+            to={`${basePath}/blog`} 
+            onClick={toggleDrawer(false)}
+            className={isActiveRoute(`${basePath}/blog`) ? 'drawer-item-active' : ''}
+          >
             <ListItemText primary={t('navbar.blog')} primaryTypographyProps={{ sx: { color: '#fff' } }} />
           </ListItem>
-          <ListItem button component={Link} to={`${basePath}/contact`} onClick={toggleDrawer(false)}>
+          <ListItem 
+            button 
+            component={Link} 
+            to={`${basePath}/contact`} 
+            onClick={toggleDrawer(false)}
+            className={isActiveRoute(`${basePath}/contact`) ? 'drawer-item-active' : ''}
+          >
             <ListItemText primary={t('navbar.contact')} primaryTypographyProps={{ sx: { color: '#fff' } }} />
           </ListItem>
         </List>

@@ -4,6 +4,110 @@ const User = require('../models/User');
 const { authMiddleware } = require('../middleware/auth');
 const multer = require('multer');
 const path = require('path');
+const fs = require('fs');
+
+// Image content moderation helper
+const validateImageContent = async (filePath) => {
+  try {
+    // Note: For production, integrate with a service like:
+    // - AWS Rekognition
+    // - Google Vision API
+    // - Cloudinary API
+    // - Azure Computer Vision
+    // This is a placeholder structure for future implementation
+    
+    // Basic file validation
+    if (!fs.existsSync(filePath)) {
+      return { valid: false, error: 'Image file not found' };
+    }
+    
+    const stats = fs.statSync(filePath);
+    if (stats.size === 0) {
+      return { valid: false, error: 'Image file is empty' };
+    }
+    
+    return { valid: true, error: '' };
+  } catch (error) {
+    console.error('Image validation error:', error);
+    // If validation fails, reject the upload for safety
+    return { valid: false, error: 'Unable to validate image. Please try again.' };
+  }
+};
+
+// Backend validation patterns - mirror frontend for consistency
+const VALIDATION_PATTERNS = {
+  bio: {
+    regex: /^[a-zA-Z0-9\s\.\,\!\?\'\"\-\&\(\)\@\#\*\u0080-\uffff]*$/,
+    error: 'Bio contains invalid characters',
+  },
+  location: {
+    regex: /^[a-zA-Z0-9\s\,\-]*$/,
+    error: 'Location contains invalid characters',
+  },
+  website: {
+    regex: /^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/,
+    error: 'Invalid website URL format',
+  },
+  twitter: {
+    regex: /^[a-zA-Z0-9_]{1,15}$/,
+    error: 'Invalid Twitter username format',
+  },
+  discord: {
+    regex: /^[a-zA-Z0-9_\.\-]{1,32}$/,
+    error: 'Invalid Discord username format',
+  },
+  telegram: {
+    regex: /^[a-zA-Z0-9_]{5,32}$/,
+    error: 'Invalid Telegram username format',
+  },
+};
+
+// Profanity check function
+const hasProfanity = (text) => {
+  const offensivePatterns = [
+    /f[\*u]ck/gi,
+    /sh[i1]t/gi,
+    /a[s\$]s/gi,
+    /b[i1]tch/gi,
+    /c[u0]nt/gi,
+    /d[a4]mn/gi,
+    /h[e3]ll/gi,
+    /p[i1]ss/gi,
+    /ass[\*\-]/gi,
+    /\*{5,}/g,
+    /cock/gi,
+    /whore/gi,
+    /slut/gi,
+  ];
+  
+  return offensivePatterns.some(pattern => pattern.test(text));
+};
+
+// Field validation function
+const validateField = (fieldName, value) => {
+  // Skip validation for empty optional fields
+  if (!value || value.trim() === '') {
+    return { valid: true, error: '' };
+  }
+
+  // Check for profanity
+  if (hasProfanity(value)) {
+    return { 
+      valid: false, 
+      error: 'Field contains inappropriate content' 
+    };
+  }
+
+  // Validate field-specific patterns
+  if (VALIDATION_PATTERNS[fieldName]) {
+    const pattern = VALIDATION_PATTERNS[fieldName];
+    if (!pattern.regex.test(value)) {
+      return { valid: false, error: pattern.error };
+    }
+  }
+
+  return { valid: true, error: '' };
+};
 
 // Configure multer for profile picture upload
 const storage = multer.diskStorage({
@@ -29,6 +133,21 @@ const upload = multer({
     } else {
       cb(new Error('Only image files (jpeg, jpg, png, gif, webp) are allowed'));
     }
+  }
+});
+
+// @route   GET /api/user/profile
+// @desc    Get current user profile
+// @access  Private
+router.get('/profile', authMiddleware, async (req, res) => {
+  try {
+    res.json({
+      success: true,
+      user: req.user.toJSON()
+    });
+  } catch (error) {
+    console.error('Get profile error:', error);
+    res.status(500).json({ error: 'Server error fetching profile' });
   }
 });
 
@@ -65,27 +184,12 @@ router.get('/:username', async (req, res) => {
   }
 });
 
-// @route   GET /api/user/profile
-// @desc    Get current user profile
-// @access  Private
-router.get('/profile', authMiddleware, async (req, res) => {
-  try {
-    res.json({
-      success: true,
-      user: req.user.toJSON()
-    });
-  } catch (error) {
-    console.error('Get profile error:', error);
-    res.status(500).json({ error: 'Server error fetching profile' });
-  }
-});
-
 // @route   PUT /api/user/profile
 // @desc    Update user profile
 // @access  Private
 router.put('/profile', authMiddleware, upload.single('profilePicture'), async (req, res) => {
   try {
-    const { bio, location, website, newsletter, profileType } = req.body;
+    const { bio, location, website, newsletter, profileType, twitter, discord, telegram } = req.body;
 
     const user = await User.findById(req.user._id);
 
@@ -93,13 +197,45 @@ router.put('/profile', authMiddleware, upload.single('profilePicture'), async (r
       return res.status(404).json({ error: 'User not found' });
     }
 
+    // Validate all fields before updating
+    const fieldsToValidate = {
+      bio,
+      location,
+      website,
+      twitter,
+      discord,
+      telegram,
+    };
+
+    for (const [fieldName, value] of Object.entries(fieldsToValidate)) {
+      const validation = validateField(fieldName, value);
+      if (!validation.valid) {
+        return res.status(400).json({ error: validation.error });
+      }
+    }
+
     // Update profile fields
     if (bio !== undefined) user.profile.bio = bio;
     if (location !== undefined) user.profile.location = location;
     if (website !== undefined) user.profile.website = website;
 
+    // Update social media fields (strip @ symbols)
+    if (twitter !== undefined) user.profile.social.twitter = twitter.replace(/^@+/, '');
+    if (discord !== undefined) user.profile.social.discord = discord.replace(/^@+/, '');
+    if (telegram !== undefined) user.profile.social.telegram = telegram.replace(/^@+/, '');
+
     // Update profile picture if provided
     if (req.file) {
+      // Validate image content before storing
+      const imageValidation = await validateImageContent(req.file.path);
+      if (!imageValidation.valid) {
+        // Delete the uploaded file if validation fails
+        fs.unlink(req.file.path, (err) => {
+          if (err) console.error('Error deleting invalid image:', err);
+        });
+        return res.status(400).json({ error: imageValidation.error });
+      }
+      
       user.profilePicture = `/uploads/avatars/${req.file.filename}`;
     }
 
@@ -135,6 +271,16 @@ router.post('/profile-picture', authMiddleware, upload.single('profilePicture'),
 
     if (!user) {
       return res.status(404).json({ error: 'User not found' });
+    }
+
+    // Validate image content before storing
+    const imageValidation = await validateImageContent(req.file.path);
+    if (!imageValidation.valid) {
+      // Delete the uploaded file if validation fails
+      fs.unlink(req.file.path, (err) => {
+        if (err) console.error('Error deleting invalid image:', err);
+      });
+      return res.status(400).json({ error: imageValidation.error });
     }
 
     // Update profile picture path

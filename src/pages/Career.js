@@ -6,102 +6,98 @@ import freddieMacLogo from '../assets/freddieMac.png';
 import naturalGardenLogo from '../assets/naturalGarden.jpg';
 import mthreeLogo from '../assets/mthree.jpg';
 import emuLogo from '../assets/emu.png';
+import optionCareLogo from '../assets/OptionCare.jpg';
 import { useTranslation } from 'react-i18next';
 import { useProfile } from '../ProfileContext';
 
-const experiences = [
+const getExperiences = (t) => [
   {
-    title: "Senior Software Engineer",
-    company: "Option Care Health",
-    location: "Remote",
-    date: "Dec 2025 - Present",
-    description:
-      "Leading development efforts that improve patient-focused healthcare services and internal platforms.",
+    title: t('career.experiences.optionCare.title'),
+    company: t('career.experiences.optionCare.company'),
+    location: t('career.experiences.optionCare.location'),
+    date: t('career.experiences.optionCare.date'),
+    description: t('career.experiences.optionCare.description'),
+    logo: optionCareLogo,
   },
   {
-    title: "Software Engineer II",
-    company: "FedEx Dataworks",
-    location: "Remote",
-    date: "Jun 2024 - Dec 2025",
-    description:
-      "Developed data-driven solutions and backend services for logistics and supply chain optimization.",
+    title: t('career.experiences.fedex.title'),
+    company: t('career.experiences.fedex.company'),
+    location: t('career.experiences.fedex.location'),
+    date: t('career.experiences.fedex.date'),
+    description: t('career.experiences.fedex.description'),
     logo: fedexLogo,
   },
   {
-    title: "Software Engineer II",
-    company: "J.B. Hunt Transport Services, Inc.",
-    location: "Lowell, Arkansas, United States",
-    date: "Aug 2022 - Jun 2024",
-    description:
-      "Developed and maintained APIs using Quarkus and Spring Boot. Deployed microservices on Azure using Kubernetes Lens.",
+    title: t('career.experiences.jbhunt.title'),
+    company: t('career.experiences.jbhunt.company'),
+    location: t('career.experiences.jbhunt.location'),
+    date: t('career.experiences.jbhunt.date'),
+    description: t('career.experiences.jbhunt.description'),
     responsibilities: [
-      "Developed and updated APIs using Quarkus and Spring Boot.",
-      "Used Azure and Kubernetes Lens for deployment.",
-      "Practiced modern coding standards with JUnit testing.",
-      "Completed frontend development training in Angular.",
+      t('career.experiences.jbhunt.responsibilities.0'),
+      t('career.experiences.jbhunt.responsibilities.1'),
+      t('career.experiences.jbhunt.responsibilities.2'),
+      t('career.experiences.jbhunt.responsibilities.3'),
     ],
     logo: jbHuntLogo,
   },
   {
-    title: "Agile Developer, Associate II",
-    company: "Freddie Mac",
-    location: "McLean, Virginia, United States",
-    date: "Nov 2020 - Aug 2022",
-    description:
-      "Developed and modernized applications using TDD with Spring Boot and Jenkins.",
+    title: t('career.experiences.freddieMac.title'),
+    company: t('career.experiences.freddieMac.company'),
+    location: t('career.experiences.freddieMac.location'),
+    date: t('career.experiences.freddieMac.date'),
+    description: t('career.experiences.freddieMac.description'),
     responsibilities: [
-      "Used Spring Boot Java Framework to develop and update APIs.",
-      "Practiced Test Driven Development (TDD).",
-      "Deployed applications using Jenkins and OpenShift.",
+      t('career.experiences.freddieMac.responsibilities.0'),
+      t('career.experiences.freddieMac.responsibilities.1'),
+      t('career.experiences.freddieMac.responsibilities.2'),
     ],
     logo: freddieMacLogo,
   },
   {
-    title: "Tech Consultant",
-    company: "The Natural Garden, Inc.",
-    location: "Harrisonburg, Virginia, United States",
-    date: "May 2019 - Jan 2022",
-    description:
-      "Handled technical issues and implemented network upgrades for productivity.",
+    title: t('career.experiences.naturalGarden.title'),
+    company: t('career.experiences.naturalGarden.company'),
+    location: t('career.experiences.naturalGarden.location'),
+    date: t('career.experiences.naturalGarden.date'),
+    description: t('career.experiences.naturalGarden.description'),
     responsibilities: [
-      "Resolved issues related to macOS, Windows, Google Admin, and network administration.",
-      "Upgraded WiFi network and staff computers.",
+      t('career.experiences.naturalGarden.responsibilities.0'),
+      t('career.experiences.naturalGarden.responsibilities.1'),
     ],
     logo: naturalGardenLogo,
   },
   {
-    title: "Alumni Associate",
-    company: "mthree",
-    location: "Remote",
-    date: "May 2020 - Nov 2020",
+    title: t('career.experiences.mthree.title'),
+    company: t('career.experiences.mthree.company'),
+    location: t('career.experiences.mthree.location'),
+    date: t('career.experiences.mthree.date'),
     skills: [
-      "Production Support",
-      "Disaster Recovery",
-      "SQL",
-      "Linux",
-      "DevOps Fundamentals",
+      t('career.experiences.mthree.skills.0'),
+      t('career.experiences.mthree.skills.1'),
+      t('career.experiences.mthree.skills.2'),
+      t('career.experiences.mthree.skills.3'),
+      t('career.experiences.mthree.skills.4'),
     ],
     logo: mthreeLogo,
   },
   {
-    title: "Endpoint Technician",
-    company: "Eastern Mennonite University",
-    location: "Harrisonburg, Virginia, United States",
-    date: "Jun 2019 - May 2020",
+    title: t('career.experiences.emu.title'),
+    company: t('career.experiences.emu.company'),
+    location: t('career.experiences.emu.location'),
+    date: t('career.experiences.emu.date'),
     responsibilities: [
-      "Managed Apple and Windows environments through Jamf Pro and Fog.",
-      "Provided setup, testing, installation, and maintenance services.",
-      "Managed 3D printer, using Autodesk Inventor for part design.",
+      t('career.experiences.emu.responsibilities.0'),
+      t('career.experiences.emu.responsibilities.1'),
+      t('career.experiences.emu.responsibilities.2'),
     ],
     logo: emuLogo,
   },
   {
-    title: "Python Tutor",
-    company: "Eastern Mennonite University",
-    location: "Harrisonburg, Virginia, United States",
-    date: "Aug 2019 - Jan 2020",
-    description:
-      "Tutored students in Python for an introductory programming course.",
+    title: t('career.experiences.emuTutor.title'),
+    company: t('career.experiences.emuTutor.company'),
+    location: t('career.experiences.emuTutor.location'),
+    date: t('career.experiences.emuTutor.date'),
+    description: t('career.experiences.emuTutor.description'),
     logo: emuLogo,
   },
 ];
@@ -109,6 +105,7 @@ const experiences = [
 const Career = () => {
   const { t } = useTranslation();
   const { isWeb3 } = useProfile();
+  const experiences = getExperiences(t);
 
   return (
     <div className="page-wrapper">
