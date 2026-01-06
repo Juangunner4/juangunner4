@@ -117,7 +117,7 @@ export const tradingPlatforms = {
     },
     {
       id: 'kartatrade',
-      link: 'https://karta.trade/@436286f3',
+      link: 'https://karta.trade/@Juangun4',
       faviconDomain: 'karta.trade',
       tags: ['Tag TBD'],
     },
